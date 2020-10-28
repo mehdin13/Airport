@@ -5,12 +5,14 @@ using System.Text;
 
 namespace AirPortModel.Models
 {
-    class State
+    class Feacher
     {
         [Key]
-        public int StateId { get; set; }
+        public int FeacherId { get; set; }
         [Required]
         [StringLength(50)]
-        public string StateName { get; set; }
+        public string FeacherName { get; set; }
+        public int TypeId { get; set; }
+        public string FeacherIcon { get; set; }
     }
 }

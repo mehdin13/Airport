@@ -5,14 +5,12 @@ using System.Text;
 
 namespace AirPortModel.Models
 {
-    class FeatureDetail
+    class TypeDetail
     {
         [Key]
-        public int FdId { get; set; }
-        
-        public int DetailId { get; set; }
-        public int FeatureId { get; set; }
+        public int TypeDetailId { get; set; }
+
         [StringLength(50)]
-        public string Value { get; set; }
+        public string TypeDetailName { get; set; }
     }
 }
