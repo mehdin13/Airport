@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class TypeDetail
+    [Table("Tbl_TypeDetail")]
+    public class TypeDetail
     {
         [Key]
-        public int TypeDetailId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("TypeDetailId")]
+        public int Id { get; set; }
 
         [StringLength(50)]
-        public string TypeDetailName { get; set; }
+        [Column("TypeDetailName")]
+        public string Name { get; set; }
     }
 }

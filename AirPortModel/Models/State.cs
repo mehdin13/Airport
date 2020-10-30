@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class State
+    [Table("Tbl_State")]
+    public class State
     {
         [Key]
-        public int StateId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("StateId")]
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
-        public string StateName { get; set; }
+        [Column("StateName")]
+        public string Name { get; set; }
     }
 }

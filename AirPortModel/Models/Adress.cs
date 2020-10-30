@@ -7,19 +7,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirPortModel.Models
 {
-    class Adress
+    [Table("Tbl_Adress")]
+    public class Adress
     {
+
         [Key]
-        public int AdressId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("AdressId")]
+        public int Id { get; set; }
         [Required]
         [StringLength(256)]
-        public string AdressDetail { get; set; }
+        [Column("AdressDetail")]
+        public string Detail { get; set; }
         //data type nemikhad :D 
-        public double AdressLocationX { get; set; }
-        public double AdressLocationY { get; set; }
-        public double AdressLocationR { get; set; }
-       // [ForeignKey("AdressCityId")]
-        public int AdressCityId { get; set; }
+        [Column("AdressLocationX")]
+        public double LocationX { get; set; }
+        [Column("AdressLocationY")]
+        public double LocationY { get; set; }
+        [Column("AdressLocationR")]
+        public double LocationR { get; set; }
+        //Foreign Key 
+        [ForeignKey("City")]
+        [Required]
+        [Column("AdressCityId")]
+        public int CityId { get; set; }
+        public City City { get; set; }
 
     }
 }

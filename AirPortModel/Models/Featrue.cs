@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    [Table("Tbl_Detail")]
-     public class Detail
+    [Table("Tbl_Feature")]
+    public class Featrue
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("DetailId")]
+        [Column("FeatrueId")]
         public int Id { get; set; }
-        //foreign Key 
-        
+
+        [Required]
+        [StringLength(50)]
+        [Column("FeatrueName")]
+        public string Name { get; set; }
+        //foreign key
         [ForeignKey("TypeDetail")]
         [Required]
         [Column("TypeDetailId")]
         public int TypeId { get; set; }
         public TypeDetail TypeDetail { get; set; }
-        //***end Key
-        [Column("DetailValue")]
-        public int Value { get; set; }
+
+
+        [Column("FeatrueIcon")]
+        public string Icon { get; set; }
     }
 }

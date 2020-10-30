@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class GalleryImage
+    [Table("Tbl_GalleryImage")]
+    public class GalleryImage
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ImageId { get; set; }
         [NotNull]
-        public string ImageUrl { get; set; }
+        [Column("ImageUrl")]
+        public string Url { get; set; }
         //foreigen key 
+        [ForeignKey("Gallery")]
+        [Required]
+        [Column("GalleryId")]
         public int GalleryId { get; set; }
+        public Gallery Gallery { get; set; }
+        //End 
     }
 }

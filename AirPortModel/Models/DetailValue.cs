@@ -1,20 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Principal;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class DetailValue
+    [Table("Tbl_DetailValue")]
+    public class DetailValue
     {
         [Key]
-        public int ValueId { get; set; }
-
-        public int DetailId { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("ValueId")]
+        public int Id { get; set; }
+        ////foreign key 
+        //[ForeignKey("Detail")]
+        //[Required]
+        //[Column("DetailId")]
+        //public int DetailId { get; set; }
+        //public Detail Detail { get; set; }
+        ////**end Key
+        //foreign Key 
+        [ForeignKey("Featrue")]
+        [Required]
+        [Column("FeatrueId")]
         public int FeacherId { get; set; }
-
+        public Featrue Featrue { get; set; }
+        //****end Key
+        [Column("Value")]
         public string Value { get; set; }
     }
 }

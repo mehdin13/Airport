@@ -2,49 +2,64 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class Customer
+    [Table("Tbl_Customer")]
+    public class Customer
     {
         [Key]
-        public int CustomerId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("CustomerId")]
+        public int Id { get; set; }
         [Required]
         [StringLength(50)]
-        public string CustomerName { get; set; }
+        [Column("CustomerName")]
+        public string Name { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string CustomerLastName { get; set; }
+        [Column("CustomerLastName")]
+        public string LastName { get; set; }
 
         [StringLength(255)]
-        public string CustomerAdress { get; set; }
+        [Column("CustomerAdress")]
+        public string Adress { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString ="{0:yyyy-mm-dd}")]
-        public DateTime CustomerBDate { get; set; }
+        [Column("CustomerBDate")]
+        public DateTime BDate { get; set; }
         //jensiat Sex New input 
         [Required]
         [NotNull]
-        public bool CustomerSex { get; set; }
+        [Column("CustomerSex")]
+        public bool Sex { get; set; }
 
         [Required]
         [StringLength(12)]
-        public string CustomerMobile { get; set; }
+        [Column("CustomerMobile")]
+        public string Mobile { get; set; }
 
-        public string CustomerProfileImage { get; set; }
+        [Column("CustomerProfileImage")]
+        public string ProfileImage { get; set; }
 
         [DataType(DataType.Password)]
         [DisplayName(displayName:"System Password")]
-        public string CustomerPassword { get; set; }
+        [Column("CustomerPassword")]
+        public string Password { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [DisplayName(displayName:"Emal Address")]
-        public string CustomerEmail { get; set; }
+        [Column("CustomerEmail")]
+        public string Email { get; set; }
         //Hmmm :D
+        [Column("Isactive")]
         public bool Isactive { get; set; }
+        [Column("Isdelete")]
         public bool Isdelete { get; set; }
 
     }

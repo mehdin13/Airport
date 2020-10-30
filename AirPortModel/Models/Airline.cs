@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class Airline
+    [Table("Tbl_AirLine")]
+    public class Airline
     {
         [Key]
-        public int AirlineId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("AirlineId")]
+        public int Id { get; set; }
         [Required]
-        [StringLength(50,ErrorMessage ="Airline name can not be longer than 50 character")]
-        public string AirlineName { get; set; }
+        [StringLength(50, ErrorMessage = "Airline Name Can Not Be Longer than 50 character")]
+        [Column("AirlineName")]
+        public string Name { get; set; }
+        //foreign Key
+        [ForeignKey("Detail")]
+        [Required]
+        [Column("AirlineDetailId")]
+        public int DetailId { get; set; }
+        public Detail Detail { get; set; }
 
-        public string AirlineDetailId { get; set; }
-
-        public string AirlineLogo { get; set; }
+        [Column("AirlineLogo")]
+        public string Logo { get; set; }
     }
 }

@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class City
+    [Table("Tbl_City")]
+    public class City
     {
         [Key]
-        public int CityId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("CityId")]
+        public int Id { get; set; }
         [Required]
         [StringLength(50,ErrorMessage ="the City Name Must Be Les Than 50 character")]
-        public string CityName { get; set; }
+        [Column("CityName")]
+        public string Name { get; set; }
+        //foriegen Key ? 
+        [ForeignKey("state")]
+        [Required]
+        [Column("CityStateId")]
         public int CityStateId { get; set; }
+        public State state { get; set; }
     }
 }

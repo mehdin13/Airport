@@ -1,19 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class Terminal
+    [Table("Tbl_Terminal")]
+    public class Terminal
     {
         [Key]
-        public int TerminalId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("TerminalId")]
+        public int Id { get; set; }
         [StringLength(50)]
-        public string TerminalName { get; set; }
+        [Column("TerminalName")]
+        public string Name { get; set; }
         //Url 
-        public string TerminalImage { get; set; }
+        [Column("TerminalImage")]
+        public string Image { get; set; }
         //foriegen Key
+        [ForeignKey("AirPort")]
+        [Required]
+        [Column("AirPortId")]
         public int AirPortId { get; set; }
+        public AirPort AirPort { get; set; }
+        //**End 
     }
 }

@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AirPortModel.Models
 {
-    class FlightStatus
+    [Table("Tbl_FlightStatus")]
+    public class FlightStatus
     {
         [Key]
-        public int FlightStatusId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("FlightStatusId")]
+        public int Id { get; set; }
         [Required]
         [StringLength(255)]
-        public string FlightStatusType { get; set; }
+        [Column("FlightStatusType")]
+        public string StatusType { get; set; }
     }
 }
