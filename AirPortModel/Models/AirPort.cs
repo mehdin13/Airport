@@ -35,6 +35,11 @@ namespace AirPortModel.Models
         [Column("GalleryId")]
         public int GalleryId { get; set; }
         public Gallery Gallery { get; set; }
+        //end
+        // ***************************new Feald****************
+        [Column("AirPortCode")]
+        public int Code { get; set; }
+        //***************************End New Feald ************
 
         [StringLength(255)]
         [Column("Detail")]

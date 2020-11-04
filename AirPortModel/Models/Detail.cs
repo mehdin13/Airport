@@ -23,6 +23,11 @@ namespace AirPortModel.Models
         public int TypeId { get; set; }
         public TypeDetail TypeDetail { get; set; }
         //***end Key
+        //*********************new Feald *****************************
+        [Column("DetailRating")]
+        public double Rating { get; set; }
+
+        //********************end New Feald **************************
         [Column("DetailValue")]
         public int Value { get; set; }
     }

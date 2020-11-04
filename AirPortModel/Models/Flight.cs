@@ -73,7 +73,16 @@ namespace AirPortModel.Models
         [DisplayFormat(DataFormatString ="{0:yyyy-mm-dd-hh:mm tt}")]
         [Column("FlightStartTimeDate")]
         public DateTime StartTimeDate { get; set; }
+        //*******************New Feald********************
+        [Column("FlightNumber")]
+        [Required]
+        public int Number { get; set; }
 
+        [Column("FlightDelay")]
+        [Required]
+        [DataType(DataType.Time)]
+        public DateTime Delay { get; set; }
+        //********************End of New Feald*************
         [Required]
         [DataType(DataType.DateTime)]
         //check shavad dobare
