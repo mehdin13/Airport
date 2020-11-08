@@ -40,6 +40,10 @@ namespace AirPortModel.Models
         [Column("AirPortCode")]
         public int Code { get; set; }
         //***************************End New Feald ************
+        //Abbreviation == ekhtesari 
+        [StringLength(10)]
+        [Column("AirAbbreviation")]
+        public string Abbreviation { get; set; }
 
         [StringLength(255)]
         [Column("Detail")]

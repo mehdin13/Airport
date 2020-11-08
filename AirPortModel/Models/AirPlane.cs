@@ -26,6 +26,10 @@ namespace AirPortModel.Models
         [Required]
         public string Model { get; set; }
 
+        [Required]
+        [Column("AirPlaneCode")]
+        public String AirPlaneCode { get; set; }
+
         [ForeignKey("Brands")]
         [Required]
         [Column("BrandId")]

@@ -19,7 +19,6 @@ namespace AirPortModel.Models
         [StringLength(256)]
         [Column("AdressDetail")]
         public string Detail { get; set; }
-        //data type nemikhad :D 
         [Column("AdressLocationX")]
         public double LocationX { get; set; }
         [Column("AdressLocationY")]
