@@ -89,5 +89,17 @@ namespace AirPortModel.Models
         [DisplayFormat(DataFormatString ="{0:yyyy-mm-dd-hh:mm tt}")]
         [Column("FlightEndTimeDate")]
         public DateTime EndTimeDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
+
     }
 }

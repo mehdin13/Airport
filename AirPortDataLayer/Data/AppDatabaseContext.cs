@@ -12,7 +12,7 @@ namespace AirPortDataLayer.Data
         {
 
         }
-        public DbSet<Adress> Adresses { get; set; }
+        public DbSet<Address> Adresses { get; set; }
         public DbSet<Airline> airlines { get; set; }
         public DbSet<AirPlane> airPlanes { get; set; }
         public DbSet<AirPort> AirPorts { get; set; }

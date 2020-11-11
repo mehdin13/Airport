@@ -25,9 +25,12 @@ namespace AirPortModel.Models
         [Column("CustomerLastName")]
         public string LastName { get; set; }
 
-        [StringLength(255)]
+        //***************** foreign Key***************
+        [ForeignKey("CustomerAdress")]
         [Column("CustomerAdress")]
-        public string Adress { get; set; }
+        public int Adress { get; set; }
+        public Address address { get; set; }
+        //***************End Foreign Key**************
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString ="{0:yyyy-mm-dd}")]
@@ -60,7 +63,17 @@ namespace AirPortModel.Models
         [Column("Isactive")]
         public bool Isactive { get; set; }
         [Column("Isdelete")]
-        public bool Isdelete { get; set; }
+        public bool IsDelete { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+
 
     }
 }

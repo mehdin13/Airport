@@ -7,16 +7,15 @@ using System.Text;
 
 namespace AirPortModel.Models
 {
-    [Table("Tbl_State")]
-    public class State
+    [Table("Tbl_RequestType")]
+    public class RequestType
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("StateId")]
-        public int Id { get; set; }
-        [Required]
+        [Column("RequestId")]
+        public int id { get; set; }
+
+        [Column("Name")]
         [StringLength(50)]
-        [Column("StateName")]
         public string Name { get; set; }
 
         [DataType(DataType.DateTime)]

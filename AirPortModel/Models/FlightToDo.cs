@@ -33,5 +33,15 @@ namespace AirPortModel.Models
         public bool IsDon { get; set; }
         //Need to Return 0 and 1 
 
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
     }
 }

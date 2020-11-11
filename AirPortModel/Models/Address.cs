@@ -4,11 +4,12 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualBasic.CompilerServices;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AirPortModel.Models
 {
     [Table("Tbl_Adress")]
-    public class Adress
+    public class Address
     {
 
         [Key]
@@ -31,6 +32,16 @@ namespace AirPortModel.Models
         [Column("AdressCityId")]
         public int CityId { get; set; }
         public City City { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
 
     }
 }

@@ -23,5 +23,16 @@ namespace AirPortModel.Models
         public int GalleryId { get; set; }
         public Gallery Gallery { get; set; }
         //End 
+
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
     }
 }

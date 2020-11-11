@@ -15,28 +15,39 @@ namespace AirPortModel.Models
         [Column("RequestId")]
         public int Id { get; set; }
 
-        [StringLength(50)]
-        [Column("Name")]
-        public string Name { get; set; }
-
-        [StringLength(50)]
-        [Column("LastName")]
-        public string LastName { get; set; }
-
-        [Column("Type")]
-        public int Type { get; set; }
-        [StringLength(12)]
-        [Column("Phone")]
-        public string Phone { get; set; }
+        //***************Foreign Key**********************
+        [ForeignKey("TypeId")]
+        [Column("TypeId")]
+        public int TypeId { get; set; }
+        public RequestType requests { get; set; }
+        //**************End Foreign Key*******************
+        [Column("Title")]
+        public string Title { get; set; }
 
         [StringLength(255)]
         [Column("Description")]
         public string Description { get; set; }
+        //**********************Foreign Key **********************
+        [ForeignKey("CustomerId")]
+        [Column("CustomerId")]
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
+        //********************End Foreign Key**********************
         //*********************Estefade Dar Versione Badi ****************
         //[AllowNull]
         //public string Image { get; set; }
         //
         //*******************End Comment****************
-    
+
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
     }
 }

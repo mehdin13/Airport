@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AirPortModel.Models
@@ -13,7 +14,6 @@ namespace AirPortModel.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CustomerFlightId")]
         public int id { get; set; }
-        
         //****************foreignKey CusttomerID*************
         [ForeignKey("CustomerId")]
         [Required]
@@ -21,7 +21,6 @@ namespace AirPortModel.Models
         public int CustomerId { get; set; }
         public Customer customer { get; set; }
         //*****************end ForeignKey*********************
-        
         //*****************ForeignKey FlightId****************
         [ForeignKey("FlightId")]
         [Required]
@@ -29,6 +28,15 @@ namespace AirPortModel.Models
         public int FlightId { get; set; }
         public Flight Flights { get; set; }
         //************* End Foreignkey FlightId****************
-    
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
     }
 }

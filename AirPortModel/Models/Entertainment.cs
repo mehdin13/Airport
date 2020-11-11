@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Principal;
 using System.Text;
 
@@ -18,14 +19,34 @@ namespace AirPortModel.Models
         public int Type { get; set; }
         [Column("Name")]
         public string Name { get; set; }
+        //**************ForeignKey**************
         [ForeignKey("LinkId")]
         [Column("LinkId")]
         public int LId { get; set; }
         public Links LinkIds { get; set; }
+        //***********End foreignKay**************
+        //********** Foreign Key*****************
+        [ForeignKey("Gallery")]
         [Column("Gallery")]
-        public string Gallery { get; set; }
+        public int Galleryid { get; set; }
+        public Gallery Gallery { get; set; }
+        //**********End ForeignKey******************
         [StringLength(50)]
         [Column("Title")]
         public string Title { get; set; }
+        [Column("Description")]
+        [StringLength(255)]
+        public string Description { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
     }
 }

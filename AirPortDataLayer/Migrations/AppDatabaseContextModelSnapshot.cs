@@ -19,7 +19,7 @@ namespace AirPortDataLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AirPortModel.Models.Adress", b =>
+            modelBuilder.Entity("AirPortModel.Models.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,11 +31,23 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("AdressCityId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Detail")
                         .IsRequired()
                         .HasColumnName("AdressDetail")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<double>("LocationR")
                         .HasColumnName("AdressLocationR")
@@ -64,6 +76,11 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AirPlaneCode")
+                        .IsRequired()
+                        .HasColumnName("AirPlaneCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("AirlineId")
                         .HasColumnName("AirlineId")
                         .HasColumnType("int");
@@ -77,12 +94,24 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DetailId")
                         .HasColumnName("DetailId")
                         .HasColumnType("int");
 
                     b.Property<int>("GalleryId")
                         .HasColumnName("AirPlaneGalleryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -97,6 +126,8 @@ namespace AirPortDataLayer.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AirlineId");
 
                     b.HasIndex("BrandId");
 
@@ -115,6 +146,11 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Abbreviation")
+                        .HasColumnName("AirAbbreviation")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
                     b.Property<int>("AirPortAddressId")
                         .HasColumnName("AirPortAddressId")
                         .HasColumnType("int");
@@ -123,6 +159,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("AirPortCode")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Detail")
                         .HasColumnName("Detail")
                         .HasColumnType("nvarchar(255)")
@@ -130,6 +170,14 @@ namespace AirPortDataLayer.Migrations
 
                     b.Property<int>("GalleryId")
                         .HasColumnName("GalleryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -159,8 +207,20 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DetailId")
                         .HasColumnName("AirlineDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Logo")
@@ -196,6 +256,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("BrandName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tbl_Brand");
@@ -212,7 +284,19 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Icon")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.HasKey("CategoryId");
@@ -230,6 +314,18 @@ namespace AirPortDataLayer.Migrations
 
                     b.Property<int>("CityStateId")
                         .HasColumnName("CityStateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -253,25 +349,28 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Adress")
+                    b.Property<int>("Adress")
                         .HasColumnName("CustomerAdress")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("BDate")
                         .HasColumnName("CustomerBDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnName("CustomerEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Isactive")
-                        .HasColumnName("Isactive")
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("Isdelete")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("Isdelete")
-                        .HasColumnName("Isdelete")
+                    b.Property<bool>("Isactive")
+                        .HasColumnName("Isactive")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -279,6 +378,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("CustomerLastName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mobile")
                         .IsRequired()
@@ -304,7 +407,12 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("CustomerSex")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("addressId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("addressId");
 
                     b.ToTable("Tbl_Customer");
                 });
@@ -316,6 +424,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DetailId")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<double>("Rating")
                         .HasColumnName("DetailRating")
@@ -344,8 +464,20 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("FeacherId")
                         .HasColumnName("FeatrueId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -367,9 +499,21 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Icon")
                         .HasColumnName("FeatrueIcon")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -404,6 +548,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("FlighttDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("Delay")
                         .HasColumnName("FlightDelay")
                         .HasColumnType("datetime2");
@@ -426,6 +574,14 @@ namespace AirPortDataLayer.Migrations
 
                     b.Property<int>("GateId")
                         .HasColumnName("FlightGateId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<int>("Number")
@@ -469,6 +625,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
+
                     b.Property<string>("StatusType")
                         .IsRequired()
                         .HasColumnName("FlightStatusType")
@@ -488,6 +656,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnName("GalleryName")
                         .HasColumnType("nvarchar(50)")
@@ -505,8 +685,20 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("GalleryId")
                         .HasColumnName("GalleryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
@@ -527,6 +719,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("GateId")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -565,6 +769,14 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("PlaceCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnName("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("DetailId")
                         .HasColumnName("PlaceDetailId")
                         .HasColumnType("int");
@@ -573,16 +785,23 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("PlaceGalleryId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("PlaceName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("PlaceCustomer")
-                        .HasColumnName("PlaceCustomer")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<int>("PlaceCustomer")
+                        .HasColumnName("PlaceCustomerId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("active")
                         .HasColumnName("PlaceIsactive")
@@ -592,9 +811,13 @@ namespace AirPortDataLayer.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("CustomerId");
+
                     b.HasIndex("DetailId");
 
                     b.HasIndex("GalleryId");
+
+                    b.HasIndex("PlaceCustomer");
 
                     b.ToTable("Tbl_Place");
                 });
@@ -606,6 +829,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("StateId")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -630,9 +865,21 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("AirPortId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Image")
                         .HasColumnName("TerminalImage")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnName("TerminalName")
@@ -653,6 +900,18 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("TypeDetailId")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnName("TypeDetailName")
@@ -676,10 +935,31 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateCrate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnName("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnName("UserName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Password")
+                        .HasColumnName("Password")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
 
                     b.HasKey("Id");
 
@@ -688,7 +968,7 @@ namespace AirPortDataLayer.Migrations
                     b.ToTable("Tbl_User");
                 });
 
-            modelBuilder.Entity("AirPortModel.Models.Adress", b =>
+            modelBuilder.Entity("AirPortModel.Models.Address", b =>
                 {
                     b.HasOne("AirPortModel.Models.City", "City")
                         .WithMany()
@@ -699,6 +979,12 @@ namespace AirPortDataLayer.Migrations
 
             modelBuilder.Entity("AirPortModel.Models.AirPlane", b =>
                 {
+                    b.HasOne("AirPortModel.Models.Airline", "Airlines")
+                        .WithMany()
+                        .HasForeignKey("AirlineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AirPortModel.Models.Brand", "Brands")
                         .WithMany()
                         .HasForeignKey("BrandId")
@@ -720,7 +1006,7 @@ namespace AirPortDataLayer.Migrations
 
             modelBuilder.Entity("AirPortModel.Models.AirPort", b =>
                 {
-                    b.HasOne("AirPortModel.Models.Adress", "Adress")
+                    b.HasOne("AirPortModel.Models.Address", "Adress")
                         .WithMany()
                         .HasForeignKey("AirPortAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -749,6 +1035,13 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("CityStateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AirPortModel.Models.Customer", b =>
+                {
+                    b.HasOne("AirPortModel.Models.Address", "address")
+                        .WithMany()
+                        .HasForeignKey("addressId");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.Detail", b =>
@@ -841,6 +1134,12 @@ namespace AirPortDataLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AirPortModel.Models.Customer", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AirPortModel.Models.Detail", "Detail")
                         .WithMany()
                         .HasForeignKey("DetailId")
@@ -850,6 +1149,12 @@ namespace AirPortDataLayer.Migrations
                     b.HasOne("AirPortModel.Models.Gallery", "Gallery")
                         .WithMany()
                         .HasForeignKey("GalleryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirPortModel.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("PlaceCustomer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

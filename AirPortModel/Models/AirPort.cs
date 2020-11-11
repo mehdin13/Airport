@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace AirPortModel.Models
@@ -24,8 +25,8 @@ namespace AirPortModel.Models
         [Required]
         [Column("AirPortAddressId")]
         public int AirPortAddressId { get; set; }
-        public Adress Adress { get; set; }
-
+        public Address Adress { get; set; }
+        //end foreign Key :D
         [Column("MapImageUrl")]
         public string Url { get; set; }
 
@@ -48,5 +49,17 @@ namespace AirPortModel.Models
         [StringLength(255)]
         [Column("Detail")]
         public string Detail { get; set; }
+
+
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("DateCreate")]
+        public DateTime DateCrate { get; set; }
+        [DataType(DataType.DateTime)]
+        [AllowNull]
+        [Column("LastUpdateDate")]
+        public int LastUpdate { get; set; }
+        [Column("IsDelete")]
+        public bool IsDelete { get; set; }
     }
 }
