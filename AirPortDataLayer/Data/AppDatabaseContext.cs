@@ -16,20 +16,30 @@ namespace AirPortDataLayer.Data
         public DbSet<Airline> airlines { get; set; }
         public DbSet<AirPlane> airPlanes { get; set; }
         public DbSet<AirPort> AirPorts { get; set; }
+        public DbSet<Brand> Brand { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<City> cities { get; set; }
         public DbSet<Customer> customers { get; set; }
+        public DbSet<CustomerFlight> CustomerFlight { get; set; }
         public DbSet<Detail> details { get; set; }
         public DbSet<DetailValue> detailValues { get; set; }
+        public DbSet<Entertainment> Entertainment { get; set; }
         public DbSet<Featrue> featrues { get; set; }
         public DbSet<Flight> flights { get; set; }
         public DbSet<FlightStatus> flightStatuses { get; set; }
+        public DbSet<FlightToDo> FlightToDos { get; set; }
         public DbSet<Gallery> galleries { get; set; }
         public DbSet<GalleryImage> GalleryImages { get; set; }
+        public DbSet<Gate> Gate { get; set; }
+        public DbSet<Links> Links { get; set; }
         public DbSet<Place> places { get; set; }
+        public DbSet<Request> requests { get; set; }
+        public DbSet<RequestType> requestTypes { get; set; }
         public DbSet<State> states { get; set; }
         public DbSet<Terminal> terminals { get; set; }
+        public DbSet<AirPortModel.Models.Type> types { get; set; }
         public DbSet<TypeDetail> typeDetails { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<Weather> Weather { get; set; }
     }
 }

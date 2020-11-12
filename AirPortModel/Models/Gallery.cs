@@ -26,7 +26,7 @@ namespace AirPortModel.Models
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("LastUpdateDate")]
-        public int LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
     }

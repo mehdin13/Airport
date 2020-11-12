@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20201111132033_sajjad")]
-    partial class sajjad
+    [Migration("20201112111516_Sajjad")]
+    partial class Sajjad
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,9 +47,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("LocationR")
                         .HasColumnName("AdressLocationR")
@@ -112,9 +112,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -178,9 +178,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -221,9 +221,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Logo")
                         .HasColumnName("AirlineLogo")
@@ -266,9 +266,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -297,9 +297,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CategoryId");
 
@@ -326,9 +326,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -435,9 +435,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Rating")
                         .HasColumnName("DetailRating")
@@ -478,9 +478,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Value")
                         .HasColumnName("Value")
@@ -513,9 +513,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -582,9 +582,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Number")
                         .HasColumnName("FlightNumber")
@@ -635,9 +635,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("StatusType")
                         .IsRequired()
@@ -666,9 +666,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnName("GalleryName")
@@ -699,9 +699,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
                         .HasColumnName("ImageUrl")
@@ -730,9 +730,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -791,9 +791,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -840,9 +840,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -879,9 +879,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnName("TerminalName")
@@ -911,9 +911,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnName("TypeDetailName")
@@ -949,9 +949,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnName("UserName")

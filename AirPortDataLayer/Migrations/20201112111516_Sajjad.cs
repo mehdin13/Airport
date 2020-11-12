@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AirPortDataLayer.Migrations
 {
-    public partial class sajjad : Migration
+    public partial class Sajjad : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace AirPortDataLayer.Migrations
                     BrandName = table.Column<string>(nullable: true),
                     BrandIcon = table.Column<string>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -33,7 +33,7 @@ namespace AirPortDataLayer.Migrations
                     CategoryName = table.Column<string>(maxLength: 50, nullable: true),
                     Icon = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -49,7 +49,7 @@ namespace AirPortDataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FlightStatusType = table.Column<string>(maxLength: 255, nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -65,7 +65,7 @@ namespace AirPortDataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GalleryName = table.Column<string>(maxLength: 50, nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -81,7 +81,7 @@ namespace AirPortDataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StateName = table.Column<string>(maxLength: 50, nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -97,7 +97,7 @@ namespace AirPortDataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TypeDetailName = table.Column<string>(maxLength: 50, nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -114,7 +114,7 @@ namespace AirPortDataLayer.Migrations
                     ImageUrl = table.Column<string>(nullable: true),
                     GalleryId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -137,7 +137,7 @@ namespace AirPortDataLayer.Migrations
                     CityName = table.Column<string>(maxLength: 50, nullable: false),
                     CityStateId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -161,7 +161,7 @@ namespace AirPortDataLayer.Migrations
                     DetailRating = table.Column<double>(nullable: false),
                     DetailValue = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -185,7 +185,7 @@ namespace AirPortDataLayer.Migrations
                     TypeDetailId = table.Column<int>(nullable: false),
                     FeatrueIcon = table.Column<string>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -211,7 +211,7 @@ namespace AirPortDataLayer.Migrations
                     AdressLocationR = table.Column<double>(nullable: false),
                     AdressCityId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -235,7 +235,7 @@ namespace AirPortDataLayer.Migrations
                     AirlineDetailId = table.Column<int>(nullable: false),
                     AirlineLogo = table.Column<string>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -258,7 +258,7 @@ namespace AirPortDataLayer.Migrations
                     FeatrueId = table.Column<int>(nullable: false),
                     Value = table.Column<string>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -286,7 +286,7 @@ namespace AirPortDataLayer.Migrations
                     AirAbbreviation = table.Column<string>(maxLength: 10, nullable: true),
                     Detail = table.Column<string>(maxLength: 255, nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -353,7 +353,7 @@ namespace AirPortDataLayer.Migrations
                     DetailId = table.Column<int>(nullable: false),
                     AirlineId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -364,25 +364,25 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.AirlineId,
                         principalTable: "Tbl_AirLine",
                         principalColumn: "AirlineId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_AirPlane_Tbl_Brand_BrandId",
                         column: x => x.BrandId,
                         principalTable: "Tbl_Brand",
                         principalColumn: "BrandId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_AirPlane_Tbl_Detail_DetailId",
                         column: x => x.DetailId,
                         principalTable: "Tbl_Detail",
                         principalColumn: "DetailId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_AirPlane_Tbl_Gallery_AirPlaneGalleryId",
                         column: x => x.AirPlaneGalleryId,
                         principalTable: "Tbl_Gallery",
                         principalColumn: "GalleryId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -395,7 +395,7 @@ namespace AirPortDataLayer.Migrations
                     TerminalImage = table.Column<string>(nullable: true),
                     AirPortId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -424,7 +424,7 @@ namespace AirPortDataLayer.Migrations
                     PlaceIsactive = table.Column<bool>(nullable: false),
                     PlaceCustomerId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -435,31 +435,31 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.PlaceCategoryId,
                         principalTable: "Tbl_Category",
                         principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Place_Tbl_Customer_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Tbl_Customer",
                         principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Place_Tbl_Detail_PlaceDetailId",
                         column: x => x.PlaceDetailId,
                         principalTable: "Tbl_Detail",
                         principalColumn: "DetailId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Place_Tbl_Gallery_PlaceGalleryId",
                         column: x => x.PlaceGalleryId,
                         principalTable: "Tbl_Gallery",
                         principalColumn: "GalleryId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Place_Tbl_Customer_PlaceCustomerId",
                         column: x => x.PlaceCustomerId,
                         principalTable: "Tbl_Customer",
                         principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -474,7 +474,7 @@ namespace AirPortDataLayer.Migrations
                     IsActive = table.Column<bool>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false)
+                    LastUpdateDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -497,7 +497,7 @@ namespace AirPortDataLayer.Migrations
                     GateTerminal = table.Column<string>(nullable: true),
                     terminalId = table.Column<int>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -530,7 +530,7 @@ namespace AirPortDataLayer.Migrations
                     FlightDelay = table.Column<DateTime>(nullable: false),
                     FlightEndTimeDate = table.Column<DateTime>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -541,19 +541,19 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.AirPortId,
                         principalTable: "Tbl_AirPort",
                         principalColumn: "AirPortId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_AirPlane_FlightAirPlaneId",
                         column: x => x.FlightAirPlaneId,
                         principalTable: "Tbl_AirPlane",
                         principalColumn: "AirPlaneId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_AirPort_FlightEndAirportId",
                         column: x => x.FlightEndAirportId,
                         principalTable: "Tbl_AirPort",
                         principalColumn: "AirPortId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_FlightStatus_FlightstatusId",
                         column: x => x.FlightstatusId,
@@ -565,13 +565,13 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.FlightGateId,
                         principalTable: "Tbl_Gate",
                         principalColumn: "GateId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_AirPort_StartAirPortId",
                         column: x => x.StartAirPortId,
                         principalTable: "Tbl_AirPort",
                         principalColumn: "AirPortId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

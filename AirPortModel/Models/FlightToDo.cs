@@ -8,7 +8,7 @@ using System.Text;
 namespace AirPortModel.Models
 {
     [Table("FlightToDo")]
-    class FlightToDo
+     public class FlightToDo
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -40,7 +40,7 @@ namespace AirPortModel.Models
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("LastUpdateDate")]
-        public int LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
     }
