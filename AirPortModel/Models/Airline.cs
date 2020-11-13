@@ -19,13 +19,13 @@ namespace AirPortModel.Models
         [StringLength(50, ErrorMessage = "Airline Name Can Not Be Longer than 50 character")]
         [Column("AirlineName")]
         public string Name { get; set; }
-        //foreign Key
+        //*******************foreign Key***********************
         [ForeignKey("Detail")]
         [Required]
         [Column("AirlineDetailId")]
         public int DetailId { get; set; }
         public Detail Detail { get; set; }
-
+        //*************end Deatail Foreign Kay******************
         [Column("AirlineLogo")]
         public string Logo { get; set; }
 
@@ -39,5 +39,7 @@ namespace AirPortModel.Models
         public DateTime LastUpdate { get; set; }
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
+        //one to many 
+        public List<Detail> details { get; set; }
     }
 }

@@ -18,12 +18,12 @@ namespace AirPortModel.Models
         [Required]
         [Column("GetName")]
         public string Name { get; set; }
-        //foreigan key
+        //****************foreigan key****************
         [ForeignKey("Terminal")]
         [Column("GateTerminal")]
         public string Terminal { get; set; }
         public Terminal terminal { get; set; }
-        //***End 
+        //*******************End *********************
 
         [DataType(DataType.DateTime)]
         [AllowNull]

@@ -16,7 +16,7 @@ namespace AirPortModel.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "Air Port Name Must Be 50 charachter")]
+        [StringLength(50, ErrorMessage = "Air Port Name Must Be at least 50 charachter")]
         [Column("AirPortName")]
         public string Name { get; set; }
 
@@ -61,5 +61,9 @@ namespace AirPortModel.Models
         public DateTime LastUpdate { get; set; }
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
+        //One too many
+        public List<Gallery> galleries { get; set; }
+        public List<Terminal> Terminals { get; set; }
+        //end on to many
     }
 }

@@ -17,7 +17,6 @@ namespace AirPortModel.Models
         [Column("DetailId")]
         public int Id { get; set; }
         //foreign Key 
-        
         [ForeignKey("TypeDetail")]
         [Required]
         [Column("TypeDetailId")]
