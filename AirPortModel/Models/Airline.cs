@@ -40,6 +40,6 @@ namespace AirPortModel.Models
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
         //one to many 
-        public List<Detail> details { get; set; }
+        public List<AirPlane> airPlanes { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace AirPortModel.Models
         [StringLength(50)]
         [Column("StateName")]
         public string Name { get; set; }
-
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]

@@ -31,7 +31,9 @@ namespace AirPortModel.Models
         public bool IsDelete { get; set; }
 
         //one to many 
+
         public List<GalleryImage> galleryImages { get; set; }
+        public List<AirPlane> airPlanes { get; set; }
         public List<Place> places { get; set; }
         //end one to many 
     }

@@ -4,14 +4,16 @@ using AirPortDataLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201113190411_lvr06")]
+    partial class lvr06
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1406,8 +1408,8 @@ namespace AirPortDataLayer.Migrations
 
             modelBuilder.Entity("AirPortModel.Models.Featrue", b =>
                 {
-                    b.HasOne("AirPortModel.Models.TypeDetail", "typeDetail")
-                        .WithMany("featrues")
+                    b.HasOne("AirPortModel.Models.TypeDetail", "TypeDetail")
+                        .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1455,7 +1457,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.FlightToDo", b =>
                 {
                     b.HasOne("AirPortModel.Models.Customer", "Customers")
-                        .WithMany("flightToDos")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1519,7 +1521,7 @@ namespace AirPortDataLayer.Migrations
                         .IsRequired();
 
                     b.HasOne("AirPortModel.Models.RequestType", "requests")
-                        .WithMany("requests")
+                        .WithMany()
                         .HasForeignKey("requestsid");
                 });
 

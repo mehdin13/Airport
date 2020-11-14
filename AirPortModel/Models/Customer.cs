@@ -73,7 +73,10 @@ namespace AirPortModel.Models
         [AllowNull]
         [Column("LastUpdateDate")]
         public int LastUpdate { get; set; }
-
-
+        public List<Request> requests { get; set; }
+        public List<Place> places { get; set; }
+        public List<User> users { get; set; }
+        public List<FlightToDo> flightToDos { get; set; }
+        public virtual ICollection<CustomerFlight> CustomerFlights { get; set; }
     }
 }

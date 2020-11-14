@@ -20,11 +20,11 @@ namespace AirPortModel.Models
         [Column("FeatrueName")]
         public string Name { get; set; }
         //foreign key
-        [ForeignKey("TypeDetail")]
+        [ForeignKey("typeDetail")]
         [Required]
         [Column("TypeDetailId")]
         public int TypeId { get; set; }
-        public TypeDetail TypeDetail { get; set; }
+        public TypeDetail typeDetail { get; set; }
 
 
         [Column("FeatrueIcon")]

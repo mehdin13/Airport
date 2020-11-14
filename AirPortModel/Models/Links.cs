@@ -37,5 +37,7 @@ namespace AirPortModel.Models
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
 
+        public List<Entertainment> entertainments { get; set; }
+
     }
 }

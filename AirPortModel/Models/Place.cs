@@ -20,10 +20,10 @@ namespace AirPortModel.Models
         [Column("PlaceName")]
         public string Name { get; set; }
 
-        [NotNull]
-        [StringLength(255,ErrorMessage ="Adress Must be Less than 255 character")]
-        [Column("PlaceAdress")]
-        public string Adress { get; set; }
+        [ForeignKey("address")]
+        [Column("PlaceAddress")]
+        public int Adress { get; set; }
+        public Address address { get; set; }
         //*****************foreignKey******************
         [ForeignKey("Category")]
         [Required]
@@ -46,7 +46,7 @@ namespace AirPortModel.Models
         public Detail Detail { get; set; }
         //*********************End ******************
         //***********foreign Key********************
-        [ForeignKey("CustomerId")]
+        [ForeignKey("Customers")]
         [Column("CustomerId")]
         public int CustomerId { get; set; }
         public Customer Customers { get; set; }
@@ -55,14 +55,6 @@ namespace AirPortModel.Models
         [Column("PlaceIsactive")]
         public bool active { get; set; }
         //**************************************check shavad dobare ***************************
-        //******************Foreign Key******************
-        [ForeignKey("Customer")]
-        [Column("PlaceCustomerId")]
-        public int PlaceCustomer { get; set; }
-
-        public Customer Customer { get; set; }
-        //******************End Foreign Key ******************
-
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]

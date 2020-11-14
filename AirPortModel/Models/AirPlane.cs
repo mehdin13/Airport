@@ -70,8 +70,8 @@ namespace AirPortModel.Models
         public bool IsDelete { get; set; }
 
         //one to many 
-        public List<Gallery> galleries { get; set; }
-        public List<Detail> details { get; set; }
+
+
         //end one to many 
         public virtual ICollection<Flight> Flights { set; get; } // many-to-many
 

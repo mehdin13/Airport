@@ -42,6 +42,10 @@ namespace AirPortModel.Models
         public DateTime LastUpdate { get; set; }
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
+        public List<AirPort> airPorts { get; set; }
+        public List<Customer> customers { get; set; }
+        public List<Place> places { get; set; }
+
 
     }
 }

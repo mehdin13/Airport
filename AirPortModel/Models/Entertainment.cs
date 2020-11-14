@@ -20,7 +20,7 @@ namespace AirPortModel.Models
         [Column("Name")]
         public string Name { get; set; }
         //**************ForeignKey**************
-        [ForeignKey("LinkId")]
+        [ForeignKey("LinkIds")]
         [Column("LinkId")]
         public int LId { get; set; }
         public Links LinkIds { get; set; }
@@ -50,7 +50,7 @@ namespace AirPortModel.Models
         public bool IsDelete { get; set; }
 
         //one to many
-        public List<Links> links { get; set; }
+
         //end one to many
     }
 }

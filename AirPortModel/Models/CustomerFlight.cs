@@ -10,19 +10,14 @@ namespace AirPortModel.Models
     [Table("Tbl_CustomerFlight")]
     public class CustomerFlight
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("CustomerFlightId")]
-        public int id { get; set; }
+
         //****************foreignKey CusttomerID*************
-        [ForeignKey("CustomerId")]
         [Required]
         [Column("CustomerId")]
         public int CustomerId { get; set; }
         public Customer customer { get; set; }
         //*****************end ForeignKey*********************
         //*****************ForeignKey FlightId****************
-        [ForeignKey("FlightId")]
         [Required]
         [Column("FlightId")]
         public int FlightId { get; set; }
@@ -39,8 +34,5 @@ namespace AirPortModel.Models
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
 
-        //one to many 
-        public List<CustomerFlight> customerFlights { get; set; }
-        //end one to many 
     }
 }

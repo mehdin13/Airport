@@ -46,11 +46,6 @@ namespace AirPortModel.Models
         [Column("AirAbbreviation")]
         public string Abbreviation { get; set; }
 
-        [StringLength(255)]
-        [Column("Detail")]
-        public string Detail { get; set; }
-
-
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]
@@ -62,7 +57,6 @@ namespace AirPortModel.Models
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
         //One too many
-        public List<Gallery> galleries { get; set; }
         public List<Terminal> Terminals { get; set; }
         //end on to many
     }

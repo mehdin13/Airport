@@ -4,14 +4,16 @@ using AirPortDataLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201113171824_sajjad")]
+    partial class sajjad
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,8 +165,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DetailId")
-                        .HasColumnType("int");
+                    b.Property<string>("Detail")
+                        .HasColumnName("Detail")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<int>("GalleryId")
                         .HasColumnName("GalleryId")
@@ -191,8 +195,6 @@ namespace AirPortDataLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AirPortAddressId");
-
-                    b.HasIndex("DetailId");
 
                     b.HasIndex("GalleryId");
 
@@ -439,6 +441,12 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("LastUpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("CustomerFlightId")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.HasKey("CustomerId", "FlightId");
 
                     b.HasIndex("FlightId");
@@ -453,6 +461,12 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DetailId")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AirPlaneId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AirlineId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateCrate")
                         .HasColumnName("DateCreate")
@@ -479,6 +493,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AirPlaneId");
+
+                    b.HasIndex("AirlineId");
 
                     b.HasIndex("TypeId");
 
@@ -553,6 +571,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("LastUpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("LinkIdsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnName("Name")
                         .HasColumnType("nvarchar(max)");
@@ -570,7 +591,7 @@ namespace AirPortDataLayer.Migrations
 
                     b.HasIndex("Galleryid");
 
-                    b.HasIndex("LId");
+                    b.HasIndex("LinkIdsId");
 
                     b.ToTable("Tbl_Entertainment");
                 });
@@ -784,6 +805,12 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AirPlaneId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AirPortId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCrate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -802,6 +829,10 @@ namespace AirPortDataLayer.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AirPlaneId");
+
+                    b.HasIndex("AirPortId");
 
                     b.ToTable("Tbl_Gallery");
                 });
@@ -892,6 +923,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EntertainmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Icon")
                         .HasColumnName("Icon")
                         .HasColumnType("nvarchar(max)");
@@ -915,6 +949,8 @@ namespace AirPortDataLayer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EntertainmentId");
+
                     b.ToTable("Tbl_Links");
                 });
 
@@ -926,9 +962,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Adress")
-                        .HasColumnName("PlaceAddress")
-                        .HasColumnType("int");
+                    b.Property<string>("Adress")
+                        .HasColumnName("PlaceAdress")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<int>("CategoryId")
                         .HasColumnName("PlaceCategoryId")
@@ -964,13 +1001,15 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("PlaceCustomer")
+                        .HasColumnName("PlaceCustomerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("active")
                         .HasColumnName("PlaceIsactive")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Adress");
 
                     b.HasIndex("CategoryId");
 
@@ -979,6 +1018,8 @@ namespace AirPortDataLayer.Migrations
                     b.HasIndex("DetailId");
 
                     b.HasIndex("GalleryId");
+
+                    b.HasIndex("PlaceCustomer");
 
                     b.ToTable("Tbl_Place");
                 });
@@ -1288,7 +1329,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.AirPlane", b =>
                 {
                     b.HasOne("AirPortModel.Models.Airline", "Airlines")
-                        .WithMany("airPlanes")
+                        .WithMany()
                         .HasForeignKey("AirlineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1300,13 +1341,13 @@ namespace AirPortDataLayer.Migrations
                         .IsRequired();
 
                     b.HasOne("AirPortModel.Models.Detail", "Detail")
-                        .WithMany("airPlanes")
+                        .WithMany()
                         .HasForeignKey("DetailId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AirPortModel.Models.Gallery", "Gallery")
-                        .WithMany("airPlanes")
+                        .WithMany()
                         .HasForeignKey("GalleryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1315,14 +1356,10 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.AirPort", b =>
                 {
                     b.HasOne("AirPortModel.Models.Address", "Adress")
-                        .WithMany("airPorts")
+                        .WithMany()
                         .HasForeignKey("AirPortAddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("AirPortModel.Models.Detail", null)
-                        .WithMany("airPorts")
-                        .HasForeignKey("DetailId");
 
                     b.HasOne("AirPortModel.Models.Gallery", "Gallery")
                         .WithMany()
@@ -1334,7 +1371,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.Airline", b =>
                 {
                     b.HasOne("AirPortModel.Models.Detail", "Detail")
-                        .WithMany("airlines")
+                        .WithMany()
                         .HasForeignKey("DetailId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1352,7 +1389,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.Customer", b =>
                 {
                     b.HasOne("AirPortModel.Models.Address", "address")
-                        .WithMany("customers")
+                        .WithMany()
                         .HasForeignKey("addressId");
                 });
 
@@ -1373,6 +1410,14 @@ namespace AirPortDataLayer.Migrations
 
             modelBuilder.Entity("AirPortModel.Models.Detail", b =>
                 {
+                    b.HasOne("AirPortModel.Models.AirPlane", null)
+                        .WithMany("details")
+                        .HasForeignKey("AirPlaneId");
+
+                    b.HasOne("AirPortModel.Models.Airline", null)
+                        .WithMany("details")
+                        .HasForeignKey("AirlineId");
+
                     b.HasOne("AirPortModel.Models.TypeDetail", "TypeDetail")
                         .WithMany()
                         .HasForeignKey("TypeId")
@@ -1398,16 +1443,14 @@ namespace AirPortDataLayer.Migrations
                         .IsRequired();
 
                     b.HasOne("AirPortModel.Models.Links", "LinkIds")
-                        .WithMany("entertainments")
-                        .HasForeignKey("LId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("LinkIdsId");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.Featrue", b =>
                 {
-                    b.HasOne("AirPortModel.Models.TypeDetail", "typeDetail")
-                        .WithMany("featrues")
+                    b.HasOne("AirPortModel.Models.TypeDetail", "TypeDetail")
+                        .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1455,10 +1498,21 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.FlightToDo", b =>
                 {
                     b.HasOne("AirPortModel.Models.Customer", "Customers")
-                        .WithMany("flightToDos")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AirPortModel.Models.Gallery", b =>
+                {
+                    b.HasOne("AirPortModel.Models.AirPlane", null)
+                        .WithMany("galleries")
+                        .HasForeignKey("AirPlaneId");
+
+                    b.HasOne("AirPortModel.Models.AirPort", null)
+                        .WithMany("galleries")
+                        .HasForeignKey("AirPortId");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.GalleryImage", b =>
@@ -1477,14 +1531,15 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("terminalId");
                 });
 
+            modelBuilder.Entity("AirPortModel.Models.Links", b =>
+                {
+                    b.HasOne("AirPortModel.Models.Entertainment", null)
+                        .WithMany("links")
+                        .HasForeignKey("EntertainmentId");
+                });
+
             modelBuilder.Entity("AirPortModel.Models.Place", b =>
                 {
-                    b.HasOne("AirPortModel.Models.Address", "address")
-                        .WithMany("places")
-                        .HasForeignKey("Adress")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AirPortModel.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
@@ -1492,7 +1547,7 @@ namespace AirPortDataLayer.Migrations
                         .IsRequired();
 
                     b.HasOne("AirPortModel.Models.Customer", "Customers")
-                        .WithMany("places")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1508,6 +1563,12 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("GalleryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AirPortModel.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("PlaceCustomer")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AirPortModel.Models.Request", b =>
@@ -1519,7 +1580,7 @@ namespace AirPortDataLayer.Migrations
                         .IsRequired();
 
                     b.HasOne("AirPortModel.Models.RequestType", "requests")
-                        .WithMany("requests")
+                        .WithMany()
                         .HasForeignKey("requestsid");
                 });
 
@@ -1535,7 +1596,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.User", b =>
                 {
                     b.HasOne("AirPortModel.Models.Customer", "Customer")
-                        .WithMany("users")
+                        .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
