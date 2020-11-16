@@ -22,11 +22,16 @@ namespace AirPortModel.Models
         [Required]
         [Column("TypeIcon")]
         public string Icon { get; set; }
-
+        //****************foreigne Key ***************
+        [ForeignKey("RequestId")]
+        [Column("RequestId")]
+        public int Request { get; set; }
+        public Request request { get; set; }
+        //**************End Foreign Key**************
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]
-        public DateTime DateCrate { get; set; }
+        public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("LastUpdateDate")]

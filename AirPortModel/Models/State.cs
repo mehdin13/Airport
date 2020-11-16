@@ -21,7 +21,7 @@ namespace AirPortModel.Models
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]
-        public DateTime DateCrate { get; set; }
+        public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("LastUpdateDate")]

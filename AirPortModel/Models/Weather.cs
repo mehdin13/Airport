@@ -20,12 +20,20 @@ namespace AirPortModel.Models
         public int TypeId { get; set; }
         [Required]
         [Column("CityId")]
-        public int CityId { get; set; }
 
+        public int Temperature { get; set; }
+
+        //********foreigen key ******************
+        [ForeignKey("AirportId")]
+        [Column("AirportId")]
+        public int airportid { get; set; }
+        public AirPort AirPort { get; set; }
+        //***********End Foreigne Key***********
+        public int CityId { get; set; }
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]
-        public DateTime DateCrate { get; set; }
+        public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("LastUpdateDate")]
