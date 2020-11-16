@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using AirPortDataLayer.Data;
 using System.Linq;
 
 namespace AirPortDataLayer.Crud
 {
-    class Address
+    public class Address
     {
         private readonly AppDatabaseContext _db;
         public Address(AppDatabaseContext db)
@@ -30,7 +29,7 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                var obj = _db.Adresses.FirstOrDefault(x => x.Id==id);
+                var obj = _db.Adresses.FirstOrDefault(x => x.Id == id);
                 obj.IsDelete = true;
                 _db.Adresses.Update(obj);
                 _db.SaveChanges();
