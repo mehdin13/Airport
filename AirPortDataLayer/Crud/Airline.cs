@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Data;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Address
+    public class Airline
     {
         private readonly AppDatabaseContext _db;
-        public Address(AppDatabaseContext db)
+        public Airline(AppDatabaseContext db)
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Address obj)
+        public string Insert(AirPortModel.Models.Airline obj)
         {
             try
             {
-                _db.Adresses.Add(obj);
+                _db.airlines.Add(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
@@ -29,9 +29,9 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                var obj = _db.Adresses.FirstOrDefault(x => x.Id == id);
+                var obj = _db.airlines.FirstOrDefault(x => x.Id == id);
                 obj.IsDelete = true;
-                _db.Adresses.Update(obj);
+                _db.airlines.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
@@ -40,27 +40,27 @@ namespace AirPortDataLayer.Crud
                 return ex.ToString();
             }
         }
-        public string Update(AirPortModel.Models.Address obj)
+        public string Update(AirPortModel.Models.Airline obj)
         {
             try
             {
-                _db.Adresses.Update(obj);
+                _db.airlines.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
             catch (Exception ex)
             {
+
                 return ex.ToString();
             }
         }
-        public List<AirPortModel.Models.Address> ToList()
+        public List<AirPortModel.Models.Airline> ToList()
         {
-            return _db.Adresses.ToList();
+            return _db.airlines.ToList();
         }
-        public AirPortModel.Models.Address FindById(int id)
+        public AirPortModel.Models.Airline FindById(int id)
         {
-            return _db.Adresses.FirstOrDefault(x => x.Id == id);
+            return _db.airlines.FirstOrDefault(x => x.Id == id);
         }
     }
 }
-//MOsi1.01
