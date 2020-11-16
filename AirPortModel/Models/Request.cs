@@ -16,7 +16,7 @@ namespace AirPortModel.Models
         public int Id { get; set; }
 
         //***************Foreign Key**********************
-        [ForeignKey("TypeId")]
+        [ForeignKey("requests")]
         [Column("TypeId")]
         public int TypeId { get; set; }
         public RequestType requests { get; set; }

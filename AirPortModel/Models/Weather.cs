@@ -19,7 +19,7 @@ namespace AirPortModel.Models
         [Column("TypeId")]
         public int TypeId { get; set; }
         [Required]
-        [Column("CityId")]
+        [Column("Temperature")]
 
         public int Temperature { get; set; }
 
@@ -29,7 +29,7 @@ namespace AirPortModel.Models
         public int airportid { get; set; }
         public AirPort AirPort { get; set; }
         //***********End Foreigne Key***********
-        public int CityId { get; set; }
+
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]

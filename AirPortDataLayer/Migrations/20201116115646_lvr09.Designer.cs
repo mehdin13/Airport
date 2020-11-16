@@ -4,14 +4,16 @@ using AirPortDataLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201116115646_lvr09")]
+    partial class lvr09
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1020,11 +1022,23 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("TypeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TypeId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TypeId2")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("TypeId");
+
+                    b.HasIndex("TypeId1")
+                        .IsUnique()
+                        .HasFilter("[TypeId1] IS NOT NULL");
+
+                    b.HasIndex("TypeId2");
 
                     b.ToTable("Tbl_Request");
                 });
@@ -1130,6 +1144,45 @@ namespace AirPortDataLayer.Migrations
                     b.ToTable("Tbl_Terminal");
                 });
 
+            modelBuilder.Entity("AirPortModel.Models.Type", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("TypeId")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnName("TypeIcon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("TypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Request")
+                        .HasColumnName("RequestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tbl_type");
+                });
+
             modelBuilder.Entity("AirPortModel.Models.TypeDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -1213,6 +1266,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CityId")
+                        .HasColumnName("CityId1")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -1226,7 +1283,7 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Temperature")
-                        .HasColumnName("Temperature")
+                        .HasColumnName("CityId")
                         .HasColumnType("int");
 
                     b.Property<int>("TypeId")
@@ -1491,6 +1548,14 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AirPortModel.Models.Type", null)
+                        .WithOne("request")
+                        .HasForeignKey("AirPortModel.Models.Request", "TypeId1");
+
+                    b.HasOne("AirPortModel.Models.Type", null)
+                        .WithMany("requests")
+                        .HasForeignKey("TypeId2");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.Terminal", b =>

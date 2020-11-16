@@ -37,7 +37,6 @@ namespace AirPortDataLayer.Data
         public DbSet<RequestType> requestTypes { get; set; }
         public DbSet<State> states { get; set; }
         public DbSet<Terminal> terminals { get; set; }
-        public DbSet<AirPortModel.Models.Type> types { get; set; }
         public DbSet<TypeDetail> typeDetails { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Weather> Weather { get; set; }
