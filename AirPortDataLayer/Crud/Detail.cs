@@ -5,24 +5,23 @@ using System.Linq;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Category
+    public class Detail
     {
         public readonly AppDatabaseContext _db;
-        public Category(AppDatabaseContext db)
+        public Detail(AppDatabaseContext db)
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Category obj)
+        public string Insert(AirPortModel.Models.Detail obj)
         {
             try
             {
-                _db.categories.Add(obj);
+                _db.details.Add(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
             catch (Exception ex)
             {
-
                 return ex.ToString();
             }
         }
@@ -30,11 +29,24 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                var obj = _db.categories.FirstOrDefault(x => x.Id == id);
+                var obj = _db.details.FirstOrDefault(x => x.Id == id);
                 obj.IsDelete = true;
-                _db.categories.Update(obj);
+                _db.details.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return "Successfull";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        public string Update(AirPortModel.Models.Detail obj)
+        {
+            try
+            {
+                _db.details.Update(obj);
+                _db.SaveChanges();
+                return "Successfull";
             }
             catch (Exception ex)
             {
@@ -42,27 +54,13 @@ namespace AirPortDataLayer.Crud
                 return ex.ToString();
             }
         }
-        public string Update(AirPortModel.Models.Category obj)
+        public List<AirPortModel.Models.Detail> ToList()
         {
-            try
-            {
-                _db.categories.Update(obj);
-                _db.SaveChanges();
-                return "Successful";
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
+            return _db.details.ToList();
         }
-        public List<AirPortModel.Models.Category> ToList()
+        public AirPortModel.Models.Detail FindById(int id)
         {
-            return _db.categories.ToList();
-        }
-        public AirPortModel.Models.Category FindById(int id)
-        {
-            return _db.categories.FirstOrDefault(x => x.Id == id);
+            return _db.details.FirstOrDefault(x => x.Id == id);
         }
     }
 }
-//Insert Complete baghiash moonde bargashtam mizanam :D

@@ -12,7 +12,7 @@ namespace AirPortModel.Models
     {
         [Key]
         [Column("RequestId")]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Column("Name")]
         [StringLength(50)]

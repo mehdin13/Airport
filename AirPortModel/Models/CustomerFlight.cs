@@ -10,7 +10,10 @@ namespace AirPortModel.Models
     [Table("Tbl_CustomerFlight")]
     public class CustomerFlight
     {
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("CustomerId")]
+        public int Id { get; set; }
         //****************foreignKey CusttomerID*************
         [Required]
         [Column("CustomerId")]

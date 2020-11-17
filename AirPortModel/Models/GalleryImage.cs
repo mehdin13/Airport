@@ -12,7 +12,8 @@ namespace AirPortModel.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ImageId { get; set; }
+        [Column("GalleryImageId")]
+        public int Id { get; set; }
         [NotNull]
         [Column("ImageUrl")]
         public string Url { get; set; }

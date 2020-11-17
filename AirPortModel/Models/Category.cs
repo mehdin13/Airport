@@ -12,7 +12,8 @@ namespace AirPortModel.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CategoryId { get; set; }
+        [Column("CategoryId")]
+        public int Id { get; set; }
         [StringLength(50)]
         public string CategoryName { get; set; }
         public int Icon { get; set; }

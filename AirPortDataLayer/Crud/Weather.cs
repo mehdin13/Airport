@@ -5,24 +5,23 @@ using System.Linq;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Category
+    public class Weather
     {
-        public readonly AppDatabaseContext _db;
-        public Category(AppDatabaseContext db)
+        private readonly AppDatabaseContext _db;
+        public Weather(AppDatabaseContext db)
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Category obj)
+        public string Insert(AirPortModel.Models.Weather obj)
         {
             try
             {
-                _db.categories.Add(obj);
+                _db.Weather.Add(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
             catch (Exception ex)
             {
-
                 return ex.ToString();
             }
         }
@@ -30,23 +29,22 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                var obj = _db.categories.FirstOrDefault(x => x.Id == id);
+                var obj = _db.Adresses.FirstOrDefault(x => x.Id == id);
                 obj.IsDelete = true;
-                _db.categories.Update(obj);
+                _db.Adresses.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
             catch (Exception ex)
             {
-
                 return ex.ToString();
             }
         }
-        public string Update(AirPortModel.Models.Category obj)
+        public string Update(AirPortModel.Models.Weather obj)
         {
             try
             {
-                _db.categories.Update(obj);
+                _db.Weather.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
@@ -55,14 +53,13 @@ namespace AirPortDataLayer.Crud
                 return ex.ToString();
             }
         }
-        public List<AirPortModel.Models.Category> ToList()
+        public List<AirPortModel.Models.Weather> ToList()
         {
-            return _db.categories.ToList();
+            return _db.Weather.ToList();
         }
-        public AirPortModel.Models.Category FindById(int id)
+        public AirPortModel.Models.Weather FindById(int id)
         {
-            return _db.categories.FirstOrDefault(x => x.Id == id);
+            return _db.Weather.FirstOrDefault(x => x.Id == id);
         }
     }
 }
-//Insert Complete baghiash moonde bargashtam mizanam :D
