@@ -101,6 +101,9 @@ namespace AirPortModel.Models
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
 
+
+        public List<FlightToDo> flightToDos { get; set; }
+
         public virtual ICollection<CustomerFlight> CustomerFlights { get; set; }
     }
 }

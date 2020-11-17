@@ -1,39 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using AirPortDataLayer.Data;
 using System.Linq;
 
 namespace AirPortDataLayer.Crud
 {
-    public class AirPort
+   public class Brand
     {
         private readonly AppDatabaseContext _db;
-        public AirPort(AppDatabaseContext db)
+        public Brand(AppDatabaseContext db)
         {
             _db = db;
         }
-        public string Insert (AirPortModel.Models.AirPort obj)
+        public string Insert(AirPortModel.Models.Brand obj)
         {
             try
             {
-                _db.AirPorts.Add(obj);
+                _db.Brand.Add(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
             catch (Exception ex)
             {
-
                 return ex.ToString();
             }
         }
-        public string Delete(int id)
+        public string Delete(int Id)
         {
             try
             {
-                var obj = _db.AirPorts.FirstOrDefault(x => x.Id == id);
+                var obj = _db.Brand.FirstOrDefault(x => x.Id == Id);
                 obj.IsDelete = true;
-                _db.AirPorts.Update(obj);
+                _db.Brand.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
@@ -43,11 +41,11 @@ namespace AirPortDataLayer.Crud
                 return ex.ToString();
             }
         }
-        public string Update(AirPortModel.Models.AirPort obj)
+        public string Update(AirPortModel.Models.Brand obj)
         {
             try
             {
-                _db.AirPorts.Update(obj);
+                _db.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
             }
@@ -56,13 +54,13 @@ namespace AirPortDataLayer.Crud
                 return ex.ToString();
             }
         }
-        public List<AirPortModel.Models.AirPort> Tolist()
+        public List<AirPortModel.Models.Brand> ToList()
         {
-            return _db.AirPorts.ToList();
+            return _db.Brand.ToList();
         }
-        public AirPortModel.Models.AirPort FindById(int id)
+        public AirPortModel.Models.Brand FindById(int id)
         {
-            return _db.AirPorts.FirstOrDefault(x => x.Id == id);
+            return _db.Brand.FirstOrDefault(x => x.Id == id);
         }
     }
 }

@@ -28,7 +28,15 @@ namespace AirPortModel.Models
 
         [Column("Title")]
         public string Title { get; set; }
-
+        //**************foreign key**************
+        [ForeignKey("flight")]
+        [Column("FlightId")]
+        public int FlightId { get; set; }
+        public Flight flight { get; set; }
+        //************end Foreign key************
+        [StringLength(255)]
+        [Column("Descriptions")]
+        public string Description { get; set; }
         [Column("IsDon")]
         public bool IsDon { get; set; }
         //Need to Return 0 and 1 
