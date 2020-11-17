@@ -19,10 +19,7 @@ namespace AirPortModel.Models
         [StringLength(50,ErrorMessage ="AirPlane Name must be les than 50 character")]
         [Column("AirPlaneName")]
         public string Name { get; set; }
-        //**********************new Feald*********************
-        [Column("AirPlaneBrand")]
-        [Required]
-        public string Brand { get; set; }
+
         [Column("AirPlaneModel")]
         [Required]
         public string Model { get; set; }

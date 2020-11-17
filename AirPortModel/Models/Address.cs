@@ -17,7 +17,7 @@ namespace AirPortModel.Models
         [Column("AdressId")]
         public int Id { get; set; }
         [Required]
-        [StringLength(256)]
+        [StringLength(255)]
         [Column("AdressDetail")]
         public string Detail { get; set; }
         [Column("AdressLocationX")]
@@ -32,6 +32,7 @@ namespace AirPortModel.Models
         [Column("AdressCityId")]
         public int CityId { get; set; }
         public City City { get; set; }
+        //end foriegn key
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("DateCreate")]

@@ -61,5 +61,41 @@ namespace AirPortDataLayer.Crud
         {
             return _db.users.FirstOrDefault(x => x.Id == id);
         }
+        public string CheckUserName(string Username)
+        {
+            try
+            {
+                var obj = _db.users.FirstOrDefault(u => u.Name == Username);
+                return obj == null ? "WrongUsername" : "CorrectUsername";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+        public string CheckPassword(string password)
+        {
+            try
+            {
+                var obj = _db.users.FirstOrDefault(p => p.Password == password);
+                return obj == null ? "WrongPassword" : "CorrectPassword";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+        public string CheckuserNameAvailable(string Username)
+        {
+            try
+            {
+                var obj = _db.users.FirstOrDefault(U => U.Name == Username);
+                return obj != null ? "AlreadyExist" : "Successesful";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
     }
 }
