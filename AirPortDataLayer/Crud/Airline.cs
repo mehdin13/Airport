@@ -22,7 +22,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Delete(int id)
@@ -37,7 +37,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Update(AirPortModel.Models.Airline obj)
@@ -51,7 +51,7 @@ namespace AirPortDataLayer.Crud
             catch (Exception ex)
             {
 
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public List<AirPortModel.Models.Airline> ToList()
@@ -61,6 +61,16 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.Airline FindById(int id)
         {
             return _db.airlines.FirstOrDefault(x => x.Id == id);
+        }
+        //list hava peyma haye airline
+        public List<AirPortModel.Models.AirPlane> AirPlaneList(int id)
+        {
+            return _db.airPlanes.Where(x => x.Id == id).ToList();
+        }
+        public List<FeatureValueVeiwModel> airlinedetail(int id)
+        {
+            Detail detail = new Detail(_db);
+            return detail.FeatureValues(id).ToList();
         }
     }
 }

@@ -49,8 +49,5 @@ namespace AirPortModel.Models
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
 
-        //one to many
-
-        //end one to many
     }
 }

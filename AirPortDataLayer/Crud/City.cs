@@ -22,7 +22,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Delete(int id)
@@ -37,7 +37,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Update(AirPortModel.Models.City obj)
@@ -50,7 +50,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public List<AirPortModel.Models.City> ToList()
@@ -61,5 +61,21 @@ namespace AirPortDataLayer.Crud
         {
             return _db.cities.FirstOrDefault(x => x.Id == id);
         }
+
+        //************************************
+        //new Check City id
+        public string CheckCityId(int CityId)
+        {
+            try
+            {
+                var obj = _db.cities.FirstOrDefault(i => i.Id == CityId);
+                return  obj==null ? "wrong City Id":"Successful";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+        //end check City Id
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
 
+
 namespace AirPortDataLayer.Crud
 {
     public class Detail
@@ -22,7 +23,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Delete(int id)
@@ -37,7 +38,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Update(AirPortModel.Models.Detail obj)
@@ -51,7 +52,7 @@ namespace AirPortDataLayer.Crud
             catch (Exception ex)
             {
 
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public List<AirPortModel.Models.Detail> ToList()
@@ -61,6 +62,29 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.Detail FindById(int id)
         {
             return _db.details.FirstOrDefault(x => x.Id == id);
+        }
+        public List<FeatureValueVeiwModel> FeatureValues(int id)
+        {
+            FeatureValueVeiwModel obj = new FeatureValueVeiwModel();
+            List<FeatureValueVeiwModel> fvm = new List<FeatureValueVeiwModel>();
+            if (_db.details.FirstOrDefault(x => x.Id == id) != null)
+            {
+                var dv = _db.detailValues.Where(x => x.DetailId == id).ToList();
+                foreach (var item in dv)
+                {
+                    var fe = _db.featrues.FirstOrDefault(x => x.Id == item.FeacherId);
+                    obj.name = fe.Name;
+                    obj.value = item.Value;
+                    fvm.Add(obj);
+            
+                }
+                return fvm;
+            }
+            else
+            {
+                return fvm;
+            }
+
         }
     }
 }

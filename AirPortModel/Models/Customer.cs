@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace AirPortModel.Models
 {
@@ -36,7 +35,7 @@ namespace AirPortModel.Models
         [DisplayFormat(DataFormatString ="{0:yyyy-mm-dd}")]
         [Column("CustomerBDate")]
         public DateTime BDate { get; set; }
-        //jensiat Sex New input 
+        //jensiat:Sex New input 
         [Required]
         [NotNull]
         [Column("CustomerSex")]

@@ -22,7 +22,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Delete(int id)
@@ -37,7 +37,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public string Update(AirPortModel.Models.Request obj)
@@ -50,7 +50,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return ex.Message.ToString();
             }
         }
         public List<AirPortModel.Models.Request> ToList()

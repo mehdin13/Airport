@@ -23,11 +23,9 @@ namespace AirPortModel.Models
         public int TypeId { get; set; }
         public TypeDetail TypeDetail { get; set; }
         //***end Key
-        //*********************new Feald *****************************
         [Column("DetailRating")]
         public double Rating { get; set; }
 
-        //********************end New Feald **************************
         [Column("DetailValue")]
         public int Value { get; set; }
 
@@ -35,15 +33,19 @@ namespace AirPortModel.Models
         [AllowNull]
         [Column("DateCreate")]
         public DateTime DateCreate { get; set; }
+
         [DataType(DataType.DateTime)]
         [AllowNull]
         [Column("LastUpdateDate")]
         public DateTime LastUpdate { get; set; }
+
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
+
         public List<Airline> airlines { get; set; }
         public List<AirPort> airPorts { get; set; }
         public List<AirPlane> airPlanes { get; set; }
+        public List<DetailValue> detailValues { get; set; }
 
 
     }

@@ -15,20 +15,20 @@ namespace AirPortModel.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("ValueId")]
         public int Id { get; set; }
-        ////foreign key 
-        //[ForeignKey("Detail")]
-        //[Required]
-        //[Column("DetailId")]
-        //public int DetailId { get; set; }
-        //public Detail Detail { get; set; }
-        ////**end Key
-        //foreign Key 
+        ////******************foreign key **********************
+        [ForeignKey("Detail")]
+        [Required]
+        [Column("DetailId")]
+        public int DetailId { get; set; }
+        public Detail Detail { get; set; }
+        //***********end Key*********************
+        //*************************foreign Key**************** 
         [ForeignKey("Featrue")]
         [Required]
         [Column("FeatrueId")]
         public int FeacherId { get; set; }
         public Featrue Featrue { get; set; }
-        //****end Key
+        //*************************end Key********************
         [Column("Value")]
         public string Value { get; set; }
 
