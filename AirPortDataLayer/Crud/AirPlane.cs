@@ -33,7 +33,7 @@ namespace AirPortDataLayer.Crud
             try
             {
                 var obj = _db.airPlanes.FirstOrDefault(x => x.Id == id);
-                obj.IsDelete=true;
+                obj.IsDelete = true;
                 _db.airPlanes.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
@@ -60,7 +60,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.AirPlane> ToList()
         {
-            return _db.airPlanes.ToList();
+            return _db.airPlanes.Where(x => x.IsDelete == false).ToList();
         }
         public AirPortModel.Models.AirPlane FindById(int id)
         {

@@ -56,7 +56,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Place> ToList()
         {
-            return _db.places.ToList();
+            return _db.places.Where(x => x.IsDelete == false).ToList();
         }
         public AirPortModel.Models.Place FindById(int id)
         {

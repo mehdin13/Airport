@@ -57,7 +57,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.GalleryImage> ToList()
         {
-            return _db.GalleryImages.ToList();
+            return _db.GalleryImages.Where(x => x.IsDelete == false).ToList();
         }
         public AirPortModel.Models.GalleryImage FindById(int id)
         {

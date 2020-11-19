@@ -55,7 +55,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Weather> ToList()
         {
-            return _db.Weather.ToList();
+            return _db.Weather.Where(x => x.IsDelete == false).ToList();
         }
         public AirPortModel.Models.Weather FindById(int id)
         {

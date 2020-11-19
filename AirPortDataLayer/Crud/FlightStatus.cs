@@ -55,7 +55,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.FlightStatus> ToList()
         {
-            return _db.flightStatuses.ToList();
+            return _db.flightStatuses.Where(x => x.IsDelete == false).ToList();
         }
         public AirPortModel.Models.FlightStatus FindById(int id)
         {

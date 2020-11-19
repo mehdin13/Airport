@@ -62,7 +62,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Gallery> ToList()
         {
-            return _db.galleries.ToList();
+            return _db.galleries.Where(x => x.IsDelete == false).ToList();
         }
         public List<ImageList> ListImage(int id)
         {
