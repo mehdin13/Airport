@@ -9,7 +9,7 @@ namespace AirPortDataLayer.Crud
     public class Gallery
     {
         private readonly AppDatabaseContext _db;
-        private Gallery(AppDatabaseContext db)
+        public Gallery(AppDatabaseContext db)
         {
             _db = db;
         }

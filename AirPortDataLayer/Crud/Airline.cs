@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AirPortDataLayer.Data;
+using AirPortDataLayer.Crud.VeiwModel;
 
 namespace AirPortDataLayer.Crud
 {
@@ -71,6 +72,11 @@ namespace AirPortDataLayer.Crud
         {
             Detail detail = new Detail(_db);
             return detail.FeatureValues(id).ToList();
+        }
+        public List<ImageList> airlineGallery(int id)
+        {
+            Gallery gallery = new Gallery(_db);
+            return gallery.ListImage(id).ToList();
         }
     }
 }
