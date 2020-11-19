@@ -32,7 +32,11 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                Gallery gallery = new Gallery(_db);
                 var obj = _db.airPlanes.FirstOrDefault(x => x.Id == id);
+                var objgallery = _db.airPlanes.FirstOrDefault(x => x.Id == id);
+                gallery.Delete(objgallery.GalleryId);
+
                 obj.IsDelete = true;
                 _db.airPlanes.Update(obj);
                 _db.SaveChanges();

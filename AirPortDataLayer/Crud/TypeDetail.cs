@@ -30,7 +30,13 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                Featrue featrue = new Featrue(_db);
                 var obj = _db.typeDetails.FirstOrDefault(x => x.Id == id);
+                var objfeature = _db.featrues.Where(x=>x.Id==id);
+                foreach (var item in objfeature)
+                {
+                    featrue.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.typeDetails.Update(obj);
                 _db.SaveChanges();

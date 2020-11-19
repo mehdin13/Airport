@@ -30,7 +30,13 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                DetailValue detailV = new DetailValue(_db);
                 var obj = _db.details.FirstOrDefault(x => x.Id == id);
+                var objDetail = _db.detailValues.Where(x=>x.Id==id);
+                foreach (var item in objDetail)
+                {
+                    detailV.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.details.Update(obj);
                 _db.SaveChanges();

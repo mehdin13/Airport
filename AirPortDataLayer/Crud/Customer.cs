@@ -29,7 +29,25 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                FlightToDo flightToDo = new FlightToDo(_db);
+                CustomerFlight customerFlight = new CustomerFlight(_db);
+                Request request = new Request(_db);
                 var obj = _db.customers.FirstOrDefault(x => x.Id == id);
+                var objflighttodo = _db.FlightToDos.Where(x => x.id == id);
+                foreach (var item in objflighttodo)
+                {
+                    flightToDo.Delete(item.id);
+                }
+                var objcustomerFlight = _db.CustomerFlight.Where(x => x.Id == id);
+                foreach (var item in objcustomerFlight)
+                {
+                    customerFlight.Delete(item.Id);
+                }
+                var objRequest = _db.requests.Where(x => x.Id == id);
+                foreach (var item in objRequest)
+                {
+                    request.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.customers.Update(obj);
                 _db.SaveChanges();

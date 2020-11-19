@@ -29,7 +29,13 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                AirPlane airPlane = new AirPlane(_db);
                 var obj = _db.Brand.FirstOrDefault(x => x.Id == Id);
+                var objairplane = _db.airPlanes.Where(x => x.Id == Id);
+                foreach (var item in objairplane)
+                {
+                    airPlane.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.Brand.Update(obj);
                 _db.SaveChanges();

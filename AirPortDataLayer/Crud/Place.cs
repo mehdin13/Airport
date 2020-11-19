@@ -30,7 +30,19 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                Category category = new Category(_db);
+                Address address = new Address(_db);
                 var obj = _db.places.FirstOrDefault(x => x.Id == id);
+                var objaddress = _db.Adresses.Where(x => x.Id == id);
+                foreach (var item in objaddress)
+                {
+                    address.Delete(item.Id);
+                }
+                var objcategory = _db.categories.Where(x => x.Id == id);
+                foreach (var item in objcategory)
+                {
+                    category.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.places.Update(obj);
                 _db.SaveChanges();

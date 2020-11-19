@@ -32,7 +32,25 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                Weather weather = new Weather(_db);
+                Gallery gallery = new Gallery(_db);
+                Address address = new Address(_db);
                 var obj = _db.AirPorts.FirstOrDefault(x => x.Id == id);
+                var objWeather = _db.Weather.Where(x=>x.Id==id);
+                foreach (var item in objWeather)
+                {
+                    weather.Delete(item.Id);
+                }
+                var objgallery = _db.galleries.Where(x => x.Id == id);
+                foreach (var item in objgallery)
+                {
+                    gallery.Delete(item.Id);
+                }
+                var objaddres = _db.Adresses.Where(x => x.Id == id);
+                foreach (var item in objaddres)
+                {
+                    address.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.AirPorts.Update(obj);
                 _db.SaveChanges();

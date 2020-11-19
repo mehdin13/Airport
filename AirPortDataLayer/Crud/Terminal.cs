@@ -29,7 +29,13 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                Gate gate = new Gate(_db);
                 var obj = _db.terminals.FirstOrDefault(x => x.Id == id);
+                var objterminal = _db.Gate.Where(x => x.Id == id);
+                foreach (var item in objterminal)
+                {
+                    gate.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.terminals.Update(obj);
                 _db.SaveChanges();

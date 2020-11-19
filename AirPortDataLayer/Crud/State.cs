@@ -29,7 +29,13 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                City city = new City(_db);
                 var obj = _db.states.FirstOrDefault(x => x.Id == id);
+                var objCity = _db.cities.Where(x => x.CityStateId == id);
+                foreach (var item in objCity)
+                {
+                    city.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.states.Update(obj);
                 _db.SaveChanges();
