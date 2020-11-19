@@ -28,9 +28,15 @@ namespace AirPortDataLayer.Crud
         }
         public string Delete(int id)
         {
+            GalleryImage galleryImage = new GalleryImage(_db);
             try
             {
                 var obj = _db.galleries.FirstOrDefault(x => x.Id == id);
+                var objgalleryimage = _db.GalleryImages.Where(x => x.GalleryId == id);
+                foreach (var item in objgalleryimage)
+                {
+                    galleryImage.Delete(item.Id);
+                }
                 obj.IsDelete = true;
                 _db.galleries.Update(obj);
                 _db.SaveChanges();
