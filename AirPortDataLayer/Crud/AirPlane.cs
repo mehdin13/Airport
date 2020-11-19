@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Crud.VeiwModel;
 
 namespace AirPortDataLayer.Crud
 {
@@ -64,6 +65,16 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.AirPlane FindById(int id)
         {
             return _db.airPlanes.FirstOrDefault(x => x.Id == id);
+        }
+        public List<FeatureValueVeiwModel> AirplainDetail(int id)
+        {
+            Detail detail = new Detail(_db);
+            return detail.FeatureValues(id).ToList();
+        }
+        public List<ImageList> AirplaneGallery(int id)
+        {
+            Gallery gallery = new Gallery(_db);
+            return gallery.ListImage(id).ToList();
         }
     }
 }
