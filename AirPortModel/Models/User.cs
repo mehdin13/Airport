@@ -15,6 +15,7 @@ namespace AirPortModel.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("UserId")]
         public int Id { get; set; }
+        [Required]
         [StringLength(50)]
         [Column("UserName")]
         public string Name { get; set; }
@@ -25,20 +26,23 @@ namespace AirPortModel.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         //****End 
+        [Required]
         [Column("Password")]
         [StringLength(15)]
         public string Password { get; set; }
+        [Required]
         [Column("IsActive")]
         public bool IsActive { get; set; }
+        [Required]
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
 
         [DataType(DataType.DateTime)]
-        [AllowNull]
+        [Required]
         [Column("DateCreate")]
         public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
-        [AllowNull]
+        [Required]
         [Column("LastUpdateDate")]
         public DateTime LastUpdate { get; set; }
     }

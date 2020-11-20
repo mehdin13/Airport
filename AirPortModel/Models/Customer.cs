@@ -48,28 +48,30 @@ namespace AirPortModel.Models
 
         [Column("CustomerProfileImage")]
         public string ProfileImage { get; set; }
-
+        [Required]
         [DataType(DataType.Password)]
-        [DisplayName(displayName:"System Password")]
+        [DisplayName(displayName:"Password")]
         [Column("CustomerPassword")]
         public string Password { get; set; }
-
+        [Required]
         [DataType(DataType.EmailAddress)]
         [DisplayName(displayName:"Emal Address")]
         [Column("CustomerEmail")]
         public string Email { get; set; }
         //Hmmm :D
+        [Required]
         [Column("Isactive")]
         public bool Isactive { get; set; }
+        [Required]
         [Column("Isdelete")]
         public bool IsDelete { get; set; }
 
         [DataType(DataType.DateTime)]
-        [AllowNull]
+        [Required]
         [Column("DateCreate")]
         public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
-        [AllowNull]
+        [Required]
         [Column("LastUpdateDate")]
         public int LastUpdate { get; set; }
         public List<Request> requests { get; set; }

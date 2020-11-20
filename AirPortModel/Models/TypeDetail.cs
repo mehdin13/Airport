@@ -20,13 +20,14 @@ namespace AirPortModel.Models
         public string Name { get; set; }
 
         [DataType(DataType.DateTime)]
-        [AllowNull]
+        [Required]
         [Column("DateCreate")]
         public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
-        [AllowNull]
+        [Required]
         [Column("LastUpdateDate")]
         public DateTime LastUpdate { get; set; }
+        [Required]
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
         public List<Featrue> featrues { get; set; }
