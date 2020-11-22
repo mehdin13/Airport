@@ -101,7 +101,7 @@ namespace AirPortDataLayer.Crud
         }
         public ProgressStatus CheckAirportCode(string code)
         {
-             var result = new ProgressStatus {Number=1,Title="NotFound",Message="یافت نشد"}
+            var result = new ProgressStatus { Number = 1, Title = "NotFound", Message = "یافت نشد" };
             return result;
         }
     }
