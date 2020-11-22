@@ -6,6 +6,7 @@ using System.Linq;
 using AirPortDataLayer.Crud.VeiwModel;
 using AirPortDataLayer.Crud.InterFace;
 
+
 namespace AirPortDataLayer.Crud
 {
     public class AirPort :IAirPort
@@ -97,6 +98,11 @@ namespace AirPortDataLayer.Crud
         {
             Gallery gallery = new Gallery(_db);
             return gallery.ListImage(id).ToList();
+        }
+        public ProgressStatus CheckAirportCode(string code)
+        {
+             var result = new ProgressStatus {Number=1,Title="NotFound",Message="یافت نشد"}
+            return result;
         }
     }
 }

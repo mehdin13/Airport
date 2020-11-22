@@ -39,7 +39,7 @@ namespace AirPortModel.Models
         //end
         // ***************************new Feald****************
         [Column("AirPortCode")]
-        public int Code { get; set; }
+        public string Code { get; set; }
         //***************************End New Feald ************
         //Abbreviation == ekhtesari 
         [StringLength(10)]
