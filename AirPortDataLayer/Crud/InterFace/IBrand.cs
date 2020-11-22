@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
    public interface IBrand
     {
-        string Insert(AirPortModel.Models.Brand obj);
+        int Insert(AirPortModel.Models.Brand obj);
         string Delete(int Id);
         string Update(AirPortModel.Models.Brand obj);
         List<AirPortModel.Models.Brand> ToList();

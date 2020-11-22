@@ -13,7 +13,7 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.User obj)
+        public int Insert(AirPortModel.Models.User obj)
         {
             try
             {
@@ -21,11 +21,11 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.users.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)
@@ -102,5 +102,45 @@ namespace AirPortDataLayer.Crud
                 return ex.Message.ToString();
             }
         }
+
+        public ProgressStatus CheckUserNameExist(string username)
+        {
+
+            if (_db.users.FirstOrDefault(x=>x.Name==username)!=null)
+            {
+                var result = new ProgressStatus { Number = 1, Title = "User existing Message", Message = "Not exist" };
+                return result;
+            }
+            else
+            {
+                var result = new ProgressStatus { Number = 3, Title = "User existing Error", Message = "allredy exist" };
+                return result;
+            }
+  
+        } 
+        public ProgressStatus CheckLoginInfo(string username,string password)
+        {
+            var User = _db.users.FirstOrDefault(x => x.Name == username);
+            if (User != null)
+            {
+                if (User.Password == password)
+                {
+                    var result = new ProgressStatus { Number = 10, Title = "Recognized", Message = "correct UserName And Password" };
+                    return result;
+                }
+                else
+                {
+                    var result = new ProgressStatus { Number = 12, Title = "Not Recognized", Message = "Incorrect Password" };
+                    return result;
+                }
+            }
+            else
+            {
+                var result = new ProgressStatus { Number = 11, Title = "Not Recognized", Message = "Incorrect UserName" };
+                return result;
+            }
+        }
+
+       
     }
 }

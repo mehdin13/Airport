@@ -7,7 +7,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
     public interface IAddress
     {
-        string Insert(AirPortModel.Models.Address Address);
+        int Insert(AirPortModel.Models.Address Address);
         string Delete(int id);
         string Update(AirPortModel.Models.Address obj);
         List<AirPortModel.Models.Address> ToList();

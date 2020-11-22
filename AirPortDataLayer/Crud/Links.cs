@@ -13,19 +13,20 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Links obj)
+        public int Insert(AirPortModel.Models.Links obj)
         {
             try
             {
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
+                obj.IsDelete = false;
                 _db.Links.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)

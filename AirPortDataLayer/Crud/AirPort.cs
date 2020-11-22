@@ -16,20 +16,21 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert (AirPortModel.Models.AirPort obj)
+        public int Insert (AirPortModel.Models.AirPort obj)
         {
             try
             {
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
+                obj.IsDelete = false;
                 _db.AirPorts.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
 
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)
@@ -101,7 +102,7 @@ namespace AirPortDataLayer.Crud
         }
         public ProgressStatus CheckAirportCode(string code)
         {
-             var result = new ProgressStatus {Number=1,Title="NotFound",Message="یافت نشد"}
+            var result = new ProgressStatus { Number = 1, Title = "NotFound", Message = "یافت نشد" };
             return result;
         }
     }

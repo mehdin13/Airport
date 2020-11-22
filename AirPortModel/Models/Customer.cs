@@ -14,6 +14,7 @@ namespace AirPortModel.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CustomerId")]
         public int Id { get; set; }
+
         [Required]
         [StringLength(50)]
         [Column("CustomerName")]
@@ -25,12 +26,12 @@ namespace AirPortModel.Models
         public string LastName { get; set; }
 
         //***************** foreign Key***************
-        [ForeignKey("CustomerAdress")]
+        [ForeignKey("adress")]
         [Column("CustomerAdress")]
         public int Adress { get; set; }
         public Address address { get; set; }
         //***************End Foreign Key**************
-
+        [AllowNull]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString ="{0:yyyy-mm-dd}")]
         [Column("CustomerBDate")]
@@ -41,7 +42,7 @@ namespace AirPortModel.Models
         [Column("CustomerSex")]
         public bool Sex { get; set; }
 
-        [Required]
+        [AllowNull]
         [StringLength(12)]
         [Column("CustomerMobile")]
         public string Mobile { get; set; }

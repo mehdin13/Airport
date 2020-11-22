@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
    public interface IRequest
     {
-        string Insert(AirPortModel.Models.Request obj);
+        int Insert(AirPortModel.Models.Request obj);
         string Delete(int id);
         string Update(AirPortModel.Models.Request obj);
         List<AirPortModel.Models.Request> ToList();

@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
    public interface ILinks
     {
-        string Insert(AirPortModel.Models.Links obj);
+        int Insert(AirPortModel.Models.Links obj);
         string Delete(int id);
         string Update(AirPortModel.Models.Links obj);
         List<AirPortModel.Models.Links> ToList();

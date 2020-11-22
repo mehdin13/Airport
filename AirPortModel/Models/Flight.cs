@@ -29,15 +29,7 @@ namespace AirPortModel.Models
         public int AirPortId { get; set; }
         public AirPort AirPort { get; set; }
         //end key 
-        [Required]
-        [DataType(DataType.Time)]
-        [Column("FlightTime")]
-        public DateTime Time { get; set; }
-
-        [Required]
-        [DataType(DataType.Date)]
-        [Column("FlighttDate")]
-        public DateTime Date { get; set; }
+        
         //foreignKey
         [ForeignKey("FlightStatus")]
         [Column("FlightstatusId")]
@@ -76,7 +68,7 @@ namespace AirPortModel.Models
         //*******************New Feald********************
         [Column("FlightNumber")]
         [Required]
-        public int Number { get; set; }
+        public string Number { get; set; }
 
         [Column("FlightDelay")]
         [Required]

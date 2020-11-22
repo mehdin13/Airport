@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
     public interface IDetailValue
     {
-        string Insert(AirPortModel.Models.DetailValue obj);
+        int Insert(AirPortModel.Models.DetailValue obj);
         string Delete(int Id);
         string Update(AirPortModel.Models.DetailValue obj);
         List<AirPortModel.Models.DetailValue> ToList();

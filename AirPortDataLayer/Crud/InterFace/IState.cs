@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
     public interface IState
     {
-        string Insert(AirPortModel.Models.State obj);
+        int Insert(AirPortModel.Models.State obj);
         string Delete(int id);
         string Update(AirPortModel.Models.State obj);
         List<AirPortModel.Models.State> ToList();

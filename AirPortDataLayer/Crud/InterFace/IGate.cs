@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
    public  interface IGate
     {
-        string Insert(AirPortModel.Models.Gate obj);
+        int Insert(AirPortModel.Models.Gate obj);
         string Delete(int id);
         string Update(AirPortModel.Models.Gate obj);
         List<AirPortModel.Models.Gate> ToList();

@@ -12,7 +12,7 @@ namespace AirPortModel.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("CustomerIdTbl")]
+        [Column("CustomerFlightId")]
         public int Id { get; set; }
         //****************foreignKey CusttomerID*************
         [Required]

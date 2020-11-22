@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
    public interface ITerminal
     {
-        string Insert(AirPortModel.Models.Terminal obj);
+        int Insert(AirPortModel.Models.Terminal obj);
         string Delete(int id);
         string Update(AirPortModel.Models.Terminal obj);
         List<AirPortModel.Models.Terminal> ToList();

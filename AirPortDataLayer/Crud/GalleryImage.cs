@@ -14,7 +14,7 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.GalleryImage obj)
+        public int Insert(AirPortModel.Models.GalleryImage obj)
         {
             try
             {
@@ -22,11 +22,11 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.GalleryImages.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)

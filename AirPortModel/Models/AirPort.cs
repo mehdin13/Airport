@@ -43,7 +43,7 @@ namespace AirPortModel.Models
         //***************************End New Feald ************
         //Abbreviation == ekhtesari 
         [StringLength(10)]
-        [Column("AirAbbreviation")]
+        [Column("AirPortAbbreviation")]
         public string Abbreviation { get; set; }
 
         [DataType(DataType.DateTime)]

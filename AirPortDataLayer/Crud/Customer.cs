@@ -6,26 +6,40 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Customer :ICustomer 
+    public class Customer : ICustomer
     {
         public readonly AppDatabaseContext _db;
         public Customer(AppDatabaseContext db)
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Customer obj)
+        public int Insert(AirPortModel.Models.Customer obj)
         {
             try
             {
+                //*****************chek shavad hatma************************************
+                AirPortModel.Models.Address Oaddress = new AirPortModel.Models.Address();
+                Address address = new Address(_db);
+                Oaddress.Detail = string.Empty;
+                address.Insert(Oaddress);
+                //*****************End chek shavad hatma************************************
+                obj.address = null;
+                obj.Mobile = null;
+                obj.ProfileImage = null;
+
+                obj.Isactive = false;
+
+                obj.IsDelete = false;
+
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.customers.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)
@@ -82,7 +96,56 @@ namespace AirPortDataLayer.Crud
         }
         public AirPortModel.Models.Customer FindById(int id)
         {
-           return _db.customers.FirstOrDefault(x => x.Id == id);
+            return _db.customers.FirstOrDefault(x => x.Id == id);
+        }
+
+        public ProgressStatus CheckCstomerMobileExisting(string Mobile)
+        {
+            if (_db.customers.FirstOrDefault(x => x.Mobile == Mobile) != null)
+            {
+                var result = new ProgressStatus { Number = 1, Title = "phoneNumber Error", Message = "notexist" };
+                return result;
+            }
+            else
+            {
+                var result = new ProgressStatus { Number = 3, Title = "Successful", Message = "Alredy exist" };
+                return result;
+            }
+        }
+        public ProgressStatus CheckCustomerEmailExisting(string email)
+        {
+            if (_db.customers.FirstOrDefault(x => x.Email == email) != null)
+            {
+                var result = new ProgressStatus { Number = 1, Title = "EmailError", Message = "Notexist" };
+                return result;
+            }
+            else
+            {
+                var result = new ProgressStatus { Number = 3, Title = "successful", Message = "Allredyexist" };
+                return result;
+            }
+        }
+        public ProgressStatus CheckLoginInfo(string email, string password)
+        {
+            var User = _db.customers.FirstOrDefault(x => x.Email == email);
+            if (User != null)
+            {
+                if (User.Password == password)
+                {
+                    var result = new ProgressStatus { Number = 10, Title = "Recognized", Message = "correct UserName And Password" };
+                    return result;
+                }
+                else
+                {
+                    var result = new ProgressStatus { Number = 12, Title = "Not Recognized", Message = "Incorrect Password" };
+                    return result;
+                }
+            }
+            else
+            {
+                var result = new ProgressStatus { Number = 11, Title = "Not Recognized", Message = "Incorrect UserName" };
+                return result;
+            }
         }
     }
 }

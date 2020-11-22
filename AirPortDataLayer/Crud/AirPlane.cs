@@ -15,20 +15,21 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.AirPlane obj)
+        public int Insert(AirPortModel.Models.AirPlane obj)
         {
             try
             {
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
+                obj.IsDelete = false;
                 _db.airPlanes.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
 
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)
@@ -83,6 +84,12 @@ namespace AirPortDataLayer.Crud
         {
             Gallery gallery = new Gallery(_db);
             return gallery.ListImage(id).ToList();
+        }
+
+        public ProgressStatus CheckairplainCode(string code)
+        {
+            var result = new ProgressStatus { Number = 1, Title = "", Message ="" };
+            return result;
         }
     }
 }

@@ -14,19 +14,20 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Place obj)
+        public int Insert(AirPortModel.Models.Place obj)
         {
             try
             {
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
+                obj.IsDelete = false;
                 _db.places.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)
@@ -88,6 +89,12 @@ namespace AirPortDataLayer.Crud
         {
             Detail detail = new Detail(_db);
             return detail.FeatureValues(id).ToList();
+        }
+
+        public ProgressStatus checkPlacecategoryid(string Code)
+        {
+            var result = new ProgressStatus { Number = 1, Title = "palceId", Message = "NotFound" };
+            return result;
         }
     }
 }

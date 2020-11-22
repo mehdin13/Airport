@@ -13,19 +13,20 @@ namespace AirPortDataLayer.Crud
         {
             _db = db;
         }
-        public string Insert(AirPortModel.Models.Flight obj)
+        public int Insert(AirPortModel.Models.Flight obj)
         {
             try
             {
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
+                obj.IsDelete = false;
                 _db.flights.Add(obj);
                 _db.SaveChanges();
-                return "Successful";
+                return obj.Id;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                return 0;
             }
         }
         public string Delete(int id)
@@ -65,6 +66,22 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.Flight FindById(int id)
         {
             return _db.flights.FirstOrDefault(x => x.Id == id);
+        }
+
+        public ProgressStatus FlightNumberExist(string Number)
+        {
+            var Flightnumber = _db.flights.FirstOrDefault(x => x.Number == Number);
+            if (Flightnumber!=null)
+            {
+                var result = new ProgressStatus { Number = 1, Title = "Successful", Message = "Not Exist" };
+                return result;
+            }
+            else
+            {
+                var result = new ProgressStatus { Number = 1, Title = "Faild", Message = "AlredyExist" };
+                return result;
+            }
+
         }
     }
 }

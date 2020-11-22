@@ -6,7 +6,7 @@ namespace AirPortDataLayer.Crud.InterFace
 {
     public interface IFlightStatus
     {
-        string Insert(AirPortModel.Models.FlightStatus obj);
+        int Insert(AirPortModel.Models.FlightStatus obj);
         string Delete(int id);
         string Update(AirPortModel.Models.FlightStatus obj);
         List<AirPortModel.Models.FlightStatus> ToList();
