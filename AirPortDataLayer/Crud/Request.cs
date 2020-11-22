@@ -16,6 +16,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                obj.DateCreate = DateTime.Now.Date;
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.requests.Add(obj);
                 _db.SaveChanges();
                 return "Successful";
@@ -32,6 +34,7 @@ namespace AirPortDataLayer.Crud
 
                 var obj = _db.requests.FirstOrDefault(x => x.Id == id);
                 obj.IsDelete = true;
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.requests.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
@@ -45,6 +48,7 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.requests.Update(obj);
                 _db.SaveChanges();
                 return "Successful";

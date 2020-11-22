@@ -30,7 +30,8 @@ namespace AirPortDataLayer.Crud
         public string Delete(int id)
         {
             try
-            {
+            { 
+
                 Request request = new Request(_db);
                 var obj = _db.requestTypes.FirstOrDefault(x => x.Id == id);
                 var objR = _db.requests.Where(x => x.TypeId == id);

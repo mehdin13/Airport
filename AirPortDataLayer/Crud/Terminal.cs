@@ -16,6 +16,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                obj.DateCreate = DateTime.Now.Date;
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.terminals.Add(obj);
                 _db.SaveChanges();
                 return "Successful";
@@ -37,6 +39,7 @@ namespace AirPortDataLayer.Crud
                     gate.Delete(item.Id);
                 }
                 obj.IsDelete = true;
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.terminals.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
@@ -50,6 +53,7 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.terminals.Update(obj);
                 _db.SaveChanges();
                 return "Successful";

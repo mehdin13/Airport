@@ -17,6 +17,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                obj.DateCreate = DateTime.Now.Date;
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.galleries.Add(obj);
                 _db.SaveChanges();
                 return "Successfull";
@@ -38,6 +40,7 @@ namespace AirPortDataLayer.Crud
                     galleryImage.Delete(item.Id);
                 }
                 obj.IsDelete = true;
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.galleries.Update(obj);
                 _db.SaveChanges();
                 return "Successful";
@@ -51,6 +54,7 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                obj.LastUpdate = DateTime.Now.Date;
                 _db.galleries.Update(obj);
                 _db.SaveChanges();
                 return "Successful";

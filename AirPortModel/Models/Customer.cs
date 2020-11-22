@@ -73,7 +73,7 @@ namespace AirPortModel.Models
         [DataType(DataType.DateTime)]
         [Required]
         [Column("LastUpdateDate")]
-        public int LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }
         public List<Request> requests { get; set; }
         public List<Place> places { get; set; }
         public List<User> users { get; set; }
