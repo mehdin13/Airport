@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Featrue
+    public class Featrue : IFeatrue
     {
         private readonly AppDatabaseContext _db;
         public Featrue(AppDatabaseContext db)

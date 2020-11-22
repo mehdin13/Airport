@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class DetailValue
+    public class DetailValue : IDetailValue
     {
         public readonly AppDatabaseContext _db;
         public DetailValue(AppDatabaseContext db)

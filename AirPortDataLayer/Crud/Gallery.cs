@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
 using AirPortDataLayer.Crud.VeiwModel;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Gallery
+    public class Gallery : IGallery
     {
         private readonly AppDatabaseContext _db;
         public Gallery(AppDatabaseContext db)

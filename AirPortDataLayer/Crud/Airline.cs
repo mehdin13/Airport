@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using AirPortDataLayer.Data;
 using AirPortDataLayer.Crud.VeiwModel;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Airline
+    public class Airline : IAirline
     {
         private readonly AppDatabaseContext _db;
         public Airline(AppDatabaseContext db)

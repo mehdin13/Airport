@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class FlightToDo
+    public class FlightToDo : IFlightToDo
     {
         private readonly AppDatabaseContext _db;
         public FlightToDo(AppDatabaseContext db)

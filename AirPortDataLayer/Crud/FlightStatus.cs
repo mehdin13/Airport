@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class FlightStatus
+    public class FlightStatus : IFlightStatus
     {
         private readonly AppDatabaseContext _db;
         public FlightStatus(AppDatabaseContext db)

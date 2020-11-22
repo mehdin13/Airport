@@ -4,10 +4,11 @@ using System.Text;
 using AirPortDataLayer.Data;
 using System.Linq;
 using AirPortDataLayer.Crud.VeiwModel;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    class AirPlane
+    class AirPlane : IAirPlane
     {
         private readonly AppDatabaseContext _db;
         public AirPlane(AppDatabaseContext db)

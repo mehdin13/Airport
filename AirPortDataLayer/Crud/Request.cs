@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    class Request
+    class Request : IRequest
     {
         private readonly AppDatabaseContext _db;
         public Request(AppDatabaseContext db)

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using AirPortDataLayer.Data;
 using System.Linq;
 using AirPortDataLayer.Crud.VeiwModel;
+using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-  public  class TypeDetail
+  public  class TypeDetail : ITypeDetail
     {
         private readonly AppDatabaseContext _db;
         public TypeDetail(AppDatabaseContext db)
@@ -72,7 +73,6 @@ namespace AirPortDataLayer.Crud
         {
             return _db.typeDetails.FirstOrDefault(x => x.Id == id);
         }
-
         public List<FeatureValueVeiwModel> TypeDetailDetail(int id)
         {
             Detail detail = new Detail(_db);
