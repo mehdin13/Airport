@@ -29,13 +29,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                RequestType requestType = new RequestType(_db);
-                var obj = _db.requestTypes.FirstOrDefault(x => x.Id == id);
-                var objRequesr = _db.requests.Where(x => x.TypeId == id);
-                foreach (var item in objRequesr)
-                {
-                    requestType.Delete(item.Id);
-                }
+
+                var obj = _db.requests.FirstOrDefault(x => x.Id == id);
                 obj.IsDelete = true;
                 _db.requests.Update(obj);
                 _db.SaveChanges();
