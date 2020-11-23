@@ -23,7 +23,7 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return obj.Id;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 0;
             }
