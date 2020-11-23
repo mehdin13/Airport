@@ -43,7 +43,7 @@ namespace AirPortModel.Models
         public bool Sex { get; set; }
 
         [AllowNull]
-        [StringLength(12)]
+        [DataType(DataType.PhoneNumber)]
         [Column("CustomerMobile")]
         public string Mobile { get; set; }
 

@@ -20,6 +20,7 @@ namespace AirPortDataLayer.Crud
             {
                 obj.DateCreate = DateTime.Now.Date;
                 obj.LastUpdate = DateTime.Now.Date;
+                obj.IsDelete = false;
                 _db.GalleryImages.Add(obj);
                 _db.SaveChanges();
                 return obj.Id;

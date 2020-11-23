@@ -21,14 +21,20 @@ namespace AirPortDataLayer.Crud
                 AirPortModel.Models.Address Oaddress = new AirPortModel.Models.Address();
                 Address address = new Address(_db);
                 Oaddress.Detail = string.Empty;
-                address.Insert(Oaddress);
+                if (_db.customers.FirstOrDefault(x=>x.Id==Oaddress.Id)==null)
+                {
+                    address.Insert(Oaddress);
+                }
+                else
+                {
+                    address.Update(Oaddress);
+                }
                 //*****************End chek shavad hatma************************************
-                obj.address = null;
+                //obj.address = null;
                 obj.Mobile = null;
                 obj.ProfileImage = null;
 
                 obj.Isactive = false;
-
                 obj.IsDelete = false;
 
                 obj.DateCreate = DateTime.Now.Date;

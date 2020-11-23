@@ -16,7 +16,7 @@ namespace AirPortModel.Models
         [Column("PlaceId")]
         public int Id { get; set; }
         [Required]
-        [StringLength(50,ErrorMessage ="Place Name Must Be Less than 50 character")]
+        [StringLength(50, ErrorMessage = "Place Name Must Be Less than 50 character")]
         [Column("PlaceName")]
         public string Name { get; set; }
 
@@ -50,7 +50,13 @@ namespace AirPortModel.Models
         [Column("CustomerId")]
         public int CustomerId { get; set; }
         public Customer Customers { get; set; }
-        //******************end Foregn key******************
+        //******************End Foregn key******************
+        [AllowNull]
+        [DataType(DataType.Currency)]
+        public double Cost { get; set; }
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
         [NotNull]
         [Column("PlaceIsactive")]
         public bool active { get; set; }
