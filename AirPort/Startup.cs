@@ -9,7 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using AirPortDataLayer.Crud;
+using AirPortDataLayer.Crud.InterFace;
+using AirPortDataLayer.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AirPort
 {
@@ -25,6 +30,9 @@ namespace AirPort
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            services.AddScoped<ICustomer, Customer>();
+            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
             services.AddControllers();
         }
 

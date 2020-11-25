@@ -58,6 +58,40 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tbl_Gallery",
+                columns: table => new
+                {
+                    GalleryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GalleryName = table.Column<string>(maxLength: 50, nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Gallery", x => x.GalleryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_Links",
+                columns: table => new
+                {
+                    LinkId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(maxLength: 50, nullable: true),
+                    Type = table.Column<int>(nullable: false),
+                    Icon = table.Column<string>(nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Links", x => x.LinkId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tbl_RequestType",
                 columns: table => new
                 {
@@ -90,23 +124,6 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tbl_type",
-                columns: table => new
-                {
-                    TypeId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeName = table.Column<string>(nullable: false),
-                    TypeIcon = table.Column<string>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_type", x => x.TypeId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tbl_TypeDetail",
                 columns: table => new
                 {
@@ -123,20 +140,59 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tbl_Weather",
+                name: "Tbl_GalleryImage",
                 columns: table => new
                 {
-                    WeatherId = table.Column<int>(nullable: false)
+                    GalleryImageId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeId = table.Column<int>(nullable: false),
-                    CityId = table.Column<int>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: true),
+                    GalleryId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tbl_Weather", x => x.WeatherId);
+                    table.PrimaryKey("PK_Tbl_GalleryImage", x => x.GalleryImageId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_GalleryImage_Tbl_Gallery_GalleryId",
+                        column: x => x.GalleryId,
+                        principalTable: "Tbl_Gallery",
+                        principalColumn: "GalleryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_Entertainment",
+                columns: table => new
+                {
+                    EntertainmentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    LinkId = table.Column<int>(nullable: false),
+                    Gallery = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(maxLength: 50, nullable: true),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Entertainment", x => x.EntertainmentId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Entertainment_Tbl_Gallery_Gallery",
+                        column: x => x.Gallery,
+                        principalTable: "Tbl_Gallery",
+                        principalColumn: "GalleryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Entertainment_Tbl_Links_LinkId",
+                        column: x => x.LinkId,
+                        principalTable: "Tbl_Links",
+                        principalColumn: "LinkId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,6 +215,30 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.CityStateId,
                         principalTable: "Tbl_State",
                         principalColumn: "StateId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_Detail",
+                columns: table => new
+                {
+                    DetailId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeDetailId = table.Column<int>(nullable: false),
+                    DetailRating = table.Column<double>(nullable: false),
+                    DetailValue = table.Column<int>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Detail", x => x.DetailId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Detail_Tbl_TypeDetail_TypeDetailId",
+                        column: x => x.TypeDetailId,
+                        principalTable: "Tbl_TypeDetail",
+                        principalColumn: "TypeDetailId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -192,7 +272,7 @@ namespace AirPortDataLayer.Migrations
                 {
                     AdressId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdressDetail = table.Column<string>(maxLength: 256, nullable: false),
+                    AdressDetail = table.Column<string>(maxLength: 255, nullable: false),
                     AdressLocationX = table.Column<double>(nullable: false),
                     AdressLocationY = table.Column<double>(nullable: false),
                     AdressLocationR = table.Column<double>(nullable: false),
@@ -213,11 +293,36 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tbl_AirLine",
+                columns: table => new
+                {
+                    AirlineId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AirlineName = table.Column<string>(maxLength: 50, nullable: false),
+                    AirlineDetailId = table.Column<int>(nullable: false),
+                    AirlineLogo = table.Column<string>(nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_AirLine", x => x.AirlineId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_AirLine_Tbl_Detail_AirlineDetailId",
+                        column: x => x.AirlineDetailId,
+                        principalTable: "Tbl_Detail",
+                        principalColumn: "DetailId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tbl_DetailValue",
                 columns: table => new
                 {
                     ValueId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DetailId = table.Column<int>(nullable: false),
                     FeatrueId = table.Column<int>(nullable: false),
                     Value = table.Column<string>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
@@ -228,10 +333,56 @@ namespace AirPortDataLayer.Migrations
                 {
                     table.PrimaryKey("PK_Tbl_DetailValue", x => x.ValueId);
                     table.ForeignKey(
+                        name: "FK_Tbl_DetailValue_Tbl_Detail_DetailId",
+                        column: x => x.DetailId,
+                        principalTable: "Tbl_Detail",
+                        principalColumn: "DetailId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Tbl_DetailValue_Tbl_Feature_FeatrueId",
                         column: x => x.FeatrueId,
                         principalTable: "Tbl_Feature",
                         principalColumn: "FeatrueId",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_AirPort",
+                columns: table => new
+                {
+                    AirPortId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AirPortName = table.Column<string>(maxLength: 50, nullable: false),
+                    AirPortAddressId = table.Column<int>(nullable: false),
+                    MapImageUrl = table.Column<string>(nullable: true),
+                    GalleryId = table.Column<int>(nullable: false),
+                    AirPortCode = table.Column<string>(nullable: true),
+                    AirPortAbbreviation = table.Column<string>(maxLength: 10, nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false),
+                    DetailId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_AirPort", x => x.AirPortId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_AirPort_Tbl_Adress_AirPortAddressId",
+                        column: x => x.AirPortAddressId,
+                        principalTable: "Tbl_Adress",
+                        principalColumn: "AdressId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_AirPort_Tbl_Detail_DetailId",
+                        column: x => x.DetailId,
+                        principalTable: "Tbl_Detail",
+                        principalColumn: "DetailId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Tbl_AirPort_Tbl_Gallery_GalleryId",
+                        column: x => x.GalleryId,
+                        principalTable: "Tbl_Gallery",
+                        principalColumn: "GalleryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -247,14 +398,14 @@ namespace AirPortDataLayer.Migrations
                     addressId = table.Column<int>(nullable: true),
                     CustomerBDate = table.Column<DateTime>(nullable: false),
                     CustomerSex = table.Column<bool>(nullable: false),
-                    CustomerMobile = table.Column<string>(maxLength: 12, nullable: false),
+                    CustomerMobile = table.Column<string>(nullable: true),
                     CustomerProfileImage = table.Column<string>(nullable: true),
-                    CustomerPassword = table.Column<string>(nullable: true),
-                    CustomerEmail = table.Column<string>(nullable: true),
+                    CustomerPassword = table.Column<string>(nullable: false),
+                    CustomerEmail = table.Column<string>(nullable: false),
                     Isactive = table.Column<bool>(nullable: false),
                     Isdelete = table.Column<bool>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<int>(nullable: false)
+                    LastUpdateDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -268,112 +419,48 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FlightToDo",
+                name: "Tbl_AirPlane",
                 columns: table => new
                 {
-                    FlightToDoId = table.Column<int>(nullable: false)
+                    AirPlaneId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 50, nullable: true),
-                    CustomerId = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    IsDon = table.Column<bool>(nullable: false),
+                    AirPlaneName = table.Column<string>(maxLength: 50, nullable: false),
+                    AirPlaneModel = table.Column<string>(nullable: false),
+                    AirPlaneCode = table.Column<string>(nullable: false),
+                    BrandId = table.Column<int>(nullable: false),
+                    AirPlaneGalleryId = table.Column<int>(nullable: false),
+                    DetailId = table.Column<int>(nullable: false),
+                    AirlineId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     LastUpdateDate = table.Column<DateTime>(nullable: false),
                     IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FlightToDo", x => x.FlightToDoId);
+                    table.PrimaryKey("PK_Tbl_AirPlane", x => x.AirPlaneId);
                     table.ForeignKey(
-                        name: "FK_FlightToDo_Tbl_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Tbl_Customer",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_Request",
-                columns: table => new
-                {
-                    RequestId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeId = table.Column<int>(nullable: false),
-                    requestsid = table.Column<int>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(maxLength: 255, nullable: true),
-                    CustomerId = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_Request", x => x.RequestId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Request_Tbl_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Tbl_Customer",
-                        principalColumn: "CustomerId",
+                        name: "FK_Tbl_AirPlane_Tbl_AirLine_AirlineId",
+                        column: x => x.AirlineId,
+                        principalTable: "Tbl_AirLine",
+                        principalColumn: "AirlineId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tbl_Request_Tbl_RequestType_requestsid",
-                        column: x => x.requestsid,
-                        principalTable: "Tbl_RequestType",
-                        principalColumn: "RequestId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_User",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(maxLength: 50, nullable: true),
-                    CustomerId = table.Column<int>(nullable: false),
-                    Password = table.Column<string>(maxLength: 15, nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_User", x => x.UserId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_User_Tbl_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Tbl_Customer",
-                        principalColumn: "CustomerId",
+                        name: "FK_Tbl_AirPlane_Tbl_Brand_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Tbl_Brand",
+                        principalColumn: "BrandId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_AirPort",
-                columns: table => new
-                {
-                    AirPortId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AirPortName = table.Column<string>(maxLength: 50, nullable: false),
-                    AirPortAddressId = table.Column<int>(nullable: false),
-                    MapImageUrl = table.Column<string>(nullable: true),
-                    GalleryId = table.Column<int>(nullable: false),
-                    AirPortCode = table.Column<int>(nullable: false),
-                    AirAbbreviation = table.Column<string>(maxLength: 10, nullable: true),
-                    Detail = table.Column<string>(maxLength: 255, nullable: true),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_AirPort", x => x.AirPortId);
                     table.ForeignKey(
-                        name: "FK_Tbl_AirPort_Tbl_Adress_AirPortAddressId",
-                        column: x => x.AirPortAddressId,
-                        principalTable: "Tbl_Adress",
-                        principalColumn: "AdressId",
+                        name: "FK_Tbl_AirPlane_Tbl_Detail_DetailId",
+                        column: x => x.DetailId,
+                        principalTable: "Tbl_Detail",
+                        principalColumn: "DetailId",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Tbl_AirPlane_Tbl_Gallery_AirPlaneGalleryId",
+                        column: x => x.AirPlaneGalleryId,
+                        principalTable: "Tbl_Gallery",
+                        principalColumn: "GalleryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -402,6 +489,140 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tbl_Weather",
+                columns: table => new
+                {
+                    WeatherId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeId = table.Column<int>(nullable: false),
+                    Temperature = table.Column<int>(nullable: false),
+                    AirportId = table.Column<int>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Weather", x => x.WeatherId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Weather_Tbl_AirPort_AirportId",
+                        column: x => x.AirportId,
+                        principalTable: "Tbl_AirPort",
+                        principalColumn: "AirPortId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_Place",
+                columns: table => new
+                {
+                    PlaceId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlaceName = table.Column<string>(maxLength: 50, nullable: false),
+                    PlaceAddress = table.Column<int>(nullable: false),
+                    PlaceCategoryId = table.Column<int>(nullable: false),
+                    PlaceGalleryId = table.Column<int>(nullable: false),
+                    PlaceDetailId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
+                    Cost = table.Column<double>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    PlaceIsactive = table.Column<bool>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Place", x => x.PlaceId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Place_Tbl_Adress_PlaceAddress",
+                        column: x => x.PlaceAddress,
+                        principalTable: "Tbl_Adress",
+                        principalColumn: "AdressId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Place_Tbl_Category_PlaceCategoryId",
+                        column: x => x.PlaceCategoryId,
+                        principalTable: "Tbl_Category",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Place_Tbl_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Tbl_Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Place_Tbl_Detail_PlaceDetailId",
+                        column: x => x.PlaceDetailId,
+                        principalTable: "Tbl_Detail",
+                        principalColumn: "DetailId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Place_Tbl_Gallery_PlaceGalleryId",
+                        column: x => x.PlaceGalleryId,
+                        principalTable: "Tbl_Gallery",
+                        principalColumn: "GalleryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_Request",
+                columns: table => new
+                {
+                    RequestId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
+                    CustomerId = table.Column<int>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Request", x => x.RequestId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Request_Tbl_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Tbl_Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Request_Tbl_RequestType_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "Tbl_RequestType",
+                        principalColumn: "RequestId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tbl_User",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(maxLength: 50, nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
+                    Password = table.Column<string>(maxLength: 15, nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_User", x => x.UserId);
+                    table.ForeignKey(
+                        name: "FK_Tbl_User_Tbl_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Tbl_Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tbl_Gate",
                 columns: table => new
                 {
@@ -426,35 +647,6 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tbl_AirPlane",
-                columns: table => new
-                {
-                    AirPlaneId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AirPlaneName = table.Column<string>(maxLength: 50, nullable: false),
-                    AirPlaneBrand = table.Column<string>(nullable: false),
-                    AirPlaneModel = table.Column<string>(nullable: false),
-                    AirPlaneCode = table.Column<string>(nullable: false),
-                    BrandId = table.Column<int>(nullable: false),
-                    AirPlaneGalleryId = table.Column<int>(nullable: false),
-                    DetailId = table.Column<int>(nullable: false),
-                    AirlineId = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_AirPlane", x => x.AirPlaneId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_AirPlane_Tbl_Brand_BrandId",
-                        column: x => x.BrandId,
-                        principalTable: "Tbl_Brand",
-                        principalColumn: "BrandId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tbl_Flight",
                 columns: table => new
                 {
@@ -462,14 +654,12 @@ namespace AirPortDataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FlightAirPlaneId = table.Column<int>(nullable: false),
                     AirPortId = table.Column<int>(nullable: false),
-                    FlightTime = table.Column<DateTime>(nullable: false),
-                    FlighttDate = table.Column<DateTime>(nullable: false),
                     FlightstatusId = table.Column<int>(nullable: false),
                     StartAirPortId = table.Column<int>(nullable: false),
                     FlightEndAirportId = table.Column<int>(nullable: false),
                     FlightGateId = table.Column<int>(nullable: false),
                     FlightStartTimeDate = table.Column<DateTime>(nullable: false),
-                    FlightNumber = table.Column<int>(nullable: false),
+                    FlightNumber = table.Column<string>(nullable: false),
                     FlightDelay = table.Column<DateTime>(nullable: false),
                     FlightEndTimeDate = table.Column<DateTime>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
@@ -484,7 +674,7 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.AirPortId,
                         principalTable: "Tbl_AirPort",
                         principalColumn: "AirPortId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_AirPlane_FlightAirPlaneId",
                         column: x => x.FlightAirPlaneId,
@@ -502,7 +692,7 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.FlightstatusId,
                         principalTable: "Tbl_FlightStatus",
                         principalColumn: "FlightStatusId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_Gate_FlightGateId",
                         column: x => x.FlightGateId,
@@ -518,33 +708,36 @@ namespace AirPortDataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tbl_Gallery",
+                name: "FlightToDo",
                 columns: table => new
                 {
-                    GalleryId = table.Column<int>(nullable: false)
+                    FlightToDoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GalleryName = table.Column<string>(maxLength: 50, nullable: true),
+                    Name = table.Column<string>(maxLength: 50, nullable: true),
+                    CustomerId = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    FlightId = table.Column<int>(nullable: false),
+                    Descriptions = table.Column<string>(maxLength: 255, nullable: true),
+                    IsDon = table.Column<bool>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    AirPlaneId = table.Column<int>(nullable: true),
-                    AirPortId = table.Column<int>(nullable: true)
+                    IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tbl_Gallery", x => x.GalleryId);
+                    table.PrimaryKey("PK_FlightToDo", x => x.FlightToDoId);
                     table.ForeignKey(
-                        name: "FK_Tbl_Gallery_Tbl_AirPlane_AirPlaneId",
-                        column: x => x.AirPlaneId,
-                        principalTable: "Tbl_AirPlane",
-                        principalColumn: "AirPlaneId",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_FlightToDo_Tbl_Customer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Tbl_Customer",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Tbl_Gallery_Tbl_AirPort_AirPortId",
-                        column: x => x.AirPortId,
-                        principalTable: "Tbl_AirPort",
-                        principalColumn: "AirPortId",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_FlightToDo_Tbl_Flight_FlightId",
+                        column: x => x.FlightId,
+                        principalTable: "Tbl_Flight",
+                        principalColumn: "FlightId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -576,195 +769,15 @@ namespace AirPortDataLayer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Tbl_GalleryImage",
-                columns: table => new
-                {
-                    ImageId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    GalleryId = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_GalleryImage", x => x.ImageId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_GalleryImage_Tbl_Gallery_GalleryId",
-                        column: x => x.GalleryId,
-                        principalTable: "Tbl_Gallery",
-                        principalColumn: "GalleryId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_Detail",
-                columns: table => new
-                {
-                    DetailId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeDetailId = table.Column<int>(nullable: false),
-                    DetailRating = table.Column<double>(nullable: false),
-                    DetailValue = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    AirPlaneId = table.Column<int>(nullable: true),
-                    AirlineId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_Detail", x => x.DetailId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Detail_Tbl_AirPlane_AirPlaneId",
-                        column: x => x.AirPlaneId,
-                        principalTable: "Tbl_AirPlane",
-                        principalColumn: "AirPlaneId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Detail_Tbl_TypeDetail_TypeDetailId",
-                        column: x => x.TypeDetailId,
-                        principalTable: "Tbl_TypeDetail",
-                        principalColumn: "TypeDetailId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_AirLine",
-                columns: table => new
-                {
-                    AirlineId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AirlineName = table.Column<string>(maxLength: 50, nullable: false),
-                    AirlineDetailId = table.Column<int>(nullable: false),
-                    AirlineLogo = table.Column<string>(nullable: true),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_AirLine", x => x.AirlineId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_AirLine_Tbl_Detail_AirlineDetailId",
-                        column: x => x.AirlineDetailId,
-                        principalTable: "Tbl_Detail",
-                        principalColumn: "DetailId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_Place",
-                columns: table => new
-                {
-                    PlaceId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PlaceName = table.Column<string>(maxLength: 50, nullable: false),
-                    PlaceAdress = table.Column<string>(maxLength: 255, nullable: true),
-                    PlaceCategoryId = table.Column<int>(nullable: false),
-                    PlaceGalleryId = table.Column<int>(nullable: false),
-                    PlaceDetailId = table.Column<int>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false),
-                    PlaceIsactive = table.Column<bool>(nullable: false),
-                    PlaceCustomerId = table.Column<int>(nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_Place", x => x.PlaceId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Place_Tbl_Category_PlaceCategoryId",
-                        column: x => x.PlaceCategoryId,
-                        principalTable: "Tbl_Category",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Place_Tbl_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Tbl_Customer",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Place_Tbl_Detail_PlaceDetailId",
-                        column: x => x.PlaceDetailId,
-                        principalTable: "Tbl_Detail",
-                        principalColumn: "DetailId",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Place_Tbl_Gallery_PlaceGalleryId",
-                        column: x => x.PlaceGalleryId,
-                        principalTable: "Tbl_Gallery",
-                        principalColumn: "GalleryId",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Place_Tbl_Customer_PlaceCustomerId",
-                        column: x => x.PlaceCustomerId,
-                        principalTable: "Tbl_Customer",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_Links",
-                columns: table => new
-                {
-                    LinkId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(maxLength: 50, nullable: true),
-                    Type = table.Column<int>(nullable: false),
-                    Icon = table.Column<string>(nullable: true),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    EntertainmentId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_Links", x => x.LinkId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tbl_Entertainment",
-                columns: table => new
-                {
-                    EntertainmentId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    LinkId = table.Column<int>(nullable: false),
-                    LinkIdsId = table.Column<int>(nullable: true),
-                    Gallery = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(maxLength: 50, nullable: true),
-                    Description = table.Column<string>(maxLength: 255, nullable: true),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tbl_Entertainment", x => x.EntertainmentId);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Entertainment_Tbl_Gallery_Gallery",
-                        column: x => x.Gallery,
-                        principalTable: "Tbl_Gallery",
-                        principalColumn: "GalleryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Tbl_Entertainment_Tbl_Links_LinkIdsId",
-                        column: x => x.LinkIdsId,
-                        principalTable: "Tbl_Links",
-                        principalColumn: "LinkId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_FlightToDo_CustomerId",
                 table: "FlightToDo",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FlightToDo_FlightId",
+                table: "FlightToDo",
+                column: "FlightId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Adress_AdressCityId",
@@ -802,6 +815,11 @@ namespace AirPortDataLayer.Migrations
                 column: "AirPortAddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tbl_AirPort_DetailId",
+                table: "Tbl_AirPort",
+                column: "DetailId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tbl_AirPort_GalleryId",
                 table: "Tbl_AirPort",
                 column: "GalleryId");
@@ -822,19 +840,14 @@ namespace AirPortDataLayer.Migrations
                 column: "FlightId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Detail_AirPlaneId",
-                table: "Tbl_Detail",
-                column: "AirPlaneId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Detail_AirlineId",
-                table: "Tbl_Detail",
-                column: "AirlineId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Detail_TypeDetailId",
                 table: "Tbl_Detail",
                 column: "TypeDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tbl_DetailValue_DetailId",
+                table: "Tbl_DetailValue",
+                column: "DetailId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tbl_DetailValue_FeatrueId",
@@ -847,9 +860,9 @@ namespace AirPortDataLayer.Migrations
                 column: "Gallery");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Entertainment_LinkIdsId",
+                name: "IX_Tbl_Entertainment_LinkId",
                 table: "Tbl_Entertainment",
-                column: "LinkIdsId");
+                column: "LinkId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Feature_TypeDetailId",
@@ -887,16 +900,6 @@ namespace AirPortDataLayer.Migrations
                 column: "StartAirPortId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Gallery_AirPlaneId",
-                table: "Tbl_Gallery",
-                column: "AirPlaneId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Gallery_AirPortId",
-                table: "Tbl_Gallery",
-                column: "AirPortId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tbl_GalleryImage_GalleryId",
                 table: "Tbl_GalleryImage",
                 column: "GalleryId");
@@ -907,9 +910,9 @@ namespace AirPortDataLayer.Migrations
                 column: "terminalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Links_EntertainmentId",
-                table: "Tbl_Links",
-                column: "EntertainmentId");
+                name: "IX_Tbl_Place_PlaceAddress",
+                table: "Tbl_Place",
+                column: "PlaceAddress");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Place_PlaceCategoryId",
@@ -932,19 +935,14 @@ namespace AirPortDataLayer.Migrations
                 column: "PlaceGalleryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Place_PlaceCustomerId",
-                table: "Tbl_Place",
-                column: "PlaceCustomerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Request_CustomerId",
                 table: "Tbl_Request",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tbl_Request_requestsid",
+                name: "IX_Tbl_Request_TypeId",
                 table: "Tbl_Request",
-                column: "requestsid");
+                column: "TypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Terminal_AirPortId",
@@ -956,93 +954,14 @@ namespace AirPortDataLayer.Migrations
                 table: "Tbl_User",
                 column: "CustomerId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Tbl_AirPort_Tbl_Gallery_GalleryId",
-                table: "Tbl_AirPort",
-                column: "GalleryId",
-                principalTable: "Tbl_Gallery",
-                principalColumn: "GalleryId",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_Detail_DetailId",
-                table: "Tbl_AirPlane",
-                column: "DetailId",
-                principalTable: "Tbl_Detail",
-                principalColumn: "DetailId",
-                onDelete: ReferentialAction.NoAction);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_AirLine_AirlineId",
-                table: "Tbl_AirPlane",
-                column: "AirlineId",
-                principalTable: "Tbl_AirLine",
-                principalColumn: "AirlineId",
-                onDelete: ReferentialAction.NoAction);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_Gallery_AirPlaneGalleryId",
-                table: "Tbl_AirPlane",
-                column: "AirPlaneGalleryId",
-                principalTable: "Tbl_Gallery",
-                principalColumn: "GalleryId",
-                onDelete: ReferentialAction.NoAction);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Tbl_Detail_Tbl_AirLine_AirlineId",
-                table: "Tbl_Detail",
-                column: "AirlineId",
-                principalTable: "Tbl_AirLine",
-                principalColumn: "AirlineId",
-                onDelete: ReferentialAction.NoAction);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Tbl_Links_Tbl_Entertainment_EntertainmentId",
-                table: "Tbl_Links",
-                column: "EntertainmentId",
-                principalTable: "Tbl_Entertainment",
-                principalColumn: "EntertainmentId",
-                onDelete: ReferentialAction.Restrict);
+            migrationBuilder.CreateIndex(
+                name: "IX_Tbl_Weather_AirportId",
+                table: "Tbl_Weather",
+                column: "AirportId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_Adress_Tbl_City_AdressCityId",
-                table: "Tbl_Adress");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_AirLine_Tbl_Detail_AirlineDetailId",
-                table: "Tbl_AirLine");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_Detail_DetailId",
-                table: "Tbl_AirPlane");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_AirLine_AirlineId",
-                table: "Tbl_AirPlane");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_Brand_BrandId",
-                table: "Tbl_AirPlane");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_AirPlane_Tbl_Gallery_AirPlaneGalleryId",
-                table: "Tbl_AirPlane");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_AirPort_Tbl_Gallery_GalleryId",
-                table: "Tbl_AirPort");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_Entertainment_Tbl_Gallery_Gallery",
-                table: "Tbl_Entertainment");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Tbl_Entertainment_Tbl_Links_LinkIdsId",
-                table: "Tbl_Entertainment");
-
             migrationBuilder.DropTable(
                 name: "FlightToDo");
 
@@ -1053,6 +972,9 @@ namespace AirPortDataLayer.Migrations
                 name: "Tbl_DetailValue");
 
             migrationBuilder.DropTable(
+                name: "Tbl_Entertainment");
+
+            migrationBuilder.DropTable(
                 name: "Tbl_GalleryImage");
 
             migrationBuilder.DropTable(
@@ -1060,9 +982,6 @@ namespace AirPortDataLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tbl_Request");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_type");
 
             migrationBuilder.DropTable(
                 name: "Tbl_User");
@@ -1077,6 +996,9 @@ namespace AirPortDataLayer.Migrations
                 name: "Tbl_Feature");
 
             migrationBuilder.DropTable(
+                name: "Tbl_Links");
+
+            migrationBuilder.DropTable(
                 name: "Tbl_Category");
 
             migrationBuilder.DropTable(
@@ -1086,25 +1008,13 @@ namespace AirPortDataLayer.Migrations
                 name: "Tbl_Customer");
 
             migrationBuilder.DropTable(
+                name: "Tbl_AirPlane");
+
+            migrationBuilder.DropTable(
                 name: "Tbl_FlightStatus");
 
             migrationBuilder.DropTable(
                 name: "Tbl_Gate");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_Terminal");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_City");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_State");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_Detail");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_TypeDetail");
 
             migrationBuilder.DropTable(
                 name: "Tbl_AirLine");
@@ -1113,10 +1023,7 @@ namespace AirPortDataLayer.Migrations
                 name: "Tbl_Brand");
 
             migrationBuilder.DropTable(
-                name: "Tbl_Gallery");
-
-            migrationBuilder.DropTable(
-                name: "Tbl_AirPlane");
+                name: "Tbl_Terminal");
 
             migrationBuilder.DropTable(
                 name: "Tbl_AirPort");
@@ -1125,10 +1032,19 @@ namespace AirPortDataLayer.Migrations
                 name: "Tbl_Adress");
 
             migrationBuilder.DropTable(
-                name: "Tbl_Links");
+                name: "Tbl_Detail");
 
             migrationBuilder.DropTable(
-                name: "Tbl_Entertainment");
+                name: "Tbl_Gallery");
+
+            migrationBuilder.DropTable(
+                name: "Tbl_City");
+
+            migrationBuilder.DropTable(
+                name: "Tbl_TypeDetail");
+
+            migrationBuilder.DropTable(
+                name: "Tbl_State");
         }
     }
 }

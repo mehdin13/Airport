@@ -11,5 +11,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AirPortDataLayer\AirPortDataLayer.csproj" />
+    <ProjectReference Include="..\AirPortModel\AirPortModel.csproj" />
+  </ItemGroup>
+
 
 </Project>
