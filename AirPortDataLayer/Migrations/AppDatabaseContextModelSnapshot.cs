@@ -142,7 +142,7 @@ namespace AirPortDataLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Abbreviation")
-                        .HasColumnName("AirAbbreviation")
+                        .HasColumnName("AirPortAbbreviation")
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
@@ -150,9 +150,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("AirPortAddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Code")
+                    b.Property<string>("Code")
                         .HasColumnName("AirPortCode")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
@@ -358,6 +358,7 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnName("CustomerEmail")
                         .HasColumnType("nvarchar(max)");
 
@@ -375,15 +376,13 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int>("LastUpdate")
+                    b.Property<DateTime>("LastUpdate")
                         .HasColumnName("LastUpdateDate")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Mobile")
-                        .IsRequired()
                         .HasColumnName("CustomerMobile")
-                        .HasColumnType("nvarchar(12)")
-                        .HasMaxLength(12);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -392,6 +391,7 @@ namespace AirPortDataLayer.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnName("CustomerPassword")
                         .HasColumnType("nvarchar(max)");
 
@@ -429,7 +429,7 @@ namespace AirPortDataLayer.Migrations
 
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("CustomerIdTbl")
+                        .HasColumnName("CustomerFlightId")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -636,10 +636,6 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("AirPortId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnName("FlighttDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -676,9 +672,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("LastUpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Number")
+                    b.Property<string>("Number")
+                        .IsRequired()
                         .HasColumnName("FlightNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StartAirPortId")
                         .HasColumnName("StartAirPortId")
@@ -686,10 +683,6 @@ namespace AirPortDataLayer.Migrations
 
                     b.Property<DateTime>("StartTimeDate")
                         .HasColumnName("FlightStartTimeDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnName("FlightTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -954,6 +947,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("PlaceCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<double>("Cost")
+                        .HasColumnType("float");
+
                     b.Property<int>("CustomerId")
                         .HasColumnName("CustomerId")
                         .HasColumnType("int");
@@ -983,6 +979,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("PlaceName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("active")
                         .HasColumnName("PlaceIsactive")
@@ -1209,11 +1209,13 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnName("UserName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnName("Password")
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);

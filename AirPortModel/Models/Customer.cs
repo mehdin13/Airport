@@ -43,10 +43,10 @@ namespace AirPortModel.Models
         public bool Sex { get; set; }
 
         [AllowNull]
-        [StringLength(12)]
+        [DataType(DataType.PhoneNumber)]
         [Column("CustomerMobile")]
         public string Mobile { get; set; }
-
+        [AllowNull]
         [Column("CustomerProfileImage")]
         public string ProfileImage { get; set; }
         [Required]
@@ -67,11 +67,11 @@ namespace AirPortModel.Models
         [Column("Isdelete")]
         public bool IsDelete { get; set; }
 
-        [DataType(DataType.DateTime)]
+ 
         [Required]
         [Column("DateCreate")]
         public DateTime DateCreate { get; set; }
-        [DataType(DataType.DateTime)]
+
         [Required]
         [Column("LastUpdateDate")]
         public DateTime LastUpdate { get; set; }

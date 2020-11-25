@@ -7,11 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirPort.Model.ViewModel
 {
-    public class ToDo
+    public class NewsViewModel
     {
-        public string Title { get; set; }
-        public string Fly { get; set; }
-        [StringLength(255)]
-        public string Description { get; set; }
+        public int LinkId { get; set; }//Enterteinment
+
     }
 }
