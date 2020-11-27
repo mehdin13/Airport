@@ -28,7 +28,7 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_Customer.CheckCustomerEmailExisting(registerViewModel.Email).Number == 1)
+                if (_Customer.CheckCustomerEmailExisting(registerViewModel.Email).Number.Equals(1))
                 {
 
                     AirPortModel.Models.Customer customerobj = new AirPortModel.Models.Customer();
