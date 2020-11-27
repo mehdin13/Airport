@@ -38,12 +38,12 @@ namespace AirPort.Controllers
                     customerobj.Password = registerViewModel.Password;
                     _Customer.Insert(customerobj);
                 }
-                Result = new ProgressStatus { Message = "", Number = 1, Title = "TItile" };
+                Result = new ProgressStatus { Message = "", Number = 2, Title = "ok" };
                 return Result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Result = new ProgressStatus { Message = "", Number = 1, Title = "TItile" };
+                Result = new ProgressStatus { Message = ex.Message, Number = 1, Title = "no" };
                 return Result;
             }
         }

@@ -20,15 +20,7 @@ namespace AirPortDataLayer.Crud
                 //*****************chek shavad hatma************************************
                 AirPortModel.Models.Address Oaddress = new AirPortModel.Models.Address();
                 Address address = new Address(_db);
-
-                if (_db.customers.FirstOrDefault(x=>x.Id==Oaddress.Id)==null)
-                {
-                    address.Insert(Oaddress);
-                }
-                else
-                {
-                    address.Update(Oaddress);
-                }
+                obj.address = _db.Adresses.FirstOrDefault(x => x.Id == 4);
                 //*****************End chek shavad hatma************************************
                 //obj.address = null;
                 obj.Mobile = null;
@@ -43,7 +35,7 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return obj.Id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 string message = ex.Message;
                 return 0;
@@ -121,7 +113,7 @@ namespace AirPortDataLayer.Crud
         }
         public ProgressStatus CheckCustomerEmailExisting(string email)
         {
-            if (_db.customers.FirstOrDefault(x => x.Email == email) != null)
+            if (_db.customers.Where(x => x.Email == email).ToList() != null)
             {
                 var result = new ProgressStatus { Number = 3, Title = "successful", Message = "Allredyexist" };
                 return result;

@@ -46,7 +46,7 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return "Successful";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return ex.Message.ToString();
             }
