@@ -19,8 +19,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.DateCreate = DateTime.Now.Date;
-                obj.LastUpdate = DateTime.Now.Date;
+                obj.DateCreate = DateTime.Now;
+                obj.LastUpdate = DateTime.Now;
                 obj.IsDelete = false;
                 _db.airPlanes.Add(obj);
                 _db.SaveChanges();
@@ -88,7 +88,7 @@ namespace AirPortDataLayer.Crud
 
         public ProgressStatus CheckairplainCode(string code)
         {
-            var result = new ProgressStatus { Number = 1, Title = "", Message ="" };
+            var result = new ProgressStatus { Number = 1, Title = "CheckairplainCode", Message ="Successful" };
             return result;
         }
     }

@@ -18,8 +18,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.DateCreate = DateTime.Now.Date;
-                obj.LastUpdate = DateTime.Now.Date;
+                obj.DateCreate = DateTime.Now;
+                obj.LastUpdate = DateTime.Now;
                 obj.IsDelete = false;
                 _db.airlines.Add(obj);
                 _db.SaveChanges();
@@ -30,8 +30,9 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
+
             try
             {
                 AirPlane airPlane = new AirPlane(_db);
@@ -45,26 +46,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.airlines.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "AirLine Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Can't Delete the AirLine" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.Airline obj)
+        public ProgressStatus Update(AirPortModel.Models.Airline obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.airlines.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Updete Successfuly", Message = "AirLine Has been Deleted Successfuly" };
+                return result;
             }
             catch (Exception ex)
             {
-
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Can't Update the AirLine" };
+                return result;
             }
         }
         public List<AirPortModel.Models.Airline> ToList()

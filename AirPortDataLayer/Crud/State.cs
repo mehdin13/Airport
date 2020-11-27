@@ -17,8 +17,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.DateCreate = DateTime.Now.Date;
-                obj.LastUpdate = DateTime.Now.Date;
+                obj.DateCreate = DateTime.Now;
+                obj.LastUpdate = DateTime.Now;
                 obj.IsDelete = false;
                 _db.states.Add(obj);
                 _db.SaveChanges();

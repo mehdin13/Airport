@@ -17,8 +17,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.DateCreate = DateTime.Now.Date;
-                obj.LastUpdate = DateTime.Now.Date;
+                obj.DateCreate = DateTime.Now;
+                obj.LastUpdate = DateTime.Now;
                 obj.IsDelete = false;
                 _db.users.Add(obj);
                 _db.SaveChanges();
@@ -114,7 +114,7 @@ namespace AirPortDataLayer.Crud
             }
             else
             {
-                var result = new ProgressStatus { Number = 3, Title = "User existing Error", Message = "allredy exist" };
+                var result = new ProgressStatus { Number = 2, Title = "User existing Error", Message = "allredy exist" };
                 return result;
             }
   
@@ -126,18 +126,18 @@ namespace AirPortDataLayer.Crud
             {
                 if (User.Password == password)
                 {
-                    var result = new ProgressStatus { Number = 10, Title = "Recognized", Message = "correct UserName And Password" };
+                    var result = new ProgressStatus { Number = 1, Title = "Recognized", Message = "correct UserName And Password" };
                     return result;
                 }
                 else
                 {
-                    var result = new ProgressStatus { Number = 12, Title = "Not Recognized", Message = "Incorrect Password" };
+                    var result = new ProgressStatus { Number = 2, Title = "Not Recognized", Message = "Incorrect Password" };
                     return result;
                 }
             }
             else
             {
-                var result = new ProgressStatus { Number = 11, Title = "Not Recognized", Message = "Incorrect UserName" };
+                var result = new ProgressStatus { Number = 3, Title = "Not Recognized", Message = "Incorrect UserName" };
                 return result;
             }
         }

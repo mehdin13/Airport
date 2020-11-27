@@ -29,13 +29,17 @@ namespace AirPort.Model.ViewModel
         public string LastName { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public int City { get; set; }
-        public int State { get; set; }
         public string Mobile { get; set; }
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
         public bool Sex { get; set; }
         [DataType(DataType.Date)]
         public DateTime Bdate { get; set; }
+        public string Token { get; set; }
+    }
+    public class ChengePasswordViewModel
+    {
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
+        public string RNewPassword { get; set; }
+        public string Token { get; set; }
     }
 }

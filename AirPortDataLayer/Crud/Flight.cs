@@ -17,8 +17,8 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.DateCreate = DateTime.Now.Date;
-                obj.LastUpdate = DateTime.Now.Date;
+                obj.DateCreate = DateTime.Now;
+                obj.LastUpdate = DateTime.Now;
                 obj.IsDelete = false;
                 _db.flights.Add(obj);
                 _db.SaveChanges();
@@ -78,7 +78,7 @@ namespace AirPortDataLayer.Crud
             }
             else
             {
-                var result = new ProgressStatus { Number = 1, Title = "Faild", Message = "AlredyExist" };
+                var result = new ProgressStatus { Number = 2, Title = "Faild", Message = "AlredyExist" };
                 return result;
             }
 
