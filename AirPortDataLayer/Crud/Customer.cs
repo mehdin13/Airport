@@ -113,8 +113,8 @@ namespace AirPortDataLayer.Crud
         }
         public ProgressStatus CheckCustomerEmailExisting(string email)
         {
-            var Emailobj = _db.customers.Where(X => X.Email == email).FirstOrDefault();
-            if (Emailobj != null)
+         
+            if (_db.customers.FirstOrDefault(X => X.Email == email) != null)
             {
                 var result = new ProgressStatus { Number = 3, Title = "successful", Message = "Allredyexist" };
                 return result;
