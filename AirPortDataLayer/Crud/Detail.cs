@@ -6,7 +6,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Detail :IDetail
+    public class Detail : IDetail
     {
         public readonly AppDatabaseContext _db;
         public Detail(AppDatabaseContext db)
@@ -29,13 +29,13 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
                 DetailValue detailV = new DetailValue(_db);
                 var obj = _db.details.FirstOrDefault(x => x.Id == id);
-                var objDetail = _db.detailValues.Where(x=>x.Id==id);
+                var objDetail = _db.detailValues.Where(x => x.Id == id);
                 foreach (var item in objDetail)
                 {
                     detailV.Delete(item.Id);
@@ -44,26 +44,30 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.details.Update(obj);
                 _db.SaveChanges();
-                return "Successfull";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Detail Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Detail  can't be Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.Detail obj)
+        public ProgressStatus Update(AirPortModel.Models.Detail obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.details.Update(obj);
                 _db.SaveChanges();
-                return "Successfull";
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Detail Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
 
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Detail  can't be Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.Detail> ToList()
@@ -87,7 +91,7 @@ namespace AirPortDataLayer.Crud
                     obj.name = fe.Name;
                     obj.value = item.Value;
                     fvm.Add(obj);
-            
+
                 }
                 return fvm;
             }

@@ -7,7 +7,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-  public  class TypeDetail : ITypeDetail
+    public class TypeDetail : ITypeDetail
     {
         private readonly AppDatabaseContext _db;
         public TypeDetail(AppDatabaseContext db)
@@ -30,13 +30,13 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
                 Featrue featrue = new Featrue(_db);
                 var obj = _db.typeDetails.FirstOrDefault(x => x.Id == id);
-                var objfeature = _db.featrues.Where(x=>x.Id==id);
+                var objfeature = _db.featrues.Where(x => x.Id == id);
                 foreach (var item in objfeature)
                 {
                     featrue.Delete(item.Id);
@@ -45,25 +45,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.typeDetails.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "TypeDetail Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "TypeDetail  can't be Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.TypeDetail obj)
+        public ProgressStatus Update(AirPortModel.Models.TypeDetail obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.typeDetails.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "TypeDetail Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "TypeDetail  can't be Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.TypeDetail> ToList()

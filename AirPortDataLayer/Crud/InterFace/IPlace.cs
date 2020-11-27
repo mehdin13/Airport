@@ -7,8 +7,8 @@ namespace AirPortDataLayer.Crud.InterFace
     public interface IPlace
     {
         int Insert(AirPortModel.Models.Place obj);
-        string Delete(int id);
-        string Update(AirPortModel.Models.Place obj);
+        ProgressStatus Delete(int id);
+        ProgressStatus Update(AirPortModel.Models.Place obj);
         List<AirPortModel.Models.Place> ToList();
         AirPortModel.Models.Place FindById(int id);
         List<ImageList> PlaceGallery(int id);

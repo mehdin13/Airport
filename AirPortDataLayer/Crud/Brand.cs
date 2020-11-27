@@ -29,7 +29,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int Id)
+        public ProgressStatus Delete(int Id)
         {
             try
             {
@@ -44,26 +44,30 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Brand.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Brand Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
 
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Brand can't be Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.Brand obj)
+        public ProgressStatus Update(AirPortModel.Models.Brand obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Brand Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Brand  can't be Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.Brand> ToList()

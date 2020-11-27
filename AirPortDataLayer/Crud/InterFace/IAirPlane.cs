@@ -9,8 +9,8 @@ namespace AirPortDataLayer.Crud.InterFace
    public interface IAirPlane
     {
         int Insert(AirPortModel.Models.AirPlane obj);
-        string Delete(int id);
-        string Update(AirPortModel.Models.AirPlane obj);
+        ProgressStatus Delete(int id);
+        ProgressStatus Update(AirPortModel.Models.AirPlane obj);
         List<AirPortModel.Models.AirPlane> ToList();
         AirPortModel.Models.AirPlane FindById(int id);
 

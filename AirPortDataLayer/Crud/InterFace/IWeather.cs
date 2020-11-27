@@ -7,8 +7,8 @@ namespace AirPortDataLayer.Crud.InterFace
     public interface IWeather
     {
         int Insert(AirPortModel.Models.Weather obj);
-        string Delete(int id);
-        string Update(AirPortModel.Models.Weather obj);
+        ProgressStatus Delete(int id);
+        ProgressStatus Update(AirPortModel.Models.Weather obj);
         List<AirPortModel.Models.Weather> ToList();
         AirPortModel.Models.Weather FindById(int id);
     }

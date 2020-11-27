@@ -8,8 +8,8 @@ namespace AirPortDataLayer.Crud.InterFace
     public interface IAirPort
     {
         int Insert(AirPortModel.Models.AirPort obj);
-        string Delete(int id);
-        string Update(AirPortModel.Models.AirPort obj);
+        ProgressStatus Delete(int id);
+        ProgressStatus Update(AirPortModel.Models.AirPort obj);
         List<AirPortModel.Models.AirPort> Tolist();
         AirPortModel.Models.AirPort FindById(int id);
         List<FeatureValueVeiwModel> AirportDetail(int id);

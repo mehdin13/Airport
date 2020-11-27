@@ -6,7 +6,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class City :ICity
+    public class City : ICity
     {
         private readonly AppDatabaseContext _db;
         public City(AppDatabaseContext db)
@@ -29,7 +29,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
@@ -38,25 +38,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "City Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "City  can't be Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.City obj)
+        public ProgressStatus Update(AirPortModel.Models.City obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "City Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "City  can't be Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.City> ToList()
@@ -75,7 +79,7 @@ namespace AirPortDataLayer.Crud
             try
             {
                 var obj = _db.cities.FirstOrDefault(i => i.Id == CityId);
-                return  obj==null ? "wrong City Id":"Successful";
+                return obj == null ? "wrong City Id" : "Successful";
             }
             catch (Exception ex)
             {

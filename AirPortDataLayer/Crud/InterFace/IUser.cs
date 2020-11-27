@@ -5,8 +5,8 @@ namespace AirPortDataLayer.Crud.InterFace
     public interface IUser
     {
         int Insert(AirPortModel.Models.User obj);
-        string Delete(int id);
-        string Update(AirPortModel.Models.User obj);
+        ProgressStatus Delete(int id);
+        ProgressStatus Update(AirPortModel.Models.User obj);
         List<AirPortModel.Models.User> ToList();
         AirPortModel.Models.User FindById(int id);
         string CheckUserName(string Username);

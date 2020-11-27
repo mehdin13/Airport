@@ -29,7 +29,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
@@ -38,25 +38,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Adresses.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Weather Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Weather Has been Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.Weather obj)
+        public ProgressStatus Update(AirPortModel.Models.Weather obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Weather.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Weather Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Weather Has been Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.Weather> ToList()

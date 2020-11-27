@@ -73,7 +73,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Delete Successful", Message = "Customer Has been Deleted" };
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Customer  can't be Deleted" };
                 return result;
             }
         }
@@ -89,7 +89,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Update Successful", Message = "Customer Has been Updated" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Customer  can't be Updated" };
                 return result;
             }
         }

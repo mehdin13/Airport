@@ -29,7 +29,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
@@ -38,25 +38,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Gate.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Gate Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Gate  can't be Update" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.Gate obj)
+        public ProgressStatus Update(AirPortModel.Models.Gate obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Gate.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Gate Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Gate can't be Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.Gate> ToList()

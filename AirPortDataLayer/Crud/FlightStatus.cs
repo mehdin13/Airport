@@ -29,7 +29,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
@@ -38,25 +38,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.flightStatuses.Update(obj);
                 _db.SaveChanges();
-                return "Successfull";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "FlightStatus Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "FlightStatus  can't be Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.FlightStatus obj)
+        public ProgressStatus Update(AirPortModel.Models.FlightStatus obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.flightStatuses.Update(obj);
                 _db.SaveChanges();
-                return "Succsessful";
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "FlightStatus  can't be Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "FlightStatus Has been Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.FlightStatus> ToList()

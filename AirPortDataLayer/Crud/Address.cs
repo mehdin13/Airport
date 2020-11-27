@@ -8,7 +8,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class Address :IAddress
+    public class Address : IAddress
     {
         private readonly AppDatabaseContext _db;
         public Address(AppDatabaseContext db)
@@ -31,7 +31,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
@@ -40,30 +40,34 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Adresses.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var Result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Adresses Has been Deleted" };
+                return Result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var Result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Adresses can't be Deleted" };
+                return Result;
             }
         }
-        public string Update(AirPortModel.Models.Address obj)
+        public ProgressStatus Update(AirPortModel.Models.Address obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Adresses.Update(obj);
                 _db.SaveChanges();
-                return "Successful";
+                var Result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Adresses Has been Update" };
+                return Result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var Result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Adresses can't be Update" };
+                return Result;
             }
         }
         public List<AirPortModel.Models.Address> ToList()
         {
-            return _db.Adresses.Where(x=>x.IsDelete==false).ToList();
+            return _db.Adresses.Where(x => x.IsDelete == false).ToList();
         }
         public AirPortModel.Models.Address FindById(int id)
         {

@@ -30,7 +30,7 @@ namespace AirPortDataLayer.Crud
                 return 0;
             }
         }
-        public string Delete(int id)
+        public ProgressStatus Delete(int id)
         {
             try
             {
@@ -39,25 +39,29 @@ namespace AirPortDataLayer.Crud
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Entertainment.Update(obj);
                 _db.SaveChanges();
-                return "Successfull";
+                var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Entertainment Has been Deleted" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Entertainment  can't be Deleted" };
+                return result;
             }
         }
-        public string Update(AirPortModel.Models.Entertainment obj)
+        public ProgressStatus Update(AirPortModel.Models.Entertainment obj)
         {
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.Entertainment.Update(obj);
                 _db.SaveChanges();
-                return "Successful"; 
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Entertainment Has been Update" };
+                return result;
             }
             catch (Exception ex)
             {
-                return ex.Message.ToString();
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Entertainment  can't be Update" };
+                return result;
             }
         }
         public List<AirPortModel.Models.Entertainment> ToList()
@@ -66,7 +70,7 @@ namespace AirPortDataLayer.Crud
         }
         public AirPortModel.Models.Entertainment FindById(int id)
         {
-            return _db.Entertainment.FirstOrDefault(x=>x.Id==id);
+            return _db.Entertainment.FirstOrDefault(x => x.Id == id);
         }
         public List<ImageList> EnterTainmenrGallery(int id)
         {
