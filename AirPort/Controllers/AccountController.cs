@@ -135,11 +135,40 @@ namespace AirPort.Controllers
 
             try
             {
+                if (_Customer.CheckLoginInfo(chengePasswordViewModel.Token, chengePasswordViewModel.OldPassword).Number.Equals(1))
+                {
+                    if (chengePasswordViewModel.NewPassword == chengePasswordViewModel.RNewPassword)
+                    {
+                        if (_Customer.ChengePassWord(chengePasswordViewModel.Token, chengePasswordViewModel.NewPassword).Number.Equals(1))
+                        {
+                            var result = new ProgressStatus { Number = 1, Title = "Successful", Message = "Successful" };
+                            return result;
+                        }
+                        else
+                        {
+                            var result = new ProgressStatus { Number = 2, Title = "unSuccessfulr", Message = "Unsuccessful" };
+                            return result;
+                        }
+                    }
+                    else
+                    {
+                        var result = new ProgressStatus { Number = 3, Title = "unSuccessful", Message = "Unsuccessful" };
+                        return result;
+                    }
+
+                }
+                else
+                {
+                    var result = new ProgressStatus { Number = 4, Title = "unSuccessful", Message = "Unsuccessful" };
+                    return result;
+                }
+
                 return Result;
             }
             catch (Exception ex)
             {
-                return Result = new ProgressStatus { Message = ex.Message, Number = 0, Title = "Unhandeled Error" };
+                var result = new ProgressStatus { Number = 0, Title = "UnHandeled Error", Message = ex.Message };
+                return result;
 
             }
         }

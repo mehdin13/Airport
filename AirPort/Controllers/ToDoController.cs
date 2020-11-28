@@ -57,7 +57,6 @@ namespace AirPort.Controllers
         }
         [HttpPost]
         [Route("tolistTodo")]
-        //check beshe hatman cherto pert neveshtam :((((
         public List<ToDoListViewModel> tolist(string email)
         {
             ToDoListViewModel todoobj = new ToDoListViewModel();

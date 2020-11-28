@@ -2,7 +2,7 @@
 
 namespace AirPortDataLayer.Crud.InterFace
 {
-   public interface ICustomer
+    public interface ICustomer
     {
         int Insert(AirPortModel.Models.Customer obj);
         ProgressStatus Delete(int id);
@@ -13,5 +13,6 @@ namespace AirPortDataLayer.Crud.InterFace
         ProgressStatus CheckCstomerMobileExisting(string Mobile);
         ProgressStatus CheckCustomerEmailExisting(string email);
         ProgressStatus CheckLoginInfo(string email, string password);
+        ProgressStatus ChengePassWord(string Username, string NewPassword);
     }
 }
