@@ -70,6 +70,10 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.FlightToDo FindById(int id)
         {
             return _db.FlightToDos.FirstOrDefault(x => x.id == id);
+        }      
+        public List<AirPortModel.Models.FlightToDo> FindByCustumerId(int id)
+        {
+            return _db.FlightToDos.Where(x => x.CustomerId == id).ToList();
         }
     }
 }

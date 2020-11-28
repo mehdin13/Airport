@@ -15,7 +15,6 @@ namespace AirPort.Controllers
 
     public class AccountController : ControllerBase
     {
-
         private readonly ICustomer _Customer;
         public AccountController(ICustomer customerService)
         {
@@ -80,7 +79,7 @@ namespace AirPort.Controllers
                 return Result;
             }
         }
-        [HttpPost]//check shavad :(
+        [HttpPost]
         [Route("EditProfile")]
         public ProgressStatus userprofile(ProfileViewModel profileViewModel)
         {
