@@ -43,7 +43,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "FlightToDo can't be Deleted" };
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = ex.Message };
                 return result;
             }
         }
@@ -59,18 +59,35 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "FlightToDo  can't be Update" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = ex.Message };
+                return result;
+            }
+        }
+        public ProgressStatus Modify(int id, bool isdone)
+        {
+            AirPortModel.Models.FlightToDo dodo = new AirPortModel.Models.FlightToDo { id = id, IsDon = isdone };
+            try
+            {
+                _db.FlightToDos.Attach(dodo);
+                _db.Entry(dodo).Property(x => x.IsDon).IsModified = true;
+                _db.SaveChanges();
+                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "FlightToDo Has been Update" };
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = ex.Message };
                 return result;
             }
         }
         public List<AirPortModel.Models.FlightToDo> ToList()
         {
-            return _db.FlightToDos.Where(x => x.IsDelete == false).ToList();
+            return _db.FlightToDos.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.FlightToDo FindById(int id)
         {
             return _db.FlightToDos.FirstOrDefault(x => x.id == id);
-        }      
+        }
         public List<AirPortModel.Models.FlightToDo> FindByCustumerId(int id)
         {
             return _db.FlightToDos.Where(x => x.CustomerId == id).ToList();

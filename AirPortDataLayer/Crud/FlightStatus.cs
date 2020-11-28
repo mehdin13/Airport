@@ -59,7 +59,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "FlightStatus Has been Update" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = ex.Message };
                 return result;
             }
         }

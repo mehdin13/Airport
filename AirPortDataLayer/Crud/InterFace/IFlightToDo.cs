@@ -12,5 +12,6 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.FlightToDo> ToList();
         AirPortModel.Models.FlightToDo FindById(int id);
         List<AirPortModel.Models.FlightToDo> FindByCustumerId(int id);
+        ProgressStatus Modify(int id, bool isdone);
     }
 }

@@ -11,7 +11,6 @@ namespace AirPort.Model.ViewModel
     {
         public string Title { get; set; }
         public int Flight { get; set; }
-        [StringLength(255)]
         public string Description { get; set; }
         public string Email { get; set; }
 
@@ -25,6 +24,12 @@ namespace AirPort.Model.ViewModel
         public bool IsDon { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime LastUpdate { get; set; }
+
+    }
+    public class ToDoModifyViewModel
+    {
+        public int id { get; set; }
+        public bool isdone { get; set; }
 
     }
 }

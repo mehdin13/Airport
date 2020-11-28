@@ -1,18 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AirPortDataLayer.Crud.InterFace;
 using AirPortDataLayer.Crud;
 using AirPort.Model.ViewModel;
-using System.IO;
-using AirPortDataLayer.Crud;
+
 namespace AirPort.Controllers
 {
     [ApiController]
-    [Route("Controller")]
-
+    [Route("[controller]")]
     public class ToDoController : ControllerBase
     {
         private readonly IFlightToDo _flighttodo;
@@ -100,11 +96,49 @@ namespace AirPort.Controllers
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
- return todolistobj;
+                return todolistobj;
             }
         }
+        [HttpPost]
+        [Route("ModifyToDo")]
+        public List<ProgressStatus> Modify(List<ToDoModifyViewModel> toDoModifyViewModels)
+        {
+            ProgressStatus Result = new ProgressStatus();
+            List<ProgressStatus> Resultlist = new List<ProgressStatus>();
+            try
+            {
+                if (toDoModifyViewModels != null)
+                {
+                    foreach (var item in toDoModifyViewModels)
+                    {
+                        if (_flighttodo.Modify(item.id, item.isdone).Number == 1)
+                        {
+                            Result = new ProgressStatus { Message = "", Number = 1, Title = "unhandled Error !" };
+                            Resultlist.Add(Result);
+                        }
+                        else
+                        {
+                            Result = new ProgressStatus { Message = "", Number = 2, Title = "unhandled Error !" };
+                            Resultlist.Add(Result);
+                        }
+                    }
+                }
+                else
+                {
+                    Result = new ProgressStatus { Message = "", Number = 3, Title = "unhandled Error !" };
+                    Resultlist.Add(Result);
+                }
+                return Resultlist;
 
+            }
+            catch (Exception ex)
+            {
+                Result = new ProgressStatus { Message = ex.Message, Number = 0, Title = "unhandled Error !" };
+                Resultlist.Add(Result);
+                return Resultlist;
+            }
+        }
     }
 }

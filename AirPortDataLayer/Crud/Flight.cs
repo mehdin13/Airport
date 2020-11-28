@@ -43,7 +43,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Flight can't be Deleted" };
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = ex.Message };
                 return result;
             }
         }
@@ -59,13 +59,13 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Flight  can't be Update" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = ex.Message };
                 return result;
             }
         }
         public List<AirPortModel.Models.Flight> ToList()
         {
-            return _db.flights.Where(x => x.IsDelete == false).ToList();
+            return _db.flights.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.Flight FindById(int id)
         {

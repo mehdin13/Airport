@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AirPortDataLayer.Crud.InterFace;
 using AirPortDataLayer.Crud;
 using AirPort.Model.ViewModel;
-using System.IO;
+
 
 namespace AirPort.Controllers
 {
@@ -27,16 +24,24 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_Customer.CheckCustomerEmailExisting(registerViewModel.Email).Number.Equals(1))
+                if (_Customer.CheckCustomerEmailExisting(registerViewModel.Email).Number.Equals(2))
                 {
                     AirPortModel.Models.Customer customerobj = new AirPortModel.Models.Customer();
                     customerobj.Name = registerViewModel.Name;
                     customerobj.LastName = registerViewModel.LastName;
                     customerobj.Email = registerViewModel.Email;
                     customerobj.Password = registerViewModel.Password;
-                    _Customer.Insert(customerobj);
-                    Result = new ProgressStatus { Message = " ثبت نام با موفقیت انجام شد", Number = 1, Title = "Register Successful !" };
-                    return Result;
+                    if (_Customer.Insert(customerobj) != 0)
+                    {
+                        Result = new ProgressStatus { Message = " ثبت نام با موفقیت انجام شد", Number = 1, Title = "Register Successful !" };
+                        return Result;
+                    }
+                    else
+                    {
+                        Result = new ProgressStatus { Message = " ثبت نام با موفقیت انجام نشد", Number = 1, Title = "Register Successful !" };
+                        return Result;
+                    }
+
                 }
                 else
                 {
@@ -89,7 +94,7 @@ namespace AirPort.Controllers
                 var result = new ProgressStatus();
                 if (profileViewModel.Token.Equals("1"))
                 {
-                    
+
                     AirPortModel.Models.Customer customerobj = _Customer.FindByEmail(profileViewModel.Email);
                     customerobj.Name = profileViewModel.Name;
                     customerobj.LastName = profileViewModel.LastName;
@@ -97,7 +102,7 @@ namespace AirPort.Controllers
                     customerobj.Mobile = profileViewModel.Mobile;
                     customerobj.Sex = profileViewModel.Sex;
                     customerobj.BDate = profileViewModel.Bdate;
-                    
+
                     if (_Customer.Update(customerobj).Number.Equals(1))
                     {
                         result = new ProgressStatus { Number = 1, Title = "Updete Successful", Message = "ویرایش با موفقیت انجام شد" };
@@ -111,7 +116,7 @@ namespace AirPort.Controllers
                 }
                 else
                 {
-                   result = new ProgressStatus { Number = 4, Title = "Token NotValid", Message = "توکن معتبر نیست" };
+                    result = new ProgressStatus { Number = 4, Title = "Token NotValid", Message = "توکن معتبر نیست" };
                     return result;
                 }
             }
@@ -135,7 +140,7 @@ namespace AirPort.Controllers
             catch (Exception ex)
             {
                 return Result = new ProgressStatus { Message = ex.Message, Number = 0, Title = "Unhandeled Error" };
-               
+
             }
         }
     }

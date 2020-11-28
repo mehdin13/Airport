@@ -71,7 +71,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.State> ToList()
         {
-            return _db.states.Where(x => x.IsDelete == false).ToList();
+            return _db.states.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.State FindById(int id)
         {

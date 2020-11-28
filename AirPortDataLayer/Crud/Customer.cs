@@ -73,7 +73,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Customer  can't be Deleted" };
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = ex.Message };
                 return result;
             }
         }
@@ -89,13 +89,13 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Customer  can't be Updated" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = ex.Message };
                 return result;
             }
         }
         public List<AirPortModel.Models.Customer> ToList()
         {
-            return _db.customers.Where(x => x.IsDelete == false).ToList();
+            return _db.customers.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.Customer FindById(int id)
         {
@@ -177,7 +177,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Unknown Password Change", Message = "unrecognized input" };
+                var result = new ProgressStatus { Number = 0, Title = "Unknown Password Change", Message = ex.Message };
                 return result;
             }
         }

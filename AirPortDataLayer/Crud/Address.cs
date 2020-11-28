@@ -45,7 +45,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var Result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Adresses can't be Deleted" };
+                var Result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = ex.Message };
                 return Result;
             }
         }
