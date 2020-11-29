@@ -141,25 +141,25 @@ namespace AirPort.Controllers
                     {
                         if (_Customer.ChengePassWord(chengePasswordViewModel.Token, chengePasswordViewModel.NewPassword).Number.Equals(1))
                         {
-                            var result = new ProgressStatus { Number = 1, Title = "Successful", Message = "Successful" };
+                            var result = new ProgressStatus { Number = 1, Title = "Successful", Message = "رمز عبور با موفقیت تغییر کرد" };
                             return result;
                         }
                         else
                         {
-                            var result = new ProgressStatus { Number = 2, Title = "unSuccessfulr", Message = "Unsuccessful" };
+                            var result = new ProgressStatus { Number = 2, Title = "unSuccessfulr", Message = "رمز عبور جدید با رمز قدیمی برابر هستند" };
                             return result;
                         }
                     }
                     else
                     {
-                        var result = new ProgressStatus { Number = 3, Title = "unSuccessful", Message = "Unsuccessful" };
+                        var result = new ProgressStatus { Number = 3, Title = "unSuccessful", Message = "رمز عبور جدید با هم همخوانی ندارد" };
                         return result;
                     }
 
                 }
                 else
                 {
-                    var result = new ProgressStatus { Number = 4, Title = "unSuccessful", Message = "Unsuccessful" };
+                    var result = new ProgressStatus { Number = 4, Title = "unSuccessful", Message = "رمز عبور را دوباره وار کنید" };
                     return result;
                 }
 

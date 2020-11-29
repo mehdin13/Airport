@@ -12,5 +12,9 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.Entertainment> ToList();
         AirPortModel.Models.Entertainment FindById(int id);
         List<ImageList> EnterTainmenrGallery(int id);
+        List<AirPortModel.Models.Entertainment> EntertainmentBookId();
+        List<AirPortModel.Models.Entertainment> entertainmentvideoId();
+        List<AirPortModel.Models.Entertainment> entertainmentmagazineId();
+        List<AirPortModel.Models.Entertainment> entertainmentAviationid();
     }
 }

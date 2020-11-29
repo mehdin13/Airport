@@ -77,5 +77,21 @@ namespace AirPortDataLayer.Crud
             Gallery gallery = new Gallery(_db);
             return gallery.ListImage(id).ToList();
         }
+        public List<AirPortModel.Models.Entertainment> EntertainmentBookId()
+        {
+            return _db.Entertainment.Where(x => x.Type.Equals(1) && x.IsDelete == false).ToList();
+        }
+        public List<AirPortModel.Models.Entertainment> entertainmentvideoId()
+        {
+            return _db.Entertainment.Where(x => x.Type.Equals(2) && x.IsDelete == false).ToList();
+        }
+        public List<AirPortModel.Models.Entertainment> entertainmentmagazineId()
+        {
+            return _db.Entertainment.Where(x => x.Type.Equals(3) && x.IsDelete == false).ToList();
+        }
+        public List<AirPortModel.Models.Entertainment> entertainmentAviationid()
+        {
+            return _db.Entertainment.Where(x => x.Type.Equals(4) && x.IsDelete == false).ToList();
+        }
     }
 }
