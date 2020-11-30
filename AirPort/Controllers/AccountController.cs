@@ -9,7 +9,6 @@ namespace AirPort.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-
     public class AccountController : ControllerBase
     {
         private readonly ICustomer _Customer;
@@ -19,7 +18,7 @@ namespace AirPort.Controllers
         }
         [HttpPost]
         [Route("Register")]
-        public ProgressStatus UserRegister(RegisterViewModel registerViewModel)
+        public ProgressStatus UserRegister([FromForm] RegisterViewModel registerViewModel)
         {
             var Result = new ProgressStatus();
             try
@@ -58,7 +57,7 @@ namespace AirPort.Controllers
 
         [HttpPost]
         [Route("UserLogin")]
-        public ProgressStatus UserLogin(LoginViewModel loginViewModel)
+        public ProgressStatus UserLogin([FromForm] LoginViewModel loginViewModel)
         {
             var Result = new ProgressStatus();
             try
@@ -86,7 +85,7 @@ namespace AirPort.Controllers
         }
         [HttpPost]
         [Route("EditProfile")]
-        public ProgressStatus userprofile(ProfileViewModel profileViewModel)
+        public ProgressStatus userprofile([FromForm] ProfileViewModel profileViewModel)
         {
 
             try
@@ -129,7 +128,7 @@ namespace AirPort.Controllers
         }
         [HttpPost]//check shavad :(
         [Route("ChangePassword")]
-        public ProgressStatus ChengePassWord(ChengePasswordViewModel chengePasswordViewModel)
+        public ProgressStatus ChengePassWord([FromForm] ChengePasswordViewModel chengePasswordViewModel)
         {
             var Result = new ProgressStatus();
 

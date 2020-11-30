@@ -21,7 +21,7 @@ namespace AirPort.Controllers
 
         [HttpPost]
         [Route("AddToDo")]
-        public ProgressStatus AddToDo(ToDoViewModel toDoViewModel)
+        public ProgressStatus AddToDo([FromForm] ToDoViewModel toDoViewModel)
         {
             var Result = new ProgressStatus();
             try
@@ -57,7 +57,7 @@ namespace AirPort.Controllers
         }
         [HttpPost]
         [Route("tolistTodo")]
-        public List<ToDoListViewModel> tolist(string email)
+        public List<ToDoListViewModel> tolist([FromForm] string email)
         {
             ToDoListViewModel todoobj = new ToDoListViewModel();
             List<ToDoListViewModel> todolistobj = new List<ToDoListViewModel>();
