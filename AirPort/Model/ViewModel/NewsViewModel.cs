@@ -9,7 +9,8 @@ namespace AirPort.Model.ViewModel
 {
     public class NewsViewModel
     {
-        public int LinkId { get; set; }//Enterteinment
-
+        public int LinkId { get; set; } //Enterteinment
+        public string Title { get; set; }
+        public string Icon { get; set; }
     }
 }

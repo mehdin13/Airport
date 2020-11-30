@@ -71,5 +71,9 @@ namespace AirPortDataLayer.Crud
         {
             return _db.Links.FirstOrDefault(x => x.Id == id);
         }
+        public List<AirPortModel.Models.Links> Listlinks()
+        {
+            return _db.Links.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+        }
     }
 }

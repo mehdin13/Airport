@@ -38,6 +38,9 @@ namespace AirPort
             services.AddScoped<IFlightToDo, FlightToDo>();
             services.AddScoped<IEntertainment, Entertainment>();
             services.AddScoped<ILinks, Links>();
+            services.AddScoped<IAddress, Address>();
+            services.AddScoped<IPlace, Place>();
+            services.AddScoped<IDetail, Detail>();
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
             services.AddControllers();
 
