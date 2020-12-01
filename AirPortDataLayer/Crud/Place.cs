@@ -115,5 +115,9 @@ namespace AirPortDataLayer.Crud
         {
             return _db.places.Where(x => x.Category.Equals(4) && x.IsDelete == false).ToList();
         }
+        public List<AirPortModel.Models.Place> PlacesCofeeshopId()
+        {
+            return _db.places.Where(x => x.Category.Equals(5) && x.IsDelete == false).ToList();
+        }
     }
 }

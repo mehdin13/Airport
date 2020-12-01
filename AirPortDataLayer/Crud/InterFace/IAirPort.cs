@@ -15,5 +15,6 @@ namespace AirPortDataLayer.Crud.InterFace
         List<FeatureValueVeiwModel> AirportDetail(int id);
         List<ImageList> AirPortGallery(int id);
         public ProgressStatus CheckAirportCode(string code);
+        List<AirPortModel.Models.AirPort> airportlists();
     }
 }

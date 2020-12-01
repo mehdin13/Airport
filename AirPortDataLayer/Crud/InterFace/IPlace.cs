@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using AirPortDataLayer.Crud.VeiwModel;
 namespace AirPortDataLayer.Crud.InterFace
 {
@@ -18,5 +16,6 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.Place> PlaceRestaurantid();
         List<AirPortModel.Models.Place> PlaceToureId();
         List<AirPortModel.Models.Place> PlacesShopId();
+        List<AirPortModel.Models.Place> PlacesCofeeshopId();
     }
 }

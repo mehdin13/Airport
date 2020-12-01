@@ -78,6 +78,35 @@ namespace AirPort.Controllers
             }
         }
         [HttpGet]
+        [Route("CofeeshopList")]
+        public List<HotelViewModel> CofeeshopTolist()
+        {
+            HotelViewModel RestaurantListobj = new HotelViewModel();
+            List<HotelViewModel> RestaurantlinkListobj = new List<HotelViewModel>();
+            try
+            {
+                var ListRestaurant = _place.PlacesCofeeshopId();
+                foreach (var item in ListRestaurant)
+                {
+                    RestaurantListobj.Name = item.Name;
+                    RestaurantListobj.CategoryId = _address.FindById(item.CustomerId).Id;
+                    RestaurantListobj.GalleryId = item.GalleryId;
+                    RestaurantListobj.DetailId = _detail.FindById(item.Id).Id;
+                    RestaurantListobj.LocationX = _address.FindById(item.Id).Id;
+                    RestaurantListobj.LocationY = _address.FindById(item.Id).Id;
+                    RestaurantListobj.LocationR = _address.FindById(item.Id).Id;
+                    RestaurantListobj.PhoneNumber = item.PhoneNumber;
+                    RestaurantlinkListobj.Add(RestaurantListobj);
+                }
+                return RestaurantlinkListobj;
+            }
+            catch (Exception)
+            {
+                return RestaurantlinkListobj;
+            }
+        }
+
+        [HttpGet]
         [Route("ToureList")]
         public List<HotelViewModel> ToureList()
         {

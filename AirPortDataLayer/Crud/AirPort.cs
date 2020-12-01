@@ -109,5 +109,9 @@ namespace AirPortDataLayer.Crud
             var result = new ProgressStatus { Number = 1, Title = "NotFound", Message = "یافت نشد" };
             return result;
         }
+        public List<AirPortModel.Models.AirPort> airportlists()
+        {
+            return _db.AirPorts.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+        }
     }
 }
