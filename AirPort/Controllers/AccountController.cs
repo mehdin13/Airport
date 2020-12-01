@@ -104,7 +104,7 @@ namespace AirPort.Controllers
 
                     if (_Customer.Update(customerobj).Number.Equals(1))
                     {
-                        result = new ProgressStatus { Number = 1, Title = "Updete Successful", Message = "ویرایش با موفقیت انجام شد" };
+                        result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "ویرایش با موفقیت انجام شد" };
                         return result;
                     }
                     else
@@ -131,7 +131,6 @@ namespace AirPort.Controllers
         public ProgressStatus ChengePassWord([FromForm] ChengePasswordViewModel chengePasswordViewModel)
         {
             var Result = new ProgressStatus();
-
             try
             {
                 if (_Customer.CheckLoginInfo(chengePasswordViewModel.Token, chengePasswordViewModel.OldPassword).Number.Equals(1))
@@ -162,7 +161,6 @@ namespace AirPort.Controllers
                     return result;
                 }
 
-                return Result;
             }
             catch (Exception ex)
             {

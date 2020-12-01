@@ -122,12 +122,12 @@ namespace AirPortDataLayer.Crud
         {
             if (_db.customers.FirstOrDefault(X => X.Email == email) != null)
             {
-                var result = new ProgressStatus { Number = 1, Title = "successful", Message = "Allredyexist" };
+                var result = new ProgressStatus { Number = 1, Title = "EmailError", Message = "Allredyexist" };
                 return result;
             }
             else
             {
-                var result = new ProgressStatus { Number = 2, Title = "EmailError", Message = "Notexist" };
+                var result = new ProgressStatus { Number = 2, Title = "Successful", Message = "Notexist" };
                 return result;
             }
         }
@@ -136,7 +136,7 @@ namespace AirPortDataLayer.Crud
             var User = _db.customers.FirstOrDefault(x => x.Email == email);
             if (User != null)
             {
-                if (User.Password == password)
+                if (User.Password.Equals(password))
                 {
                     var result = new ProgressStatus { Number = 1, Title = "Recognized", Message = "correct UserName And Password" };
                     return result;
