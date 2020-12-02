@@ -85,7 +85,7 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_Customer.CheckLoginInfo(loginViewModel.Email, loginViewModel.Password).Number.Equals(1))
+                if (_Customer.CheckLoginInfo(loginViewModel.Email, PasswordHelper.EncodePasswordMd5(loginViewModel.Password)).Number.Equals(1))
                 {
                     var tokenDescriptor = new SecurityTokenDescriptor
                     {
