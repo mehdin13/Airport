@@ -40,7 +40,6 @@ namespace AirPort.Controllers
                     customerobj.Password = registerViewModel.Password;
                     if (_Customer.Insert(customerobj) != 0)
                     {
-                        string token = "";
                         var tokenDescriptor = new SecurityTokenDescriptor
                         {
                             Subject = new ClaimsIdentity(new Claim[]
@@ -52,8 +51,8 @@ namespace AirPort.Controllers
                         };
                         var tokenHandler = new JwtSecurityTokenHandler();
                         var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                        token = tokenHandler.WriteToken(securityToken);
-                        Result = new ProgressStatus { Message = " ثبت نام با موفقیت انجام شد", Number = 1, Title = "Register Successful !" };
+                        string token = tokenHandler.WriteToken(securityToken);
+                        Result = new ProgressStatus { Message = " ثبت نام با موفقیت انجام شد", Number = 1, Title = "Register Successful !", Token = token };
                         return Result;
                     }
                     else
@@ -75,7 +74,7 @@ namespace AirPort.Controllers
                 return Result;
             }
 
- 
+
         }
 
         [HttpPost]
