@@ -131,9 +131,9 @@ namespace AirPortDataLayer.Crud
                 return result;
             }
         }
-        public ProgressStatus CheckLoginInfo(string email, string password)
+        public ProgressStatus CheckLoginInfo(string Email, string password)
         {
-            var User = _db.customers.FirstOrDefault(x => x.Email == email);
+            var User = _db.customers.FirstOrDefault(x => x.Email == Email);
             if (User != null)
             {
                 if (User.Password.Equals(password))
@@ -153,12 +153,12 @@ namespace AirPortDataLayer.Crud
                 return result;
             }
         }
-        public ProgressStatus ChengePassWord(string Username, string NewPassword)
+        public ProgressStatus ChengePassWord(int userid, string NewPassword)
         {
 
             try
             {
-                var obj = _db.customers.FirstOrDefault(x => x.Email == Username);
+                var obj = _db.customers.FirstOrDefault(x => x.Id == userid);
                 if (obj != null)
                 {
                     obj.LastUpdate = DateTime.Now.Date;

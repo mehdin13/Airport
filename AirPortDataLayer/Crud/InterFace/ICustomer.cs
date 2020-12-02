@@ -12,7 +12,7 @@ namespace AirPortDataLayer.Crud.InterFace
         AirPortModel.Models.Customer FindByEmail(string Email);
         ProgressStatus CheckCstomerMobileExisting(string Mobile);
         ProgressStatus CheckCustomerEmailExisting(string email);
-        ProgressStatus CheckLoginInfo(string email, string password);
-        ProgressStatus ChengePassWord(string Username, string NewPassword);
+        ProgressStatus CheckLoginInfo(string Email, string password);
+        ProgressStatus ChengePassWord(int userid, string NewPassword);
     }
 }

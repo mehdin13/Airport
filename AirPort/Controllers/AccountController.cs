@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Linq;
 
 namespace AirPort.Controllers
 {
@@ -37,7 +38,7 @@ namespace AirPort.Controllers
                     customerobj.Name = registerViewModel.Name;
                     customerobj.LastName = registerViewModel.LastName;
                     customerobj.Email = registerViewModel.Email;
-                    customerobj.Password = registerViewModel.Password;
+                    customerobj.Password = PasswordHelper.EncodePasswordMd5(registerViewModel.Password);
                     if (_Customer.Insert(customerobj) != 0)
                     {
                         var tokenDescriptor = new SecurityTokenDescriptor
@@ -86,7 +87,20 @@ namespace AirPort.Controllers
             {
                 if (_Customer.CheckLoginInfo(loginViewModel.Email, loginViewModel.Password).Number.Equals(1))
                 {
-                    Result = new ProgressStatus { Message = "با موفقیت وارد شدید", Number = 1, Title = "Login SuccessFul" };
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[]
+                         {
+                        new Claim("Customer",_Customer.FindByEmail(loginViewModel.Email).Id.ToString())
+                          }),
+                        Expires = DateTime.UtcNow.AddYears(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Token)), SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    string token = tokenHandler.WriteToken(securityToken);
+                    Result = new ProgressStatus { Message = "با موفقیت وارد شدید", Number = 1, Title = "Login SuccessFul", Token = token };
+                    return Result;
                 }
                 else if (_Customer.CheckLoginInfo(loginViewModel.Email, loginViewModel.Password).Number.Equals(2))
                 {
@@ -107,15 +121,14 @@ namespace AirPort.Controllers
         }
         [HttpPost]
         [Route("EditProfile")]
-        public ProgressStatus userprofile([FromForm] ProfileViewModel profileViewModel)
+        public ProgressStatus Userprofile([FromForm] ProfileViewModel profileViewModel)
         {
-
             try
             {
+                string Custumerid = User.Claims.First(u => u.Type == "Customer").Value;
                 var result = new ProgressStatus();
-                if (profileViewModel.Token.Equals("1"))
+                if (_Customer.FindById(Convert.ToInt32(Custumerid)) != null)
                 {
-
                     AirPortModel.Models.Customer customerobj = _Customer.FindByEmail(profileViewModel.Email);
                     customerobj.Name = profileViewModel.Name;
                     customerobj.LastName = profileViewModel.LastName;
@@ -155,18 +168,18 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_Customer.CheckLoginInfo(chengePasswordViewModel.Token, chengePasswordViewModel.OldPassword).Number.Equals(1))
+                if (_Customer.CheckLoginInfo(_Customer.FindById(Convert.ToInt32(User.Claims.First(u => u.Type == "Customer").Value)).Email, chengePasswordViewModel.OldPassword).Number.Equals(1))
                 {
                     if (chengePasswordViewModel.NewPassword == chengePasswordViewModel.RNewPassword)
                     {
-                        if (_Customer.ChengePassWord(chengePasswordViewModel.Token, chengePasswordViewModel.NewPassword).Number.Equals(1))
+                        if (_Customer.ChengePassWord(Convert.ToInt32(User.Claims.First(u => u.Type == "Customer").Value), chengePasswordViewModel.NewPassword).Number.Equals(1))
                         {
                             var result = new ProgressStatus { Number = 1, Title = "Successful", Message = "رمز عبور با موفقیت تغییر کرد" };
                             return result;
                         }
                         else
                         {
-                            var result = new ProgressStatus { Number = 2, Title = "unSuccessfulr", Message = "رمز عبور جدید با رمز قدیمی برابر هستند" };
+                            var result = new ProgressStatus { Number = 2, Title = "unSuccessfulr", Message = "رمز عبور وارد شده با رمز قدیمی برابر نیست" };
                             return result;
                         }
                     }
@@ -175,7 +188,6 @@ namespace AirPort.Controllers
                         var result = new ProgressStatus { Number = 3, Title = "unSuccessful", Message = "رمز عبور جدید با هم همخوانی ندارد" };
                         return result;
                     }
-
                 }
                 else
                 {
