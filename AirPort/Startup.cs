@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using AirPort.Model;
 
 namespace AirPort
 {
@@ -41,12 +42,14 @@ namespace AirPort
             services.AddScoped<IAddress, Address>();
             services.AddScoped<IPlace, Place>();
             services.AddScoped<IDetail, Detail>();
+            services.Configure<AppSettings>(Configuration.GetSection("TokenProvider"));
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
             services.AddControllers();
 
-            #region Jwt Authentication
+            #region JwtBearer
 
-            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
+            var key = Encoding.UTF8.GetBytes(Configuration["TokenProvider:JWT_Token"].ToString());
 
             services.AddAuthentication(x =>
             {

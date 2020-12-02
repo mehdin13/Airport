@@ -3,7 +3,12 @@ using System;
 using AirPortDataLayer.Crud.InterFace;
 using AirPortDataLayer.Crud;
 using AirPort.Model.ViewModel;
-
+using AirPort.Model;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace AirPort.Controllers
 {
@@ -12,9 +17,12 @@ namespace AirPort.Controllers
     public class AccountController : ControllerBase
     {
         private readonly ICustomer _Customer;
-        public AccountController(ICustomer customerService)
+        private readonly AppSettings _appSettings;
+
+        public AccountController(ICustomer customerService, IOptions<AppSettings> appSettings)
         {
             _Customer = customerService;
+            _appSettings = appSettings.Value;
         }
         [HttpPost]
         [Route("Register")]
@@ -32,6 +40,19 @@ namespace AirPort.Controllers
                     customerobj.Password = registerViewModel.Password;
                     if (_Customer.Insert(customerobj) != 0)
                     {
+                        string token = "";
+                        var tokenDescriptor = new SecurityTokenDescriptor
+                        {
+                            Subject = new ClaimsIdentity(new Claim[]
+                           {
+                        new Claim("Customer",_Customer.FindByEmail(registerViewModel.Email).Id.ToString())
+                           }),
+                            Expires = DateTime.UtcNow.AddYears(1),
+                            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Token)), SecurityAlgorithms.HmacSha256Signature)
+                        };
+                        var tokenHandler = new JwtSecurityTokenHandler();
+                        var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                        token = tokenHandler.WriteToken(securityToken);
                         Result = new ProgressStatus { Message = " ثبت نام با موفقیت انجام شد", Number = 1, Title = "Register Successful !" };
                         return Result;
                     }
@@ -53,6 +74,8 @@ namespace AirPort.Controllers
                 Result = new ProgressStatus { Message = ex.Message, Number = 0, Title = "Unhandeled ERROR !" };
                 return Result;
             }
+
+ 
         }
 
         [HttpPost]
