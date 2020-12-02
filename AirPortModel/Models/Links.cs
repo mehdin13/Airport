@@ -19,11 +19,12 @@ namespace AirPortModel.Models
 
         [Column("Title")]
         public string Title { get; set; }
+
         [Column("Url")]
         public string Url { get; set; }
 
         [Column("Type")]
-        public int Type { get; set; } //check shavad
+        public int Type { get; set; } 
 
         [Column("Icon")]
         public string Icon { get; set; }
