@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using AirPort.Model;
+using Microsoft.IdentityModel.Logging;
 
 namespace AirPort
 {
@@ -39,7 +40,7 @@ namespace AirPort
 
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
             services.AddControllers();
-
+            IdentityModelEventSource.ShowPII = true;
             #region JwtBearer
 
             var key = Encoding.UTF8.GetBytes(Configuration["TokenProvider:JWT_Token"].ToString());
