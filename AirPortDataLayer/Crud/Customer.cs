@@ -136,7 +136,7 @@ namespace AirPortDataLayer.Crud
             var User = _db.customers.FirstOrDefault(x => x.Email == Email);
             if (User != null)
             {
-                if (User.Password.Equals(password))
+                if (User.Password.Equals(PasswordHelper.EncodePasswordMd5(password)))
                 {
                     var result = new ProgressStatus { Number = 1, Title = "Recognized", Message = "correct UserName And Password" };
                     return result;
