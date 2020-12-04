@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using AirPortDataLayer.Crud.InterFace;
-using AirPortDataLayer.Crud;
+using System.Collections.Generic;
 using AirPort.Model.ViewModel;
 
 namespace AirPort.Controllers
@@ -12,28 +11,33 @@ namespace AirPort.Controllers
     public class AirportDetailController : ControllerBase
     {
         public readonly IAirPort _airPort;
-        public readonly IFlight _flight;
-        public readonly IAirPlane _airplane;
-        public AirportDetailController(IAirPort airport, IFlight flight, IAirPlane airPlane)
+        public readonly IAddress _address;
+        public readonly IGallery _gallery;
+        public AirportDetailController(IAirPort airport,IAddress address ,IGallery gallery )
         {
             _airPort = airport;
-            _flight = flight;
-            _airplane = airPlane;
+            _address = address;
+            _gallery = gallery;
         }
-        public List<AirportViewModel> AirportList()
+        public List<AirportDetailViewModel> AirportList()
         {
-            AirportViewModel airportobj = new AirportViewModel();
-            List<AirportViewModel> airportlinklistobj = new List<AirportViewModel>();
+            AirportDetailViewModel airportobj = new AirportDetailViewModel();
+            List<AirportDetailViewModel> airportlinklistobj = new List<AirportDetailViewModel>();
             try
             {
-                var Listairport = _airPort.airportlists();
+                var Listairport = _airPort.airportdetails();
                 foreach (var item in Listairport)
                 {
                     airportobj.Name = item.Name;
-                    airportobj.AirportId = item.Id;
-                    //airportobj.GalleryId = _airplane.FindById(item.Gallery).Id;
+                    airportobj.AirporId = item.Id;
+                    // chek shavad
+                   // airportobj.GalleryId = _gallery.FindById(item.Gallery).Id;  
                     airportobj.AirportCode = item.Code;
                     airportobj.Abbreviation = item.Abbreviation;
+                    airportobj.DetailId = item.Id;
+                    // airportobj.Phone=item. air port aslan phone nadare ke :((
+                    // check shavad 
+                   // airportobj.AddressId = _address.FindById(item.Adress).Id; 
                     airportlinklistobj.Add(airportobj);
                 }
                 return airportlinklistobj;

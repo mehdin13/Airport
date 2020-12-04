@@ -113,5 +113,9 @@ namespace AirPortDataLayer.Crud
         {
             return _db.AirPorts.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
         }
+        public List<AirPortModel.Models.AirPort> airportdetails()
+        {
+            return _db.AirPorts.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+        }
     }
 }

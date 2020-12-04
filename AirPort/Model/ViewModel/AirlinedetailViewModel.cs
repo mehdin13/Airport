@@ -10,9 +10,9 @@ namespace AirPort.Model.ViewModel
     public class AirlinedetailViewModel
     {
         public string Name { get; set; }
+        public int AirlineId { get; set; }
         public int DetailId { get; set; }
         public string Logo { get; set; }
         public string Phone { get; set; }
-        public int AirlineId { get; set; }
     }
 }

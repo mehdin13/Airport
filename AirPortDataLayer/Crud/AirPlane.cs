@@ -95,5 +95,13 @@ namespace AirPortDataLayer.Crud
             var result = new ProgressStatus { Number = 1, Title = "CheckairplainCode", Message ="Successful" };
             return result;
         }
+        public List<AirPortModel.Models.AirPlane> AirplaneList()
+        {
+            return _db.airPlanes.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+        }
+        public List<AirPortModel.Models.AirPlane> AirplaneDetailList()
+        {
+            return _db.airPlanes.Where(x => x.Id.Equals(12) && x.IsDelete == false).ToList();
+        }
     }
 }
