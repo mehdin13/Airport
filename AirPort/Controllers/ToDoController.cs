@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using AirPortDataLayer.Crud.InterFace;
 using AirPortDataLayer.Crud;
@@ -26,12 +27,15 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_customer.CheckCustomerEmailExisting(toDoViewModel.Email).Number.Equals(1))
+                string customerid = User.Claims.First(x => x.Type.Equals("Customer")).Value;
+                if (_customer.FindById(Convert.ToInt32(customerid)) != null)
                 {
                     AirPortModel.Models.FlightToDo Todoobj = new AirPortModel.Models.FlightToDo();
                     Todoobj.Title = toDoViewModel.Title;
                     Todoobj.Description = toDoViewModel.Description;
                     Todoobj.FlightId = toDoViewModel.Flight;
+                    Todoobj.IsDon = false;
+                    Todoobj.CustomerId = Convert.ToInt32(customerid);
                     if (_flighttodo.Insert(Todoobj) == 0)
                     {
                         Result = new ProgressStatus { Message = " ثبت با موفقیت انجام نشد", Number = 1, Title = "ToDo Registerd Successfully !" };
