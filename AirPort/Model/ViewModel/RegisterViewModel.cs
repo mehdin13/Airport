@@ -33,7 +33,6 @@ namespace AirPort.Model.ViewModel
         public bool Sex { get; set; }
         [DataType(DataType.Date)]
         public DateTime Bdate { get; set; }
-        public string Token { get; set; }
     }
     public class ChengePasswordViewModel
     {

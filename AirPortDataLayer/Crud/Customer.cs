@@ -99,7 +99,7 @@ namespace AirPortDataLayer.Crud
         }
         public AirPortModel.Models.Customer FindById(int id)
         {
-            return _db.customers.FirstOrDefault(x => x.Id == id);
+            return _db.customers.First(x => x.Id == id);
         }
         public AirPortModel.Models.Customer FindByEmail(string Email)
         {
@@ -155,14 +155,13 @@ namespace AirPortDataLayer.Crud
         }
         public ProgressStatus ChengePassWord(int userid, string NewPassword)
         {
-
             try
             {
                 var obj = _db.customers.FirstOrDefault(x => x.Id == userid);
                 if (obj != null)
                 {
                     obj.LastUpdate = DateTime.Now.Date;
-                    obj.Password = NewPassword;
+                    obj.Password = PasswordHelper.EncodePasswordMd5(NewPassword);
                     _db.customers.Update(obj);
                     _db.SaveChanges();
                     var result = new ProgressStatus { Number = 1, Title = "Password Change", Message = "changed successfuly" };
@@ -181,6 +180,5 @@ namespace AirPortDataLayer.Crud
                 return result;
             }
         }
-
     }
 }

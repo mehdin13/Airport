@@ -129,7 +129,7 @@ namespace AirPort.Controllers
                 var result = new ProgressStatus();
                 if (_Customer.FindById(Convert.ToInt32(Custumerid)) != null)
                 {
-                    AirPortModel.Models.Customer customerobj = _Customer.FindByEmail(profileViewModel.Email);
+                    AirPortModel.Models.Customer customerobj = _Customer.FindById(Convert.ToInt32(Custumerid));
                     customerobj.Name = profileViewModel.Name;
                     customerobj.LastName = profileViewModel.LastName;
                     customerobj.Email = profileViewModel.Email;
