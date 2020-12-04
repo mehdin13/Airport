@@ -1,18 +1,27 @@
 using System;
+using System.Text;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AirPortDataLayer.Crud;
 using AirPortDataLayer.Crud.InterFace;
 using AirPortDataLayer.Data;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
 using AirPort.Model;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace AirPort
 {
@@ -29,18 +38,26 @@ namespace AirPort
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
-            services.AddScoped<ICustomer, Customer>();
-            services.AddScoped<IFlightToDo, FlightToDo>();
-            services.AddScoped<IEntertainment, Entertainment>();
-            services.AddScoped<ILinks, Links>();
-            services.AddScoped<IAddress, Address>();
-            services.AddScoped<IPlace, Place>();
-            services.AddScoped<IDetail, Detail>();
+            services.AddTransient<ICustomer, Customer>();
+            services.AddTransient<IFlightToDo, FlightToDo>();
+            services.AddTransient<IEntertainment, Entertainment>();
+            services.AddTransient<ILinks, Links>();
+            services.AddTransient<IAddress, Address>();
+            services.AddTransient<IPlace, Place>();
+            services.AddTransient<IDetail, Detail>();
             services.Configure<AppSettings>(Configuration.GetSection("TokenProvider"));
-
-            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();
-            IdentityModelEventSource.ShowPII = true;
+            #region Password Options
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+            });
+            #endregion
             #region JwtBearer
 
             var key = Encoding.UTF8.GetBytes(Configuration["TokenProvider:JWT_Token"].ToString());
@@ -54,7 +71,7 @@ namespace AirPort
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = false;
-                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
@@ -78,12 +95,18 @@ namespace AirPort
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseStaticFiles();
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("404 Not Found");
             });
         }
     }

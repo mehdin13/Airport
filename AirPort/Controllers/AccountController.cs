@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using AirPortDataLayer.Crud.InterFace;
-using AirPortDataLayer.Crud;
-using AirPort.Model.ViewModel;
+﻿using System;
 using AirPort.Model;
+using AirPort.Model.ViewModel;
+using AirPortDataLayer.Crud;
+using AirPortDataLayer.Crud.InterFace;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
