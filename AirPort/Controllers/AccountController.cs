@@ -85,7 +85,7 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_Customer.CheckLoginInfo(loginViewModel.Email,loginViewModel.Password).Number.Equals(1))
+                if (_Customer.CheckLoginInfo(loginViewModel.Email, loginViewModel.Password).Number.Equals(1))
                 {
                     var tokenDescriptor = new SecurityTokenDescriptor
                     {
@@ -168,7 +168,7 @@ namespace AirPort.Controllers
             var Result = new ProgressStatus();
             try
             {
-                if (_Customer.CheckLoginInfo(_Customer.FindById(Convert.ToInt32(User.Claims.First(u => u.Type == "Customer").Value)).Email, chengePasswordViewModel.OldPassword).Number.Equals(1))
+                if (_Customer.CheckLoginInfo(_Customer.FindById(Convert.ToInt32(User.Claims.First(u => u.Type.Equals("Customer")).Value)).Email, chengePasswordViewModel.OldPassword).Number.Equals(1))
                 {
                     if (chengePasswordViewModel.NewPassword == chengePasswordViewModel.RNewPassword)
                     {
