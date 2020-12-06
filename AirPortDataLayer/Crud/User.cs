@@ -6,7 +6,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    class User : IUser
+    public class User : IUser
     {
         private readonly AppDatabaseContext _db;
         public User(AppDatabaseContext db)
@@ -43,7 +43,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "User  can't be Deleted" };
+                var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = ex.Message };
                 return result;
             }
         }
@@ -59,7 +59,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "User  can't be Update" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = ex.Message };
                 return result;
             }
         }
@@ -69,7 +69,11 @@ namespace AirPortDataLayer.Crud
         }
         public AirPortModel.Models.User FindById(int id)
         {
-            return _db.users.FirstOrDefault(x => x.Id == id);
+            return _db.users.FirstOrDefault(x => x.Id.Equals(id) && x.IsDelete.Equals(false));
+        }
+        public AirPortModel.Models.User FindByUserName(string Username)
+        {
+            return _db.users.FirstOrDefault(x => x.Name.Equals(Username) && x.IsDelete.Equals(false));
         }
         public string CheckUserName(string Username)
         {
@@ -107,11 +111,10 @@ namespace AirPortDataLayer.Crud
                 return ex.Message.ToString();
             }
         }
-
         public ProgressStatus CheckUserNameExist(string username)
         {
 
-            if (_db.users.FirstOrDefault(x=>x.Name==username)!=null)
+            if (_db.users.FirstOrDefault(x => x.Name == username) != null)
             {
                 var result = new ProgressStatus { Number = 1, Title = "User existing Message", Message = "Not exist" };
                 return result;
@@ -121,9 +124,9 @@ namespace AirPortDataLayer.Crud
                 var result = new ProgressStatus { Number = 2, Title = "User existing Error", Message = "allredy exist" };
                 return result;
             }
-  
-        } 
-        public ProgressStatus CheckLoginInfo(string username,string password)
+
+        }
+        public ProgressStatus CheckLoginInfo(string username, string password)
         {
             var User = _db.users.FirstOrDefault(x => x.Name == username);
             if (User != null)
@@ -146,6 +149,6 @@ namespace AirPortDataLayer.Crud
             }
         }
 
-       
+
     }
 }

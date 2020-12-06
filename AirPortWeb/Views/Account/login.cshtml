@@ -1,0 +1,69 @@
+﻿@page
+@model AirPortWeb.Models.LoginVeiwModel;
+@{
+
+}
+
+<section id="login">
+    <div class="container-fluid">
+        <div class="row full-height-vh">
+            <div class="col-12 d-flex align-items-center justify-content-center gradient-aqua-marine">
+                <div class="card px-4 py-2 box-shadow-2 width-400">
+                    <div class="card-header text-center">
+                        <img src="/AdminContent/img/zapLogp.png" alt="company-logo" class="mb-3" width="80">
+                        <h4 class="text-uppercase text-bold-400 grey darken-1">ورود</h4>
+                        @*@if (!((bool)ViewData["NoAdmin"]))
+                            {
+                                <p class="mb-0 alert alert-danger" style="color:#fff !important">مشخصات وارد شده یافت نشد .</p>
+                            }*@
+                    </div>
+                    <div class="card-body">
+
+                        <div class="card-block">
+                            @using (Html.BeginForm("login", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input name="Username" type="text" class="form-control form-control-lg" placeholder="شماره موبایل" aria-describedby="email-address">
+                                    </div>
+                                    <span asp-validation-for="Username"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input name="Password" type="password" class="form-control form-control-lg" id="inputPass" placeholder="رمز عبور" required="">
+                                    </div>
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-5">
+
+                                                <input name="RememberMe" type="checkbox" class="custom-control-input" checked="" id="rememberme">
+                                                <label class="custom-control-label float-left" for="rememberme">مرا به خاطر بسپار</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="text-center col-md-12">
+                                        <button type="submit" class="btn btn-success px-4 py-2 text-uppercase white font-small-4 box-shadow-2 border-0">ورود به سایت</button>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="card-footer grey darken-1">
+                        <div class="text-center mb-1">رمز عبور را فراموش کرده اید؟ <a href="/Admin/ForgotPassword"><b>بازیابی</b></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

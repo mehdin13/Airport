@@ -15,6 +15,8 @@ namespace AirPort.Controllers
         {
             _airline = airline;
         }
+        [HttpGet]
+        [Route("AirlineList")]
         public List<AirlineviewModel> AirlineListes()
         {
             AirlineviewModel airlinelistobj = new AirlineviewModel();

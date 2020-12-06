@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPort", "AirPort\AirPort.csproj", "{6DCDA29B-37C2-443A-8F11-EA01BB70E925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirPortDataLayer", "AirPortDataLayer\AirPortDataLayer.csproj", "{F9CE0240-FA37-447F-A7AB-1D48A094E1A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortDataLayer", "AirPortDataLayer\AirPortDataLayer.csproj", "{F9CE0240-FA37-447F-A7AB-1D48A094E1A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirPortModel", "AirPortModel\AirPortModel.csproj", "{3C03A400-64B4-4157-94F3-BD4872460CE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortModel", "AirPortModel\AirPortModel.csproj", "{3C03A400-64B4-4157-94F3-BD4872460CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirPortWeb", "AirPortWeb\AirPortWeb.csproj", "{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortWeb", "AirPortWeb\AirPortWeb.csproj", "{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

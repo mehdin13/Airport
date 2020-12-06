@@ -16,7 +16,7 @@ namespace AirPort.Controllers
             _airplane = airPlane;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("AirlinDetail")]
         public List<AirPlaneDetailViewModel> airplanedetaillist()
         {

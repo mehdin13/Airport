@@ -19,6 +19,8 @@ namespace AirPort.Controllers
             _address = address;
             _gallery = gallery;
         }
+        [HttpGet]
+        [Route("AirportList")]
         public List<AirportDetailViewModel> AirportList()
         {
             AirportDetailViewModel airportobj = new AirportDetailViewModel();

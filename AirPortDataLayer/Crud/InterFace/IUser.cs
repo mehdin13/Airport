@@ -14,5 +14,6 @@ namespace AirPortDataLayer.Crud.InterFace
         string CheckuserNameAvailable(string Username);
         ProgressStatus CheckUserNameExist(string username);
         ProgressStatus CheckLoginInfo(string username, string password);
+        AirPortModel.Models.User FindByUserName(string Username);
     }
 }
