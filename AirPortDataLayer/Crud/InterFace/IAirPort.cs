@@ -17,5 +17,6 @@ namespace AirPortDataLayer.Crud.InterFace
         public ProgressStatus CheckAirportCode(string code);
         List<AirPortModel.Models.AirPort> airportlists();
         List<AirPortModel.Models.AirPort> airportdetails();
+        object FindById(AirPortModel.Models.Gallery gallery);
     }
 }

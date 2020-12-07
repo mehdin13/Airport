@@ -15,7 +15,9 @@ namespace AirPort.Controllers
         {
             _link = links;
         }
-        public List<NewsViewModel> NewsLisr()
+        [HttpGet]
+        [Route("NewsList")]
+        public List<NewsViewModel> NewsList()
         {
             NewsViewModel linknewsobj = new NewsViewModel();
             List<NewsViewModel> linklistobj = new List<NewsViewModel>();

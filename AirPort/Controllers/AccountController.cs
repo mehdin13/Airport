@@ -165,7 +165,6 @@ namespace AirPort.Controllers
         [Route("ChangePassword")]
         public ProgressStatus ChengePassWord([FromForm] ChengePasswordViewModel chengePasswordViewModel)
         {
-            var Result = new ProgressStatus();
             try
             {
                 if (_Customer.CheckLoginInfo(_Customer.FindById(Convert.ToInt32(User.Claims.First(u => u.Type.Equals("Customer")).Value)).Email, chengePasswordViewModel.OldPassword).Number.Equals(1))
@@ -200,7 +199,6 @@ namespace AirPort.Controllers
             {
                 var result = new ProgressStatus { Number = 0, Title = "UnHandeled Error", Message = ex.Message };
                 return result;
-
             }
         }
     }

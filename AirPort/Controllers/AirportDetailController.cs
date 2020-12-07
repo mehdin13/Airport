@@ -16,8 +16,8 @@ namespace AirPort.Controllers
         public AirportDetailController(IAirPort airport,IAddress address ,IGallery gallery )
         {
             _airPort = airport;
-            _address = address;
-            _gallery = gallery;
+            //_address = address;
+            //_gallery = gallery;
         }
         [HttpGet]
         [Route("AirportList")]
@@ -30,16 +30,14 @@ namespace AirPort.Controllers
                 var Listairport = _airPort.airportdetails();
                 foreach (var item in Listairport)
                 {
-                    airportobj.Name = item.Name;
                     airportobj.AirporId = item.Id;
-                    // chek shavad
-                   // airportobj.GalleryId = _gallery.FindById(item.Gallery).Id;  
+                    airportobj.Name = item.Name;
+                  //airportobj.GalleryId = _airPort.FindById(item.Id).GalleryId;  
                     airportobj.AirportCode = item.Code;
                     airportobj.Abbreviation = item.Abbreviation;
                     airportobj.DetailId = item.Id;
-                    // airportobj.Phone=item. air port aslan phone nadare ke :((
-                    // check shavad 
-                   // airportobj.AddressId = _address.FindById(item.Adress).Id; 
+                    //airportobj.Phone=item. air port aslan phone nadare ke :((
+                    airportobj.AddressId = _address.FindById(item.Adress).Id; 
                     airportlinklistobj.Add(airportobj);
                 }
                 return airportlinklistobj;

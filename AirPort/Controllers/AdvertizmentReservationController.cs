@@ -17,36 +17,37 @@ namespace AirPort.Controllers
     [Route("[controller]")]
     public class AdvertizmentReservationController : ControllerBase
     {
-        private readonly IRequest _Request;
-        private readonly ICustomer _Customer;
-        public AdvertizmentReservationController(IRequest request, ICustomer customer)
+        private readonly IAdvertizment _advertizment;
+        public AdvertizmentReservationController(IAdvertizment advertizment)
         {
-            _Request = request;
-            _Customer = customer;
+            _advertizment = advertizment;
+
 
         }
-        public ProgressStatus Addrequest([FromForm] AdvertizmentReservationController advertizment)
+        [HttpPost]
+        [Route("Advertizment")]
+        public ProgressStatus Addrequest([FromForm] AdvertizmentReservationViewModel advertizment)
         {
-            var result = new ProgressStatus();
             try
             {
-                //if (_Customer.CheckCustomerEmailExisting(registerViewModel.Email).Number.Equals(2))
-                //{
-                AirPortModel.Models.Request Requestobj = new AirPortModel.Models.Request();
 
-                Requestobj.Name = advertizment.Name;
-                Requestobj.LastName = advertizment.LastName;
-                Requestobj.Phone = advertizment.Phone;
-                Requestobj.Description = advertizment.description;
-                //}
-                return result = new ProgressStatus { Message = "", Number = 1, Title = "" };
+                AirPortModel.Models.Advertizment Requestobj = new AirPortModel.Models.Advertizment();
+                if (_advertizment.checkphon(advertizment.Phone).Number.Equals(2))
+                {
+                    Requestobj.FullName = advertizment.Fullname;
+                    Requestobj.Phone = advertizment.Phone;
+                    Requestobj.Description = advertizment.Description;
+                    return new ProgressStatus { Message = "Request has'been insert Successfuly", Number = 1, Title = "Successful" };
+                }
+                else
+                {
+                    return new ProgressStatus { Message = "You allredy sent a Request", Number = 2, Title = "unSuccessful" };
+                }
             }
             catch (Exception ex)
             {
-                return result = new ProgressStatus { Message = ex.Message, Number = 1, Title = "" };
-                throw;
+                return new ProgressStatus { Message = ex.Message, Number = 0, Title = "" };
             }
-
         }
     }
 }

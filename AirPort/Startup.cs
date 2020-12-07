@@ -45,6 +45,7 @@ namespace AirPort
             services.AddTransient<IAddress, Address>();
             services.AddTransient<IPlace, Place>();
             services.AddTransient<IDetail, Detail>();
+            services.AddTransient<IAdvertizment, Advertizment>();
             services.Configure<AppSettings>(Configuration.GetSection("TokenProvider"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();

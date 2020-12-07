@@ -40,6 +40,7 @@ namespace AirPortDataLayer.Data
         public DbSet<TypeDetail> typeDetails { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Weather> Weather { get; set; }
+        public DbSet<Advertizment> advertizments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerFlight>().HasKey(a => new { a.CustomerId, a.FlightId });

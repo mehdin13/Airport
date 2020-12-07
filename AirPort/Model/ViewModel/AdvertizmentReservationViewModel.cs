@@ -9,8 +9,7 @@ namespace AirPort.Model.ViewModel
 {
     public class AdvertizmentReservationViewModel
     {
-        public string Name { get; set; }
-        public string Lastname { get; set; }
+        public string Fullname { get; set; }
         public string Phone { get; set; }
         [DataType(DataType.Text)]
         public string Description { get; set; }
