@@ -11,11 +11,13 @@ namespace AirPort.Controllers
     [Route("[controller]")]
     public class HotelController : ControllerBase
     {
+        private readonly IGallery _gallery;
         private readonly IAddress _address;
         private readonly IPlace _place;
         private readonly IDetail _detail;
-        public HotelController(IPlace place, IAddress address, IDetail detail)
+        public HotelController(IPlace place, IAddress address, IDetail detail, IGallery gallery)
         {
+            _gallery = gallery;
             _address = address;
             _place = place;
             _detail = detail;
@@ -28,33 +30,34 @@ namespace AirPort.Controllers
             List<HotelViewModel> hotellinklistobj = new List<HotelViewModel>();
             try
             {
-                var listHotell = _place.PlaceHotellId();
+                var listHotell = _place.PlaceHotellList();
                 foreach (var item in listHotell)
                 {
                     Hotellistobj.Name = item.Name;
-                    Hotellistobj.AddresId = _address.FindById(item.Id).Id;
+                    Hotellistobj.Address = _address.FindById(item.Adress).Detail;
                     Hotellistobj.CategoryId = item.CategoryId;
                     Hotellistobj.DetailId = item.DetailId;
                     Hotellistobj.Cost = item.Cost;
-                    Hotellistobj.LocationX = _address.FindById(item.Id).Id;
-                    Hotellistobj.LocationY = _address.FindById(item.Id).Id;
-                    Hotellistobj.LocationR = _address.FindById(item.Id).Id;
+                    Hotellistobj.LocationX = _address.FindById(item.Adress).LocationX;
+                    Hotellistobj.LocationY = _address.FindById(item.Adress).LocationY;
+                    Hotellistobj.LocationR = _address.FindById(item.Adress).LocationR;
                     Hotellistobj.PhoneNumber = item.PhoneNumber;
                     hotellinklistobj.Add(Hotellistobj);
                 }
                 return hotellinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string s = ex.Message;
                 return hotellinklistobj;
             }
         }
         [HttpGet]
         [Route("RestaurantList")]
-        public List<HotelViewModel> RestaurantTolist()
+        public List<RestaurantViewModel> RestaurantTolist()
         {
-            HotelViewModel RestaurantListobj = new HotelViewModel();
-            List<HotelViewModel> RestaurantlinkListobj = new List<HotelViewModel>();
+            RestaurantViewModel RestaurantListobj = new RestaurantViewModel();
+            List<RestaurantViewModel> RestaurantlinkListobj = new List<RestaurantViewModel>();
             try
             {
                 var ListRestaurant = _place.PlaceRestaurantid();
@@ -63,17 +66,18 @@ namespace AirPort.Controllers
                     RestaurantListobj.Name = item.Name;
                     RestaurantListobj.CategoryId = _address.FindById(item.CustomerId).Id;
                     RestaurantListobj.GalleryId = item.GalleryId;
-                    RestaurantListobj.DetailId = _detail.FindById(item.Id).Id;
-                    RestaurantListobj.LocationX = _address.FindById(item.Id).Id;
-                    RestaurantListobj.LocationY = _address.FindById(item.Id).Id;
-                    RestaurantListobj.LocationR = _address.FindById(item.Id).Id;
+                    RestaurantListobj.DetailId = _detail.FindById(item.DetailId).Id;//jaye kar dare
+                    RestaurantListobj.LocationX = _address.FindById(item.Adress).LocationX;
+                    RestaurantListobj.LocationY = _address.FindById(item.Adress).LocationY;
+                    RestaurantListobj.LocationR = _address.FindById(item.Adress).LocationR;
                     RestaurantListobj.PhoneNumber = item.PhoneNumber;
                     RestaurantlinkListobj.Add(RestaurantListobj);
                 }
                 return RestaurantlinkListobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string s = ex.Message;
                 return RestaurantlinkListobj;
             }
         }
@@ -108,17 +112,17 @@ namespace AirPort.Controllers
 
         [HttpGet]
         [Route("ToureList")]
-        public List<HotelViewModel> ToureList()
+        public List<ToursViewModel> ToureList()
         {
-            HotelViewModel tourelistobj = new HotelViewModel();
-            List<HotelViewModel> tourelinklistobj = new List<HotelViewModel>();
+            ToursViewModel tourelistobj = new ToursViewModel();
+            List<ToursViewModel> tourelinklistobj = new List<ToursViewModel>();
             try
             {
                 var ListToure = _place.PlaceToureId();
                 foreach (var item in ListToure)
                 {
                     tourelistobj.Name = item.Name;
-                    // tourelistobj.date = item.Date;
+                    //tourelistobj.Date =item.DetailId //tarikhe tour ro az koja bayad gereft ??
                     tourelistobj.CategoryId = item.CategoryId;
                     tourelistobj.GalleryId = item.GalleryId;
                     tourelistobj.DetailId = item.DetailId;
@@ -128,37 +132,42 @@ namespace AirPort.Controllers
                 }
                 return tourelinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string s = ex.Message;
                 return tourelinklistobj;
             }
         }
         [HttpGet]
         [Route("ShopList")]
-        public List<HotelViewModel> ShopList()
+        public List<ShopViewModel> ShopList()
         {
-            HotelViewModel shopListobj = new HotelViewModel();
-            List<HotelViewModel> shopLinkListobj = new List<HotelViewModel>();
+            ShopViewModel shopListobj = new ShopViewModel();
+            List<ShopViewModel> shopLinkListobj = new List<ShopViewModel>();
             try
             {
                 var listShop = _place.PlacesShopId();
                 foreach (var item in listShop)
                 {
                     shopListobj.Name = item.Name;
-                    shopListobj.AddresId = _address.FindById(item.Id).Id;
-                    shopListobj.CategoryId = _place.FindById(item.Id).Id;
-                    shopListobj.GalleryId = _place.FindById(item.Id).Id;
-                    shopListobj.DetailId = _place.FindById(item.Id).Id;
-                    shopListobj.LocationX = _address.FindById(item.Id).Id;
-                    shopListobj.LocationY = _address.FindById(item.Id).Id;
-                    shopListobj.LocationR = _address.FindById(item.Id).Id;
+                    shopListobj.Address = _address.FindById(item.Adress).Detail;
+                    shopListobj.CategoryId = item.CategoryId;
+                    foreach (var items in _gallery.ListImage(item.GalleryId))
+                    {
+                        shopListobj.Imagelist.Add(items.Url);
+                    }
+                    shopListobj.DetailId = item.DetailId;
+                    shopListobj.LocationX = _address.FindById(item.Adress).LocationX;
+                    shopListobj.LocationY = _address.FindById(item.Adress).LocationY;
+                    shopListobj.LocationR = _address.FindById(item.Adress).LocationR;
                     shopListobj.PhoneNumber = item.PhoneNumber;
                     shopLinkListobj.Add(shopListobj);
                 }
-                return shopLinkListobj;
+                     return shopLinkListobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string s = ex.Message;
                 return shopLinkListobj;
             }
         }

@@ -9,14 +9,14 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    public class AirPort :IAirPort
+    public class AirPort : IAirPort
     {
         private readonly AppDatabaseContext _db;
         public AirPort(AppDatabaseContext db)
         {
             _db = db;
         }
-        public int Insert (AirPortModel.Models.AirPort obj)
+        public int Insert(AirPortModel.Models.AirPort obj)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace AirPortDataLayer.Crud
                 Gallery gallery = new Gallery(_db);
                 Address address = new Address(_db);
                 var obj = _db.AirPorts.FirstOrDefault(x => x.Id == id);
-                var objWeather = _db.Weather.Where(x=>x.Id==id);
+                var objWeather = _db.Weather.Where(x => x.Id == id);
                 foreach (var item in objWeather)
                 {
                     weather.Delete(item.Id);
@@ -115,7 +115,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.AirPort> airportdetails()
         {
-            return _db.AirPorts.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+            return _db.AirPorts.Where(x => x.Id.Equals(1) && !x.IsDelete).ToList();
         }
     }
 }

@@ -99,25 +99,25 @@ namespace AirPortDataLayer.Crud
             var result = new ProgressStatus { Number = 1, Title = "palceId", Message = "NotFound" };
             return result;
         }
-        public List<AirPortModel.Models.Place> PlaceHotellId()
+        public List<AirPortModel.Models.Place> PlaceHotellList()
         {
-            return _db.places.Where(x => x.Category.Equals(1) && x.IsDelete == false).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(1) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlaceRestaurantid()
         {
-            return _db.places.Where(x => x.Category.Equals(2) && x.IsDelete == false).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(2) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlaceToureId()
         {
-            return _db.places.Where(x => x.Category.Equals(3) && x.IsDelete == false).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(3) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlacesShopId()
         {
-            return _db.places.Where(x => x.Category.Equals(4) && x.IsDelete == false).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(4) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlacesCofeeshopId()
         {
-            return _db.places.Where(x => x.Category.Equals(5) && x.IsDelete == false).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(5) && !x.IsDelete).ToList();
         }
     }
 }

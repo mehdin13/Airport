@@ -12,7 +12,7 @@ namespace AirPortDataLayer.Crud.InterFace
         List<ImageList> PlaceGallery(int id);
         List<FeatureValueVeiwModel> PlaceDetail(int id);
         ProgressStatus checkPlacecategoryid(string Code);
-        List<AirPortModel.Models.Place> PlaceHotellId();
+        List<AirPortModel.Models.Place> PlaceHotellList();
         List<AirPortModel.Models.Place> PlaceRestaurantid();
         List<AirPortModel.Models.Place> PlaceToureId();
         List<AirPortModel.Models.Place> PlacesShopId();

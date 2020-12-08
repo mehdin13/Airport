@@ -84,7 +84,7 @@ namespace AirPortDataLayer.Crud
                 image.Url = item.Url;
                 imageLists.Add(image);
             }
-            return imageLists;
+            return imageLists.ToList();
         }
         public AirPortModel.Models.Gallery FindById(int id)
         {

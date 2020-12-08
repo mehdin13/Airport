@@ -59,7 +59,7 @@ namespace AirPort.Controllers
                 return Result;
             }
         }
-        [HttpPost]
+        [HttpGet]
         [Route("tolistTodo")]
         public List<ToDoListViewModel> tolist([FromForm] string email)
         {

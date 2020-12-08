@@ -29,7 +29,7 @@ namespace AirPort.Controllers
                 {
                     airportlistobj.Name = item.Name;
                     airportlistobj.AirportId = item.Id;
-                    airportlistobj.GalleryId = _airport.FindById(item.Gallery).Id;
+                   // airportlistobj.GalleryId = _airport.FindById(item.Gallery).Id;
                     airportlistobj.AirportCode = item.Code;
                     airportlistobj.Abbreviation = item.Abbreviation;
                     airportlinklistobj.Add(airportlistobj);

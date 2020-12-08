@@ -6,7 +6,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    class Request : IRequest
+    public class Request : IRequest
     {
         private readonly AppDatabaseContext _db;
         public Request(AppDatabaseContext db)
@@ -42,7 +42,7 @@ namespace AirPortDataLayer.Crud
                 var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Request Has been Deleted" };
                 return result;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Request  can't be Deleted" };
                 return result;
@@ -58,7 +58,7 @@ namespace AirPortDataLayer.Crud
                 var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Request Has been Update" };
                 return result;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Request  can't be Update" };
                 return result;
@@ -66,7 +66,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Request> ToList()
         {
-            return _db.requests.Where(x => x.IsDelete == false).ToList();
+            return _db.requests.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.Request FindById(int id)
         {

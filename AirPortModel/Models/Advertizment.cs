@@ -9,6 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AirPortModel.Models
 {
+    [Table("Tbl_Advertizment")]
     public class Advertizment
     {
         [Key]

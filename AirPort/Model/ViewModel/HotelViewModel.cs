@@ -10,7 +10,7 @@ namespace AirPort.Model.ViewModel
     public class HotelViewModel
     {
         public string Name { get; set; }
-        public int AddresId { get; set; }
+        public string Address { get; set; }
         public int CategoryId { get; set; }
         public int GalleryId { get; set; }
         public int DetailId { get; set; }
@@ -23,9 +23,9 @@ namespace AirPort.Model.ViewModel
     public class ShopViewModel
     {
         public string Name { get; set; }
-        public int AddresId { get; set; }
+        public string Address { get; set; }
         public int CategoryId { get; set; }
-        public int GalleryId { get; set; }
+        public List<string> Imagelist { get; set; }
         public int DetailId { get; set; }
         public double LocationX { get; set; }
         public double LocationY { get; set; }
@@ -35,7 +35,7 @@ namespace AirPort.Model.ViewModel
     public class CofeeShopViewModel
     {
         public string Name { get; set; }
-        public int AddresId { get; set; }
+        public int Address { get; set; }
         public int CategoryId { get; set; }
         public int GalleryId { get; set; }
         public int DetailId { get; set; }
@@ -47,7 +47,7 @@ namespace AirPort.Model.ViewModel
     public class RestaurantViewModel
     {
         public string Name { get; set; }
-        public int AddresId { get; set; }
+        public int Address { get; set; }
         public int CategoryId { get; set; }
         public int GalleryId { get; set; }
         public int DetailId { get; set; }

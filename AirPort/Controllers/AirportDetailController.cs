@@ -37,7 +37,7 @@ namespace AirPort.Controllers
                     airportobj.Abbreviation = item.Abbreviation;
                     airportobj.DetailId = item.Id;
                     //airportobj.Phone=item. air port aslan phone nadare ke :((
-                    airportobj.AddressId = _address.FindById(item.Adress).Id; 
+                   // airportobj.AddressId = _address.FindById(item.Adress).Id; 
                     airportlinklistobj.Add(airportobj);
                 }
                 return airportlinklistobj;

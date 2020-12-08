@@ -38,14 +38,34 @@ namespace AirPort
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
-            services.AddTransient<ICustomer, Customer>();
-            services.AddTransient<IFlightToDo, FlightToDo>();
-            services.AddTransient<IEntertainment, Entertainment>();
-            services.AddTransient<ILinks, Links>();
             services.AddTransient<IAddress, Address>();
-            services.AddTransient<IPlace, Place>();
-            services.AddTransient<IDetail, Detail>();
             services.AddTransient<IAdvertizment, Advertizment>();
+            services.AddTransient<IAirline, Airline>();
+            services.AddTransient<IAirPort, AirPortDataLayer.Crud.AirPort>();
+            services.AddTransient<IBrand, Brand>();
+            services.AddTransient<ICategory, Category>();
+            services.AddTransient<ICity, City>();
+            services.AddTransient<ICustomer, Customer>();
+            services.AddTransient<ICustomerFlight, CustomerFlight>();
+            services.AddTransient<IDetail, Detail>();
+            services.AddTransient<IDetailValue, DetailValue>();
+            services.AddTransient<IEntertainment, Entertainment>();
+            services.AddTransient<IFeatrue, Featrue>();
+            services.AddTransient<IFlightStatus, FlightStatus>();
+            services.AddTransient<IFlightToDo, FlightToDo>();
+            services.AddTransient<IGallery, Gallery>();
+            services.AddTransient<IGalleryImage, GalleryImage>();
+            services.AddTransient<IGate, Gate>();
+            services.AddTransient<ILinks, Links>();
+            services.AddTransient<IPlace, Place>();
+            services.AddTransient<IRequest, Request>();
+            services.AddTransient<IRequestType, RequestType>();
+            services.AddTransient<IState, State>();
+            services.AddTransient<ITerminal, Terminal>();
+            services.AddTransient<ITypeDetail, TypeDetail>();
+            services.AddTransient<IUser, User>();
+            services.AddTransient<IWeather, Weather>();
+
             services.Configure<AppSettings>(Configuration.GetSection("TokenProvider"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();
