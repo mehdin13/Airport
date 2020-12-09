@@ -37,8 +37,9 @@ namespace AirPort.Controllers
                 }
                 return tolinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return tolinklistobj;
             }
         }
@@ -62,8 +63,9 @@ namespace AirPort.Controllers
                 }
                 return tolinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return tolinklistobj;
             }
         }
@@ -87,8 +89,9 @@ namespace AirPort.Controllers
                 }
                 return tolinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return tolinklistobj;
             }
         }
@@ -112,8 +115,9 @@ namespace AirPort.Controllers
                 }
                 return tolinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return tolinklistobj;
             }
         }

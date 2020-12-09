@@ -24,7 +24,7 @@ namespace AirPortWeb.Controllers
         [HttpGet]
         public IActionResult login()
         {
-            return View(LoginVeiwModel);
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

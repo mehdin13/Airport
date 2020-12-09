@@ -33,8 +33,9 @@ namespace AirPort.Controllers
                 }
                 return linklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return linklistobj;
             }
         }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20201128194151_sajad01")]
-    partial class sajad01
+    [Migration("20201208211549_sajjad05")]
+    partial class sajjad05
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,6 +68,44 @@ namespace AirPortDataLayer.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Tbl_Adress");
+                });
+
+            modelBuilder.Entity("AirPortModel.Models.Advertizment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("FullName")
+                        .HasColumnName("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Phone")
+                        .HasColumnName("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tbl_Advertizment");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.AirPlane", b =>
@@ -927,6 +965,10 @@ namespace AirPortDataLayer.Migrations
                     b.Property<int>("Type")
                         .HasColumnName("Type")
                         .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnName("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

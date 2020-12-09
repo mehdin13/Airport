@@ -104,8 +104,9 @@ namespace AirPort.Controllers
                 }
                 return RestaurantlinkListobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string s = ex.Message;
                 return RestaurantlinkListobj;
             }
         }

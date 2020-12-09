@@ -99,24 +99,25 @@ namespace AirPort.Controllers
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return todolistobj;
             }
         }
         [HttpPost]
         [Route("ModifyToDo")]
-        public List<ProgressStatus> Modify(List<ToDoModifyViewModel> toDoModifyViewModels)
+        public List<ProgressStatus> Modify([FromForm] string[] id, [FromForm] bool[] isdone)
         {
             ProgressStatus Result = new ProgressStatus();
             List<ProgressStatus> Resultlist = new List<ProgressStatus>();
             try
             {
-                if (toDoModifyViewModels != null)
+                if (id != null && isdone != null)
                 {
-                    foreach (var item in toDoModifyViewModels)
+                    for (int i = 0; i < id.Length ; i++)
                     {
-                        if (_flighttodo.Modify(item.id, item.isdone).Number == 1)
+                        if (_flighttodo.Modify(Convert.ToInt32(id[i]), isdone[i]).Number == 1)
                         {
                             Result = new ProgressStatus { Message = "", Number = 1, Title = "unhandled Error !" };
                             Resultlist.Add(Result);
@@ -142,6 +143,7 @@ namespace AirPort.Controllers
                 Resultlist.Add(Result);
                 return Resultlist;
             }
+
         }
     }
 }

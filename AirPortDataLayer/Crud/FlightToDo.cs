@@ -65,7 +65,12 @@ namespace AirPortDataLayer.Crud
         }
         public ProgressStatus Modify(int id, bool isdone)
         {
-            AirPortModel.Models.FlightToDo dodo = new AirPortModel.Models.FlightToDo { id = id, IsDon = isdone };
+            AirPortModel.Models.FlightToDo dodo = new AirPortModel.Models.FlightToDo();
+            dodo = _db.FlightToDos.FirstOrDefault(x => x.id.Equals(id));
+            if (dodo != null)
+            {
+                dodo.IsDon = isdone;
+            }
             try
             {
                 _db.FlightToDos.Attach(dodo);

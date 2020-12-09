@@ -68,6 +68,44 @@ namespace AirPortDataLayer.Migrations
                     b.ToTable("Tbl_Adress");
                 });
 
+            modelBuilder.Entity("AirPortModel.Models.Advertizment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnName("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("Description")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("FullName")
+                        .HasColumnName("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnName("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnName("LastUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Phone")
+                        .HasColumnName("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tbl_Advertizment");
+                });
+
             modelBuilder.Entity("AirPortModel.Models.AirPlane", b =>
                 {
                     b.Property<int>("Id")
@@ -925,6 +963,10 @@ namespace AirPortDataLayer.Migrations
                     b.Property<int>("Type")
                         .HasColumnName("Type")
                         .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnName("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
