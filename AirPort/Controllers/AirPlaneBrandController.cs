@@ -10,32 +10,34 @@ namespace AirPort.Controllers
     [Route("[controller]")]
     public class AirPlaneBrandController : ControllerBase
     {
-        private readonly IAirPlane _airplane; 
-        public AirPlaneBrandController (IAirPlane airPlane)
+        private readonly IBrand _brand;
+
+        public AirPlaneBrandController(IBrand brand)
         {
-            _airplane = airPlane;
+            _brand = brand;
         }
         [HttpGet]
-        [Route("AirplaneList")]
-        public List<AirPlaneBrandviewModel> AirplaneList()
+        [Route("AirplaneBrandList")]
+        public List<AirPlaneBrandviewModel> AirplaneBrandList()
         {
-            AirPlaneBrandviewModel airplanelistobj = new AirPlaneBrandviewModel();
-            List<AirPlaneBrandviewModel> airplainlinklistobj = new List<AirPlaneBrandviewModel>();
+
+            List<AirPlaneBrandviewModel> airplainBrandlinklistobj = new List<AirPlaneBrandviewModel>();
             try
             {
-                var Airplanelistes = _airplane.AirplaneList();
-                foreach (var item in Airplanelistes)
+                foreach (var item in _brand.ToList())
                 {
-                    airplanelistobj.BrandId = item.BrandId;
-                    airplanelistobj.BrandName = item.Name;
-                    //airplanelistobj.BrandIcon = item.Gallery;
-                    airplainlinklistobj.Add(airplanelistobj);
+                    AirPlaneBrandviewModel airplaneBrandlistobj = new AirPlaneBrandviewModel();
+                    airplaneBrandlistobj.BrandIcon = item.BrandIcon;
+                    airplaneBrandlistobj.BrandId = item.Id;
+                    airplaneBrandlistobj.BrandName = item.BrandName;
+                    airplainBrandlinklistobj.Add(airplaneBrandlistobj);
                 }
-                return airplainlinklistobj;
+                return airplainBrandlinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return airplainlinklistobj;
+                string mes = ex.Message;
+                return airplainBrandlinklistobj;
             }
         }
     }

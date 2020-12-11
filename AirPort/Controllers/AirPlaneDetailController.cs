@@ -11,22 +11,24 @@ namespace AirPort.Controllers
     public class AirPlaneDetailController : ControllerBase
     {
         private readonly IAirPlane _airplane;
-        public AirPlaneDetailController(IAirPlane airPlane)
+        private readonly IGallery _gallery;
+        public AirPlaneDetailController(IAirPlane airPlane, IGallery gallery)
         {
             _airplane = airPlane;
+            _gallery = gallery;
         }
 
         [HttpGet]
         [Route("AirlinDetail")]
-        public List<AirPlaneDetailViewModel> airplanedetaillist()
+        public List<AirPlaneDetailViewModel> airplanedetaillist(int id)
         {
-            AirPlaneDetailViewModel airlinelistobj = new AirPlaneDetailViewModel();
             List<AirPlaneDetailViewModel> airlinelinklistobj = new List<AirPlaneDetailViewModel>();
             try
             {
-                var listdetailairplane = _airplane.AirplaneDetailList();
-                foreach (var item in listdetailairplane)
+                //var airplainsdetails = _airplane.FindById(id);
+                foreach (var item in _airplane.FindById(id))
                 {
+                    AirPlaneDetailViewModel airlinelistobj = new AirPlaneDetailViewModel();
                     airlinelistobj.AirPlaneId = item.Id;
                     airlinelistobj.Name = item.Name;
                     airlinelistobj.Model = item.Model;
@@ -39,8 +41,9 @@ namespace AirPort.Controllers
                 }
                 return airlinelinklistobj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return airlinelinklistobj;
             }
         }

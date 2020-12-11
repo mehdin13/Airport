@@ -8,7 +8,7 @@ using AirPortDataLayer.Crud.InterFace;
 
 namespace AirPortDataLayer.Crud
 {
-    class AirPlane : IAirPlane
+    public class AirPlane : IAirPlane
     {
         private readonly AppDatabaseContext _db;
         public AirPlane(AppDatabaseContext db)
@@ -26,7 +26,7 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return obj.Id;
             }
-            catch (Exception )
+            catch (Exception)
             {
 
                 return 0;
@@ -89,19 +89,22 @@ namespace AirPortDataLayer.Crud
             Gallery gallery = new Gallery(_db);
             return gallery.ListImage(id).ToList();
         }
-
         public ProgressStatus CheckairplainCode(string code)
         {
-            var result = new ProgressStatus { Number = 1, Title = "CheckairplainCode", Message ="Successful" };
+            var result = new ProgressStatus { Number = 1, Title = "CheckairplainCode", Message = "Successful" };
             return result;
         }
         public List<AirPortModel.Models.AirPlane> AirplaneList()
         {
-            return _db.airPlanes.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+            return _db.airPlanes.Where(x => x.Id.Equals(1) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.AirPlane> AirplaneDetailList()
         {
-            return _db.airPlanes.Where(x => x.Id.Equals(12) && x.IsDelete == false).ToList();
+            return _db.airPlanes.Where(x => x.Id.Equals(2) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.AirPlane> getbybrand(int id)
+        {
+            return _db.airPlanes.Where(x => x.BrandId == id).ToList();
         }
     }
 }

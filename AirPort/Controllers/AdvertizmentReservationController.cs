@@ -28,25 +28,29 @@ namespace AirPort.Controllers
         [Route("Advertizment")]
         public ProgressStatus Addrequest([FromForm] AdvertizmentReservationViewModel advertizment)
         {
+            var result = new ProgressStatus();
             try
             {
-
                 AirPortModel.Models.Advertizment Requestobj = new AirPortModel.Models.Advertizment();
                 if (_advertizment.checkphon(advertizment.Phone).Number.Equals(2))
                 {
                     Requestobj.FullName = advertizment.Fullname;
                     Requestobj.Phone = advertizment.Phone;
                     Requestobj.Description = advertizment.Description;
-                    return new ProgressStatus { Message = "Request has'been insert Successfuly", Number = 1, Title = "Successful" };
+                    _advertizment.Insert(Requestobj);
+                    result = new ProgressStatus { Message = "Request has'been insert Successfuly", Number = 1, Title = "Successful" };
+                    return result;
                 }
                 else
                 {
-                    return new ProgressStatus { Message = "You allredy sent a Request", Number = 2, Title = "unSuccessful" };
+                    result = new ProgressStatus { Message = "You allredy sent a Request", Number = 2, Title = "unSuccessful" };
+                    return result;
                 }
             }
             catch (Exception ex)
             {
-                return new ProgressStatus { Message = ex.Message, Number = 0, Title = "" };
+                result = new ProgressStatus { Message = ex.Message, Number = 0, Title = "" };
+                return result;
             }
         }
     }

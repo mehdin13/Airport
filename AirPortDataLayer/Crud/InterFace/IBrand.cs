@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AirPortDataLayer.Crud.InterFace
 {
-   public interface IBrand
+    public interface IBrand
     {
         int Insert(AirPortModel.Models.Brand obj);
         ProgressStatus Delete(int Id);
