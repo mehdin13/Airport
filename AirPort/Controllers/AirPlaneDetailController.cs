@@ -26,7 +26,7 @@ namespace AirPort.Controllers
             try
             {
                 //var airplainsdetails = _airplane.FindById(id);
-                foreach (var item in _airplane.FindById(id))
+                foreach (var item in _airplane.AirplaneList())
                 {
                     AirPlaneDetailViewModel airlinelistobj = new AirPlaneDetailViewModel();
                     airlinelistobj.AirPlaneId = item.Id;
