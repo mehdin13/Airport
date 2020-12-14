@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AirPortDataLayer.Crud
+namespace AirPortDataLayer.Crud.VeiwModel
 {
     public class FeatureValueVeiwModel
     {

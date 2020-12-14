@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using AirPortDataLayer.Data;
-using AirPortDataLayer.Crud.VeiwModel;
 using AirPortDataLayer.Crud.InterFace;
 namespace AirPortDataLayer.Crud
 {
@@ -72,7 +71,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Advertizment> ToList()
         {
-            return _db.advertizments.Where(x => x.IsDelete == false).ToList();
+            return _db.advertizments.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.Advertizment FindById(int id)
         {

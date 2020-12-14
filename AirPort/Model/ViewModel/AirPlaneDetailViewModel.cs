@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AirPortDataLayer.Crud.VeiwModel;
 
 namespace AirPort.Model.ViewModel
 {
@@ -13,7 +14,7 @@ namespace AirPort.Model.ViewModel
         public string AirplaneCode { get; set; }
         public int BrandId { get; set; }
         public int GalleryId { get; set; }
-        public int DetailId { get; set; }
+        public List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel>  Detail { get; set; }
         public int AirLineId { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using AirPortDataLayer.Crud.InterFace;
 using System.Collections.Generic;
 using AirPort.Model.ViewModel;
+using AirPortDataLayer.Crud.VeiwModel;
 
 namespace AirPort.Controllers
 {
@@ -11,40 +12,38 @@ namespace AirPort.Controllers
     public class AirPlaneDetailController : ControllerBase
     {
         private readonly IAirPlane _airplane;
-        private readonly IGallery _gallery;
-        public AirPlaneDetailController(IAirPlane airPlane, IGallery gallery)
+        private readonly IDetail _detail;
+        private readonly IFeatrue _featrue;
+
+        public AirPlaneDetailController(IAirPlane airPlane, IDetail detail, IFeatrue featrue)
         {
             _airplane = airPlane;
-            _gallery = gallery;
+            _detail = detail;
+            _featrue = featrue;
         }
 
         [HttpGet]
-        [Route("AirlinDetail")]
-        public List<AirPlaneDetailViewModel> airplanedetaillist(int id)
+        [Route("AirplaneDetailList")]
+        public AirPlaneDetailViewModel AirplaneDetailList(int id)
         {
-            List<AirPlaneDetailViewModel> airlinelinklistobj = new List<AirPlaneDetailViewModel>();
+
+            AirPlaneDetailViewModel airlinelistobj = new AirPlaneDetailViewModel();
+            FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
             try
             {
-                //var airplainsdetails = _airplane.FindById(id);
-                foreach (var item in _airplane.AirplaneList())
+                foreach (var item in _detail.FeatureValues(id))
                 {
-                    AirPlaneDetailViewModel airlinelistobj = new AirPlaneDetailViewModel();
-                    airlinelistobj.AirPlaneId = item.Id;
-                    airlinelistobj.Name = item.Name;
-                    airlinelistobj.Model = item.Model;
-                    airlinelistobj.AirplaneCode = item.AirPlaneCode;
-                    airlinelistobj.BrandId = item.BrandId;
-                    airlinelistobj.GalleryId = item.GalleryId;
-                    airlinelistobj.DetailId = item.Id;
-                    airlinelistobj.AirLineId = item.AirlineId;
-                    airlinelinklistobj.Add(airlinelistobj);
+
+                    feature.name = item.name;
+                    feature.value = item.value;
+                    airlinelistobj.Detail.Add(feature);
                 }
-                return airlinelinklistobj;
+                return airlinelistobj;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return airlinelinklistobj;
+                return airlinelistobj;
             }
         }
     }

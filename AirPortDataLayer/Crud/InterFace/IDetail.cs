@@ -11,6 +11,6 @@ namespace AirPortDataLayer.Crud.InterFace
         ProgressStatus Update(AirPortModel.Models.Detail obj);
         List<AirPortModel.Models.Detail> ToList();
         AirPortModel.Models.Detail FindById(int id);
-        List<FeatureValueVeiwModel> FeatureValues(int id);
+        List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> FeatureValues(int id);
     }
 }
