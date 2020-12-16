@@ -71,7 +71,6 @@ namespace AirPortDataLayer.Crud
         {
             return _db.flights.FirstOrDefault(x => x.Id == id);
         }
-
         public ProgressStatus FlightNumberExist(string Number)
         {
             var Flightnumber = _db.flights.FirstOrDefault(x => x.Number == Number);

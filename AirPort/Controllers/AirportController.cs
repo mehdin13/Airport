@@ -3,7 +3,7 @@ using System;
 using AirPortDataLayer.Crud.InterFace;
 using System.Collections.Generic;
 using AirPort.Model.ViewModel;
-
+using AirPortDataLayer.Crud.VeiwModel;
 
 namespace AirPort.Controllers
 {
@@ -12,25 +12,26 @@ namespace AirPort.Controllers
     public class AirportController : ControllerBase
     {
         private readonly IAirPort _airport;
-        public AirportController(IAirPort airPort)
+        private readonly IDetail _detail;
+        public AirportController(IAirPort airPort,IDetail detail)
         {
             _airport = airPort;
+            _detail = detail;
         }
         [HttpGet]
         [Route("Airportslists")]
         public List<AirportViewModel> Airportslist()
         {
-            AirportViewModel airportlistobj = new AirportViewModel();
             List<AirportViewModel> airportlinklistobj = new List<AirportViewModel>();
             try
             {
-                var listairports = _airport.airportlists();
+                var listairports = _airport.Tolist();
                 foreach (var item in listairports)
                 {
+                    AirportViewModel airportlistobj = new AirportViewModel();
                     airportlistobj.Name = item.Name;
                     airportlistobj.AirportId = item.Id;
-                   // airportlistobj.GalleryId = _airport.FindById(item.Gallery).Id;
-                    airportlistobj.AirportCode = item.Code;
+                  //  airportlistobj.Gallery = 
                     airportlistobj.Abbreviation = item.Abbreviation;
                     airportlinklistobj.Add(airportlistobj);
                 }
@@ -39,6 +40,28 @@ namespace AirPort.Controllers
             catch (Exception)
             {
                 return airportlinklistobj;
+            }
+        }
+        [HttpGet]
+        [Route("AirportDetail")]
+        public AirportDetailViewModel AirportDetail(int Id)
+        {
+            AirportDetailViewModel airportlinkOBJ = new AirportDetailViewModel();
+            FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
+            try
+            {
+                foreach (var item in _detail.FeatureValues(Id))
+                {
+                    feature.name = item.name;
+                    feature.value = item.value;
+                    airportlinkOBJ.Detail.Add(feature);
+                }
+                return airportlinkOBJ;
+            }
+            catch (Exception ex)
+            {
+                string Mes = ex.Message;
+                return airportlinkOBJ;
             }
         }
     }

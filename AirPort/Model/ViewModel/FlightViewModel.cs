@@ -10,19 +10,19 @@ namespace AirPort.Model.ViewModel
     public class FlightViewModel
     {
         public string Number { get; set; }//flight number
-        public int AirplainId { get; set; }
-        public int AirPortId { get; set; }
-        public int FlightStatus { get; set; }
-        public int StartAirPort { get; set; }
-        public int EndAirPortId { get; set; }
-        public int Gate { get; set; }
-        public int WeatherId { get; set; }
-        public int Temperature { get; set; }
+        public string AirplainName { get; set; }
+        public string AirPortName { get; set; }
+        public string FlightStatus { get; set; }
+        public string StartAirPort { get; set; }
+        public string EndAirPortId { get; set; }
+        public string Gate { get; set; }
+        public string Weather { get; set; }
+        public string Temperature { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]
-        public int EndTime { get; set; }
+        public DateTime EndTime { get; set; }
         [DataType(DataType.DateTime)]
-        public int Delay { get; set; }
+        public DateTime Delay { get; set; }
     }
 }

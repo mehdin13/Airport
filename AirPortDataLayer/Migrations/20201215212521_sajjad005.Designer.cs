@@ -4,14 +4,16 @@ using AirPortDataLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201215212521_sajjad005")]
+    partial class sajjad005
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1590,7 +1592,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.Weather", b =>
                 {
                     b.HasOne("AirPortModel.Models.AirPort", "AirPort")
-                        .WithMany("weathers")
+                        .WithMany()
                         .HasForeignKey("airportid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

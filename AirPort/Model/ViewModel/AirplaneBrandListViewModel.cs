@@ -9,7 +9,7 @@ namespace AirPort.Model.ViewModel
     {
         public string Icon { get; set; }
         public string AirplainCode { get; set; }
-        public int BrandId { get; set; }
+        public string  Brand { get; set; }
         public string Name { get; set; }
     }
 }

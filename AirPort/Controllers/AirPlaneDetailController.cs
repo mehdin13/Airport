@@ -11,15 +11,15 @@ namespace AirPort.Controllers
     [Route("[controller]")]
     public class AirPlaneDetailController : ControllerBase
     {
-        private readonly IAirPlane _airplane;
-        private readonly IDetail _detail;
-        private readonly IFeatrue _featrue;
 
-        public AirPlaneDetailController(IAirPlane airPlane, IDetail detail, IFeatrue featrue)
+        private readonly IDetail _detail;
+
+
+        public AirPlaneDetailController(IDetail detail)
         {
-            _airplane = airPlane;
+
             _detail = detail;
-            _featrue = featrue;
+
         }
 
         [HttpGet]

@@ -19,7 +19,6 @@ namespace AirPort.Model.ViewModel
         public int WeatherId { get; set; }
         public int Temperature { get; set; }
         public string TerminalName { get; set; }//TerminalName
-
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]

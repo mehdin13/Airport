@@ -11,7 +11,7 @@ namespace AirPort.Model.ViewModel
     {
         public string Name { get; set; }
         public int AirportId { get; set; }
-        public string GalleryId { get; set; }
+        public string Gallery { get; set; }
         public string AirportCode { get; set; }
         public string Abbreviation { get; set; }
     }

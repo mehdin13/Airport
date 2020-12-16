@@ -15,7 +15,6 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.AirPlane> AirPlaneList(int id);
         List<FeatureValueVeiwModel> airlinedetail(int id);
         List<ImageList> airlineGallery(int id);
-        List<AirPortModel.Models.Airline> airlinelists();
         List<AirPortModel.Models.Airline> airlinedetaillists();
     }
 }

@@ -18,8 +18,8 @@ namespace AirPort.Controllers
             _brand = brand;
         }
         [HttpGet]
-        [Route("airplainList")]
-        public List<AirplaneBrandListViewModel> airplainList(int Id)
+        [Route("AirplainList")]
+        public List<AirplaneBrandListViewModel> AirplainList(int Id)
         {
             List<AirplaneBrandListViewModel> airplainlinklistobj = new List<AirplaneBrandListViewModel>();
             try
@@ -31,7 +31,7 @@ namespace AirPort.Controllers
                     airplaineListobj.Icon = _brand.FindById(item.BrandId).BrandIcon;
                     airplaineListobj.Name = item.Name;
                     airplaineListobj.AirplainCode = item.AirPlaneCode;
-                    airplaineListobj.BrandId = _brand.FindById(item.BrandId).Id;
+                    airplaineListobj.Brand = _brand.FindById(item.BrandId).BrandName;
                     airplainlinklistobj.Add(airplaineListobj);
                 }
                 return airplainlinklistobj;

@@ -51,6 +51,7 @@ namespace AirPort
             services.AddTransient<IDetailValue, DetailValue>();
             services.AddTransient<IEntertainment, Entertainment>();
             services.AddTransient<IFeatrue, Featrue>();
+            services.AddTransient<IFlight, Flight>();
             services.AddTransient<IFlightStatus, FlightStatus>();
             services.AddTransient<IFlightToDo, FlightToDo>();
             services.AddTransient<IGallery, Gallery>();

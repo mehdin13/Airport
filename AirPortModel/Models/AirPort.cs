@@ -59,6 +59,7 @@ namespace AirPortModel.Models
         public bool IsDelete { get; set; }
         //One too many
         public List<Terminal> Terminals { get; set; }
+        public List<Weather> weathers { get; set; }
         //end on to many
     }
 }

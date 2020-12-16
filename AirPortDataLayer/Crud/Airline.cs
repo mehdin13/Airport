@@ -94,10 +94,6 @@ namespace AirPortDataLayer.Crud
             Gallery gallery = new Gallery(_db);
             return gallery.ListImage(id).ToList();
         }
-        public List<AirPortModel.Models.Airline> airlinelists()
-        {
-            return _db.airlines.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
-        }
         public List<AirPortModel.Models.Airline> airlinedetaillists()
         {
             return _db.airlines.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
