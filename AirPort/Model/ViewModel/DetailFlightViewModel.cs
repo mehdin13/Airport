@@ -16,8 +16,8 @@ namespace AirPort.Model.ViewModel
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]
-        public int EndTime { get; set; }
+        public DateTime EndTime { get; set; }
         [DataType(DataType.DateTime)]
-        public int Delay { get; set; }
+        public DateTime Delay { get; set; }
     }
 }

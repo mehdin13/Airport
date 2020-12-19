@@ -16,9 +16,13 @@ namespace AirPort.Model.ViewModel
         public string StartAirPort { get; set; }
         public string EndAirPort { get; set; }
         public string Gate { get; set; }
-        public string Weather { get; set; }
-        public string Temperature { get; set; }
-        public List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> Detail { get; set; }
+        
+        public string StartAirportWeather { get; set; }
+        public string EndAirportWeather { get; set; }
+
+        public string StartAirportTemperature { get; set; }
+        public string EndAirportTemperature { get; set; }
+
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]

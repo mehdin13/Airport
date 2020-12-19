@@ -42,6 +42,7 @@ namespace AirPort
             services.AddTransient<IAdvertizment, Advertizment>();
             services.AddTransient<IAirline, Airline>();
             services.AddTransient<IAirPort, AirPortDataLayer.Crud.AirPort>();
+            services.AddTransient<IAirPlane, AirPlane>();
             services.AddTransient<IBrand, Brand>();
             services.AddTransient<ICategory, Category>();
             services.AddTransient<ICity, City>();
