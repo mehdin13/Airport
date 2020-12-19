@@ -9,15 +9,15 @@ namespace AirPort.Model.ViewModel
 {
     public class ParkingViewModel
     {
-        public int DetailId { get; set; }
-        public int Cost { get; set; }
+        public string Detail { get; set; }
+        public string Cost { get; set; }
+        public string Airport { get; set; }
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         public double LocationR { get; set; }
         public int AddressDetail { get; set; }
         public string CityName { get; set; }
         public string StateName { get; set; }
-        public int DetailIds { get; set; }
-        public int CategoriId { get; set; }
+        public string Categori { get; set; }
     }
 }
