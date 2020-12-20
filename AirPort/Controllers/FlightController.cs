@@ -3,7 +3,14 @@ using AirPort.Model.ViewModel;
 using AirPortDataLayer.Crud.InterFace;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using AirPortDataLayer.Crud.VeiwModel;
+using AirPort.Model;
+using AirPortDataLayer.Crud;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Linq;
 
 namespace AirPort.Controllers
 {
@@ -15,11 +22,12 @@ namespace AirPort.Controllers
         private readonly IAirPlane _airPlane;
         private readonly IAirPort _airport;
         private readonly IDetail _detail;
+        private readonly ICustomer _customer;
         private readonly IFlightStatus _flightStatus;
         private readonly IGate _gate;
         private readonly IWeather _Weatger;
         private readonly ITypeDetail _TypeDetail;
-        public FlightController(IFlight flight, IDetail detail, IAirPlane airPlane, IAirPort airPort, IFlightStatus flightStatus, IGate gate, IWeather weather, ITypeDetail typeDetail)
+        public FlightController(IFlight flight, IDetail detail, IAirPlane airPlane, IAirPort airPort, IFlightStatus flightStatus, IGate gate, IWeather weather, ITypeDetail typeDetail,ICustomer customer)
         {
             _flight = flight;
             _detail = detail;
@@ -29,6 +37,7 @@ namespace AirPort.Controllers
             _gate = gate;
             _Weatger = weather;
             _TypeDetail = typeDetail;
+            _customer = customer;
         }
         [HttpGet]
         [Route("FlightList")]
@@ -120,6 +129,31 @@ namespace AirPort.Controllers
             {
                 string Mes = ex.Message;
                 return DFOBJ;
+            }
+        }
+        [HttpPost]
+        [Route("AddToMyFlyght")]
+        public ProgressStatus AddToMyFlyght([FromForm] FlightViewModel flightViewModel)
+        {
+            var result = new ProgressStatus();
+            try
+            {
+                AirPortModel.Models.Flight Flightobj = _flight.FindById(Convert.ToInt32(flightViewModel));
+                Flightobj.Number = flightViewModel.Number;
+                Flightobj.AirPlane = _airPlane.FindById(flightViewModel.FlightAirPlaneId).Name;
+                Flightobj.AirPort = _airport.FindById(flightViewModel.AirPortId).Name;
+                Flightobj.FlightStatus = _flightStatus.FindById(flightViewModel.FlightstatusId).StatusType;
+                Flightobj.StartAirPort = _airport.FindById(flightViewModel.AirPortId).Name;
+                Flightobj.EndAirport = _airport.FindById(flightViewModel.EndAirPortId).Name;
+                Flightobj.Gate = _gate.FindById(flightViewModel.Gate).Name;
+                Flightobj.StartTimeDate = flightViewModel.StartTime;
+                Flightobj.EndTimeDate = flightViewModel.EndTime;
+                Flightobj.Delay = flightViewModel.Delay;
+            }
+            catch (Exception ex)
+            {
+                string Mes = ex.Message;
+                throw;
             }
         }
     }

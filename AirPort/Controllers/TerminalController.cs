@@ -29,7 +29,7 @@ namespace AirPort.Controllers
                     TerminalFlightViewModel terminalObj = new TerminalFlightViewModel();
                     terminalObj.TerminalName = item.Name;
                     terminalObj.AirLineName = item.Name;
-                    //terminalObj.Type = item.type;
+                    terminalObj.Type = item.Name;// need to check
                     terminalObj.AirlineIcon = item.Image;
                     terminalflightObj.Add(terminalObj);
                 }
