@@ -99,7 +99,7 @@ namespace AirPortDataLayer.Crud
         }
         public AirPortModel.Models.Customer FindById(int id)
         {
-            return _db.customers.First(x => x.Id == id);
+            return _db.customers.FirstOrDefault(x => x.Id == id);
         }
         public AirPortModel.Models.Customer FindByEmail(string Email)
         {

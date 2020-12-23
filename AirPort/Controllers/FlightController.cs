@@ -27,7 +27,12 @@ namespace AirPort.Controllers
         private readonly IGate _gate;
         private readonly IWeather _Weatger;
         private readonly ITypeDetail _TypeDetail;
-        public FlightController(IFlight flight, IDetail detail, IAirPlane airPlane, IAirPort airPort, IFlightStatus flightStatus, IGate gate, IWeather weather, ITypeDetail typeDetail,ICustomer customer)
+        private readonly ICustomerFlight _customerFlight;
+        private readonly IAirline _airline;
+        private readonly ICity _city;
+        private readonly IAddress _address;
+
+        public FlightController(IFlight flight, IDetail detail, IAirPlane airPlane, IAirPort airPort, IFlightStatus flightStatus, IGate gate, IWeather weather, ITypeDetail typeDetail, ICustomer customer, ICustomerFlight customerFlight, IAirline airline, ICity city, IAddress address)
         {
             _flight = flight;
             _detail = detail;
@@ -38,6 +43,10 @@ namespace AirPort.Controllers
             _Weatger = weather;
             _TypeDetail = typeDetail;
             _customer = customer;
+            _customerFlight = customerFlight;
+            _airline = airline;
+            _city = city;
+            _address = address;
         }
         [HttpGet]
         [Route("FlightList")]
@@ -133,28 +142,92 @@ namespace AirPort.Controllers
         }
         [HttpPost]
         [Route("AddToMyFlyght")]
-        public ProgressStatus AddToMyFlyght([FromForm] FlightViewModel flightViewModel)
+        public ProgressStatus AddToMyFlyght([FromForm] AddtoFlightList addtoFlightList)
         {
             var result = new ProgressStatus();
             try
             {
-                AirPortModel.Models.Flight Flightobj = _flight.FindById(Convert.ToInt32(flightViewModel));
-                Flightobj.Number = flightViewModel.Number;
-                Flightobj.AirPlane = _airPlane.FindById(flightViewModel.FlightAirPlaneId).Name;
-                Flightobj.AirPort = _airport.FindById(flightViewModel.AirPortId).Name;
-                Flightobj.FlightStatus = _flightStatus.FindById(flightViewModel.FlightstatusId).StatusType;
-                Flightobj.StartAirPort = _airport.FindById(flightViewModel.AirPortId).Name;
-                Flightobj.EndAirport = _airport.FindById(flightViewModel.EndAirPortId).Name;
-                Flightobj.Gate = _gate.FindById(flightViewModel.Gate).Name;
-                Flightobj.StartTimeDate = flightViewModel.StartTime;
-                Flightobj.EndTimeDate = flightViewModel.EndTime;
-                Flightobj.Delay = flightViewModel.Delay;
+                string Custumerid = User.Claims.First(u => u.Type == "Customer").Value;
+                var Userobj = _customer.FindById(Convert.ToInt32(Custumerid));
+                if (Userobj != null)
+                {
+                    if (_flight.FindById(addtoFlightList.Flightid) != null)
+                    {
+                        AirPortModel.Models.CustomerFlight customerFlightobj = new AirPortModel.Models.CustomerFlight();
+                        customerFlightobj.CustomerId = Userobj.Id;
+                        customerFlightobj.FlightId = addtoFlightList.Flightid;
+                        if (_customerFlight.Insert(customerFlightobj) != 0)
+                        {
+                            result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = " با موفقیت به لیست پرواز من اضافه شد" };
+
+                        }
+                        else
+                        {
+
+                            result = new ProgressStatus { Number = 4, Title = "Update Successful", Message = " با خطا مواجه شد" };
+                        }
+                    }
+                    else
+                    {
+                        result = new ProgressStatus { Number = 2, Title = "Update Successful", Message = "شناسه پرواز نا معتبر" };
+                    }
+
+
+                }
+                else
+                {
+                    result = new ProgressStatus { Number = 3, Title = "Update Successful", Message = "توکن نا معتبر" };
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result = new ProgressStatus { Number = 0, Title = "UnhandledError", Message = ex.Message };
+                return result;
+            }
+        }
+        [HttpGet]
+        [Route("MyflightList")]
+        public List<FlightListViewModel> MyflightList()
+        {
+            List<FlightListViewModel> flightlistOBJ = new List<FlightListViewModel>();
+            try
+            {
+                string Custumerid = User.Claims.First(u => u.Type == "Customer").Value;
+                var Userobj = _customer.FindById(Convert.ToInt32(Custumerid));
+                if (Userobj != null)
+                {
+                    foreach (var item in _customerFlight.ToList(Userobj.Id))
+                    {
+                        var Flight = _flight.FindById(item.FlightId);
+                        FlightListViewModel flightObj = new FlightListViewModel();
+                        flightObj.FlightNumber = Flight.Number;
+                        flightObj.airplainid = Flight.FlightAirPlaneId;
+                        flightObj.Airplaincode = Flight.FlightAirPlaneId;
+                        flightObj.AirlineIcon = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Logo;
+                        flightObj.AirlineName = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Name;
+                        flightObj.AirlineId = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Id;
+                        flightObj.Flightid = Flight.Id;
+                        flightObj.StartAirPort = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
+                        flightObj.EndAirPort = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
+                        flightObj.WeatherIcon = _Weatger.FindByAirportId(Flight.StartAirPortId).Icon;
+                        flightObj.StartTime = Flight.StartTimeDate;
+                        flightObj.EndTime = Flight.EndTimeDate;
+                        flightObj.Delay = Flight.Delay;
+                        flightlistOBJ.Add(flightObj);
+                    }
+                    return flightlistOBJ;
+                }
+
+                return flightlistOBJ;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                throw;
+                return flightlistOBJ;
             }
         }
+
     }
 }

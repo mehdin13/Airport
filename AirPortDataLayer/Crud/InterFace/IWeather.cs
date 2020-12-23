@@ -11,5 +11,6 @@ namespace AirPortDataLayer.Crud.InterFace
         ProgressStatus Update(AirPortModel.Models.Weather obj);
         List<AirPortModel.Models.Weather> ToList();
         AirPortModel.Models.Weather FindById(int id);
+        public AirPortModel.Models.Weather FindByAirportId(int id);
     }
 }

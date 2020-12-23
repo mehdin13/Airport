@@ -25,4 +25,8 @@ namespace AirPort.Model.ViewModel
         [DataType(DataType.DateTime)]
         public DateTime Delay { get; set; }
     }
+    public class AddtoFlightList
+    {
+        public int Flightid { get; set; }
+    }
 }

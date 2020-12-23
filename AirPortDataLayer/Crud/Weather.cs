@@ -71,5 +71,9 @@ namespace AirPortDataLayer.Crud
         {
             return _db.Weather.FirstOrDefault(x => x.Id == id);
         }
+        public AirPortModel.Models.Weather FindByAirportId(int id)
+        {
+            return _db.Weather.FirstOrDefault(x => x.airportid == id);
+        }
     }
 }

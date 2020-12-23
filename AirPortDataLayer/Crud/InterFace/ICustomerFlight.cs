@@ -9,7 +9,7 @@ namespace AirPortDataLayer.Crud.InterFace
         int Insert(AirPortModel.Models.CustomerFlight obj);
         ProgressStatus Delete(int id);
         ProgressStatus Update(AirPortModel.Models.CustomerFlight obj);
-        List<AirPortModel.Models.CustomerFlight> ToList();
+        List<AirPortModel.Models.CustomerFlight> ToList(int id);
         AirPortModel.Models.CustomerFlight FindId(int id);
     }
 }

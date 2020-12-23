@@ -18,7 +18,7 @@ namespace AirPortModel.Models
         [Column("Temperature")]
 
         public int Temperature { get; set; }
-
+        public string Icon { get; set; }
         //********foreigen key ******************
         [ForeignKey("AirPort")]
         [Column("AirportId")]

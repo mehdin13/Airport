@@ -17,12 +17,20 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.DateCreate = DateTime.Now;
-                obj.LastUpdate = DateTime.Now;
-                obj.IsDelete = false;
-                _db.CustomerFlight.Add(obj);
-                _db.SaveChanges();
-                return obj.Id;
+                if (_db.CustomerFlight.FirstOrDefault(x => x.FlightId.Equals(obj.FlightId) && x.CustomerId.Equals(obj.CustomerId)) == null)
+                {
+                    obj.DateCreate = DateTime.Now;
+                    obj.LastUpdate = DateTime.Now;
+                    obj.IsDelete = false;
+                    _db.CustomerFlight.Add(obj);
+                    _db.SaveChanges();
+                    return obj.Id;
+
+                }
+                else
+                {
+                    return 0;
+                }
             }
             catch (Exception)
             {
@@ -64,9 +72,9 @@ namespace AirPortDataLayer.Crud
                 return result;
             }
         }
-        public List<AirPortModel.Models.CustomerFlight> ToList()
+        public List<AirPortModel.Models.CustomerFlight> ToList(int id)
         {
-            return _db.CustomerFlight.Where(x => x.IsDelete == false).ToList();
+            return _db.CustomerFlight.Where(x => x.IsDelete == false && x.CustomerId.Equals(id)).ToList();
         }
         public AirPortModel.Models.CustomerFlight FindId(int id)
         {
