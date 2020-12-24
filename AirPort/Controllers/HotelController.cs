@@ -115,13 +115,13 @@ namespace AirPort.Controllers
         [Route("ToureList")]
         public List<ToursViewModel> ToureList()
         {
-            ToursViewModel tourelistobj = new ToursViewModel();
             List<ToursViewModel> tourelinklistobj = new List<ToursViewModel>();
             try
             {
                 var ListToure = _place.PlaceToureId();
                 foreach (var item in ListToure)
                 {
+                    ToursViewModel tourelistobj = new ToursViewModel();
                     tourelistobj.Name = item.Name;
                     //tourelistobj.Date =item.DetailId //tarikhe tour ro az koja bayad gereft ??
                     tourelistobj.CategoryId = item.CategoryId;
@@ -164,7 +164,7 @@ namespace AirPort.Controllers
                     shopListobj.PhoneNumber = item.PhoneNumber;
                     shopLinkListobj.Add(shopListobj);
                 }
-                     return shopLinkListobj;
+                return shopLinkListobj;
             }
             catch (Exception ex)
             {

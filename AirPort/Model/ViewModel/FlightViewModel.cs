@@ -9,15 +9,22 @@ namespace AirPort.Model.ViewModel
 {
     public class FlightViewModel
     {
-        public string Number { get; set; }//flight number
+        public string FlightNumber { get; set; }
+        public int Airplaincode { get; set; }
         public string AirplainName { get; set; }
-        public string AirPortName { get; set; }
-        public string FlightStatus { get; set; }
-        public string StartAirPort { get; set; }
-        public string EndAirPortId { get; set; }
-        public string Gate { get; set; }
-        public string Weather { get; set; }
-        public string Temperature { get; set; }
+        public int airplainid { get; set; }
+        public string AirlineIcon { get; set; }
+        public string AirlineName { get; set; }
+        public int AirlineId { get; set; }
+        public int Flightid { get; set; }
+
+        public int StartAirPortId { get; set; }
+        public string startCityName { get; set; }
+
+        public int EndAirPortid { get; set; }
+        public string EndcityName { get; set; }
+
+        public string WeatherIcon { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]

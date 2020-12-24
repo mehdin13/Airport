@@ -13,7 +13,7 @@ namespace AirPort.Controllers
     {
         private readonly IAirPort _airport;
         private readonly IDetail _detail;
-        public AirportController(IAirPort airPort,IDetail detail)
+        public AirportController(IAirPort airPort, IDetail detail)
         {
             _airport = airPort;
             _detail = detail;
@@ -31,7 +31,7 @@ namespace AirPort.Controllers
                     AirportViewModel airportlistobj = new AirportViewModel();
                     airportlistobj.Name = item.Name;
                     airportlistobj.AirportId = item.Id;
-                  //  airportlistobj.Gallery = 
+                    //  airportlistobj.Gallery = 
                     airportlistobj.Abbreviation = item.Abbreviation;
                     airportlinklistobj.Add(airportlistobj);
                 }
@@ -47,11 +47,11 @@ namespace AirPort.Controllers
         public AirportDetailViewModel AirportDetail(int Id)
         {
             AirportDetailViewModel airportlinkOBJ = new AirportDetailViewModel();
-            FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
             try
             {
                 foreach (var item in _detail.FeatureValues(Id))
                 {
+                    FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
                     feature.name = item.name;
                     feature.value = item.value;
                     airportlinkOBJ.Detail.Add(feature);

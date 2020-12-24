@@ -58,19 +58,26 @@ namespace AirPort.Controllers
                 var ListFlights = _flight.ToList();
                 foreach (var item in ListFlights)
                 {
+                    var Flight = _flight.FindById(item.Id);
                     FlightViewModel FlightlistObj = new FlightViewModel();
-                    FlightlistObj.Number = item.Number;
-                    FlightlistObj.AirplainName = _airPlane.FindById(item.FlightAirPlaneId).Name;
-                    FlightlistObj.AirPortName = _airport.FindById(item.AirPortId).Name;
-                    FlightlistObj.FlightStatus = _flightStatus.FindById(item.FlightstatusId).StatusType;
-                    FlightlistObj.StartAirPort = _airport.FindById(item.AirPortId).Name;
-                    FlightlistObj.EndAirPortId = _airport.FindById(item.AirPortId).Name;
-                    FlightlistObj.Gate = _gate.FindById(item.GateId).Name;
-                    //FlightlistObj.Weather =
-                    //FlightlistObj.Temperature = item.AirPort.weathers.;
-                    FlightlistObj.StartTime = item.StartTimeDate;
-                    FlightlistObj.EndTime = item.EndTimeDate;
-                    FlightlistObj.Delay = item.Delay;
+                    FlightlistObj.FlightNumber = item.Number;
+                    FlightlistObj.Airplaincode = Flight.FlightAirPlaneId;
+                    FlightlistObj.airplainid = Flight.FlightAirPlaneId;
+                    FlightlistObj.AirplainName = _airPlane.FindById(Flight.FlightAirPlaneId).Name;
+                    FlightlistObj.AirlineIcon = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Logo;
+                    FlightlistObj.AirlineName = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Name;
+                    FlightlistObj.AirlineId = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Id;
+                    FlightlistObj.Flightid = Flight.Id;
+                    FlightlistObj.StartAirPortId = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Id;
+                    FlightlistObj.startCityName= _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
+                    FlightlistObj.EndAirPortid = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Id;
+                    FlightlistObj.EndcityName = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
+
+                    FlightlistObj.WeatherIcon = _Weatger.FindByAirportId(Flight.StartAirPortId).Icon;
+                    FlightlistObj.StartTime = Flight.EndTimeDate;
+                    FlightlistObj.EndTime = Flight.EndTimeDate;
+                    FlightlistObj.Delay = Flight.Delay;
+
                     flightlinklistObj.Add(FlightlistObj);
                 }
                 return flightlinklistObj;
@@ -91,17 +98,20 @@ namespace AirPort.Controllers
                 var flightobj = _flight.FindById(Convert.ToInt32(Id));
                 if (flightobj != null)
                 {
-                    FlightdetailObj.Number = flightobj.Number;
-                    FlightdetailObj.Airplain = _airPlane.FindById(flightobj.FlightAirPlaneId).Name;
-                    FlightdetailObj.AirPort = _airport.FindById(flightobj.AirPortId).Name;
-                    FlightdetailObj.StartAirPort = _airport.FindById(flightobj.AirPortId).Name;
-                    FlightdetailObj.EndAirPort = _airport.FindById(flightobj.AirPortId).Name;
-                    FlightdetailObj.FlightStatus = _flightStatus.FindById(flightobj.FlightstatusId).StatusType;
-                    FlightdetailObj.Gate = _gate.FindById(flightobj.GateId).Name;
-                    FlightdetailObj.StartAirportWeather = _TypeDetail.FindById(flightobj.StartAirPortId).Name;
-                    FlightdetailObj.EndAirportWeather = _TypeDetail.FindById(flightobj.FlightEndAirportId).Name;
-                    FlightdetailObj.StartAirportTemperature = _TypeDetail.FindById(flightobj.StartAirPortId).Name;
-                    FlightdetailObj.EndAirportTemperature = _TypeDetail.FindById(flightobj.FlightEndAirportId).Name;
+
+                    FlightdetailObj.FlightNumber = flightobj.Number;
+                    FlightdetailObj.Airplaincode = flightobj.FlightAirPlaneId;
+                    FlightdetailObj.airplainid = flightobj.FlightAirPlaneId;
+                    FlightdetailObj.AirplainName = _airPlane.FindById(flightobj.FlightAirPlaneId).Name;
+                    FlightdetailObj.AirlineIcon = _airline.FindById(_airPlane.FindById(flightobj.FlightAirPlaneId).AirlineId).Logo;
+                    FlightdetailObj.AirlineName = _airline.FindById(_airPlane.FindById(flightobj.FlightAirPlaneId).AirlineId).Name;
+                    FlightdetailObj.AirlineId = _airline.FindById(_airPlane.FindById(flightobj.FlightAirPlaneId).AirlineId).Id;
+                    FlightdetailObj.Flightid = flightobj.Id;
+                    FlightdetailObj.StartAirPortId = _city.FindById(_address.FindById(_airport.FindById(flightobj.StartAirPortId).AirPortAddressId).CityId).Id;
+                    FlightdetailObj.startCityName = _city.FindById(_address.FindById(_airport.FindById(flightobj.StartAirPortId).AirPortAddressId).CityId).Name;
+                    FlightdetailObj.EndAirPortid = _city.FindById(_address.FindById(_airport.FindById(flightobj.StartAirPortId).AirPortAddressId).CityId).Id;
+                    FlightdetailObj.EndcityName = _city.FindById(_address.FindById(_airport.FindById(flightobj.StartAirPortId).AirPortAddressId).CityId).Name;
+                    FlightdetailObj.WeatherIcon = _Weatger.FindByAirportId(flightobj.StartAirPortId).Icon;
                     FlightdetailObj.StartTime = flightobj.StartTimeDate;
                     FlightdetailObj.EndTime = flightobj.EndTimeDate;
                     FlightdetailObj.Delay = flightobj.Delay;
@@ -187,6 +197,7 @@ namespace AirPort.Controllers
                 return result;
             }
         }
+
         [HttpGet]
         [Route("MyflightList")]
         public List<FlightListViewModel> MyflightList()

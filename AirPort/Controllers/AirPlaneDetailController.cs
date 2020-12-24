@@ -28,12 +28,12 @@ namespace AirPort.Controllers
         {
 
             AirPlaneDetailViewModel airlinelistobj = new AirPlaneDetailViewModel();
-            FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
             try
             {
                 foreach (var item in _detail.FeatureValues(id))
                 {
 
+                    FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
                     feature.name = item.name;
                     feature.value = item.value;
                     airlinelistobj.Detail.Add(feature);
