@@ -60,6 +60,7 @@ namespace AirPortModel.Models
         //One too many
         public List<Terminal> Terminals { get; set; }
         public List<Weather> weathers { get; set; }
+        public List<Place> places { get; set; }
         //end on to many
     }
 }

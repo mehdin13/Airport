@@ -13,6 +13,5 @@ namespace AirPort.Model.ViewModel
         public string Airline { get; set; }
         public List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> Detail { get; set; }
         public string Logo { get; set; }
-        public string Phone { get; set; }
     }
 }

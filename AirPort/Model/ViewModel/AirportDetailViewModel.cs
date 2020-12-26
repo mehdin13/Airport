@@ -15,7 +15,5 @@ namespace AirPort.Model.ViewModel
         public string AirportCode { get; set; }
         public string Abbreviation { get; set; }
         public List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> Detail { get; set; }
-        public string Phone { get; set; }
-        public string AddressId { get; set; }
     }
 }

@@ -3,10 +3,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AirPortDataLayer.Migrations
 {
-    public partial class sajjad : Migration
+    public partial class mositafa : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Tbl_Advertizment",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    LastUpdateDate = table.Column<DateTime>(nullable: false),
+                    IsDelete = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tbl_Advertizment", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Tbl_Brand",
                 columns: table => new
@@ -80,6 +98,7 @@ namespace AirPortDataLayer.Migrations
                     LinkId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(maxLength: 50, nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     Type = table.Column<int>(nullable: false),
                     Icon = table.Column<string>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
@@ -337,13 +356,13 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.DetailId,
                         principalTable: "Tbl_Detail",
                         principalColumn: "DetailId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_DetailValue_Tbl_Feature_FeatrueId",
                         column: x => x.FeatrueId,
                         principalTable: "Tbl_Feature",
                         principalColumn: "FeatrueId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -496,6 +515,7 @@ namespace AirPortDataLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TypeId = table.Column<int>(nullable: false),
                     Temperature = table.Column<int>(nullable: false),
+                    Icon = table.Column<string>(nullable: true),
                     AirportId = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     LastUpdateDate = table.Column<DateTime>(nullable: false),
@@ -524,6 +544,7 @@ namespace AirPortDataLayer.Migrations
                     PlaceGalleryId = table.Column<int>(nullable: false),
                     PlaceDetailId = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false),
+                    Airportid = table.Column<int>(nullable: false),
                     Cost = table.Column<double>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: false),
                     PlaceIsactive = table.Column<bool>(nullable: false),
@@ -540,6 +561,12 @@ namespace AirPortDataLayer.Migrations
                         principalTable: "Tbl_Adress",
                         principalColumn: "AdressId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tbl_Place_Tbl_AirPort_Airportid",
+                        column: x => x.Airportid,
+                        principalTable: "Tbl_AirPort",
+                        principalColumn: "AirPortId",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Place_Tbl_Category_PlaceCategoryId",
                         column: x => x.PlaceCategoryId,
@@ -692,13 +719,13 @@ namespace AirPortDataLayer.Migrations
                         column: x => x.FlightstatusId,
                         principalTable: "Tbl_FlightStatus",
                         principalColumn: "FlightStatusId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_Gate_FlightGateId",
                         column: x => x.FlightGateId,
                         principalTable: "Tbl_Gate",
                         principalColumn: "GateId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Tbl_Flight_Tbl_AirPort_StartAirPortId",
                         column: x => x.StartAirPortId,
@@ -915,6 +942,11 @@ namespace AirPortDataLayer.Migrations
                 column: "PlaceAddress");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Tbl_Place_Airportid",
+                table: "Tbl_Place",
+                column: "Airportid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tbl_Place_PlaceCategoryId",
                 table: "Tbl_Place",
                 column: "PlaceCategoryId");
@@ -964,6 +996,9 @@ namespace AirPortDataLayer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "FlightToDo");
+
+            migrationBuilder.DropTable(
+                name: "Tbl_Advertizment");
 
             migrationBuilder.DropTable(
                 name: "Tbl_CustomerFlight");

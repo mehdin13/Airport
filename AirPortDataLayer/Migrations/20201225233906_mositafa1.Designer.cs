@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20201216155446_sajjad008")]
-    partial class sajjad008
+    [Migration("20201225233906_mositafa1")]
+    partial class mositafa1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -987,6 +987,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("PlaceAddress")
                         .HasColumnType("int");
 
+                    b.Property<int>("AirportId")
+                        .HasColumnName("Airportid")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnName("PlaceCategoryId")
                         .HasColumnType("int");
@@ -1035,6 +1039,8 @@ namespace AirPortDataLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Adress");
+
+                    b.HasIndex("AirportId");
 
                     b.HasIndex("CategoryId");
 
@@ -1283,6 +1289,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDelete")
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
@@ -1528,6 +1537,12 @@ namespace AirPortDataLayer.Migrations
                     b.HasOne("AirPortModel.Models.Address", "address")
                         .WithMany("places")
                         .HasForeignKey("Adress")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirPortModel.Models.AirPort", "airPorts")
+                        .WithMany("places")
+                        .HasForeignKey("AirportId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

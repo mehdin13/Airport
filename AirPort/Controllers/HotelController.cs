@@ -34,13 +34,13 @@ namespace AirPort.Controllers
                 foreach (var item in listHotell)
                 {
                     Hotellistobj.Name = item.Name;
-                    Hotellistobj.Address = _address.FindById(item.Adress).Detail;
+                   // Hotellistobj.Address = _address.FindById(item.Adress).Detail;
                     Hotellistobj.CategoryId = item.CategoryId;
                     Hotellistobj.DetailId = item.DetailId;
                     Hotellistobj.Cost = item.Cost;
-                    Hotellistobj.LocationX = _address.FindById(item.Adress).LocationX;
-                    Hotellistobj.LocationY = _address.FindById(item.Adress).LocationY;
-                    Hotellistobj.LocationR = _address.FindById(item.Adress).LocationR;
+                   // Hotellistobj.LocationX = _address.FindById(item.Adress).LocationX;
+                    //Hotellistobj.LocationY = _address.FindById(item.Adress).LocationY;
+                    //Hotellistobj.LocationR = _address.FindById(item.Adress).LocationR;
                     Hotellistobj.PhoneNumber = item.PhoneNumber;
                     hotellinklistobj.Add(Hotellistobj);
                 }
@@ -67,9 +67,9 @@ namespace AirPort.Controllers
                     RestaurantListobj.CategoryId = _address.FindById(item.CustomerId).Id;
                     RestaurantListobj.GalleryId = item.GalleryId;
                     RestaurantListobj.DetailId = _detail.FindById(item.DetailId).Id;//jaye kar dare
-                    RestaurantListobj.LocationX = _address.FindById(item.Adress).LocationX;
-                    RestaurantListobj.LocationY = _address.FindById(item.Adress).LocationY;
-                    RestaurantListobj.LocationR = _address.FindById(item.Adress).LocationR;
+                    RestaurantListobj.LocationX = _address.FindById(item.AdressId).LocationX;
+                    RestaurantListobj.LocationY = _address.FindById(item.AdressId).LocationY;
+                    RestaurantListobj.LocationR = _address.FindById(item.AdressId).LocationR;
                     RestaurantListobj.PhoneNumber = item.PhoneNumber;
                     RestaurantlinkListobj.Add(RestaurantListobj);
                 }
@@ -151,16 +151,16 @@ namespace AirPort.Controllers
                 foreach (var item in listShop)
                 {
                     shopListobj.Name = item.Name;
-                    shopListobj.Address = _address.FindById(item.Adress).Detail;
+                    shopListobj.Address = _address.FindById(item.AdressId).Detail;
                     shopListobj.CategoryId = item.CategoryId;
                     foreach (var items in _gallery.ListImage(item.GalleryId))
                     {
                         shopListobj.Imagelist.Add(items.Url);
                     }
                     shopListobj.DetailId = item.DetailId;
-                    shopListobj.LocationX = _address.FindById(item.Adress).LocationX;
-                    shopListobj.LocationY = _address.FindById(item.Adress).LocationY;
-                    shopListobj.LocationR = _address.FindById(item.Adress).LocationR;
+                    shopListobj.LocationX = _address.FindById(item.AdressId).LocationX;
+                    shopListobj.LocationY = _address.FindById(item.AdressId).LocationY;
+                    shopListobj.LocationR = _address.FindById(item.AdressId).LocationR;
                     shopListobj.PhoneNumber = item.PhoneNumber;
                     shopLinkListobj.Add(shopListobj);
                 }

@@ -50,12 +50,18 @@ namespace AirPort.Controllers
             FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
             try
             {
+                List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> featuresLists = new List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel>();
+                var airlins = _airline.FindById(id);
+                airlineListObj.Name = airlins.Name;
+                airlineListObj.Airline = airlins.Name;
+                airlineListObj.Logo = airlins.Logo;
                 foreach (var item in _detail.FeatureValues(id))
                 {
                     feature.name = item.name;
                     feature.value = item.value;
-                    airlineListObj.Detail.Add(feature);
+                    featuresLists.Add(feature);
                 }
+                airlineListObj.Detail = featuresLists;
                 return airlineListObj;
             }
             catch (Exception ex)

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20201215212521_sajjad005")]
-    partial class sajjad005
+    [Migration("20201225232451_mositafa")]
+    partial class mositafa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -987,6 +987,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("PlaceAddress")
                         .HasColumnType("int");
 
+                    b.Property<int>("AirportId")
+                        .HasColumnName("Airportid")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnName("PlaceCategoryId")
                         .HasColumnType("int");
@@ -1035,6 +1039,8 @@ namespace AirPortDataLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Adress");
+
+                    b.HasIndex("AirportId");
 
                     b.HasIndex("CategoryId");
 
@@ -1282,6 +1288,9 @@ namespace AirPortDataLayer.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnName("IsDelete")
@@ -1531,6 +1540,12 @@ namespace AirPortDataLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AirPortModel.Models.AirPort", "airPorts")
+                        .WithMany("places")
+                        .HasForeignKey("AirportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AirPortModel.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
@@ -1592,7 +1607,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.Weather", b =>
                 {
                     b.HasOne("AirPortModel.Models.AirPort", "AirPort")
-                        .WithMany()
+                        .WithMany("weathers")
                         .HasForeignKey("airportid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -22,7 +22,7 @@ namespace AirPortModel.Models
 
         [ForeignKey("address")]
         [Column("PlaceAddress")]
-        public int Adress { get; set; }
+        public int AdressId { get; set; }
         public Address address { get; set; }
         //*****************foreignKey******************
         [ForeignKey("Category")]
@@ -47,13 +47,18 @@ namespace AirPortModel.Models
         //*********************End ******************
         //***********foreign Key********************
         [ForeignKey("Customers")]
+        [AllowNull]
         [Column("CustomerId")]
         public int CustomerId { get; set; }
         public Customer Customers { get; set; }
+        [ForeignKey("airPorts")]
+        [Column("Airportid")]
+        [AllowNull]
+        public int AirportId { get; set; }
+        public AirPort airPorts { get; set; }
         //******************End Foregn key******************
         [AllowNull]
-        [DataType(DataType.Currency)]
-        public double Cost { get; set; }
+        public int Cost { get; set; }
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }

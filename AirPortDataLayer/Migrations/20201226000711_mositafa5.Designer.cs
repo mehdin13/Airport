@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20201215225601_sajjad006")]
-    partial class sajjad006
+    [Migration("20201226000711_mositafa5")]
+    partial class mositafa5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -983,16 +983,20 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Adress")
+                    b.Property<int>("AdressId")
                         .HasColumnName("PlaceAddress")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AirportId")
+                        .HasColumnName("Airportid")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnName("PlaceCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
                         .HasColumnName("CustomerId")
@@ -1034,7 +1038,9 @@ namespace AirPortDataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Adress");
+                    b.HasIndex("AdressId");
+
+                    b.HasIndex("AirportId");
 
                     b.HasIndex("CategoryId");
 
@@ -1283,6 +1289,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDelete")
                         .HasColumnName("IsDelete")
                         .HasColumnType("bit");
@@ -1527,7 +1536,13 @@ namespace AirPortDataLayer.Migrations
                 {
                     b.HasOne("AirPortModel.Models.Address", "address")
                         .WithMany("places")
-                        .HasForeignKey("Adress")
+                        .HasForeignKey("AdressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirPortModel.Models.AirPort", "airPorts")
+                        .WithMany("places")
+                        .HasForeignKey("AirportId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1592,7 +1607,7 @@ namespace AirPortDataLayer.Migrations
             modelBuilder.Entity("AirPortModel.Models.Weather", b =>
                 {
                     b.HasOne("AirPortModel.Models.AirPort", "AirPort")
-                        .WithMany()
+                        .WithMany("weathers")
                         .HasForeignKey("airportid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

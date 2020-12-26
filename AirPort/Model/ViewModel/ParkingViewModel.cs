@@ -15,9 +15,11 @@ namespace AirPort.Model.ViewModel
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         public double LocationR { get; set; }
-        public int AddressDetail { get; set; }
+        public string AddressDetail { get; set; }
         public string CityName { get; set; }
         public string StateName { get; set; }
         public string Categori { get; set; }
-    }
+        public string Capasity { get; set; }//zarfiat
+        public string Phone { get; set; }
+    }//3 ta feathcer darim 
 }

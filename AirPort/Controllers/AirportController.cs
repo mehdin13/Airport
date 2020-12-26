@@ -13,10 +13,13 @@ namespace AirPort.Controllers
     {
         private readonly IAirPort _airport;
         private readonly IDetail _detail;
-        public AirportController(IAirPort airPort, IDetail detail)
+        private readonly IGallery _gallery;
+        
+        public AirportController(IAirPort airPort, IDetail detail, IGallery gallery)
         {
             _airport = airPort;
             _detail = detail;
+            _gallery = gallery;
         }
         [HttpGet]
         [Route("Airportslists")]
@@ -31,7 +34,7 @@ namespace AirPort.Controllers
                     AirportViewModel airportlistobj = new AirportViewModel();
                     airportlistobj.Name = item.Name;
                     airportlistobj.AirportId = item.Id;
-                    //  airportlistobj.Gallery = 
+                    airportlistobj.Gallery = _gallery.FindById(item.GalleryId).Name;
                     airportlistobj.Abbreviation = item.Abbreviation;
                     airportlinklistobj.Add(airportlistobj);
                 }
@@ -49,13 +52,22 @@ namespace AirPort.Controllers
             AirportDetailViewModel airportlinkOBJ = new AirportDetailViewModel();
             try
             {
+                List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> featureList = new List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel>();
+                var airport = _airport.FindById(Id);
+                airportlinkOBJ.Name = airport.Name;
+                airportlinkOBJ.AirporId = airport.Id;
+                airportlinkOBJ.GalleryId = airport.Url;
+                airportlinkOBJ.AirportCode = airport.Code;
+                airportlinkOBJ.Abbreviation = airport.Abbreviation;
+                
                 foreach (var item in _detail.FeatureValues(Id))
                 {
-                    FeatureValueVeiwModel feature = new FeatureValueVeiwModel();
+                    AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel feature = new AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel();
                     feature.name = item.name;
                     feature.value = item.value;
-                    airportlinkOBJ.Detail.Add(feature);
+                    featureList.Add(feature);
                 }
+                airportlinkOBJ.Detail = featureList;
                 return airportlinkOBJ;
             }
             catch (Exception ex)

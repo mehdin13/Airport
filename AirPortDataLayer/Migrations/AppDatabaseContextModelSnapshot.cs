@@ -981,16 +981,20 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Adress")
+                    b.Property<int>("AdressId")
                         .HasColumnName("PlaceAddress")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AirportId")
+                        .HasColumnName("Airportid")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnName("PlaceCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
                         .HasColumnName("CustomerId")
@@ -1032,7 +1036,9 @@ namespace AirPortDataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Adress");
+                    b.HasIndex("AdressId");
+
+                    b.HasIndex("AirportId");
 
                     b.HasIndex("CategoryId");
 
@@ -1528,7 +1534,13 @@ namespace AirPortDataLayer.Migrations
                 {
                     b.HasOne("AirPortModel.Models.Address", "address")
                         .WithMany("places")
-                        .HasForeignKey("Adress")
+                        .HasForeignKey("AdressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirPortModel.Models.AirPort", "airPorts")
+                        .WithMany("places")
+                        .HasForeignKey("AirportId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

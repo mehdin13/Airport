@@ -2,7 +2,7 @@
 
 namespace AirPortDataLayer.Migrations
 {
-    public partial class sajjad008 : Migration
+    public partial class mositafa1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
