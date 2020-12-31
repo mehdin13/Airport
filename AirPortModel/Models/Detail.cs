@@ -46,7 +46,7 @@ namespace AirPortModel.Models
         public List<AirPort> airPorts { get; set; }
         public List<AirPlane> airPlanes { get; set; }
         public List<DetailValue> detailValues { get; set; }
-
+        public List<Raiting> raitings { get; set; }
 
     }
 }

@@ -17,5 +17,6 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.Place> PlaceToureId();
         List<AirPortModel.Models.Place> PlacesShopId();
         List<AirPortModel.Models.Place> PlacesCofeeshopId();
+        List<AirPortModel.Models.Place> AirportParkingList(int id);
     }
 }

@@ -67,7 +67,7 @@ namespace AirPort
             services.AddTransient<ITypeDetail, TypeDetail>();
             services.AddTransient<IUser, User>();
             services.AddTransient<IWeather, Weather>();
-
+            services.AddTransient<IRaiting, Rairing>();
             services.Configure<AppSettings>(Configuration.GetSection("TokenProvider"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();

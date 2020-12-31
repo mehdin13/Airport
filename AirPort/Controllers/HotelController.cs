@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using AirPortDataLayer.Crud.InterFace;
-using AirPortDataLayer.Crud;
 using AirPort.Model.ViewModel;
 
 namespace AirPort.Controllers
@@ -34,13 +33,13 @@ namespace AirPort.Controllers
                 foreach (var item in listHotell)
                 {
                     Hotellistobj.Name = item.Name;
-                   // Hotellistobj.Address = _address.FindById(item.Adress).Detail;
+                    Hotellistobj.Address = _address.FindById(item.AdressId).Detail;
                     Hotellistobj.CategoryId = item.CategoryId;
                     Hotellistobj.DetailId = item.DetailId;
                     Hotellistobj.Cost = item.Cost;
-                   // Hotellistobj.LocationX = _address.FindById(item.Adress).LocationX;
-                    //Hotellistobj.LocationY = _address.FindById(item.Adress).LocationY;
-                    //Hotellistobj.LocationR = _address.FindById(item.Adress).LocationR;
+                    Hotellistobj.LocationX = _address.FindById(item.AdressId).LocationX;
+                    Hotellistobj.LocationY = _address.FindById(item.AdressId).LocationY;
+                    Hotellistobj.LocationR = _address.FindById(item.AdressId).LocationR;
                     Hotellistobj.PhoneNumber = item.PhoneNumber;
                     hotellinklistobj.Add(Hotellistobj);
                 }
@@ -66,7 +65,7 @@ namespace AirPort.Controllers
                     RestaurantListobj.Name = item.Name;
                     RestaurantListobj.CategoryId = _address.FindById(item.CustomerId).Id;
                     RestaurantListobj.GalleryId = item.GalleryId;
-                    RestaurantListobj.DetailId = _detail.FindById(item.DetailId).Id;//jaye kar dare
+                    RestaurantListobj.DetailId = _detail.FindById(item.DetailId).Id;
                     RestaurantListobj.LocationX = _address.FindById(item.AdressId).LocationX;
                     RestaurantListobj.LocationY = _address.FindById(item.AdressId).LocationY;
                     RestaurantListobj.LocationR = _address.FindById(item.AdressId).LocationR;
@@ -123,7 +122,7 @@ namespace AirPort.Controllers
                 {
                     ToursViewModel tourelistobj = new ToursViewModel();
                     tourelistobj.Name = item.Name;
-                    //tourelistobj.Date =item.DetailId //tarikhe tour ro az koja bayad gereft ??
+                    tourelistobj.Date = item.DateCreate;//check shavad dobare hatman
                     tourelistobj.CategoryId = item.CategoryId;
                     tourelistobj.GalleryId = item.GalleryId;
                     tourelistobj.DetailId = item.DetailId;

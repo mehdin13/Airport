@@ -161,7 +161,7 @@ namespace AirPort.Controllers
                 return result;
             }
         }
-        [HttpPost]//check shavad :(
+        [HttpPost]
         [Route("ChangePassword")]
         public ProgressStatus ChengePassWord([FromForm] ChengePasswordViewModel chengePasswordViewModel)
         {

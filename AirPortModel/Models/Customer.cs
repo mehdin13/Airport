@@ -79,6 +79,7 @@ namespace AirPortModel.Models
         public List<Place> places { get; set; }
         public List<User> users { get; set; }
         public List<FlightToDo> flightToDos { get; set; }
+        public List<Raiting> raitings { get; set; }
         public virtual ICollection<CustomerFlight> CustomerFlights { get; set; }
     }
 }

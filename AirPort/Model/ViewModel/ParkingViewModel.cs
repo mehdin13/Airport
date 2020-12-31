@@ -9,7 +9,7 @@ namespace AirPort.Model.ViewModel
 {
     public class ParkingViewModel
     {
-        public string Detail { get; set; }
+        public List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> Detail { get; set; }
         public string Cost { get; set; }
         public string Airport { get; set; }
         public double LocationX { get; set; }
