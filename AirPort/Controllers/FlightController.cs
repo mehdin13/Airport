@@ -3,13 +3,7 @@ using AirPort.Model.ViewModel;
 using AirPortDataLayer.Crud.InterFace;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using AirPort.Model;
 using AirPortDataLayer.Crud;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using System.Linq;
 
 namespace AirPort.Controllers

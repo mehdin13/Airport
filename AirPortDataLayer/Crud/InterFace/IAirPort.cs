@@ -11,7 +11,7 @@ namespace AirPortDataLayer.Crud.InterFace
         ProgressStatus Delete(int id);
         ProgressStatus Update(AirPortModel.Models.AirPort obj);
         List<AirPortModel.Models.AirPort> Tolist();
-        AirPortModel.Models.AirPort FindById(int id);
+        AirPortModel.Models.AirPort FindById(int? id);
         List<FeatureValueVeiwModel> AirportDetail(int id);
         List<ImageList> AirPortGallery(int id);
         public ProgressStatus CheckAirportCode(string code);

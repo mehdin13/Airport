@@ -69,7 +69,7 @@ namespace AirPortDataLayer.Crud
         {
             return _db.Adresses.Where(x => !x.IsDelete).ToList();
         }
-        public AirPortModel.Models.Address FindById(int id)
+        public AirPortModel.Models.Address FindById(int? id)
         {
             return _db.Adresses.FirstOrDefault(x => x.Id == id);
         }

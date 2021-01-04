@@ -48,7 +48,7 @@ namespace AirPortDataLayer.Crud
                 var result = new ProgressStatus { Number = 1, Title = "Delete Successful", Message = "Gallery Has been Deleted" };
                 return result;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Gallery  can't be Deleted" };
                 return result;
@@ -64,7 +64,7 @@ namespace AirPortDataLayer.Crud
                 var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "Gallery Has been Update" };
                 return result;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Gallery  can't be Update" };
                 return result;
@@ -79,10 +79,13 @@ namespace AirPortDataLayer.Crud
             ImageList image = new ImageList();
             List<ImageList> imageLists = new List<ImageList>();
             var gallery = _db.GalleryImages.Where(x => x.GalleryId == id);
-            foreach (var item in gallery)
+            if (gallery != null)
             {
-                image.Url = item.Url;
-                imageLists.Add(image);
+                foreach (var item in gallery)
+                {
+                    image.Url = item.Url;
+                    imageLists.Add(image);
+                }
             }
             return imageLists.ToList();
         }

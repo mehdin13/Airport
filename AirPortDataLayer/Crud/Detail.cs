@@ -81,13 +81,13 @@ namespace AirPortDataLayer.Crud
         }
         public List<FeatureValueVeiwModel> FeatureValues(int id)
         {
-            FeatureValueVeiwModel obj = new FeatureValueVeiwModel();
             List<FeatureValueVeiwModel> fvm = new List<FeatureValueVeiwModel>();
             if (_db.details.FirstOrDefault(x => x.Id == id) != null)
             {
                 var dv = _db.detailValues.Where(x => x.DetailId == id).ToList();
                 foreach (var item in dv)
                 {
+                    FeatureValueVeiwModel obj = new FeatureValueVeiwModel();
                     var fe = _db.featrues.FirstOrDefault(x => x.Id == item.FeacherId);
                     obj.name = fe.Name;
                     obj.value = item.Value;
@@ -98,7 +98,7 @@ namespace AirPortDataLayer.Crud
             }
             else
             {
-                return fvm; 
+                return fvm;
             }
 
         }

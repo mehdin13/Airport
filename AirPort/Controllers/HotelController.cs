@@ -14,12 +14,14 @@ namespace AirPort.Controllers
         private readonly IAddress _address;
         private readonly IPlace _place;
         private readonly IDetail _detail;
-        public HotelController(IPlace place, IAddress address, IDetail detail, IGallery gallery)
+        private readonly ICategory _category;
+        public HotelController(IPlace place, IAddress address, IDetail detail, IGallery gallery, ICategory category)
         {
             _gallery = gallery;
             _address = address;
             _place = place;
             _detail = detail;
+            _category = category;
         }
         [HttpGet]
         [Route("HotelList")]
@@ -63,7 +65,7 @@ namespace AirPort.Controllers
                 foreach (var item in ListRestaurant)
                 {
                     RestaurantListobj.Name = item.Name;
-                    RestaurantListobj.CategoryId = _address.FindById(item.CustomerId).Id;
+                    RestaurantListobj.CategoryId = _category.FindById(item.CategoryId).Id;
                     RestaurantListobj.GalleryId = item.GalleryId;
                     RestaurantListobj.DetailId = _detail.FindById(item.DetailId).Id;
                     RestaurantListobj.LocationX = _address.FindById(item.AdressId).LocationX;
@@ -92,12 +94,12 @@ namespace AirPort.Controllers
                 foreach (var item in ListRestaurant)
                 {
                     RestaurantListobj.Name = item.Name;
-                    RestaurantListobj.CategoryId = _address.FindById(item.CustomerId).Id;
+                    RestaurantListobj.CategoryId = _category.FindById(item.CategoryId).Id;
                     RestaurantListobj.GalleryId = item.GalleryId;
-                    RestaurantListobj.DetailId = _detail.FindById(item.Id).Id;
-                    RestaurantListobj.LocationX = _address.FindById(item.Id).Id;
-                    RestaurantListobj.LocationY = _address.FindById(item.Id).Id;
-                    RestaurantListobj.LocationR = _address.FindById(item.Id).Id;
+                    RestaurantListobj.DetailId = _detail.FindById(item.DetailId).Id;
+                    RestaurantListobj.LocationX = _address.FindById(item.AdressId).LocationX;
+                    RestaurantListobj.LocationY = _address.FindById(item.AdressId).LocationY;
+                    RestaurantListobj.LocationR = _address.FindById(item.AdressId).LocationR;
                     RestaurantListobj.PhoneNumber = item.PhoneNumber;
                     RestaurantlinkListobj.Add(RestaurantListobj);
                 }
@@ -122,7 +124,7 @@ namespace AirPort.Controllers
                 {
                     ToursViewModel tourelistobj = new ToursViewModel();
                     tourelistobj.Name = item.Name;
-                    tourelistobj.Date = item.DateCreate;//check shavad dobare hatman
+                    tourelistobj.Date = item.DateCreate;
                     tourelistobj.CategoryId = item.CategoryId;
                     tourelistobj.GalleryId = item.GalleryId;
                     tourelistobj.DetailId = item.DetailId;
@@ -143,6 +145,7 @@ namespace AirPort.Controllers
         public List<ShopViewModel> ShopList()
         {
             ShopViewModel shopListobj = new ShopViewModel();
+            List<string> urllist = new List<string>();
             List<ShopViewModel> shopLinkListobj = new List<ShopViewModel>();
             try
             {
@@ -152,9 +155,14 @@ namespace AirPort.Controllers
                     shopListobj.Name = item.Name;
                     shopListobj.Address = _address.FindById(item.AdressId).Detail;
                     shopListobj.CategoryId = item.CategoryId;
-                    foreach (var items in _gallery.ListImage(item.GalleryId))
+                    var imagees = _gallery.ListImage(item.GalleryId);
+                    if (imagees != null)
                     {
-                        shopListobj.Imagelist.Add(items.Url);
+                        foreach (var items in imagees)
+                        {
+                            urllist.Add(items.Url);
+                            shopListobj.Imagelist = urllist;
+                        }
                     }
                     shopListobj.DetailId = item.DetailId;
                     shopListobj.LocationX = _address.FindById(item.AdressId).LocationX;

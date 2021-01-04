@@ -119,19 +119,19 @@ namespace AirPort.Controllers
                     {
                         if (_flighttodo.Modify(Convert.ToInt32(id[i]), isdone[i]).Number == 1)
                         {
-                            Result = new ProgressStatus { Message = "", Number = 1, Title = "unhandled Error !" };
+                            Result = new ProgressStatus { Message = "change is Don", Number = 1, Title = "Successful!" };
                             Resultlist.Add(Result);
                         }
                         else
                         {
-                            Result = new ProgressStatus { Message = "", Number = 2, Title = "unhandled Error !" };
+                            Result = new ProgressStatus { Message = "change is not Don", Number = 2, Title = "unhandled Error !" };
                             Resultlist.Add(Result);
                         }
                     }
                 }
                 else
                 {
-                    Result = new ProgressStatus { Message = "", Number = 3, Title = "unhandled Error !" };
+                    Result = new ProgressStatus { Message = "change is not Don", Number = 3, Title = "unhandled Error !" };
                     Resultlist.Add(Result);
                 }
                 return Resultlist;

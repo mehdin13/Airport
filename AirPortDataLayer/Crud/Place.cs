@@ -113,11 +113,11 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Place> PlacesShopId()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(4) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(5) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlacesCofeeshopId()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(5) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.CategoryId.Equals(4) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> AirportParkingList(int id)
         {

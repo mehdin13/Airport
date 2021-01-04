@@ -46,15 +46,15 @@ namespace AirPortModel.Models
         public Detail Detail { get; set; }
         //*********************End ******************
         //***********foreign Key********************
-        [ForeignKey("Customers")]
         [AllowNull]
+        [ForeignKey("Customers")]
         [Column("CustomerId")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         public Customer Customers { get; set; }
+        [AllowNull] 
         [ForeignKey("airPorts")]
         [Column("Airportid")]
-        [AllowNull]
-        public int AirportId { get; set; }
+        public int? AirportId { get; set; }
         public AirPort airPorts { get; set; }
         //******************End Foregn key******************
         [AllowNull]

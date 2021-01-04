@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+
 
 namespace AirPort.Model.ViewModel
 {
@@ -19,7 +15,7 @@ namespace AirPort.Model.ViewModel
         public string CityName { get; set; }
         public string StateName { get; set; }
         public string Categori { get; set; }
-        public string Capasity { get; set; }//zarfiat
-        public string Phone { get; set; }
-    }//3 ta feathcer darim 
+        public string Capasity { get; set; }
+        public string Phone { get; set; } 
+    }
 }
