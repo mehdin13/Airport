@@ -25,8 +25,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("HotelList")]
-        public List<HotelViewModel> HotelList()
+        public JsonHotel HotelList()
         {
+            JsonHotel jsonHotel = new JsonHotel();
             HotelViewModel Hotellistobj = new HotelViewModel();
             List<HotelViewModel> hotellinklistobj = new List<HotelViewModel>();
             try
@@ -45,18 +46,20 @@ namespace AirPort.Controllers
                     Hotellistobj.PhoneNumber = item.PhoneNumber;
                     hotellinklistobj.Add(Hotellistobj);
                 }
-                return hotellinklistobj;
+                jsonHotel.result = hotellinklistobj;
+                return jsonHotel;
             }
             catch (Exception ex)
             {
                 string s = ex.Message;
-                return hotellinklistobj;
+                return jsonHotel;
             }
         }
         [HttpGet]
         [Route("RestaurantList")]
-        public List<RestaurantViewModel> RestaurantTolist()
+        public JsonRestaurant RestaurantTolist()
         {
+            JsonRestaurant jsonRestaurant = new JsonRestaurant();
             RestaurantViewModel RestaurantListobj = new RestaurantViewModel();
             List<RestaurantViewModel> RestaurantlinkListobj = new List<RestaurantViewModel>();
             try
@@ -74,20 +77,22 @@ namespace AirPort.Controllers
                     RestaurantListobj.PhoneNumber = item.PhoneNumber;
                     RestaurantlinkListobj.Add(RestaurantListobj);
                 }
-                return RestaurantlinkListobj;
+                jsonRestaurant.result = RestaurantlinkListobj;
+                return jsonRestaurant;
             }
             catch (Exception ex)
             {
                 string s = ex.Message;
-                return RestaurantlinkListobj;
+                return jsonRestaurant;
             }
         }
         [HttpGet]
         [Route("CofeeshopList")]
-        public List<HotelViewModel> CofeeshopTolist()
+        public JsonCofeeshop CofeeshopTolist()
         {
-            HotelViewModel RestaurantListobj = new HotelViewModel();
-            List<HotelViewModel> RestaurantlinkListobj = new List<HotelViewModel>();
+            JsonCofeeshop jsonCofeeshop = new JsonCofeeshop();
+            CofeeShopViewModel RestaurantListobj = new CofeeShopViewModel();
+            List<CofeeShopViewModel> RestaurantlinkListobj = new List<CofeeShopViewModel>();
             try
             {
                 var ListRestaurant = _place.PlacesCofeeshopId();
@@ -103,19 +108,21 @@ namespace AirPort.Controllers
                     RestaurantListobj.PhoneNumber = item.PhoneNumber;
                     RestaurantlinkListobj.Add(RestaurantListobj);
                 }
-                return RestaurantlinkListobj;
+                jsonCofeeshop.result = RestaurantlinkListobj;
+                return jsonCofeeshop;
             }
             catch (Exception ex)
             {
                 string s = ex.Message;
-                return RestaurantlinkListobj;
+                return jsonCofeeshop;
             }
         }
 
         [HttpGet]
         [Route("ToureList")]
-        public List<ToursViewModel> ToureList()
+        public JsonTours ToureList()
         {
+            JsonTours jsonTours = new JsonTours();
             List<ToursViewModel> tourelinklistobj = new List<ToursViewModel>();
             try
             {
@@ -132,18 +139,20 @@ namespace AirPort.Controllers
                     tourelistobj.PhoneNumber = item.PhoneNumber;
                     tourelinklistobj.Add(tourelistobj);
                 }
-                return tourelinklistobj;
+                jsonTours.result = tourelinklistobj;
+                return jsonTours;
             }
             catch (Exception ex)
             {
                 string s = ex.Message;
-                return tourelinklistobj;
+                return jsonTours;
             }
         }
         [HttpGet]
         [Route("ShopList")]
-        public List<ShopViewModel> ShopList()
+        public JsonShop ShopList()
         {
+            JsonShop jsonShop = new JsonShop();
             ShopViewModel shopListobj = new ShopViewModel();
             List<string> urllist = new List<string>();
             List<ShopViewModel> shopLinkListobj = new List<ShopViewModel>();
@@ -171,12 +180,13 @@ namespace AirPort.Controllers
                     shopListobj.PhoneNumber = item.PhoneNumber;
                     shopLinkListobj.Add(shopListobj);
                 }
-                return shopLinkListobj;
+                jsonShop.result = shopLinkListobj;
+                return jsonShop;
             }
             catch (Exception ex)
             {
                 string s = ex.Message;
-                return shopLinkListobj;
+                return jsonShop;
             }
         }
     }

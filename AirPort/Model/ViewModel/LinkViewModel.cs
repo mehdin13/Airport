@@ -13,4 +13,8 @@ namespace AirPort.Model.ViewModel
         public string Icon { get; set; }
         public string UrL { get; set; }
     }
+    public class JsonApplication
+    {
+        public List<LinkViewModel> Result { get; set; }
+    }
 }

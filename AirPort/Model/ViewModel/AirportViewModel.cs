@@ -15,4 +15,8 @@ namespace AirPort.Model.ViewModel
         public string AirportCode { get; set; }
         public string Abbreviation { get; set; }
     }
+    public class JsonAirport
+    {
+        public List<AirportViewModel> result { get; set; }
+    }
 }

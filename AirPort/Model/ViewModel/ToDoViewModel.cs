@@ -29,6 +29,5 @@ namespace AirPort.Model.ViewModel
     {
         public int id { get; set; }
         public bool isdone { get; set; }
-
     }
 }

@@ -67,5 +67,25 @@ namespace AirPort.Model.ViewModel
         public double Cost { get; set; }
         public string PhoneNumber { get; set; }
     }
+    public class JsonHotel
+    {
+        public List<HotelViewModel> result { get; set; }
+    }
+    public class JsonShop
+    {
+        public List<ShopViewModel> result { get; set; }
+    }
+    public class JsonCofeeshop
+    {
+        public List<CofeeShopViewModel> result { get; set; }
+    }
+    public class JsonTours
+    {
+        public List<ToursViewModel> result { get; set; }
+    }
+    public class JsonRestaurant
+    {
+        public List<RestaurantViewModel> result { get; set; }
+    }
 }
 //eghamatgah nadarim ? toye XD 

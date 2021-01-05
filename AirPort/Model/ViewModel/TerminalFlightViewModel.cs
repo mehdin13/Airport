@@ -14,4 +14,8 @@ namespace AirPort.Model.ViewModel
         public string Type { get; set; }//Raft va Bargasht
         public string AirlineIcon { get; set; }
     }
+    public class JsonTerminal
+    {
+        public List<TerminalFlightViewModel> Result { get; set; }
+    }
 }

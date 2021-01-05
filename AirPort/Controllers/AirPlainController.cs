@@ -85,9 +85,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("AirplaneBrandList")]
-        public List<AirPlaneBrandviewModel> AirplaneBrandList()
+        public JsonAirplaneBrand AirplaneBrandList()
         {
-
+            JsonAirplaneBrand jsonAirplaneBrand = new JsonAirplaneBrand();
             List<AirPlaneBrandviewModel> airplainBrandlinklistobj = new List<AirPlaneBrandviewModel>();
             try
             {
@@ -99,12 +99,13 @@ namespace AirPort.Controllers
                     airplaneBrandlistobj.BrandName = item.BrandName;
                     airplainBrandlinklistobj.Add(airplaneBrandlistobj);
                 }
-                return airplainBrandlinklistobj;
+                jsonAirplaneBrand.Result = airplainBrandlinklistobj;
+                return jsonAirplaneBrand;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return airplainBrandlinklistobj;
+                return jsonAirplaneBrand;
             }
         }
     }

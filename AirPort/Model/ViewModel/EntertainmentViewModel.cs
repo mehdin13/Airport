@@ -15,4 +15,8 @@ namespace AirPort.Model.ViewModel
         public int Galleryid { get; set; }
         public string Title { get; set; }
     }
+    public class JsonEntertainment
+    {
+        public List<EntertainmentViewModel> Result { get; set; }
+    }
 }

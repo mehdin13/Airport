@@ -36,4 +36,8 @@ namespace AirPort.Model.ViewModel
     {
         public int Flightid { get; set; }
     }
+    public class JsonFlight
+    {
+        public List<FlightViewModel> Result { get; set; }
+    }
 }

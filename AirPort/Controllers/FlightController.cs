@@ -44,8 +44,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("FlightList")]
-        public List<FlightViewModel> FlightList()
+        public JsonFlight FlightList()
         {
+            JsonFlight jsonFlight = new JsonFlight();
             List<FlightViewModel> flightlinklistObj = new List<FlightViewModel>();
             try
             {
@@ -63,7 +64,7 @@ namespace AirPort.Controllers
                     FlightlistObj.AirlineId = _airline.FindById(_airPlane.FindById(Flight.FlightAirPlaneId).AirlineId).Id;
                     FlightlistObj.Flightid = Flight.Id;
                     FlightlistObj.StartAirPortId = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Id;
-                    FlightlistObj.startCityName= _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
+                    FlightlistObj.startCityName = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
                     FlightlistObj.EndAirPortid = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Id;
                     FlightlistObj.EndcityName = _city.FindById(_address.FindById(_airport.FindById(Flight.StartAirPortId).AirPortAddressId).CityId).Name;
 
@@ -74,12 +75,13 @@ namespace AirPort.Controllers
 
                     flightlinklistObj.Add(FlightlistObj);
                 }
-                return flightlinklistObj;
+                jsonFlight.Result = flightlinklistObj;
+                return jsonFlight;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                return flightlinklistObj;
+                return jsonFlight;
             }
         }
         [HttpGet]
@@ -194,8 +196,9 @@ namespace AirPort.Controllers
 
         [HttpGet]
         [Route("MyflightList")]
-        public List<FlightListViewModel> MyflightList()
+        public JsonFlightlist MyflightList()
         {
+            JsonFlightlist jsonFlightlist = new JsonFlightlist();
             List<FlightListViewModel> flightlistOBJ = new List<FlightListViewModel>();
             try
             {
@@ -222,15 +225,16 @@ namespace AirPort.Controllers
                         flightObj.Delay = Flight.Delay;
                         flightlistOBJ.Add(flightObj);
                     }
-                    return flightlistOBJ;
+                    jsonFlightlist.Result = flightlistOBJ;
+                    return jsonFlightlist;
                 }
 
-                return flightlistOBJ;
+                return jsonFlightlist;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                return flightlistOBJ;
+                return jsonFlightlist;
             }
         }
 

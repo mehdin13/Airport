@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirPort.Model.ViewModel
 {
@@ -13,5 +9,9 @@ namespace AirPort.Model.ViewModel
         public int DetailId { get; set; }
         public string Logo { get; set; }
        // public string Raiting { get; set; }
+    }
+    public class JsonAirline
+    {
+        public List<AirlineviewModel> Result { get; set; }
     }
 }

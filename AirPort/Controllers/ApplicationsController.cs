@@ -17,9 +17,10 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("Applist")]
-        public List<LinkViewModel> Applist()
+        public JsonApplication Applist()
         {
             List<LinkViewModel> linklistobj = new List<LinkViewModel>();
+            JsonApplication jsonApplication = new JsonApplication();
             try
             {
                 var links = _links.ToList();
@@ -35,12 +36,13 @@ namespace AirPort.Controllers
                     linklistobj.Add(linkOBJ);
                     }
                 }
-                return linklistobj;
+                jsonApplication.Result = linklistobj;
+                return jsonApplication;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                return linklistobj;
+                return jsonApplication;
             }
         }
     }

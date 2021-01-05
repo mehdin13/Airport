@@ -17,8 +17,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("NewsList")]
-        public List<NewsViewModel> NewsList()
+        public JsonNews NewsList()
         {
+            JsonNews jsonNews = new JsonNews();
             NewsViewModel linknewsobj = new NewsViewModel();
             List<NewsViewModel> linklistobj = new List<NewsViewModel>();
             try
@@ -31,12 +32,13 @@ namespace AirPort.Controllers
                     linknewsobj.Icon = item.Icon;
                     linklistobj.Add(linknewsobj);
                 }
-                return linklistobj;
+                jsonNews.Result = linklistobj;
+                return jsonNews;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return linklistobj;
+                return jsonNews;
             }
         }
     }

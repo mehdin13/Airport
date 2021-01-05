@@ -18,4 +18,8 @@ namespace AirPort.Model.ViewModel
         public string Capasity { get; set; }
         public string Phone { get; set; } 
     }
+    public class JsonParking
+    {
+        public List<ParkingViewModel> result { get; set; }
+    }
 }

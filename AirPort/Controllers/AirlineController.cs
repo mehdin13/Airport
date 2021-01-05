@@ -20,8 +20,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("AirlineList")]
-        public List<AirlineviewModel> AirlineListes()
+        public JsonAirline AirlineListes()
         {
+            JsonAirline jsonAirline = new JsonAirline();
             List<AirlineviewModel> airlinelinklist = new List<AirlineviewModel>();
             try
             {
@@ -34,12 +35,13 @@ namespace AirPort.Controllers
                     airlinelistobj.DetailId = item.Id;
                     airlinelinklist.Add(airlinelistobj);
                 }
-                return airlinelinklist;
+                jsonAirline.Result = airlinelinklist;
+                return jsonAirline;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                return airlinelinklist;
+                return jsonAirline;
             }
         }
         [HttpGet]

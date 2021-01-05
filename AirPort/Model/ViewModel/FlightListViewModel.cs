@@ -27,4 +27,8 @@ namespace AirPort.Model.ViewModel
         [DataType(DataType.DateTime)]
         public DateTime Delay { get; set; }
     }
+    public class JsonFlightlist
+    {
+        public List<FlightListViewModel> Result { get; set; }
+    }
 }

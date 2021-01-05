@@ -23,8 +23,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("Airportslists")]
-        public List<AirportViewModel> Airportslist()
+        public JsonAirport Airportslist()
         {
+            JsonAirport jsonAirport = new JsonAirport();
             List<AirportViewModel> airportlinklistobj = new List<AirportViewModel>();
             try
             {
@@ -38,11 +39,12 @@ namespace AirPort.Controllers
                     airportlistobj.Abbreviation = item.Abbreviation;
                     airportlinklistobj.Add(airportlistobj);
                 }
-                return airportlinklistobj;
+                jsonAirport.result = airportlinklistobj;
+                return jsonAirport;
             }
             catch (Exception)
             {
-                return airportlinklistobj;
+                return jsonAirport;
             }
         }
         [HttpGet]

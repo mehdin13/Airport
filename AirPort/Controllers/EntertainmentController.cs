@@ -19,8 +19,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("BookList")]
-        public List<EntertainmentViewModel> booklist()
+        public JsonEntertainment booklist()
         {
+            JsonEntertainment jsonEntertainment = new JsonEntertainment();
             EntertainmentViewModel tolinkobj = new EntertainmentViewModel();
             List<EntertainmentViewModel> tolinklistobj = new List<EntertainmentViewModel>();
             try
@@ -35,18 +36,20 @@ namespace AirPort.Controllers
                     tolinkobj.Title = item.Title;
                     tolinklistobj.Add(tolinkobj);
                 }
-                return tolinklistobj;
+                jsonEntertainment.Result = tolinklistobj;
+                return jsonEntertainment;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return tolinklistobj;
+                return jsonEntertainment;
             }
         }
         [HttpGet]
         [Route("VideoList")]
-        public List<EntertainmentViewModel> VideoList()
+        public JsonEntertainment VideoList()
         {
+            JsonEntertainment jsonEntertainment = new JsonEntertainment();
             EntertainmentViewModel tolinkobj = new EntertainmentViewModel();
             List<EntertainmentViewModel> tolinklistobj = new List<EntertainmentViewModel>();
             try
@@ -61,18 +64,20 @@ namespace AirPort.Controllers
                     tolinkobj.Title = item.Title;
                     tolinklistobj.Add(tolinkobj);
                 }
-                return tolinklistobj;
+                jsonEntertainment.Result = tolinklistobj;
+                return jsonEntertainment;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return tolinklistobj;
+                return jsonEntertainment;
             }
         }
         [HttpGet]
         [Route("magazineList")]
-        public List<EntertainmentViewModel> magazineList()
+        public JsonEntertainment magazineList()
         {
+            JsonEntertainment jsonEntertainment = new JsonEntertainment();
             EntertainmentViewModel tolinkobj = new EntertainmentViewModel();
             List<EntertainmentViewModel> tolinklistobj = new List<EntertainmentViewModel>();
             try
@@ -87,18 +92,20 @@ namespace AirPort.Controllers
                     tolinkobj.Title = item.Title;
                     tolinklistobj.Add(tolinkobj);
                 }
-                return tolinklistobj;
+                jsonEntertainment.Result = tolinklistobj;
+                return jsonEntertainment;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return tolinklistobj;
+                return jsonEntertainment;
             }
         }
         [HttpGet]
         [Route("AviationList")]
-        public List<EntertainmentViewModel> AviationList()
+        public JsonEntertainment AviationList()
         {
+            JsonEntertainment jsonEntertainment = new JsonEntertainment();
             EntertainmentViewModel tolinkobj = new EntertainmentViewModel();
             List<EntertainmentViewModel> tolinklistobj = new List<EntertainmentViewModel>();
             try
@@ -113,12 +120,13 @@ namespace AirPort.Controllers
                     tolinkobj.Title = item.Title;
                     tolinklistobj.Add(tolinkobj);
                 }
-                return tolinklistobj;
+                jsonEntertainment.Result = tolinklistobj;
+                return jsonEntertainment;
             }
             catch (Exception ex)
             {
                 string mes = ex.Message;
-                return tolinklistobj;
+                return jsonEntertainment;
             }
         }
 

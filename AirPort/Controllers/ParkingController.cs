@@ -71,11 +71,11 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("ParkingList")]
-        public List<ParkingViewModel> ParkingList(int id)
+        public JsonParking ParkingList(int id)
         {
             List<ParkingViewModel> parkingList = new List<ParkingViewModel>();
             List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel> featureValuesList = new List<AirPortDataLayer.Crud.VeiwModel.FeatureValueVeiwModel>();
-
+            JsonParking jsonParking = new JsonParking();
             try
             {
                 var parking = _place.AirportParkingList(Convert.ToInt32(id));
@@ -106,13 +106,13 @@ namespace AirPort.Controllers
                     }
 
                 }
-
-                return parkingList;
+                jsonParking.result = parkingList;
+                return jsonParking;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                return parkingList;
+                return jsonParking;
             }
         }
     }

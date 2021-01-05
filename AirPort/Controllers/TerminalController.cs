@@ -18,8 +18,9 @@ namespace AirPort.Controllers
         }
         [HttpGet]
         [Route("TerminalFlight")]
-        public List<TerminalFlightViewModel> TerminalFlight()
+        public JsonTerminal TerminalFlight()
         {
+            JsonTerminal jsonTerminal = new JsonTerminal();
             List<TerminalFlightViewModel> terminalflightObj = new List<TerminalFlightViewModel>();
             try
             {
@@ -33,12 +34,13 @@ namespace AirPort.Controllers
                     terminalObj.AirlineIcon = item.Image;
                     terminalflightObj.Add(terminalObj);
                 }
-                return terminalflightObj;
+                jsonTerminal.Result = terminalflightObj;
+                return jsonTerminal;
             }
             catch (Exception ex)
             {
                 string Mes = ex.Message;
-                return terminalflightObj;
+                return jsonTerminal;
             }
         }
     }

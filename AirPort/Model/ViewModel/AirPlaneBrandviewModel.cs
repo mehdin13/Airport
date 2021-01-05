@@ -12,4 +12,8 @@ namespace AirPort.Model.ViewModel
         public int BrandId { get; set; }
 
     }
+    public class JsonAirplaneBrand
+    {
+        public List<AirPlaneBrandviewModel> Result { get; set; }
+    }
 }

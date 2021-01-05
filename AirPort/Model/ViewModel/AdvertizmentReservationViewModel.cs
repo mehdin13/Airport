@@ -14,4 +14,8 @@ namespace AirPort.Model.ViewModel
         [DataType(DataType.Text)]
         public string Description { get; set; }
     }
+    public class JsonAdvertizmenat
+    {
+        public List<AdvertizmentReservationViewModel> Result { get; set; }
+    }
 }
