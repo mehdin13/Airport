@@ -1,5 +1,4 @@
-﻿@page
-@model AirPortWeb.Models.LoginVeiwModel;
+﻿@model AirPortWeb.Models.LoginVeiwModel;
 @{
 
 }
@@ -18,44 +17,38 @@
                             }*@
                     </div>
                     <div class="card-body">
-
                         <div class="card-block">
                             @using (Html.BeginForm("login", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
-
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input name="Username" type="text" class="form-control form-control-lg" placeholder="شماره موبایل" aria-describedby="email-address">
+                                        @Html.TextBoxFor(M => M.Username, "", new { @class = "form-control form-control-lg" })
                                     </div>
-                                    <span asp-validation-for="Username"></span>
+                                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                                 </div>
-
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input name="Password" type="password" class="form-control form-control-lg" id="inputPass" placeholder="رمز عبور" required="">
+                                        @Html.TextBoxFor(M => M.Password, "", new { @class = "form-control form-control-lg" })
                                     </div>
-                                    <span asp-validation-for="Password"></span>
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ml-5">
-
                                                 <input name="RememberMe" type="checkbox" class="custom-control-input" checked="" id="rememberme">
                                                 <label class="custom-control-label float-left" for="rememberme">مرا به خاطر بسپار</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="text-center col-md-12">
                                         <button type="submit" class="btn btn-success px-4 py-2 text-uppercase white font-small-4 box-shadow-2 border-0">ورود به سایت</button>
                                     </div>
                                 </div>
-
                             }
                         </div>
                     </div>

@@ -26,8 +26,8 @@ namespace AirPortWeb.Controllers
         {
             return View();
         }
-        [HttpPost]
         [ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult login(LoginVeiwModel loginVeiwModel)
         {
             if (_user.CheckLoginInfo(loginVeiwModel.Username, loginVeiwModel.Password).Number.Equals(1))
