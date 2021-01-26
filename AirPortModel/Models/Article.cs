@@ -8,33 +8,27 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AirPortModel.Models
 {
-    [Table("Tbl_Adress")]
-    public class Address
+    [Table("Tbl_Article")]
+    public class Article
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("AdressId")]
+        [Column("ID")]
         public int Id { get; set; }
         [Required]
-        [StringLength(255)]
-        [Column("AdressDetail")]
-        public string Detail { get; set; }
-        [Column("AdressLocationX")]
-        public double LocationX { get; set; }
-        [Column("AdressLocationY")]
-        public double LocationY { get; set; }
-        [Column("AdressLocationR")]
-        public double LocationR { get; set; }
-        //Foreign Key 
-        [ForeignKey("City")]
+        [Column("Title")]
+        public string Title { get; set; }
         [Required]
-        [Column("AdressCityId")]
-        public int CityId { get; set; }
-        public City City { get; set; }
-        //end foriegn key
+        [Column("Description")]
+        public string Description { get; set; }
+        //****************new foreignKey**************
+        [ForeignKey("Gallery")]
+        [Column("GalleryId")]
+        public int GalleryId { get; set; }
+        public Gallery gallery { get; set; }
+        //***************End ForeignKey****************
+        [Required]
         [DataType(DataType.DateTime)]
-        [Required]
         [Column("DateCreate")]
         public DateTime DateCreate { get; set; }
         [DataType(DataType.DateTime)]
@@ -44,11 +38,6 @@ namespace AirPortModel.Models
         [Required]
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
-
-        public List<AirPort> airPorts { get; set; }
-        public List<Customer> customers { get; set; }
-        public List<Place> places { get; set; }
-
 
     }
 }

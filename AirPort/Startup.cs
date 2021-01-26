@@ -43,6 +43,7 @@ namespace AirPort
             services.AddTransient<IAirline, Airline>();
             services.AddTransient<IAirPort, AirPortDataLayer.Crud.AirPort>();
             services.AddTransient<IAirPlane, AirPlane>();
+            services.AddTransient<IArticle, Article>();
             services.AddTransient<IBrand, Brand>();
             services.AddTransient<ICategory, Category>();
             services.AddTransient<ICity, City>();
@@ -51,6 +52,7 @@ namespace AirPort
             services.AddTransient<IDetail, Detail>();
             services.AddTransient<IDetailValue, DetailValue>();
             services.AddTransient<IEntertainment, Entertainment>();
+            services.AddTransient<IFaq, Faq>();
             services.AddTransient<IFeatrue, Featrue>();
             services.AddTransient<IFlight, Flight>();
             services.AddTransient<IFlightStatus, FlightStatus>();

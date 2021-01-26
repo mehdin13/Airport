@@ -4,14 +4,16 @@ using AirPortDataLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210126002000_mostafa109")]
+    partial class mostafa109
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -914,6 +916,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ArticleId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -932,6 +937,8 @@ namespace AirPortDataLayer.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
 
                     b.ToTable("Tbl_Gallery");
                 });
@@ -1646,6 +1653,13 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AirPortModel.Models.Gallery", b =>
+                {
+                    b.HasOne("AirPortModel.Models.Article", null)
+                        .WithMany("galleries")
+                        .HasForeignKey("ArticleId");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.GalleryImage", b =>

@@ -16,6 +16,7 @@ namespace AirPortDataLayer.Data
         public DbSet<Airline> airlines { get; set; }
         public DbSet<AirPlane> airPlanes { get; set; }
         public DbSet<AirPort> AirPorts { get; set; }
+        public DbSet<Article> articles { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<City> cities { get; set; }
@@ -24,6 +25,7 @@ namespace AirPortDataLayer.Data
         public DbSet<Detail> details { get; set; }
         public DbSet<DetailValue> detailValues { get; set; }
         public DbSet<Entertainment> Entertainment { get; set; }
+        public DbSet<Faq> faqs { get; set; }
         public DbSet<Featrue> featrues { get; set; }
         public DbSet<Flight> flights { get; set; }
         public DbSet<FlightStatus> flightStatuses { get; set; }

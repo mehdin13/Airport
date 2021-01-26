@@ -4,14 +4,16 @@ using AirPortDataLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210126001410_mostafa108")]
+    partial class mostafa108
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,7 +293,7 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GalleryId")
-                        .HasColumnName("GalleryId")
+                        .HasColumnName("Gallery")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDelete")
@@ -308,8 +310,6 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GalleryId");
 
                     b.ToTable("Tbl_Article");
                 });
@@ -914,6 +914,9 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ArticleId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -932,6 +935,8 @@ namespace AirPortDataLayer.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
 
                     b.ToTable("Tbl_Gallery");
                 });
@@ -1506,15 +1511,6 @@ namespace AirPortDataLayer.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AirPortModel.Models.Article", b =>
-                {
-                    b.HasOne("AirPortModel.Models.Gallery", "gallery")
-                        .WithMany()
-                        .HasForeignKey("GalleryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("AirPortModel.Models.City", b =>
                 {
                     b.HasOne("AirPortModel.Models.State", "state")
@@ -1646,6 +1642,13 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AirPortModel.Models.Gallery", b =>
+                {
+                    b.HasOne("AirPortModel.Models.Article", null)
+                        .WithMany("galleries")
+                        .HasForeignKey("ArticleId");
                 });
 
             modelBuilder.Entity("AirPortModel.Models.GalleryImage", b =>
