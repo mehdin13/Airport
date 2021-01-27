@@ -28,6 +28,9 @@ namespace AirPortModel.Models
 
         [Column("Icon")]
         public string Icon { get; set; }
+        [AllowNull]
+        [StringLength(255)]
+        public string Description { get; set; }
 
         [DataType(DataType.DateTime)]
         [Required]

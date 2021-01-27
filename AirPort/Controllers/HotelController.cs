@@ -151,7 +151,7 @@ namespace AirPort.Controllers
         [HttpGet]
         [Route("ShopList")]
         public JsonShop ShopList()
-        {
+        { 
             JsonShop jsonShop = new JsonShop();
             ShopViewModel shopListobj = new ShopViewModel();
             List<string> urllist = new List<string>();
