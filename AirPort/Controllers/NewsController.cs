@@ -25,7 +25,7 @@ namespace AirPort.Controllers
             List<NewsViewModel> linklistobj = new List<NewsViewModel>();
             try
             {
-                var ListNews = _link.Listlinks();
+                var ListNews = _link.LinkType();
                 foreach (var item in ListNews)
                 {
                     linknewsobj.LinkId = item.Id;

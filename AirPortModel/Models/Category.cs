@@ -17,6 +17,9 @@ namespace AirPortModel.Models
         [StringLength(50)]
         public string CategoryName { get; set; }
         public int Icon { get; set; }
+        [Required]
+        [Column("CategoryType")]
+        public int CategoryType { get; set; }
 
         [DataType(DataType.DateTime)]
         [Required]
@@ -29,5 +32,8 @@ namespace AirPortModel.Models
         [Required]
         [Column("IsDelete")]
         public bool IsDelete { get; set; }
+
+        public List<Links> links { get; set; }
+        public List<Place> places { get; set; }
     }
 }

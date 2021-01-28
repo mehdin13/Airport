@@ -73,6 +73,14 @@ namespace AirPortDataLayer.Crud
         {
             return _db.categories.FirstOrDefault(x => x.Id == id);
         }
+        public AirPortModel.Models.Category FindByCategoryPlaceTypeId()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(1));
+        }
+        public AirPortModel.Models.Category FindByCategoryLinkTypeId()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(2));
+        }
     }
 }
-//Insert Complete baghiash moonde bargashtam mizanam :D
+

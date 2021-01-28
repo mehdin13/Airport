@@ -359,6 +359,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("CategoryType")
+                        .HasColumnName("CategoryType")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -1019,6 +1023,10 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnName("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
@@ -1053,6 +1061,8 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Tbl_Links");
                 });
@@ -1668,6 +1678,15 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("terminalId");
                 });
 
+            modelBuilder.Entity("AirPortModel.Models.Links", b =>
+                {
+                    b.HasOne("AirPortModel.Models.Category", "Category")
+                        .WithMany("links")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AirPortModel.Models.Place", b =>
                 {
                     b.HasOne("AirPortModel.Models.Address", "address")
@@ -1681,7 +1700,7 @@ namespace AirPortDataLayer.Migrations
                         .HasForeignKey("AirportId");
 
                     b.HasOne("AirPortModel.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("places")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -12,5 +12,6 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.Links> ToList();
         AirPortModel.Models.Links FindById(int id);
         public List<AirPortModel.Models.Links> Listlinks();
+        public List<AirPortModel.Models.Links> LinkType();
     }
 }

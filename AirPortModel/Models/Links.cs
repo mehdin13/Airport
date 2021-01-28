@@ -31,7 +31,13 @@ namespace AirPortModel.Models
         [AllowNull]
         [StringLength(255)]
         public string Description { get; set; }
-
+        //********************foreignKey********************
+        [ForeignKey("Category")]
+        [Required]
+        [Column("CategoryId")]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        //******************End Foreign Key*******************
         [DataType(DataType.DateTime)]
         [Required]
         [Column("DateCreate")]
@@ -45,6 +51,6 @@ namespace AirPortModel.Models
         public bool IsDelete { get; set; }
 
         public List<Entertainment> entertainments { get; set; }
-
+    
     }
 }
