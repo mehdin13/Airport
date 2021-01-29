@@ -11,5 +11,8 @@ namespace AirPortDataLayer.Crud.InterFace
         public ProgressStatus Update(AirPortModel.Models.Faq obj);
         public List<AirPortModel.Models.Faq> ToList();
         public AirPortModel.Models.Faq FindById(int id);
+        public List<AirPortModel.Models.Faq> FaqAnimal();
+        public List<AirPortModel.Models.Faq> FaqCargo();
+        public List<AirPortModel.Models.Faq> FaqClearance();
     }
 }

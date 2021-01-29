@@ -81,6 +81,18 @@ namespace AirPortDataLayer.Crud
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(2));
         }
+        public AirPortModel.Models.Category FindbyCategoryAnimal()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(3));
+        }
+        public AirPortModel.Models.Category FindByCategoryCargo()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(4));
+        }
+        public AirPortModel.Models.Category FindByCategoryClearance()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(5));
+        }
     }
 }
 

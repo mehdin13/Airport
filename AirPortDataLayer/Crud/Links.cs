@@ -43,6 +43,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
+                _ = ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Links  can't be Deleted" };
                 return result;
             }
@@ -59,13 +60,14 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
+                _ = ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Links can't be Update" };
                 return result;
             }
         }
         public List<AirPortModel.Models.Links> ToList()
         {
-            return _db.Links.Where(x => x.IsDelete == false).ToList();
+            return _db.Links.Where(x => !x.IsDelete).ToList();
         }
         public AirPortModel.Models.Links FindById(int id)
         {
@@ -73,7 +75,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Links> Listlinks()
         {
-            return _db.Links.Where(x => x.Id.Equals(1) && x.IsDelete == false).ToList();
+            return _db.Links.Where(x => x.Id.Equals(1) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Links> LinkType()
         {

@@ -127,5 +127,17 @@ namespace AirPortDataLayer.Crud
         {
             return _db.places.Where(x => x.CategoryId.Equals(6) && x.AirportId.Equals(id) && !x.IsDelete).ToList();
         }
+        public List<AirPortModel.Models.Place> ServicesTypeAnimal()
+        {
+            return _db.places.Where(x => x.Category.CategoryType.Equals(3) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Place> ServicesTypeCargo()
+        {
+            return _db.places.Where(x => x.Category.CategoryType.Equals(4) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Place> ServicesTypeClearance()
+        {
+            return _db.places.Where(x => x.Category.CategoryType.Equals(5) && !x.IsDelete).ToList();
+        }
     }
 }

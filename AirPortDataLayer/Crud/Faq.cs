@@ -74,5 +74,17 @@ namespace AirPortDataLayer.Crud
         {
             return _db.faqs.FirstOrDefault(x => x.Id == id);
         }
+        public List<AirPortModel.Models.Faq> FaqAnimal()
+        {
+            return _db.faqs.Where(x => x.FaqType.Equals(1) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Faq> FaqCargo()
+        {
+            return _db.faqs.Where(x => x.FaqType.Equals(2) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Faq> FaqClearance()
+        {
+            return _db.faqs.Where(x => x.FaqType.Equals(3) && !x.IsDelete).ToList();
+        }
     }
 }
