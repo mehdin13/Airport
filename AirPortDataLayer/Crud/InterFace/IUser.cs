@@ -10,7 +10,7 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.User> ToList();
         AirPortModel.Models.User FindById(int id);
         string CheckUserName(string Username);
-        string CheckPassword(string password);
+        string CheckPassword(string password, string Username);
         string CheckuserNameAvailable(string Username);
         ProgressStatus CheckUserNameExist(string username);
         ProgressStatus CheckLoginInfo(string username, string password);

@@ -87,11 +87,11 @@ namespace AirPortDataLayer.Crud
                 return ex.Message.ToString();
             }
         }
-        public string CheckPassword(string password)
+        public string CheckPassword(string password , string Username)
         {
             try
             {
-                var obj = _db.users.FirstOrDefault(p => p.Password == password);
+                var obj = _db.users.FirstOrDefault(p => p.Password.Equals(password)&&p.Name.Equals(Username));
                 return obj == null ? "WrongPassword" : "CorrectPassword";
             }
             catch (Exception ex)

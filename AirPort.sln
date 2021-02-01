@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortDataLayer", "AirPort
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortModel", "AirPortModel\AirPortModel.csproj", "{3C03A400-64B4-4157-94F3-BD4872460CE1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortWeb", "AirPortWeb\AirPortWeb.csproj", "{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportWebRazor", "AirportWebRazor\AirportWebRazor.csproj", "{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{3C03A400-64B4-4157-94F3-BD4872460CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C03A400-64B4-4157-94F3-BD4872460CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C03A400-64B4-4157-94F3-BD4872460CE1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A12B46BC-4F19-49AC-8482-7F0BE661C8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

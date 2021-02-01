@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Titel</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/feather/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/simple-line-icons/style.css">
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/css/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/app.css">
+    <link href="/Content/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="/Content/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+    <link href="/Content/css/js-persian-cal.css" rel="stylesheet" />
+    <link rel="icon" href="/Content/favicon.ico" />
+    <!-- BEGIN VENDOR JS-->
+    <script type="text/javascript" src="~/Content/vendors/js/core/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/imoViewer-min.js"></script>
+    <script type="text/javascript" src="~/Content/js/persian-datepicker.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/core/popper.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/perfect-scrollbar.jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/prism.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/screenfull.min.js"></script>
+    <script type="text/javascript" src="~/Content/vendors/js/pace/pace.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script type="text/javascript" src="~/Content/vendors/js/datatable/datatables.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN CONVEX JS-->
+    <script type="text/javascript" src="~/Content/js/app-sidebar.js"></script>
+    <script type="text/javascript" src="~/Content/js/notification-sidebar.js"></script>
+    <script type="text/javascript" src="~/Content/js/customizer.js"></script>
+    <!-- END CONVEX JS-->
+    <script type="text/javascript" src="~/Content/js/chartist.js"></script>
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script type="text/javascript" src="~/Content/js/data-tables/datatables-sources.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    <script type="text/javascript" src="~/Content/js/Persiancalender/jalaali.js"></script>
+    <script type="text/javascript" src="~/Content/js/Persiancalender/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+    <script type="text/javascript" src="~/Content/js/Persiancalender/js-persian-cal.min.js"></script>
+    <!--Showing Image in Input Type File-->
+    <script>
+        function showMyImage(fileInput) {
+            var files = fileInput.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = /image.*/;
+                if (!file.type.match(imageType)) {
+                    continue;
+                }
+                var img = document.getElementById("thumbnil");
+                img.file = file;
+                var reader = new FileReader();
+                reader.onload = (function (aImg) {
+                    return function (e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                reader.readAsDataURL(file);
+            }
+        }
+        $(function () {
+            $('#overlay').modal('show');
+
+            setTimeout(function () {
+                $('#overlay').modal('hide');
+            }, 400);
+        });
+    </script>
+</head>
+<body data-col="2-columns" class=" 2-columns ">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="wrapper">
+        <div data-active-color="white" data-background-color="sublime-vivid" data-image="../../Content/img/sidebar-bg/08.jpg" class="app-sidebar">
+            <div class="sidebar-header">
+                <div class="logo clearfix">
+                    <a href="#" class="logo-text float-right">
+                        <div class="logo-img"><img src="~/Content/125_512x512.png" alt="125" /></div><span class="text align-middle">125</span>
+                    </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-disc toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="nav-container">
+                    <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                        <li class="nav-item">
+                            <a href="/"><i class="icon-home"></i><span data-i18n="" class="menu-title">صفحه اصلی</span></a>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="icon-fire"></i><span data-i18n="" class="menu-title">اطلاعات حوادث</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Accident/Create" class="menu-item">ثبت حادثه جدید</a>
+                                </li>
+                                <li>
+                                    <a href="/Accident/Index" class="menu-item">حوادث ثبت شده</a>
+                                </li>
+                                <li>
+                                    <a href="/Injured/Index" class="menu-item">لیست مصدومین حادثه</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="fa fa-building-o"></i><span data-i18n="" class="menu-title">مدیریت سازمان</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Material/Index" class="menu-item"><i class="fa fa-gears"></i>مدیریت تجهیزات</a>
+                                </li>
+                                <li>
+                                    <a href="/Repair/Index" class="menu-item"><i class="icon-wrench"></i>تعمیر و نگهداری</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Missives"><i class="icon-paper-clip"></i><span data-i18n="" class="menu-title">بخشنامه ها</span></a>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="icon-clock"></i><span data-i18n="" class="menu-title">امورات شیفت</span></a>
+                            <ul class="menu-content">
+                                <li class="nav-item">
+                                    <a href="/shift"><i class="fa fa-address-card"></i><span data-i18n="" class="menu-title">ثبت شیفت</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/ShiftRegister/Index"><i class="fa fa-safari"></i><span data-i18n="" class="menu-title">گزارش شیفت ها</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#"><i class="fa fa-leanpub"></i><span data-i18n="" class="menu-title">ثبت مرخصی</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="icon-note"></i><span data-i18n="" class="menu-title">گزارشات</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Report/ReportIstgah" class="menu-item">گزارش حوادث ایستگاه ها</a>
+                                </li>
+                                <li>
+                                    <a href="/Report/ReportTafkikHadese" class="menu-item">گزارش تفکیکی حوادث</a>
+                                </li>
+                                <li>
+                                    <a href="/Report/ReportRozaneIstgah" class="menu-item">گزارش روزانه ایستگاه ها</a>
+                                </li>
+                                <li>
+                                    <a href="/Report/ReportKhesarat" class="menu-item">گزارش خسارت تجهیزات</a>
+                                </li>
+                                <li>
+                                    <a href="/Report/ReportMasdomin" class="menu-item">گزارش مصدومین حوادث</a>
+                                </li>
+                                <li>
+                                    <a href="/Report/ReportHadese" class="menu-item">گواهی حادثه</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="icon-settings"></i><span data-i18n="" class="menu-title">اطلاعات پایه</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Employee/Index" class="menu-item"><i class="fa fa-users"></i>مدیریت کارمندان</a>
+                                </li>
+                                <li>
+                                    <a href="/User/Index" class="menu-item"><i class="fa fa-lock"></i>مدیریت کاربران</a>
+                                </li>
+                                <li>
+                                    <a href="/State/Index" class="menu-item"><i class="fa fa-building"></i>ایستگاه</a>
+                                </li>
+                                <li>
+                                    <a href="/weather/Index" class="menu-item"><i class="fa fa-cloud"></i>شرایط جوی</a>
+                                </li>
+                                <li>
+                                    <a href="/AccidentType/Index" class="menu-item"><i class="fa fa-tags"></i>نوع حادثه</a>
+                                </li>
+                                <li>
+                                    <a href="/Organizations/Index" class="menu-item"><i class="fa fa-university"></i>ارگان ها</a>
+                                </li>
+                                <li>
+                                    <a href="/Usage/Index" class="menu-item"><i class="fa fa-yelp"></i>نوع کاربری</a>
+                                </li>
+                                <li>
+                                    <a href="/Cause/Index" class="menu-item"><i class="fa fa-warning"></i>علل حوادث</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-background"></div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+            <div class="container-fluid">
+                <div class="navbar-container" style="margin-right:auto">
+                    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="dropdown nav-item mr-0">
+                                <a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-user-link dropdown-toggle">
+                                    <span class="avatar avatar-online">ss</span>
+                                    <p class="d-none">تنظیمات کاربر</p>
+                                </a>
+                                <div aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-left">
+                                    <div class="arrow_box_right">
+                                        <a href="/Account/Detail" class="dropdown-item py-1">
+                                            <i class="ft-edit ml-2"></i>
+                                            <span>حساب کاربری </span>
+                                        </a><a href="/Account/Message" class="dropdown-item py-1"><i class="ft-message-circle ml-2"></i><span>پیام ها</span></a>
+                                        <a href="/Account/Chengepasword" class="dropdown-item py-1"><i class="ft-settings ml-2"></i><span>تغییر کلمه عبور</span></a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="/Account/Logout" class="dropdown-item"><i class="ft-power ml-2"></i><span>خروج</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-panel">
+            <div class="main-content">
+                <div class="content-wrapper">
+                    <div class="container-fluid">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer footer-static footer-light">
+                <p class="clearfix text-muted text-center px-2">
+                    @string.Format("{3}{2}{1}{0}", "copyright © 2020", " می باشد ", ".Codeine Programming lab", "تمامی حقوق این اثر متعلق به تیم برنامه نویسی ") <span><img src="~/Content/logo_Codein.png" width="30" height="40" /></span>
+                </p>
+            </footer>
+
+        </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+</body>
+</html>
