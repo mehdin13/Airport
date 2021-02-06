@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AirPortDataLayer.Migrations
 {
-    public partial class mostafa1 : Migration
+    public partial class CreateDatabase1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace AirPortDataLayer.Migrations
                     CategoryId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(maxLength: 50, nullable: true),
-                    Icon = table.Column<int>(nullable: false),
+                    Icon = table.Column<string>(nullable: true),
                     CategoryType = table.Column<int>(nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     LastUpdateDate = table.Column<DateTime>(nullable: false),
@@ -877,6 +877,18 @@ namespace AirPortDataLayer.Migrations
                         principalTable: "Tbl_Flight",
                         principalColumn: "FlightId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tbl_Category",
+                columns: new[] { "CategoryId", "CategoryName", "CategoryType", "DateCreate", "Icon", "IsDelete", "LastUpdateDate" },
+                values: new object[,]
+                {
+                    { 1, "Place", 1, new DateTime(2021, 2, 7, 1, 46, 25, 781, DateTimeKind.Local).AddTicks(9526), "1", false, new DateTime(2021, 2, 7, 1, 46, 25, 785, DateTimeKind.Local).AddTicks(796) },
+                    { 2, "Link", 2, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4217), "2", false, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4243) },
+                    { 3, "Animal", 3, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4566), "1", false, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4572) },
+                    { 4, "Cargo", 4, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4592), "1", false, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4596) },
+                    { 5, "Clearence", 5, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4614), "1", false, new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4617) }
                 });
 
             migrationBuilder.CreateIndex(

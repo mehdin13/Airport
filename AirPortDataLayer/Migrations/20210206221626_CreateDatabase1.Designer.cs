@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirPortDataLayer.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20210127223605_mostafa1")]
-    partial class mostafa1
+    [Migration("20210206221626_CreateDatabase1")]
+    partial class CreateDatabase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -369,8 +369,8 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Icon")
-                        .HasColumnType("int");
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnName("IsDelete")
@@ -383,6 +383,58 @@ namespace AirPortDataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tbl_Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryName = "Place",
+                            CategoryType = 1,
+                            DateCreate = new DateTime(2021, 2, 7, 1, 46, 25, 781, DateTimeKind.Local).AddTicks(9526),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 2, 7, 1, 46, 25, 785, DateTimeKind.Local).AddTicks(796)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryName = "Link",
+                            CategoryType = 2,
+                            DateCreate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4217),
+                            Icon = "2",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4243)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryName = "Animal",
+                            CategoryType = 3,
+                            DateCreate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4566),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4572)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryName = "Cargo",
+                            CategoryType = 4,
+                            DateCreate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4592),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4596)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryName = "Clearence",
+                            CategoryType = 5,
+                            DateCreate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4614),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 2, 7, 1, 46, 25, 786, DateTimeKind.Local).AddTicks(4617)
+                        });
                 });
 
             modelBuilder.Entity("AirPortModel.Models.City", b =>

@@ -1,0 +1,98 @@
+﻿@page
+@model AirportWebRazor.Pages.Category.CreateModel
+@{
+}
+
+<br />
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-success">
+                    <h4 class="card-title" id="basic-layout-form">ثبت دسته بندی</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+                    <form class="form">
+                        <div class="form-body">
+                            <h4 class="form-section">
+                                <i class="icon-user"></i> دسته بندی
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="projectinput5">نام دسته بندی</label>
+                                            <select id="projectinput5" name="interested" class="form-control">
+                                                <option value="none" selected="" disabled="">انتخاب دسته بندی</option>
+                                                <option value="design">سرگرمی</option>
+                                                <option value="development">لینکها</option>
+                                                <option value="illustration">مکان ها </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="projectinput5">نوع دسته بندی</label>
+                                            <select id="projectinput5" name="interested" class="form-control">
+                                                <option value="none" selected="" disabled="">انتخاب دسته بندی</option>
+                                                <option value="design">کتاب</option>
+                                                <option value="development">مجله</option>
+                                                <option value="illustration">هوانوردی </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="timesheetinput3">تاریخ ثبت</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input type="date" id="timesheetinput3" class="form-control" name="date">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="timesheetinput3">تاریخ به روزرسانی</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input type="date" id="timesheetinput3" class="form-control" name="date">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>ایکن را انتخاب کنید</label>
+                                <input type="file" class="form-control-file" id="projectinput7">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </button>
+                            <button type="button" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

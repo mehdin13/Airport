@@ -47,6 +47,22 @@ namespace AirPortDataLayer.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerFlight>().HasKey(a => new { a.CustomerId, a.FlightId });
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = 1,
+                    CategoryName = "Place",
+                    Icon = "1",
+                    CategoryType = 1,
+                    DateCreate = DateTime.Now,
+                    LastUpdate = DateTime.Now,
+                    IsDelete = false
+                }
+                );
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 2, CategoryName = "Link", Icon = "2", CategoryType = 2, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 3, CategoryName = "Animal", Icon = "1", CategoryType = 3, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 4, CategoryName = "Cargo", Icon = "1", CategoryType = 4, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 5, CategoryName = "Clearence", Icon = "1", CategoryType = 5, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
         }
     }
 }

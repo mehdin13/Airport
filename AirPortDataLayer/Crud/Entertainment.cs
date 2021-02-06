@@ -79,7 +79,7 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Entertainment> EntertainmentBookId()
         {
-            return _db.Entertainment.Where(x => x.Type.Equals(1) && x.IsDelete == false).ToList();
+            return _db.Entertainment.Where(x => x.Type.Equals(1) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Entertainment> entertainmentvideoId()
         {

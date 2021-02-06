@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortDataLayer", "AirPort
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirPortModel", "AirPortModel\AirPortModel.csproj", "{3C03A400-64B4-4157-94F3-BD4872460CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportWebRazor", "AirportWebRazor\AirportWebRazor.csproj", "{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirportWebRazor", "AirportWebRazor\AirportWebRazor.csproj", "{549CA1E5-799B-40A5-9C1C-FA21AF48A2FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

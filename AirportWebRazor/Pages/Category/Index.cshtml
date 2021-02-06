@@ -1,0 +1,59 @@
+﻿@page
+@model AirportWebRazor.Pages.Category.IndexModel
+@{
+}
+<br />
+<br />
+
+<h1 class="text-center text-info"> لیست دسته بندی ها</h1>
+
+
+<section id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست دسته بندی ها</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        
+                                        <!-- <th> Categori Id</th>-->
+                                        <th> نام دسته بندی </th>
+                                        <th> ایکن </th>
+                                        <th> نوع دسته بندی</th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.categories)
+                                    {
+                                        <tr>
+                                            <!--<th class="text-nowrap" scope="row">رفتار گرید</th>-->
+                                            <td>@item.CategoryName</td>
+                                            <td><img src="@item.Icon" /></td>
+                                            <td>@item.CategoryType</td>
+                                            <td>@item.DateCreate</td>
+                                            <td>@item.LastUpdate</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+

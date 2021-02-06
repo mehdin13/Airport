@@ -16,7 +16,7 @@ namespace AirPortModel.Models
         public int Id { get; set; }
         [StringLength(50)]
         public string CategoryName { get; set; }
-        public int Icon { get; set; }
+        public string Icon { get; set; }
         [Required]
         [Column("CategoryType")]
         public int CategoryType { get; set; }
