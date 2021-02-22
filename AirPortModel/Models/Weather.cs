@@ -10,7 +10,7 @@ namespace AirPortModel.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("WeatherId")]
-        public int Id { get; set; }
+        public int Id { get; set; }//kelide dakheli
         [Required]
         [Column("TypeId")]
         public int TypeId { get; set; }

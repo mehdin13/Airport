@@ -42,7 +42,7 @@ namespace AirPort.Controllers
                     CargoObj.Title = _link.FindById(item.Id).Title;
                     CargoObj.Description = _link.FindById(item.Id).Description;
                     CargoObj.Icon = _link.FindById(item.Id).Icon;
-                    CargoObj.Type = _link.FindById(item.Id).Type;
+                    
                     //address
                     CargoObj.LocationX = _address.FindById(item.Id).LocationX;
                     CargoObj.LocationX = _address.FindById(item.Id).LocationY;
@@ -66,8 +66,8 @@ namespace AirPort.Controllers
             List<ServicesViewModel> ClearanceServicesOBJ = new List<ServicesViewModel>();
             try
             {
-                var Cargoes = _place.ServicesTypeClearance();
-                foreach (var item in Cargoes)
+                var Cleaaance = _place.ServicesTypeClearance();
+                foreach (var item in Cleaaance)
                 {
                     ServicesViewModel ClearanceObj = new ServicesViewModel();
 
@@ -78,7 +78,7 @@ namespace AirPort.Controllers
                     ClearanceObj.Title = _link.FindById(item.Id).Title;
                     ClearanceObj.Description = _link.FindById(item.Id).Description;
                     ClearanceObj.Icon = _link.FindById(item.Id).Icon;
-                    ClearanceObj.Type = _link.FindById(item.Id).Type;
+                    
                     //address
                     ClearanceObj.LocationX = _address.FindById(item.Id).LocationX;
                     ClearanceObj.LocationX = _address.FindById(item.Id).LocationY;
@@ -102,8 +102,8 @@ namespace AirPort.Controllers
             List<ServicesViewModel> AnimalsServicesOBJ = new List<ServicesViewModel>();
             try
             {
-                var Cargoes = _place.ServicesTypeAnimal();
-                foreach (var item in Cargoes)
+                var animal = _place.ServicesTypeAnimal();
+                foreach (var item in animal)
                 {
                     ServicesViewModel AnimalsObj = new ServicesViewModel();
 
@@ -114,7 +114,7 @@ namespace AirPort.Controllers
                     AnimalsObj.Title = _link.FindById(item.Id).Title;
                     AnimalsObj.Description = _link.FindById(item.Id).Description;
                     AnimalsObj.Icon = _link.FindById(item.Id).Icon;
-                    AnimalsObj.Type = _link.FindById(item.Id).Type;
+                   
                     //address
                     AnimalsObj.LocationX = _address.FindById(item.Id).LocationX;
                     AnimalsObj.LocationX = _address.FindById(item.Id).LocationY;

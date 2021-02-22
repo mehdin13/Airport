@@ -17,10 +17,10 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.Place> PlaceToureId();
         List<AirPortModel.Models.Place> PlacesShopId();
         List<AirPortModel.Models.Place> PlacesCofeeshopId();
-        public List<AirPortModel.Models.Place> PlacesInstitute();
+        List<AirPortModel.Models.Place> PlacesInstitute();
         List<AirPortModel.Models.Place> AirportParkingList(int id);
-        public List<AirPortModel.Models.Place> ServicesTypeAnimal();
-        public List<AirPortModel.Models.Place> ServicesTypeCargo();
-        public List<AirPortModel.Models.Place> ServicesTypeClearance();
+        List<AirPortModel.Models.Place> ServicesTypeAnimal();
+        List<AirPortModel.Models.Place> ServicesTypeCargo();
+        List<AirPortModel.Models.Place> ServicesTypeClearance();
     }
 }

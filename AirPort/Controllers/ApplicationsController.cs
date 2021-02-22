@@ -11,9 +11,11 @@ namespace AirPort.Controllers
     public class ApplicationsController : ControllerBase
     {
         private readonly ILinks _links;
-        public ApplicationsController(ILinks links)
+        private readonly ICategory _category;
+        public ApplicationsController(ILinks links,ICategory category)
         {
             _links = links;
+            _category = category;
         }
         [HttpGet]
         [Route("Applist")]
@@ -23,18 +25,15 @@ namespace AirPort.Controllers
             JsonApplication jsonApplication = new JsonApplication();
             try
             {
-                var links = _links.ToList();
-                foreach (var item in links)
+                var App = _links.ApplicationCategory();
+                foreach (var item in App)
                 {
-                    if (item.Type==3)
-                    {
-
+                   
                     LinkViewModel linkOBJ = new LinkViewModel();
                     linkOBJ.Name = item.Title;
                     linkOBJ.Icon = item.Icon;
                     linkOBJ.UrL = item.Url;
                     linklistobj.Add(linkOBJ);
-                    }
                 }
                 jsonApplication.Result = linklistobj;
                 return jsonApplication;

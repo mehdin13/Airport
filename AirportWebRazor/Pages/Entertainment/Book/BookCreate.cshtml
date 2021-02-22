@@ -4,80 +4,268 @@
 }
 <br />
 <h2 class="text-info ">create BookList</h2>
-<br />
-<form method="post">
-    <div class="border">
-        <div class="form-group row">
-            <div class="col-2">
-                <label asp-for="entertainment.Name"></label>
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-success">
+                    <h4 class="card-title" id="basic-layout-form">ثبت کتاب جدید</h4>
+                </div>
             </div>
-            <div class="col-5">
-                <input asp-for="entertainment.Name" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.Title"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.Title" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.Type"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.Type" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.LinkIds"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.LinkIds" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.Description"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.Description" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.DateCreate"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.DateCreate" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.Galleryid"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.Galleryid" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.Id"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.Id" class="form-control" />
-            </div>
-            <div class="col-2">
-                <label asp-for="entertainment.IsDelete"></label>
-            </div>
-            <div class="col-5">
-                <input asp-for="entertainment.IsDelete" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-5 offset-2">
-                <div class="row">
-                    <div class="col-6">
-                        <input type="submit" class="btn btn-info form-control" value="Create" />
-                    </div>
-                    <div class="col-6">
-                        <a asp-page="Booklist" class="btn btn-success form-control">Back To List</a>
-                    </div>
+            <div class="card-body">
+                <div class="px-3">
+                    <form method="post" class="form">
+                        <div class="form-body">
+                            <h4 class="form-section">
+                                <i class="icon-user"></i> ثبت کتاب جدید
+                            </h4>
+                            <!-- ثبت لینک های جدید-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.Title" for="Projectinput0">ثبت عنوان لینک</label>
+                                        <input asp-for="Links.Title" type="text" id="projectinput0" class="form-control" name="title" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.Url" for="Projectinput0">آدرس لینک</label>
+                                        <input asp-for="Links.Url" type="url" id="projectinput0" class="form-control" name="title" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.Icon">ایکن لینک</label>
+                                        <input asp-for="Links.Icon" type="file" class="form-control-file" id="projectinput7">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    @*<div class="form-group">
+                                            <label asp-for="Links.Type" for="Projectinput0">نوع لینک</label>
+                                            <input asp-for="Links.Type.Equals(2)" type="text" id="projectinput0" class="form-control" name="title" />
+                                        </div>*@
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.Description" for="Projectinput0">توضیحات لینک </label>
+                                        <input asp-for="Links.Description" type="text" id="projectinput0" class="form-control" name="Description" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.CategoryId" for="Projectinput0">ایدی دسته بندی لینک</label>
+                                        <input asp-for="Links.CategoryId" type="text" id="projectinput0" class="form-control" name="id" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.DateCreate" for="timesheetinput3">تاریخ ثبت لینک</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="Links.DateCreate" type="date" id="timesheetinput3" class="form-control" name="dateCreate">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Links.LastUpdate" for="timesheetinput3">تاریخ به روزرسانی لینک</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="Links.LastUpdate" type="date" id="timesheetinput3" class="form-control" name="date">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!--ثبت گالری جدید-->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Gallery.Name" for="Projectinput0">نام گالری</label>
+                                        <input asp-for="Gallery.Name" type="text" id="projectinput0" class="form-control" name="Name" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Gallery.DateCreate" for="timesheetinput3">تاریخ ثبت گالری</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="Gallery.DateCreate" type="date" id="timesheetinput3" class="form-control" name="dateCreate">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Gallery.LastUpdate" for="timesheetinput3">تاریخ به روزرسانی گالری</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="Gallery.LastUpdate" type="date" id="timesheetinput3" class="form-control" name="LastUpdate">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--ثبت گالری ایمج جدید-->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="GalleryImage.Url" for="Projectinput0">آدرس عکس</label>
+                                        <input asp-for="GalleryImage.Url" type="url" id="projectinput0" class="form-control" name="URL" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="GalleryImage.GalleryId" for="Projectinput0">ایدی گالری</label>
+                                        <input asp-for="GalleryImage.GalleryId" type="text" id="projectinput0" class="form-control" name="GalleriId" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="GalleryImage.DateCreate" for="timesheetinput3">تاریخ ثبت عکس گالری</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="GalleryImage.DateCreate" type="date" id="timesheetinput3" class="form-control" name="dateCreate">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="GalleryImage.LastUpdate" for="timesheetinput3">تاریخ به روزرسانی عکس گالری</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="GalleryImage.LastUpdate" type="date" id="timesheetinput3" class="form-control" name="LastUpdate">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--ثبت سرگرمی های جدید-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.Type" for="projectinput1">نوع سرگرمی</label>
+                                        <input asp-for="entertainment.Type" type="text" id="projectinput1" class="form-control" name="Type">
+                                        <span asp-validation-for="entertainment.Type" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.Name" for="projectinput1">نام سرگرمی</label>
+                                        <input asp-for="entertainment.Name" type="text" id="projectinput1" class="form-control" name="Name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.LId" for="projectinput2">لینک سرگرمی</label>
+                                        <input asp-for="entertainment.LId" type="text" id="projectinput2" class="form-control" name="Link">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.Title" for="projectinput2">عنوان سرکرمی</label>
+                                        <input asp-for="entertainment.Title" type="text" id="projectinput2" class="form-control" name="Title">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.Description" for="projectinput3">توضیحات سرگرمی</label>
+                                        <input asp-for="entertainment.Description" type="text" id="projectinput3" class="form-control" name="Description">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.DateCreate" for="timesheetinput3">تاریخ ثبت</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="entertainment.DateCreate" type="date" id="timesheetinput3" class="form-control" name="dateCreate">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="entertainment.LastUpdate" for="timesheetinput3">تاریخ به روزرسانی</label>
+                                        <div class="position-relative has-icon-left">
+                                            <input asp-for="entertainment.LastUpdate" type="date" id="timesheetinput3" class="form-control" name="date">
+                                            <div class="form-control-position">
+                                                <i class="ft-message-square"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="entertainment.Galleryid">گالری</label>
+                                <input asp-for="entertainment.Galleryid" type="file" class="form-control-file" id="projectinput7">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="submit" class="btn btn-info form-control" value="ثبت مورد جدید"> ثبت مورد جدید</input>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="Booklist" class="btn btn-danger form-control">بازگشت به صفحه لیست</a>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button asp-page="BookList" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> بازگشت
+                            </button>
+                            <button type="button" class="btn btn-success" value="Create">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>
 
-
-
-
+@*@section scripts{
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }*@

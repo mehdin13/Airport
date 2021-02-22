@@ -49,7 +49,6 @@ namespace AirPort.Controllers
                         featureValuesList.Add(featureValue);
                     }
                     parkingOBJ.Detail = featureValuesList;
-                    // parkingOBJ.Detail =
                     parkingOBJ.Cost = parking.Cost.ToString();
                     parkingOBJ.Airport = _airport.FindById(parking.AirportId).Name;
                     parkingOBJ.LocationX = _address.FindById(parking.AdressId).LocationX;

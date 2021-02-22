@@ -13,10 +13,11 @@ namespace AirPortModel.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("CategoryId")]
-        public int Id { get; set; }
+        public int Id { get; set; }// kelide dakheli
         [StringLength(50)]
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; }//name daste bandi
         public string Icon { get; set; }
+
         [Required]
         [Column("CategoryType")]
         public int CategoryType { get; set; }
@@ -24,16 +25,16 @@ namespace AirPortModel.Models
         [DataType(DataType.DateTime)]
         [Required]
         [Column("DateCreate")]
-        public DateTime DateCreate { get; set; }
+        public DateTime DateCreate { get; set; }//tarikhe tolid
         [DataType(DataType.DateTime)]
         [Required]
         [Column("LastUpdateDate")]
-        public DateTime LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; }//tarikhe akharin berooz resani
         [Required]
         [Column("IsDelete")]
-        public bool IsDelete { get; set; }
+        public bool IsDelete { get; set; }//delete shode ast ya na :((
 
-        public List<Links> links { get; set; }
-        public List<Place> places { get; set; }
+        public List<Links> links { get; set; }//ertebat
+        public List<Place> places { get; set; }//ertebat
     }
 }

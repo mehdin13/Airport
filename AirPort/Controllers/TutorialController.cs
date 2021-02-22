@@ -24,14 +24,13 @@ namespace AirPort.Controllers
             List<TutorialViewModel> tutorialLISTOBJ = new List<TutorialViewModel>();
             try
             {
-                var tutorialListes = _link.LinkType();
+                var tutorialListes = _link.TutorialCategory();
                 foreach (var item in tutorialListes)
                 {
                     TutorialViewModel tutorialOBJ = new TutorialViewModel();
                     tutorialOBJ.Title = item.Title;
                     tutorialOBJ.Link = item.Url;
                     tutorialOBJ.Description = item.Description;
-                    tutorialOBJ.Type = item.Type;
                     tutorialLISTOBJ.Add(tutorialOBJ);
                 }
                 jsonTutorial.Result = tutorialLISTOBJ;

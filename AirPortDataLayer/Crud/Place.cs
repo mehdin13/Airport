@@ -101,43 +101,44 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Place> PlaceHotellList()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(1) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(1) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlaceRestaurantid()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(2) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(2) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlaceToureId()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(3) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(3) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlacesShopId()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(5) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(4) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlacesInstitute()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(7) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(5) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> PlacesCofeeshopId()
         {
-            return _db.places.Where(x => x.CategoryId.Equals(4) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(6) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> AirportParkingList(int id)
         {
-            return _db.places.Where(x => x.CategoryId.Equals(6) && x.AirportId.Equals(id) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(7) && x.AirportId.Equals(id) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> ServicesTypeAnimal()
         {
-            return _db.places.Where(x => x.Category.CategoryType.Equals(3) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(8) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> ServicesTypeCargo()
         {
-            return _db.places.Where(x => x.Category.CategoryType.Equals(4) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(9) && !x.IsDelete).ToList();
         }
         public List<AirPortModel.Models.Place> ServicesTypeClearance()
         {
-            return _db.places.Where(x => x.Category.CategoryType.Equals(5) && !x.IsDelete).ToList();
+            return _db.places.Where(x => x.Category.CategoryType.Equals(10) && !x.IsDelete).ToList();
         }
+
     }
 }

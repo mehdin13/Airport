@@ -16,7 +16,6 @@ namespace AirportWebRazor.Pages.Entertainment.Book
     {
 
         private readonly IEntertainment _entertainment;
-
         public BookListModel(IEntertainment entertainment)
         {
             _entertainment = entertainment;
@@ -26,8 +25,8 @@ namespace AirportWebRazor.Pages.Entertainment.Book
 
         public async Task<IActionResult> OnGet()
         {
-            entertainments = _entertainment.EntertainmentBookId();
-            return Page();
+                entertainments = _entertainment.EntertainmentBookId();
+                return Page();
         }
     }
 }

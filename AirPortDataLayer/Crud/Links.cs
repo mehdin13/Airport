@@ -73,13 +73,30 @@ namespace AirPortDataLayer.Crud
         {
             return _db.Links.FirstOrDefault(x => x.Id == id);
         }
-        public List<AirPortModel.Models.Links> Listlinks()
-        {
-            return _db.Links.Where(x => x.Id.Equals(1) && !x.IsDelete).ToList();
-        }
         public List<AirPortModel.Models.Links> LinkType()
         {
             return _db.Links.Where(x => x.Category.CategoryType.Equals(2) && !x.IsDelete).ToList();
+        }
+        //new entery has to add to our InterFace to debuge the errors and useing of them
+        public List<AirPortModel.Models.Links> PadkastCategory()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(11)! && x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> NewsCategory()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(12)! && x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> TutorialCategory()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(13)! && x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> ApplicationCategory()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(14)! && x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> ArticleCategory()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(15)! && x.IsDelete).ToList();
         }
     }
 }

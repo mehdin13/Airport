@@ -73,26 +73,68 @@ namespace AirPortDataLayer.Crud
         {
             return _db.categories.FirstOrDefault(x => x.Id == id);
         }
-        public AirPortModel.Models.Category FindByCategoryPlaceTypeId()
+        //New 
+        public AirPortModel.Models.Category FindByCategoryHotell()
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(1));
         }
-        public AirPortModel.Models.Category FindByCategoryLinkTypeId()
+        public AirPortModel.Models.Category FindByCategoryResturant()
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(2));
         }
-        public AirPortModel.Models.Category FindbyCategoryAnimal()
+        public AirPortModel.Models.Category FindByCategoryTour()
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(3));
         }
-        public AirPortModel.Models.Category FindByCategoryCargo()
+        public AirPortModel.Models.Category FindByCategoryShop()
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(4));
         }
-        public AirPortModel.Models.Category FindByCategoryClearance()
+        public AirPortModel.Models.Category FindByCategoryInstitutee()
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(5));
         }
+        public AirPortModel.Models.Category FindByCategoryCoffeShop()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(6));
+        }
+        public AirPortModel.Models.Category FindByCategoryParking()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(7));
+        }
+        public AirPortModel.Models.Category FindByCategoryAnimal()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(8));
+        }
+        public AirPortModel.Models.Category FindByCategoryCargo()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(9));
+        }
+        public AirPortModel.Models.Category FindByCategoryClearance()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(10));
+        }
+        public AirPortModel.Models.Category FindByCategoryPadcast()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(11));
+        }
+        public AirPortModel.Models.Category FindByCategoryNews()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(12));
+        }
+        public AirPortModel.Models.Category FindByCategoryTutorial()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(13));
+        }
+        public AirPortModel.Models.Category FindByCategoryApplication()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(14));
+        }
+        public AirPortModel.Models.Category FindByCategoryArticle()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(15));
+        }
+        //End New
     }
 }
 

@@ -21,10 +21,7 @@ namespace AirPortModel.Models
         public string Title { get; set; }
         [AllowNull]//bargarde be halate aval 
         [Column("Url")]
-        public string Url { get; set; }
-
-        [Column("Type")]
-        public int Type { get; set; } 
+        public string Url { get; set; } 
 
         [Column("Icon")]
         public string Icon { get; set; }

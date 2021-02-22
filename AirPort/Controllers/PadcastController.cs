@@ -11,10 +11,12 @@ namespace AirPort.Controllers
     public class PadcastController : Controller
     {
         private readonly ILinks _link;
+        private readonly ICategory _category;
 
-        public PadcastController(ILinks links)
+        public PadcastController(ILinks links,ICategory category)
         {
             _link = links;
+            _category = category;
         }
         [HttpGet]
         [Route("PadcastLIst")]
@@ -30,8 +32,7 @@ namespace AirPort.Controllers
                     PadcastViewModel padcastOBJ = new PadcastViewModel();
                     padcastOBJ.Title = item.Title;
                     padcastOBJ.Link = item.Url;
-                    padcastOBJ.Description = item.Description;
-                    padcastOBJ.Type = item.Type;
+                    padcastOBJ.Description = item.Description;                   
                     PadcastListOBJ.Add(padcastOBJ);
                 }
                 jsonPadcast.Result = PadcastListOBJ;
