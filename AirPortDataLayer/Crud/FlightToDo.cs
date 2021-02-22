@@ -24,8 +24,9 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return obj.id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _ = ex.Message;
                 return 0;
             }
         }

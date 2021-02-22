@@ -15,7 +15,7 @@ namespace AirportWebRazor.Pages.Entertainment.Book
         private readonly IGallery _gallery;
         private readonly ILinks _links;
         private readonly IGalleryImage _Galleryimage;
-        public BookCreateModel(IEntertainment entertainment,IGallery gallery,ILinks links, IGalleryImage galleryImage)
+        public BookCreateModel(IEntertainment entertainment, IGallery gallery, ILinks links, IGalleryImage galleryImage)
         {
             _entertainment = entertainment;
             _gallery = gallery;
@@ -26,7 +26,7 @@ namespace AirportWebRazor.Pages.Entertainment.Book
         [BindProperty]
         public AirPortModel.Models.Links Links { get; set; }
         public AirPortModel.Models.Gallery Gallery { get; set; }
-        public List<AirPortModel.Models.GalleryImage> GalleryImage { get; set; }
+        public AirPortModel.Models.GalleryImage GalleryImage { get; set; }
         public AirPortModel.Models.Entertainment entertainment { get; set; }
 
         public IActionResult OnGet()

@@ -51,7 +51,7 @@ namespace AirPortDataLayer.Data
                 new Category
                 {
                     Id = 1,
-                    CategoryName = "Place",
+                    CategoryName = "Hotel",
                     Icon = "1",
                     CategoryType = 1,
                     DateCreate = DateTime.Now,
@@ -59,10 +59,21 @@ namespace AirPortDataLayer.Data
                     IsDelete = false
                 }
                 );
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 2, CategoryName = "Link", Icon = "2", CategoryType = 2, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 3, CategoryName = "Animal", Icon = "1", CategoryType = 3, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 4, CategoryName = "Cargo", Icon = "1", CategoryType = 4, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 5, CategoryName = "Clearence", Icon = "1", CategoryType = 5, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 2, CategoryName = "Restaurant", Icon = "2", CategoryType = 2, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 3, CategoryName = "Tour", Icon = "1", CategoryType = 3, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 4, CategoryName = "Shop", Icon = "1", CategoryType = 4, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 5, CategoryName = "Institute", Icon = "1", CategoryType = 5, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 6, CategoryName = "Cofeeshop", Icon = "1", CategoryType = 6, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 7, CategoryName = "Parking", Icon = "1", CategoryType = 7, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 8, CategoryName = "Animal", Icon = "1", CategoryType = 8, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 9, CategoryName = "Cargo", Icon = "1", CategoryType = 9, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 10, CategoryName = "Clearance", Icon = "1", CategoryType = 10, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 11, CategoryName = "Padcast", Icon = "1", CategoryType = 11, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 12, CategoryName = "News", Icon = "1", CategoryType = 12, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 13, CategoryName = "Tutorial", Icon = "1", CategoryType = 13, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 14, CategoryName = "Application", Icon = "1", CategoryType = 14, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 15, CategoryName = "Article", Icon = "1", CategoryType = 15, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+
         }
     }
 }

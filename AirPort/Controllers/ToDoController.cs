@@ -36,7 +36,7 @@ namespace AirPort.Controllers
                     Todoobj.FlightId = toDoViewModel.Flight;
                     Todoobj.IsDon = false;
                     Todoobj.CustomerId = Convert.ToInt32(customerid);
-                    if (_flighttodo.Insert(Todoobj) == 0)
+                    if (_flighttodo.Insert(Todoobj).Equals( 0))
                     {
                         Result = new ProgressStatus { Message = " ثبت با موفقیت انجام نشد", Number = 1, Title = "ToDo Registerd Successfully !" };
                         return Result;
