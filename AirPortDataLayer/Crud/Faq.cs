@@ -78,7 +78,7 @@ namespace AirPortDataLayer.Crud
         {
             return _db.faqs.Where(x => x.FaqType.Equals(1) && !x.IsDelete).ToList();
         }
-        public List<AirPortModel.Models.Faq> FaqCargo()
+        public List<AirPortModel.Models.Faq> FaqCargo() 
         {
             return _db.faqs.Where(x => x.FaqType.Equals(2) && !x.IsDelete).ToList();
         }

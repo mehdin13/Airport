@@ -23,8 +23,6 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        
-                                        <!-- <th> Categori Id</th>-->
                                         <th> نام دسته بندی </th>
                                         <th> ایکن </th>
                                         <th> نوع دسته بندی</th>
@@ -36,7 +34,6 @@
                                     @foreach (var item in Model.categories)
                                     {
                                         <tr>
-                                            <!--<th class="text-nowrap" scope="row">رفتار گرید</th>-->
                                             <td>@item.CategoryName</td>
                                             <td><img src="@item.Icon" /></td>
                                             <td>@item.CategoryType</td>

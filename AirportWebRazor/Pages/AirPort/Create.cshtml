@@ -1,0 +1,65 @@
+﻿@page
+@model AirportWebRazor.Pages.AirPort.CreateModel
+@{
+}
+
+<br />
+<br />
+<h1 class="text text-info text-center">ثبت فرودگاه جدید</h1>
+
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت سوالات متداول</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" method="post">
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">نام فرودگاه</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">آدرس فرودگاه</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="AirPortAddressId">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">آدرس عکس نقشه</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Url">
+                            </div>
+                            <div class="form-group">
+                                <label>فایل عکس را انتخاب کنید</label>
+                                <input type="file" class="form-control-file" name="GalleryId" id="projectinput7">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">کد فرودگاه</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Code">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">نام اختصاری فرودگاه</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Abbreviation">
+                            </div>
+
+                        </div>
+                        <div class="form-actions center">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@page
+@model AirportWebRazor.Pages.CustomerUser.IndexModel
+@{
+}
+<br />
+
+<h1 class="text-center text-info"> لیست کاربران برنامه</h1>
+
+<form method="post" id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست کاربران</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th> نام مشتری </th>
+                                        <th> نام کاربری </th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        var state = ViewData["Customers"] as List<AirPortModel.Models.Customer>;
+
+
+                                        foreach (var item in Model.users)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@state.FirstOrDefault(x => x.Id.Equals(item.CustomerId)).Name</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

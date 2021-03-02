@@ -10,6 +10,7 @@ namespace AirPortDataLayer.Crud.InterFace
         ProgressStatus Delete(int id);
         ProgressStatus Update(AirPortModel.Models.Featrue obj);
         List<AirPortModel.Models.Featrue> ToList();
+        List<AirPortModel.Models.Featrue> ToListbyid(int id);
         AirPortModel.Models.Featrue FindById(int id);
 
     }

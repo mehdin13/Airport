@@ -1,0 +1,57 @@
+﻿@page
+@model AirportWebRazor.Pages.AirLine.CreateModel
+@{
+}
+<br />
+<br />
+<h1 class="text text-center text-info"> ثبت جزیات جدید</h1>
+
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls"> ثبت خط هوایی </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" method="post">
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">  نام خط هوایی</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" />
+                            </div> 
+                            <div class="form-group">
+                                <label>فایل عکس را انتخاب کنید</label>
+                                <input type="file" class="form-control-file" name="Logo" id="projectinput7">
+                            </div>
+                        </div>
+                        @{int count = 0;
+                            foreach (var item in ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>)
+                            {
+                                <div class="form-group">
+                                    <label for="complaintinput1">@item.Name</label>
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <input type="text" id="complaintinput1" class="form-control round" name="value" />
+                                </div>
+                                count++;
+                            }
+                        }
+                        <div class="form-actions">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

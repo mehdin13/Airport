@@ -134,7 +134,23 @@ namespace AirPortDataLayer.Crud
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(15));
         }
+        public AirPortModel.Models.Category FindByCategoryBook()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(16));
+        }
+        public AirPortModel.Models.Category FindByCategoryVideo()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(17));
+        }
+        public AirPortModel.Models.Category FindByCategoryMagazin()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(18));
+        }
+        public AirPortModel.Models.Category FindByCategoryAviation()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(19));
+        }
         //End New
     }
-}
+    }
 

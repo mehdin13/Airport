@@ -41,7 +41,7 @@ namespace AirPort.Controllers
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return jsonEntertainment;
             }
         }
@@ -69,7 +69,7 @@ namespace AirPort.Controllers
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return jsonEntertainment;
             }
         }
@@ -97,7 +97,7 @@ namespace AirPort.Controllers
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return jsonEntertainment;
             }
         }
@@ -125,7 +125,7 @@ namespace AirPort.Controllers
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return jsonEntertainment;
             }
         }

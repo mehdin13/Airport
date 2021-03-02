@@ -26,5 +26,9 @@ namespace AirPortDataLayer.Crud.InterFace
         AirPortModel.Models.Category FindByCategoryTutorial();
         AirPortModel.Models.Category FindByCategoryApplication();
         AirPortModel.Models.Category FindByCategoryArticle();
+        AirPortModel.Models.Category FindByCategoryBook();
+        AirPortModel.Models.Category FindByCategoryVideo();
+        AirPortModel.Models.Category FindByCategoryMagazin();
+        AirPortModel.Models.Category FindByCategoryAviation();
     }
 }

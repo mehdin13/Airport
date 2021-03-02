@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AirPortDataLayer.Crud.InterFace
 {
-   public interface ILinks
+    public interface ILinks
     {
         int Insert(AirPortModel.Models.Links obj);
         ProgressStatus Delete(int id);
@@ -17,5 +17,9 @@ namespace AirPortDataLayer.Crud.InterFace
         List<AirPortModel.Models.Links> TutorialCategory();
         List<AirPortModel.Models.Links> ApplicationCategory();
         List<AirPortModel.Models.Links> ArticleCategory();
+        List<AirPortModel.Models.Links> entertainmentsBook();
+        List<AirPortModel.Models.Links> entertainmentVideo();
+        List<AirPortModel.Models.Links> entertainmentMagazin();
+        List<AirPortModel.Models.Links> entertainmentAviation();
     }
 }

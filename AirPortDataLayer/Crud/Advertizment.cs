@@ -33,13 +33,7 @@ namespace AirPortDataLayer.Crud
 
             try
             {
-                Advertizment advertizment = new Advertizment(_db);
-                var obj = _db.advertizments.FirstOrDefault(x => x.Id == id);
-                var objadvertizment = _db.advertizments.Where(x => x.Id == id);
-                foreach (var item in objadvertizment)
-                {
-                    advertizment.Delete(item.Id);
-                }
+                var obj = _db.advertizments.FirstOrDefault(x => x.Id == id);    
                 obj.IsDelete = true;
                 obj.LastUpdate = DateTime.Now.Date;
                 _db.advertizments.Update(obj);

@@ -67,6 +67,10 @@ namespace AirPortDataLayer.Crud
         {
             return _db.featrues.Where(x => x.IsDelete == false).ToList();
         }
+        public List<AirPortModel.Models.Featrue> ToListbyid(int id)
+        {
+            return _db.featrues.Where(x => x.IsDelete == false && x.TypeId.Equals(id)).ToList();
+        }
         public AirPortModel.Models.Featrue FindById(int id)
         {
             return _db.featrues.FirstOrDefault(x => x.Id == id);

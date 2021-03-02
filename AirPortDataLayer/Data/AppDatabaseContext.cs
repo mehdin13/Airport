@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using AirPortModel.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirPortDataLayer.Data
 {
@@ -47,8 +48,7 @@ namespace AirPortDataLayer.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerFlight>().HasKey(a => new { a.CustomerId, a.FlightId });
-            modelBuilder.Entity<Category>().HasData(
-                new Category
+            modelBuilder.Entity<Category>().HasData(new Category
                 {
                     Id = 1,
                     CategoryName = "Hotel",
@@ -73,7 +73,10 @@ namespace AirPortDataLayer.Data
             modelBuilder.Entity<Category>().HasData(new Category { Id = 13, CategoryName = "Tutorial", Icon = "1", CategoryType = 13, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
             modelBuilder.Entity<Category>().HasData(new Category { Id = 14, CategoryName = "Application", Icon = "1", CategoryType = 14, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
             modelBuilder.Entity<Category>().HasData(new Category { Id = 15, CategoryName = "Article", Icon = "1", CategoryType = 15, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
-
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 16, CategoryName = "Book", Icon = "1", CategoryType = 16, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 17, CategoryName = "Video", Icon = "1", CategoryType = 17, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 18, CategoryName = "Magazin", Icon = "1", CategoryType = 18, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 19, CategoryName = "Aviation", Icon = "1", CategoryType = 19, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
         }
     }
 }

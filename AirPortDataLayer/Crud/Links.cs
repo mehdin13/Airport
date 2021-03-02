@@ -96,7 +96,23 @@ namespace AirPortDataLayer.Crud
         }
         public List<AirPortModel.Models.Links> ArticleCategory()
         {
-            return _db.Links.Where(x => x.Category.CategoryType.Equals(15)! && x.IsDelete).ToList();
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(15) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> entertainmentsBook()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(16) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> entertainmentVideo()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(17) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> entertainmentMagazin()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(18) && !x.IsDelete).ToList();
+        }
+        public List<AirPortModel.Models.Links> entertainmentAviation()
+        {
+            return _db.Links.Where(x => x.Category.CategoryType.Equals(19) && !x.IsDelete).ToList();
         }
     }
 }

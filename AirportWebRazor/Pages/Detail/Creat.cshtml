@@ -1,0 +1,55 @@
+﻿@page
+@model AirportWebRazor.Pages.Detail.CreatModel
+@{
+}
+<br />
+<br />
+<h1 class="text text-center text-info"> ثبت جزیات جدید</h1>
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت جزیات</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" method="post">
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">مقدار جزییات </label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="detailValues">
+                            </div>
+                            <div class="form-group">
+                                <label for="issueinput6">نوع ویژگی</label>
+                                <select id="issueinput6" name="TypeId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["detail"] as IList<AirPortModel.Models.TypeDetail>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

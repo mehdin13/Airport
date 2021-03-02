@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Entertainment\Magazain\" />
     <Folder Include="Pages\Entertainment\Aviation\" />
     <Folder Include="Pages\Entertainment\Video\" />
   </ItemGroup>
