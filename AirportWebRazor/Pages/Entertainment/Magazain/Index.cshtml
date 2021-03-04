@@ -2,11 +2,11 @@
 @model AirportWebRazor.Pages.Entertainment.Magazain.IndexModel
 @{
 }
-
 <br />
 <br />
 
-<h1 class="text-center text-info"> لیست مجلات</h1>
+<h1 class="text-center text-info"> لیست کتاب ها</h1>
+
 <div class="row">
     <div class="col-2"></div>
     <div class="col-2"></div>
@@ -14,16 +14,17 @@
     <div class="col-2"></div>
     <div class="col-2"></div>
     <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت مجلات جدید</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت مجله</a>
     </div>
 </div>
-<section id="grid-option">
+
+<form method="post" id="grid-option">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست مجلات</h4>
+                        <h4 class="card-title">لیست مجله</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -32,30 +33,45 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نوع سرگرمی</th>
-                                        <th> نام سرگرمی</th>
-                                        <th> ایدی لینک</th>
-                                        <th> ایدی گالری</th>
-                                        <th> عنوان</th>
-                                        <th> توضیحات</th>
+                                        <th> نوع مجله </th>
+                                        <th> نام مجله </th>
+                                        <th>عنوان مجله</th>
+                                        <th> لینک مجله </th>
+                                        <th> عکس مجله </th>
+                                        <th> عنوان </th>
+                                        <th> توضیحات </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
+                                        <th>عملیات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.entertainments)
-                                    {
-                                        <tr>
 
-                                            <td>@item.Type</td>
-                                            <td>@item.Name</td>
-                                            <td><a src="@item.LId">@item.LId</a></td>
-                                            <td><img src=" @item.Galleryid" /></td>
-                                            <td>@item.Title</td>
-                                            <td>@item.Description</td>
-                                            <td>@item.DateCreate</td>
-                                            <td>@item.LastUpdate</td>
-                                        </tr>
+                                    @{
+                                        var Galleryes = ViewData["Gallery"] as List<AirPortModel.Models.Gallery>;
+                                        var Linkes = ViewData["Linkes"] as List<AirPortModel.Models.Links>;
+
+
+                                        foreach (var item in Model.entertainments.Where(x=>x.Type.Equals(3)))
+                                        {
+
+                                            <tr>
+                                                <td>@item.Type</td>
+                                                <td>@item.Name</td>
+                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LinkIds)).Title</td>
+                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LinkIds)).Url</td>
+                                                <td>@Galleryes.FirstOrDefault(x => x.Id.Equals(item.Galleryid)).Name</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+                                                <td>
+                                                    <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                    <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                </td>
+                                            </tr>
+                                        }
+
                                     }
                                 </tbody>
                             </table>
@@ -64,7 +80,6 @@
                 </div>
             </div>
         </div>
-
     </div>
-</section>
 
+</form>

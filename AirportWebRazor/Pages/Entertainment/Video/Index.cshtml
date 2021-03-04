@@ -1,0 +1,84 @@
+﻿@page
+@model AirportWebRazor.Pages.Entertainment.Video.IndexModel
+@{
+}
+<br />
+<br />
+
+<h1 class="text-center text-info"> لیست کتاب ها</h1>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت ویدیو جدید</a>
+    </div>
+</div>
+
+<form method="post" id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست ویدیو</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th> نوع ویدیو </th>
+                                        <th> نام ویدیو </th>
+                                        <th>عنوان لینک</th>
+                                        <th> لینک ویدیو </th>
+                                        <th> عکس کتاب </th>
+                                        <th> عنوان </th>
+                                        <th> توضیحات </th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        var Galleryes = ViewData["Gallery"] as List<AirPortModel.Models.Gallery>;
+                                        var Linkes = ViewData["Linkes"] as List<AirPortModel.Models.Links>;
+
+
+                                        foreach (var item in Model.entertainments.Where(x=>x.Type.Equals(2)))
+                                        {
+
+                                            <tr>
+                                                <td>@item.Type</td>
+                                                <td>@item.Name</td>
+                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LinkIds)).Title</td>
+                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LinkIds)).Url</td>
+                                                <td>@Galleryes.FirstOrDefault(x => x.Id.Equals(item.Galleryid)).Name</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+                                                <td>
+                                                    <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                    <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -19,7 +19,7 @@
     <link href="/Content/css/js-persian-cal.css" rel="stylesheet" />
     <link rel="icon" href="/Content/favicon.ico" />
     <!-- BEGIN VENDOR JS-->
-    
+
     <script type="text/javascript" src="~/Content/vendors/js/core/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="~/Content/js/imoViewer-min.js"></script>
     <script type="text/javascript" src="~/Content/js/persian-datepicker.min.js"></script>
@@ -102,10 +102,24 @@
                                     <a href="/AirLine" class="menu-item"> خطوط هوایی</a>
                                 </li>
                                 <li>
-                                    <a href="/Accident/Index" class="menu-item">ثبت هواپیما جدید</a>
+                                    <a href="/Accident/Index" class="menu-item">هواپیما ها</a>
                                 </li>
                                 <li>
-                                    <a href="/Injured/Index" class="menu-item">ثبت برند جدید</a>
+                                    <a href="/Injured/Index" class="menu-item">ثبت برند هواپیما</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="icon-fire"></i><span data-i18n="" class="menu-title">پروازها</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Airport" class="menu-item"> پروازها</a>
+                                </li>
+                                <li>
+                                    <a href="/City" class="menu-item">اطلاعات پرواز</a>
+                                </li>
+                                <li>
+                                    <a href="/State" class="menu-item">پرواز مشتری</a>
                                 </li>
                             </ul>
                         </li>
@@ -113,13 +127,16 @@
                             <a><i class="icon-fire"></i><span data-i18n="" class="menu-title">فرودگاه ها</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a href="/Airport" class="menu-item"> فرودگاه</a>
+                                    <a href="/Airport" class="menu-item"> فرودگاه ها</a>
                                 </li>
                                 <li>
-                                    <a href="/City" class="menu-item">شهر ها</a>
+                                    <a href="/City" class="menu-item">استان</a>
                                 </li>
                                 <li>
-                                    <a href="/State" class="menu-item">استان ها</a>
+                                    <a href="/State" class="menu-item">شهر</a>
+                                </li>
+                                <li>
+                                    <a href="/State" class="menu-item">آب و هوا</a>
                                 </li>
                             </ul>
                         </li>
@@ -138,48 +155,74 @@
                                 <li>
                                     <a href="/Repair/Index" class="menu-item"><i class="icon-wrench"></i>هوانوردی</a>
                                 </li>
+                                <li>
+                                    <a href="/Repair/Index" class="menu-item"><i class="icon-wrench"></i>مقالات</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="fa fa-building-o"></i><span data-i18n="" class="menu-title">خدمات</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Entertainment/Book/BookList" class="menu-item"><i class="fa fa-gears"></i>حیوانات</a>
+                                </li>
+                                <li>
+                                    <a href="/Repair/Index" class="menu-item"><i class="icon-wrench"></i>باربری</a>
+                                </li>
+                                <li>
+                                    <a href="/Entertainment/Magazain" class="menu-item"><i class="icon-wrench"></i>ترخیص کالا</a>
+                                </li>
+                                <li>
+                                    <a href="/Entertainment/Magazain" class="menu-item"><i class="icon-wrench"></i>سوالات متداول</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a><i class="fa fa-building-o"></i><span data-i18n="" class="menu-title">سایر خدمات </span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="/Entertainment/Book/BookList" class="menu-item"><i class="fa fa-gears"></i>نرم افزار های ما</a>
+                                </li>
+                                <li>
+                                    <a href="/Repair/Index" class="menu-item"><i class="icon-wrench"></i>آموزش</a>
+                                </li>
+                                <li>
+                                    <a href="/Entertainment/Magazain" class="menu-item"><i class="icon-wrench"></i>آموزشگاه ها</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="/Advertizment"><i class="icon-paper-clip"></i><span data-i18n="" class="menu-title">درخواست تبلیغات</span></a>
                         </li>
                         <li class="has-sub nav-item">
-                            <a><i class="icon-clock"></i><span data-i18n="" class="menu-title">پروازها</span></a>
+                            <a><i class="icon-clock"></i><span data-i18n="" class="menu-title">مکان ها</span></a>
                             <ul class="menu-content">
                                 <li class="nav-item">
-                                    <a href="/shift"><i class="fa fa-address-card"></i><span data-i18n="" class="menu-title">پروازهای مشتری</span></a>
+                                    <a href="/shift"><i class="fa fa-address-card"></i><span data-i18n="" class="menu-title">هتل</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/ShiftRegister/Index"><i class="fa fa-safari"></i><span data-i18n="" class="menu-title">وضعیت پرواز</span></a>
+                                    <a href="/ShiftRegister/Index"><i class="fa fa-safari"></i><span data-i18n="" class="menu-title">رستوران</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#"><i class="fa fa-leanpub"></i><span data-i18n="" class="menu-title">خالی</span></a>
+                                    <a href="#"><i class="fa fa-leanpub"></i><span data-i18n="" class="menu-title">تور</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#"><i class="fa fa-leanpub"></i><span data-i18n="" class="menu-title">مغازه</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#"><i class="fa fa-leanpub"></i><span data-i18n="" class="menu-title">پارکینگ</span></a>
                                 </li>
                             </ul>
                         </li>
                         <li class="has-sub nav-item">
-                            <a><i class="icon-note"></i><span data-i18n="" class="menu-title">خدمات</span></a>
+                            <a><i class="icon-note"></i><span data-i18n="" class="menu-title">اخبار</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a href="/Report/ReportIstgah" class="menu-item">آموزش</a>
+                                    <a href="/Report/ReportIstgah" class="menu-item">اخبار</a>
                                 </li>
                                 <li>
                                     <a href="/Report/ReportTafkikHadese" class="menu-item">پادکست</a>
-                                </li>
-                                <li>
-                                    <a href="/Faq" class="menu-item">سوالات متداول</a>
-                                </li>
-                                <li>
-                                    <a href="/Report/ReportKhesarat" class="menu-item">حیوانات</a>
-                                </li>
-                                <li>
-                                    <a href="/Report/ReportMasdomin" class="menu-item">ترخیص کالا</a>
-                                </li>
-                                <li>
-                                    <a href="/Report/ReportHadese" class="menu-item">باربری</a>
-                                </li>
-                                <li>
-                                    <a href="/Report/ReportHadese" class="menu-item">آموزشگاه ها</a>
                                 </li>
                             </ul>
                         </li>
@@ -196,21 +239,10 @@
                                     <a href="/category" class="menu-item"><i class="fa fa-building"></i>دسته بندی</a>
                                 </li>
                                 <li>
-                                    <a href="/weather/Index" class="menu-item"><i class="fa fa-cloud"></i>خالی</a>
-                                </li>
-                                <li>
-                                    <a href="/AccidentType/Index" class="menu-item"><i class="fa fa-tags"></i>خالی</a>
-                                </li>
-                                <li>
-                                    <a href="/Organizations/Index" class="menu-item"><i class="fa fa-university"></i>خالی</a>
-                                </li>
-                                <li>
-                                    <a href="/Usage/Index" class="menu-item"><i class="fa fa-yelp"></i>خالی</a>
-                                </li>
-                                <li>
-                                    <a href="/Cause/Index" class="menu-item"><i class="fa fa-warning"></i>خالی</a>
-                                </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Advertizment"><i class="icon-paper-clip"></i><span data-i18n="" class="menu-title">راهنمای استفاده</span></a>
                         </li>
                     </ul>
                 </div>

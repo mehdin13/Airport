@@ -29,7 +29,11 @@ namespace AirPortModel.Models
         //end foreign Key :D
         [Column("MapImageUrl")]
         public string Url { get; set; }
-
+        [ForeignKey("detail")]
+        [Required]
+        [Column("AirportDetailid")]
+        public int Detailid { get; set; }
+        public Detail Detail { get; set; }
         //foreign Key 
         [ForeignKey("Gallery")]
         [Required]

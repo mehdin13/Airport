@@ -2,10 +2,9 @@
 @model AirportWebRazor.Pages.AirPort.CreateModel
 @{
 }
-
 <br />
 <br />
-<h1 class="text text-info text-center">ثبت فرودگاه جدید</h1>
+<h1 class="text text-center text-info"> ثبت هواپیما جدید</h1>
 
 
 <div class="row match-height">
@@ -13,43 +12,87 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title-wrap bar-info">
-                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت سوالات متداول</h4>
+                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت فرودگاه</h4>
                 </div>
             </div>
             <div class="card-body">
                 <div class="px-3">
 
-                    <form class="form" method="post">
+                    <form class="form" enctype="multipart/form-data" method="post">
                         <div class="form-body">
-
                             <div class="form-group">
-                                <label for="complaintinput1">نام فرودگاه</label>
+                                <label for="complaintinput1">نام فردوگاه</label>
                                 <input type="text" id="complaintinput1" class="form-control round" name="Name">
                             </div>
                             <div class="form-group">
-                                <label for="complaintinput1">آدرس فرودگاه</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="AirPortAddressId">
+                                <label for="complaintinput1"> نام مخفف</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Abbreviation">
                             </div>
-                            <div class="form-group">
-                                <label for="complaintinput1">آدرس عکس نقشه</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Url">
-                            </div>
-                            <div class="form-group">
-                                <label>فایل عکس را انتخاب کنید</label>
-                                <input type="file" class="form-control-file" name="GalleryId" id="projectinput7">
-                            </div>
-
                             <div class="form-group">
                                 <label for="complaintinput1">کد فرودگاه</label>
                                 <input type="text" id="complaintinput1" class="form-control round" name="Code">
                             </div>
                             <div class="form-group">
-                                <label for="complaintinput1">نام اختصاری فرودگاه</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Abbreviation">
+                                <label for="complaintinput1">اطلاعات مربوط به آدرس</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="AdressDetail">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">لوکشین x</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="AdressLocationX">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">لوکشین y</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="AdressLocationY">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">لوکشین محدوده</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="AdressLocationR">
+                            </div>
+                            <div class="form-group">
+                                <label for="issueinput6">استان</label>
+                                <select id="issueinput6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["state"] as IList<AirPortModel.Models.State>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="issueinput6">شهر</label>
+                                <select id="issueinput6" name="AdressCityId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["city"] as IList<AirPortModel.Models.City>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="mapimage" class="form-control-file" id="projectinput7">
+                            </div>
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="images" class="form-control-file" id="projectinput7">
                             </div>
 
+                            @{int count = 0;
+                                foreach (var item in ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>)
+                                {
+                                    <div class="form-group">
+                                        <label for="complaintinput1">@item.Name</label>
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="text" id="complaintinput1" class="form-control round" name="value" />
+                                    </div>
+                                    count++;
+                                }
+                            }
+
                         </div>
-                        <div class="form-actions center">
+                        <div class="form-actions">
                             <a asp-page="index" type="button" class="btn btn-danger mr-1">
                                 <i class="icon-trash"></i> لغو
                             </a>

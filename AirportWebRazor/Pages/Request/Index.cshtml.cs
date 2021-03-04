@@ -12,11 +12,13 @@ namespace AirportWebRazor.Pages.Request
     {
         private readonly IRequest _request;
         private readonly IRequestType _requestType;
+        private readonly ICustomer _customer;
 
-        public IndexModel(IRequest request, IRequestType requestType)
+        public IndexModel(IRequest request, IRequestType requestType, ICustomer customer)
         {
             _request = request;
             _requestType = requestType;
+            _customer = customer;
         }
 
         [BindProperty]
@@ -25,6 +27,7 @@ namespace AirportWebRazor.Pages.Request
         public async Task<IActionResult> OnGet()
         {
             ViewData["requesttype"] = _requestType.ToList();
+            ViewData["Customer"] = _customer.ToList();
 
             requests = _request.ToList();
             return Page();

@@ -16,17 +16,35 @@ namespace AirportWebRazor.Pages.Entertainment.Book
     {
 
         private readonly IEntertainment _entertainment;
-        public BookListModel(IEntertainment entertainment)
+        private readonly IGallery _gallery;
+        private readonly IGalleryImage _galleryImage;
+        private readonly ICategory _category;
+        private readonly ILinks _links;
+
+
+        public BookListModel(IEntertainment entertainment, IGallery gallery, IGalleryImage galleryImage, ICategory category, ILinks links)
         {
             _entertainment = entertainment;
+            _gallery = gallery;
+            _galleryImage = galleryImage;
+            _category = category;
+            _links = links;
         }
-
+        [BindProperty]
         public List<AirPortModel.Models.Entertainment> entertainments { get; set; }
 
         public async Task<IActionResult> OnGet()
         {
-                entertainments = _entertainment.EntertainmentBookId();
-                return Page();
+            ViewData["Gallery"] = _gallery.ToList();
+            ViewData["Linkes"] = _links.ToList();
+
+            entertainments = _entertainment.EntertainmentBookId();
+            return Page();
+        }
+        public async Task<IActionResult> OnPost(int id)
+        {
+            _entertainment.Delete(id);
+            return RedirectToPage("index");
         }
     }
 }

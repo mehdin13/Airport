@@ -40,7 +40,6 @@ namespace AirportWebRazor.Pages.AirLine
                 if (deid == 0)
                 {
                     return Redirect("index");
-
                 }
                 else
                 {

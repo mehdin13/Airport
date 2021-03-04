@@ -11,10 +11,19 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
     public class IndexModel : PageModel
     {
         private readonly IEntertainment _entertainment;
+        private readonly IGallery _gallery;
+        private readonly IGalleryImage _galleryImage;
+        private readonly ICategory _category;
+        private readonly ILinks _links;
 
-        public IndexModel(IEntertainment entertainment)
+
+        public IndexModel(IEntertainment entertainment, IGallery gallery, IGalleryImage galleryImage, ICategory category, ILinks links)
         {
             _entertainment = entertainment;
+            _gallery = gallery;
+            _galleryImage = galleryImage;
+            _category = category;
+            _links = links;
         }
 
         [BindProperty]
@@ -22,8 +31,16 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
 
         public async Task<IActionResult> OnGet()
         {
-            entertainments = _entertainment.ToList();
+            ViewData["Gallery"] = _gallery.ToList();
+            ViewData["Linkes"] = _links.ToList();
+
+            entertainments = _entertainment.EntertainmentBookId();
             return Page();
+        }
+        public async Task<IActionResult> OnPost(int id)
+        {
+            _entertainment.Delete(id);
+            return RedirectToPage("index");
         }
     }
 }

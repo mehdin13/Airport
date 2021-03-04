@@ -6,30 +6,42 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
 
-
 namespace AirportWebRazor.Pages.AirPort
 {
     public class IndexModel : PageModel
     {
-        private readonly IAirPort _airport;
-
-        public IndexModel(IAirPort airPort)
+        private readonly IAirPort _airPort;
+        private readonly IAddress _address;
+        private readonly IGallery _gallery;
+        private readonly IGalleryImage _galleryImage;
+        private readonly ICity _city;
+        
+        public IndexModel(IAirPort airPort,IAddress address, IGallery gallery, IGalleryImage galleryImage, ICity city)
         {
-            _airport = airPort;
+            _airPort = airPort;
+            _address = address;
+            _gallery = gallery;
+            _galleryImage = galleryImage;
+            _city = city;
         }
 
+        [BindProperty]
         public List<AirPortModel.Models.AirPort> airPorts { get; set; }
-
 
         public async Task<IActionResult> OnGet()
         {
-            airPorts = _airport.Tolist();
+            ViewData["airport"] = _airPort.Tolist();
+            ViewData["address"] = _address.ToList();
+            ViewData["City"] = _city.ToList();
+            ViewData["Gallery"] = _gallery.ToList();
+            ViewData["GalleryImage"] = _galleryImage.ToList();
+            airPorts = _airPort.Tolist();
             return Page();
         }
 
         public async Task<IActionResult> OnPost(int id)
         {
-            _airport.Delete(id);
+            _airPort.Delete(id);
             return RedirectToPage("index");
         }
     }

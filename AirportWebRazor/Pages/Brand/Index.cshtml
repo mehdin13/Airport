@@ -1,0 +1,64 @@
+﻿@page
+@model AirportWebRazor.Pages.Brand.IndexModel
+@{
+}
+<br />
+<h1 class="text-center text-info"> لیست برندها</h1>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت برند جدید</a>
+    </div>
+
+</div>
+<form method="post" id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست برند</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th> نام برند </th>
+                                        <th> ایکن برند </th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.brands)
+                                    {
+                                        <tr>
+                                            <td>@item.BrandName</td>
+                                            <td>@item.BrandIcon</td>
+                                            <td>@item.DateCreate</td>
+                                            <td>@item.LastUpdate</td>
+                                            <td>
+                                                <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

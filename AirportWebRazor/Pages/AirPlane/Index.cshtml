@@ -1,0 +1,74 @@
+﻿@page
+@model AirportWebRazor.Pages.AirPlane.IndexModel
+@{
+}
+<br />
+
+<h1 class="text-center text-info"> لیست هواپیما ها</h1>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2">
+        <a asp-page="Create" class="btn btn-info form-control text-white"> ثبت هواپیمای جدید </a>
+    </div>
+
+</div>
+<form method="post" id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست جزیات</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th> نام هواپیما </th>
+                                        <th> مدل هواپیما </th>
+                                        <th> کد هواپیما </th>
+                                        <th> برند هواپیما </th>
+                                        <th> عکس هواپیما </th>
+                                        <th> جزیات هواپیما </th>
+                                        <th> نام خطوط هوایی </th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.airPlanes)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.Model</td>
+                                            <td>@item.AirPlaneCode</td>
+                                            <td>@item.BrandId</td>
+                                            <td>@item.GalleryId</td>
+                                            <td>@item.DetailId</td>
+                                            <td>@item.AirlineId</td>
+                                            <td>@item.DateCreate</td>
+                                            <td>@item.LastUpdate</td>
+                                            <td>
+                                                <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

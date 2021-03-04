@@ -77,7 +77,6 @@ namespace AirportWebRazor
                 option.LogoutPath = "/Account/LogOut";
                 option.ExpireTimeSpan = TimeSpan.FromMinutes(45);
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,9 +3,8 @@
 @{
 }
 <br />
-<br />
-<h1 class="text text-info text-center">لیست فردگاه ها</h1>
 
+<h1 class="text-center text-info"> لیست هواپیما ها</h1>
 
 <div class="row">
     <div class="col-2"></div>
@@ -14,7 +13,7 @@
     <div class="col-2"></div>
     <div class="col-2"></div>
     <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت فرودگاه جدید</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white"> ثبت هواپیمای جدید </a>
     </div>
 
 </div>
@@ -35,32 +34,41 @@
                                     <tr>
                                         <th> نام فرودگاه </th>
                                         <th> آدرس فرودگاه </th>
-                                        <th> آدرس عکس فرودگاه </th>
-                                        <th> ایدی گالری </th><!--پاک بشه ؟؟-->
+                                        <th> یوارال </th>
+                                        <th> گالری </th>
                                         <th> کد فرودگاه </th>
-                                        <th> نام مخفف فرودگاه </th>
+                                        <th> حرف اختصاری </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.airPorts)
-                                    {
-                                    <tr>
-                                        <td>@item.Name</td>
-                                        <td>@item.Adress</td>
-                                        <td>@item.Gallery</td>
-                                        <td>@item.GalleryId</td><!--پاک بشه ؟؟-->
-                                        <td>@item.Code</td>
-                                        <td>@item.Abbreviation</td>
-                                        <td>@item.DateCreate</td>
-                                        <td>@item.LastUpdate</td>
-                                        <td>
-                                            <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
-                                            <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
-                                        </td>
-                                    </tr>
+
+                                    @{
+                                        var addrress = ViewData["address"] as List<AirPortModel.Models.Address>;
+                                        var cities = ViewData["City"] as List<AirPortModel.Models.City>;
+                                        var gallerys = ViewData["Gallery"] as List<AirPortModel.Models.Gallery>;
+                                        var galleryimages = ViewData["GalleryImage"] as List<AirPortModel.Models.GalleryImage>;
+                                        var Airportes = ViewData["airport"] as List<AirPortModel.Models.AirPort>;
+
+                                        @foreach (var item in Model.airPorts)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Adress.City.Name</td>
+                                                <td>@item.Url</td>
+                                                <td>@gallerys.FirstOrDefault(x => x.Id.Equals(item.GalleryId)).Name</td>
+                                                <td>@item.Code</td>
+                                                <td>@item.Abbreviation</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+                                                <td>
+                                                    <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                    <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
@@ -70,7 +78,4 @@
             </div>
         </div>
     </div>
-
 </form>
-
-

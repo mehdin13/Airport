@@ -24,8 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Entertainment\Aviation\" />
-    <Folder Include="Pages\Entertainment\Video\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

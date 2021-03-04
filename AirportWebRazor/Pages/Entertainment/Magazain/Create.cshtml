@@ -2,4 +2,93 @@
 @model AirportWebRazor.Pages.Entertainment.Magazain.CreateModel
 @{
 }
-<h1 class="teal text-info text-center">افزودن مجله جدید</h1>
+<br />
+<h2 class="text-info ">ثبت مجله</h2>
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls">فرم مجله</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" enctype="multipart/form-data" method="post">
+                        <div class="form-body">
+
+
+                            <!--link-->
+
+                            <div class="form-group">
+                                <label for="complaintinput1">عنوان لینک</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">پیوند</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Url">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">ایکن</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Icon">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">توضیحات</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Description">
+                            </div>
+
+                            <!--link-->
+
+                            <div class="form-group">
+                                <label for="complaintinput1"> نام مجله</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">آدرس پیوند</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LId">
+                            </div>
+
+                            <div class="form-group">
+                                <label>بارگزاری عکس</label>
+                                <input type="file" name="Galleryid" class="form-control-file" id="projectinput7">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">عنوان مجله</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Title">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">توضیحات</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Description">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="mapimage" class="form-control-file" id="projectinput7">
+                            </div>
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="images" class="form-control-file" id="projectinput7">
+                            </div>
+
+
+                        </div>
+                        <div class="form-actions">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
