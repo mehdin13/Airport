@@ -34,7 +34,7 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
             ViewData["Gallery"] = _gallery.ToList();
             ViewData["Linkes"] = _links.ToList();
 
-            entertainments = _entertainment.EntertainmentBookId();
+            entertainments = _entertainment.entertainmentmagazineId();
             return Page();
         }
         public async Task<IActionResult> OnPost(int id)

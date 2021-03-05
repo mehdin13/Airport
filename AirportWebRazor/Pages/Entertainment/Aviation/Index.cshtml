@@ -58,8 +58,8 @@
                                             <tr>
                                                 <td>@item.Type</td>
                                                 <td>@item.Name</td>
-                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LinkIds)).Title</td>
-                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LinkIds)).Url</td>
+                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Title</td>
+                                                <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Url</td>
                                                 <td>@Galleryes.FirstOrDefault(x => x.Id.Equals(item.Galleryid)).Name</td>
                                                 <td>@item.Title</td>
                                                 <td>@item.Description</td>

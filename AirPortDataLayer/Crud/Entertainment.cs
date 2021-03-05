@@ -19,7 +19,7 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                int id = _db.airPlanes.OrderByDescending(x => x.DateCreate).Count() + 1;
+                int id = _db.Entertainment.OrderByDescending(x => x.DateCreate).Count() + 1;
                 obj.Id = id;
                 obj.DateCreate = DateTime.Now;
                 obj.LastUpdate = DateTime.Now;

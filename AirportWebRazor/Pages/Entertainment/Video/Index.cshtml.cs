@@ -33,7 +33,7 @@ namespace AirportWebRazor.Pages.Entertainment.Video
             ViewData["Gallery"] = _gallery.ToList();
             ViewData["Linkes"] = _links.ToList();
 
-            entertainments = _entertainment.EntertainmentBookId();
+            entertainments = _entertainment.entertainmentvideoId();
             return Page();
         }
         public async Task<IActionResult> OnPost(int id)
