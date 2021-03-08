@@ -1,0 +1,151 @@
+﻿@page
+@model AirportWebRazor.Pages.Services.Clearance.CreateModel
+@{
+}
+<br />
+<br />
+<h1 class="text text-info text-center">ثبت ترخیص کالا</h1>
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت ترخیص کالا</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" enctype="multipart/form-data" method="post">
+                        <div class="form-body">
+
+
+                            <div class="form-group">
+                                <label for="complaintinput1">نام ترخیص کالا</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">تلفن تماس ترخیص کالا</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="PhoneNumber">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">قیمت ترخیص کالا</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Cost">
+                            </div>
+
+                            <!--address-->
+
+                            <div class="form-group">
+                                <label for="complaintinput1">جزیات آدرس ترخیص کالا</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Detail">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">لکیشنX</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationX">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">Yلکیشن</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationY">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">Rلکیشن</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationR">
+                            </div>
+                            <!--end Address-->
+                            <!--State && city-->
+                            <!--State-->
+                            <div class="form-group">
+                                <label for="issueinput6">نام استان</label>
+                                <select id="issueinput6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Statees"] as IList<AirPortModel.Models.State>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <!--End State-->
+                            <div class="form-group">
+                                <label for="issueinput6">نام شهر</label>
+                                <select id="issueinput6" name="CityId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Cityes"] as IList<AirPortModel.Models.City>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <!--End City-->
+                            <!--Gallery&&Galleryimage-->
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="images" class="form-control-file" id="projectinput7">
+                            </div>
+                            <!--Gallery&&Galleryimage-->
+                            <!--airport-->
+                            <div class="form-group">
+                                <label for="issueinput6">نام فرودگاه</label>
+                                <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Airport"] as IList<AirPortModel.Models.AirPort>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <!--end airport-->
+                            <!--Customer-->
+                            <div class="form-group">
+                                <label for="issueinput6">نام مشتری</label>
+                                <select id="issueinput6" name="CustomerId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Customer"] as IList<AirPortModel.Models.Customer>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <!--End Customer-->
+                            <!--Feature-->
+
+                            @{int count = 0;
+                                foreach (var item in ViewData["Feathrue"] as IList<AirPortModel.Models.Featrue>)
+                                {
+
+                                    <div class="form-group">
+                                        <label for="complaintinput1">@item.Name</label>
+                                        <input type="hidden" name="id" value="@item.Id" />
+                                        <input type="text" id="complaintinput1" class="form-control round" name="value" />
+                                    </div>
+                                    count++;
+                                }
+                            }
+                            <!--End feature-->
+
+
+                        </div>
+                        <div class="form-actions">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

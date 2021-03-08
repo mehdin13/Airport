@@ -15,9 +15,9 @@ namespace AirPort.Model.ViewModel
         public int GalleryId { get; set; }
         public int DetailId { get; set; }
         public double Cost { get; set; }
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double LocationR { get; set; }
+        public string LocationX { get; set; }
+        public string LocationY { get; set; }
+        public string LocationR { get; set; }
         public string PhoneNumber { get; set; }
     }
     public class ShopViewModel
@@ -27,9 +27,9 @@ namespace AirPort.Model.ViewModel
         public int CategoryId { get; set; }
         public List<string> Imagelist { get; set; }
         public int DetailId { get; set; }
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double LocationR { get; set; }
+        public string LocationX { get; set; }
+        public string LocationY { get; set; }
+        public string LocationR { get; set; }
         public string PhoneNumber { get; set; }
     }
     public class CofeeShopViewModel
@@ -39,9 +39,9 @@ namespace AirPort.Model.ViewModel
         public int CategoryId { get; set; }
         public int GalleryId { get; set; }
         public int DetailId { get; set; }
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double LocationR { get; set; }
+        public string LocationX { get; set; }
+        public string LocationY { get; set; }
+        public string LocationR { get; set; }
         public string PhoneNumber { get; set; }
     }
     public class RestaurantViewModel
@@ -51,9 +51,9 @@ namespace AirPort.Model.ViewModel
         public int CategoryId { get; set; }
         public int GalleryId { get; set; }
         public int DetailId { get; set; }
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double LocationR { get; set; }
+        public string LocationX { get; set; }
+        public string LocationY { get; set; }
+        public string LocationR { get; set; }
         public string PhoneNumber { get; set; }
     }
     public class ToursViewModel

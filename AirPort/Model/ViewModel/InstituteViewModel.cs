@@ -14,9 +14,9 @@ namespace AirPort.Model.ViewModel
         public string Description { get; set; }
         public string WebUrl { get; set; }
         public string Phone { get; set; }
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double LocationR { get; set; }
+        public string LocationX { get; set; }
+        public string LocationY { get; set; }
+        public string LocationR { get; set; }
         public string AddressId { get; set; }
         public string GalleryId { get; set; }
         public int CatagoriId { get; set; }

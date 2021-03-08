@@ -20,9 +20,9 @@ namespace AirPort.Model.ViewModel
         public string Icon { get; set; }
         public int Type { get; set; }
         //address
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double LocationR { get; set; }
+        public string LocationX { get; set; }
+        public string LocationY { get; set; }
+        public string LocationR { get; set; }
     }
     public class JsonServices
     {

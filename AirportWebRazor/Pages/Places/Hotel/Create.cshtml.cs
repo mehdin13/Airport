@@ -22,8 +22,10 @@ namespace AirportWebRazor.Pages.Places.Hotel
         private readonly IDetailValue _detailValue;
         private readonly ICity _city;
         private readonly IState _state;
+        private readonly IAirPort _airport;
+        private readonly ICustomer _customer;
 
-        public CreateModel(IPlace place, IAddress address, ICategory category, IGallery gallery, IGalleryImage galleryImage, IDetail detail, IFeatrue featrue, IDetailValue detailValue, ICity city, IState state)
+        public CreateModel(IPlace place, IAddress address, ICategory category, IGallery gallery, IGalleryImage galleryImage, IDetail detail, IFeatrue featrue, IDetailValue detailValue, ICity city, IState state,IAirPort airPort,ICustomer customer)
         {
             _place = place;
             _address = address;
@@ -35,8 +37,10 @@ namespace AirportWebRazor.Pages.Places.Hotel
             _detailValue = detailValue;
             _state = state;
             _city = city;
+            _airport = airPort;
+            _customer = customer;
         }
-
+        [BindProperty]
         public AirPortModel.Models.Place placeobj { get; set; }
 
         public async Task<IActionResult> OnGet()
@@ -44,24 +48,26 @@ namespace AirportWebRazor.Pages.Places.Hotel
             ViewData["Addresses"] = _address.ToList();
             ViewData["Statees"] = _state.ToList();
             ViewData["Cityes"] = _city.ToList();
-            ViewData["Feathrue"] = _featrue.ToList();
+            ViewData["Feathrue"] = _featrue.ToListbyid(13);
+            ViewData["Airport"] = _airport.Tolist();
+            ViewData["Customer"] = _customer.ToList();
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, string AdressDetail, double AdressLocationX, double AdressLocationY, double AdressLocationR, int AdressCityId)
+        public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, string Detail, string LocationX, string LocationY, string LocationR, int CityId)
         {
             try
             {
-                //insert into placees
+                //insert into address
                 AirPortModel.Models.Address addressObj = new AirPortModel.Models.Address();
-                if (AdressDetail != null && AdressLocationX != null && AdressLocationY != null && AdressLocationR != null && AdressCityId != null)
+                if (Detail != null && LocationX != null && LocationY != null && LocationR != null && CityId != null)
                 {
-                    addressObj.LocationR = AdressLocationR;
-                    addressObj.LocationX = AdressLocationX;
-                    addressObj.LocationY = AdressLocationY;
-                    addressObj.Detail = AdressDetail;
-                    addressObj.CityId = AdressCityId;
+                    addressObj.LocationR = LocationR;
+                    addressObj.LocationX = LocationX;
+                    addressObj.LocationY = LocationY;
+                    addressObj.Detail = Detail;
+                    addressObj.CityId = CityId;
                     var adid = _address.Insert(addressObj);
                     if (adid != 0)
                     {
@@ -72,9 +78,9 @@ namespace AirportWebRazor.Pages.Places.Hotel
                         return Page();
                     }
 
-                    //insert to Gallery and GalleryImages
                     placeobj.CategoryId = 1;
                     AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
+                    //insert to Gallery and GalleryImages
                     AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
                     AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
 
@@ -125,7 +131,8 @@ namespace AirportWebRazor.Pages.Places.Hotel
                                     return Redirect("index");
                                 }
                             }
-                            placeobj.Detail = detailobj;
+                            //insert into place:D
+                            placeobj.DetailId = deid;
                             if (_place.Insert(placeobj) == 0)
                             {
                                 return Redirect("index");

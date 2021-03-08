@@ -39,6 +39,7 @@
                                         <th> لکیشن هتل </th>
                                         <th> لکیشن هتل </th>
                                         <th> لکیشن هتل </th>
+                                        <th> عکس هتل </th>
                                         <th> شماره تلفن هتل </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
@@ -54,7 +55,7 @@
 
 
 
-                                        @foreach (var item in Model.places.Where(x => x.Category.CategoryType.Equals(1)))
+                                        @foreach (var item in Model.places.Where(x => x.CategoryId.Equals(1)))
                                         {
                                             <tr>
                                                 <td>@item.Name</td>
@@ -64,6 +65,7 @@
                                                 <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).LocationX</td>
                                                 <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).LocationY</td>
                                                 <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).LocationR</td>
+                                                <td>@Gallerys.FirstOrDefault(x => x.Id.Equals(item.GalleryId)).Name</td>
                                                 <td>@item.PhoneNumber</td>
                                                 <td>@item.DateCreate</td>
                                                 <td>@item.LastUpdate</td>

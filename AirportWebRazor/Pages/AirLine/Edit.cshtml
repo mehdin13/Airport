@@ -1,0 +1,67 @@
+﻿@page
+@model AirportWebRazor.Pages.AirLine.EditModel
+@{
+}
+<br />
+<br />
+<h1 class="text text-center text-info"> بروزرسانی جزیات جدید</h1>
+
+
+
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls"> ثبت خط هوایی </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" method="post">
+                        <input type="hidden" name="DetailId" value="@Model.airlines.DetailId" />
+                        <input type="hidden" name="Id" value="@Model.airlines.Id" />
+                        <input type="hidden" name="IsDelete" value="@Model.airlines.IsDelete" />
+                        <input type="hidden" name="DateCreate" value="@Model.airlines.DateCreate" />
+                        <input type="hidden" name="LastUpdate" value="@Model.airlines.LastUpdate" />
+                        <input type="hidden" name="Logo" value="@Model.airlines.Logo" />
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">  نام خط هوایی</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.airlines.Name" />
+                            </div>
+                            <div class="form-group">
+                                <label>فایل عکس را انتخاب کنید</label>
+                                <input type="file" class="form-control-file" name="images" id="projectinput7">
+                            </div>
+                        </div>
+                        @{int count = 0;
+                            var List = ViewData["detailValue"] as IList<AirPortModel.Models.DetailValue>;
+                            foreach (var item in ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>)
+                            {
+                                <div class="form-group">
+                                    <label for="complaintinput1">@item.Name</label>
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <input type="text" class="form-control round" name="value" value="@List.FirstOrDefault(x=>x.FeacherId.Equals(item.Id)).Value" />
+                                    <input type="hidden" class="form-control round" name="dfid" value="@List.FirstOrDefault(x=>x.FeacherId.Equals(item.Id)).Id" />
+                                </div>
+                                count++;
+                            }
+                        }
+                        <div class="form-actions">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

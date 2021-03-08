@@ -1,0 +1,87 @@
+﻿@page
+@model AirportWebRazor.Pages.Places.CofeeShop.IndexModel
+@{
+}
+<br />
+
+<h1 class="text-center text-info"> لیست کافی شاپ</h1>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-2">
+        <a asp-page="Createcshtml" class="btn btn-info form-control text-white">ثبت کافی شاپ جدید</a>
+    </div>
+
+</div>
+<form method="post" id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست کافی شاپ</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th> نام کافی شاپ </th>
+                                        <th> آدرس کافی شاپ </th>
+                                        <th> جزیات کافی شاپ </th>
+                                        <th> قیمت کافی شاپ </th>
+                                        <th> لکیشن کافی شاپ </th>
+                                        <th> لکیشن کافی شاپ </th>
+                                        <th> لکیشن کافی شاپ </th>
+                                        <th> عکس کافی شاپ </th>
+                                        <th> شماره تلفن کافی شاپ </th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var address = ViewData["Address"] as List<AirPortModel.Models.Address>;
+                                        var detail = ViewData["Detail"] as List<AirPortModel.Models.Detail>;
+                                        var Gallerys = ViewData["Galleryes"] as List<AirPortModel.Models.Gallery>;
+                                        var Galleryimagees = ViewData["Galleryimages"] as List<AirPortModel.Models.GalleryImage>;
+
+
+
+                                        @foreach (var item in Model.places.Where(x => x.CategoryId.Equals(6)))
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).Detail</td>
+                                                <td>@item.DetailId</td>
+                                                <td>@item.Cost</td>
+                                                <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).LocationX</td>
+                                                <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).LocationY</td>
+                                                <td>@address.FirstOrDefault(x => x.Id.Equals(item.AdressId)).LocationR</td>
+                                                <td>@Gallerys.FirstOrDefault(x => x.Id.Equals(item.GalleryId)).Name</td>
+                                                <td>@item.PhoneNumber</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+                                                <td>
+                                                    <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                    <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

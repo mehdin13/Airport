@@ -47,7 +47,7 @@ namespace AirportWebRazor.Pages.AirPort
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, IFormFile mapimage, string AdressDetail, double AdressLocationX, double AdressLocationY, double AdressLocationR, int AdressCityId)
+        public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, IFormFile mapimage, string AdressDetail, string AdressLocationX, string AdressLocationY, string AdressLocationR, int AdressCityId)
         {
             try
             {

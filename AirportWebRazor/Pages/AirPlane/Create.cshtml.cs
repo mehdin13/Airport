@@ -47,6 +47,7 @@ namespace AirportWebRazor.Pages.AirPlane
         {
             try
             {
+                //*************************detail
                 AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
                 AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
                 AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();

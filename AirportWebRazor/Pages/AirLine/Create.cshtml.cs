@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+
 namespace AirportWebRazor.Pages.AirLine
 {
     public class CreateModel : PageModel
@@ -30,10 +33,28 @@ namespace AirportWebRazor.Pages.AirLine
             ViewData["featruelist"] = _featrue.ToListbyid(5);
             return Page();
         }
-        public async Task<IActionResult> Onpost(int[] id, string[] value)
+        // *************** on post
+
+        public async Task<IActionResult> Onpost(int[] id, string[] value, IFormFile images)
         {
             try
             {
+                //Logo
+                if (images.Length > 0 && images.ContentType != null)
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        images.CopyTo(stream);
+                        airlines.Logo = filePath;
+                    }
+                }
+                else
+                {
+                    return Page();
+                }
+
+                //detail
                 AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
                 detailobj.TypeId = 5;
                 int deid = _detail.Insert(detailobj);
@@ -54,6 +75,7 @@ namespace AirportWebRazor.Pages.AirLine
                             return Redirect("index");
                         }
                     }
+
                     airlines.Detail = detailobj;
                     if (_airline.Insert(airlines) == 0)
                     {

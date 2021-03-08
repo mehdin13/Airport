@@ -68,13 +68,14 @@ namespace AirPortDataLayer.Crud
             try
             {
                 obj.LastUpdate = DateTime.Now.Date;
-                _db.detailValues.Update(obj);
+                _db.Attach<AirPortModel.Models.DetailValue>(obj).State = EntityState.Modified;
                 _db.SaveChanges();
                 var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "DetailValue Has been Update" };
                 return result;
             }
             catch (Exception ex)
             {
+                string mes=ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "DetailValue  can't be Update" };
                 return result;
             }
@@ -86,6 +87,10 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.DetailValue FindById(int id)
         {
             return _db.detailValues.FirstOrDefault(x => x.Id == id);
+        }
+        public List<AirPortModel.Models.DetailValue> FindByDetailId(int id)
+        {
+            return _db.detailValues.Where(x => x.DetailId == id).ToList();
         }
     }
 }

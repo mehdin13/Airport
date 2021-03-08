@@ -21,11 +21,11 @@ namespace AirPortModel.Models
         [Column("AdressDetail")]
         public string Detail { get; set; }
         [Column("AdressLocationX")]
-        public double LocationX { get; set; }
+        public string LocationX { get; set; }
         [Column("AdressLocationY")]
-        public double LocationY { get; set; }
+        public string LocationY { get; set; }
         [Column("AdressLocationR")]
-        public double LocationR { get; set; }
+        public string LocationR { get; set; }
         //Foreign Key 
         [ForeignKey("City")]
         [Required]
