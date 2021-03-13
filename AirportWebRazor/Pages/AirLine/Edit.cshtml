@@ -6,9 +6,6 @@
 <br />
 <h1 class="text text-center text-info"> بروزرسانی جزیات جدید</h1>
 
-
-
-
 <div class="row match-height">
     <div class="col-md-12">
         <div class="card">
@@ -39,14 +36,25 @@
                             </div>
                         </div>
                         @{int count = 0;
-                            var List = ViewData["detailValue"] as IList<AirPortModel.Models.DetailValue>;
-                            foreach (var item in ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>)
+                            var Listv = ViewData["detailValue"] as IList<AirPortModel.Models.DetailValue>;
+                            var Listf = ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>;
+                            foreach (var item in Listf)
                             {
+                                var listobj = Listv.FirstOrDefault(x => x.FeacherId.Equals(item.Id));
                                 <div class="form-group">
                                     <label for="complaintinput1">@item.Name</label>
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <input type="text" class="form-control round" name="value" value="@List.FirstOrDefault(x=>x.FeacherId.Equals(item.Id)).Value" />
-                                    <input type="hidden" class="form-control round" name="dfid" value="@List.FirstOrDefault(x=>x.FeacherId.Equals(item.Id)).Id" />
+                                    <input type="hidden" name="id2" value="@item.Id" />
+                                    @if (listobj != null)
+                                    {
+                                        <input type="text" class="form-control round" name="value" value="@listobj.Value" />
+                                        <input type="hidden" class="form-control round" name="dfid" value="@listobj.Id" />
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control round" name="value" />
+                                        <input type="hidden" class="form-control round" name="dfid" />
+                                    }
+
                                 </div>
                                 count++;
                             }

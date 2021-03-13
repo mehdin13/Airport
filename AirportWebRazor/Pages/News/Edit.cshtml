@@ -1,0 +1,60 @@
+﻿@page
+@model AirportWebRazor.Pages.News.EditModel
+@{
+}
+<h1 class="text text-info text-center">به روزرسانی اخبار</h1>
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls"> ثبت اخبار </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="Id" value="@Model.linkesobj.Id" />
+                        <input type="hidden" name="Icon" value="@Model.linkesobj.Icon" />
+                        <input type="hidden" name="IsDelete" value="@Model.linkesobj.IsDelete" />
+                        <input type="hidden" name="DateCreate" value="@Model.linkesobj.DateCreate" />
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">عنوان خبر</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.linkesobj.Title" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">آدرس خبر</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Url" value="@Model.linkesobj.Url" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">توضیحات خبر</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.linkesobj.Description" />
+                            </div>
+
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="images" class="form-control-file" id="projectinput7">
+                            </div>
+
+                            <div class="form-actions">
+                                <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                    <i class="icon-trash"></i> لغو
+                                </a>
+
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-note"></i> ذخیره
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

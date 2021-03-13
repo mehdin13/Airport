@@ -67,15 +67,19 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
-                obj.LastUpdate = DateTime.Now.Date;
-                _db.Attach<AirPortModel.Models.DetailValue>(obj).State = EntityState.Modified;
-                _db.SaveChanges();
-                var result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "DetailValue Has been Update" };
+                var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "DetailValue  can't be Update" };
+                if (Delete(obj.Id).Number.Equals(1))
+                {
+                    obj.LastUpdate = DateTime.Now.Date;
+                    _db.Attach<AirPortModel.Models.DetailValue>(obj).State = EntityState.Modified;
+                    _db.SaveChanges();
+                    result = new ProgressStatus { Number = 1, Title = "Update Successful", Message = "DetailValue Has been Update" };
+                }
                 return result;
             }
             catch (Exception ex)
             {
-                string mes=ex.Message;
+                string mes = ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "DetailValue  can't be Update" };
                 return result;
             }

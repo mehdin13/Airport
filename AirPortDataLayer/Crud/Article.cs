@@ -25,8 +25,9 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return obj.Id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return 0;
             }
         }
@@ -62,6 +63,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
+                string mes = ex.Message;
                 var Result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Article can't be Update" };
                 return Result;
             }

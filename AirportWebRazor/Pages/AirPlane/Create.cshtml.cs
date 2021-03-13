@@ -43,7 +43,7 @@ namespace AirportWebRazor.Pages.AirPlane
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images)
+        public async Task<IActionResult> OnPost(int[] dfid, int[] id, string[] value, List<IFormFile> images)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace AirportWebRazor.Pages.AirPlane
                         if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
                             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                            using (var stream = new FileStream(filePath, FileMode.Create))
                             {
                                 fileimage.CopyTo(stream);
                                 galleryImageObj.Url = filePath;

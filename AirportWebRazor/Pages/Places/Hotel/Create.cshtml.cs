@@ -25,7 +25,7 @@ namespace AirportWebRazor.Pages.Places.Hotel
         private readonly IAirPort _airport;
         private readonly ICustomer _customer;
 
-        public CreateModel(IPlace place, IAddress address, ICategory category, IGallery gallery, IGalleryImage galleryImage, IDetail detail, IFeatrue featrue, IDetailValue detailValue, ICity city, IState state,IAirPort airPort,ICustomer customer)
+        public CreateModel(IPlace place, IAddress address, ICategory category, IGallery gallery, IGalleryImage galleryImage, IDetail detail, IFeatrue featrue, IDetailValue detailValue, ICity city, IState state, IAirPort airPort, ICustomer customer)
         {
             _place = place;
             _address = address;

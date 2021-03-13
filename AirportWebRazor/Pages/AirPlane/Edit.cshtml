@@ -1,0 +1,99 @@
+﻿@page
+@model AirportWebRazor.Pages.AirPlane.EditModel
+@{
+}
+<br />
+<br />
+<h1 class="text text-center text-info"> بروزرسانی هواپیما</h1>
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls"> ثبت هواپیما </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" method="post">
+                        <input type="hidden" name="DetailId" value="@Model.airPlaneobj.DetailId" />
+                        <input type="hidden" name="Id" value="@Model.airPlaneobj.Id" />
+                        <input type="hidden" name="IsDelete" value="@Model.airPlaneobj.IsDelete" />
+                        <input type="hidden" name="DateCreate" value="@Model.airPlaneobj.DateCreate" />
+                        <input type="hidden" name="LastUpdate" value="@Model.airPlaneobj.LastUpdate" />
+                        <input type="hidden" name="Gallery" value="@Model.airPlaneobj.Gallery" />
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">  نام هواپیما</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.airPlaneobj.Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">  مدل هواپیما</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.airPlaneobj.Model" />
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">  کد هواپیما</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.airPlaneobj.AirPlaneCode" />
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">  برند هواپیما</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.airPlaneobj.BrandId" />
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="issueinput6">استان</label>
+                                <select id="issueinput6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Brandes"] as IList<AirPortModel.Models.Brand>)
+                                    {
+
+                                        <option value="@item.Id">@item.BrandName</option>
+                                    }
+                                </select>
+                            </div>
+
+
+                        </div>
+                        @{int count = 0;
+                            var Listv = ViewData["detailValue"] as IList<AirPortModel.Models.DetailValue>;
+                            var Listf = ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>;
+                            foreach (var item in Listf)
+                            {
+                                var listobj = Listv.FirstOrDefault(x => x.FeacherId.Equals(item.Id));
+                                <div class="form-group">
+                                    <label for="complaintinput1">@item.Name</label>
+                                    <input type="hidden" name="id2" value="@item.Id" />
+                                    @if (listobj != null)
+                                    {
+                                        <input type="text" class="form-control round" name="value" value="@listobj.Value" />
+                                        <input type="hidden" class="form-control round" name="dfid" value="@listobj.Id" />
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control round" name="value" />
+                                        <input type="hidden" class="form-control round" name="dfid" />
+                                    }
+
+                                </div>
+                                count++;
+                            }
+                        }
+                        <div class="form-actions">
+                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                <i class="icon-trash"></i> لغو
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="icon-note"></i> ذخیره
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

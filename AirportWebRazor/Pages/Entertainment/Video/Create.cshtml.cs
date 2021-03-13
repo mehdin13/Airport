@@ -40,6 +40,7 @@ namespace AirportWebRazor.Pages.Entertainment.Video
         {
             try
             {
+                //******************* Link *****************************
                 AirPortModel.Models.Links linksobj = new AirPortModel.Models.Links();
                 entertainment.Type = 2;
 
@@ -60,6 +61,9 @@ namespace AirportWebRazor.Pages.Entertainment.Video
                         return Page();
                     }
                 }
+
+                //************************** Gallery ********************************************
+
                 AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
                 AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
                 galleryobg.Name = string.Format("{0}{1}", entertainment.Name, Guid.NewGuid().ToString().Replace("_", ""));
@@ -85,6 +89,8 @@ namespace AirportWebRazor.Pages.Entertainment.Video
                         {
                             return Page();
                         }
+                        //********************* End Gallery *********************************
+                        //************************* Insert **********************************
                         if (_entertainment.Insert(entertainment) != 0)
                         {
                             return Redirect("index");

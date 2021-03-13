@@ -1,0 +1,66 @@
+﻿@page
+@model AirportWebRazor.Pages.Gate.IndexModel
+@{
+}
+<br />
+
+<h1 class="text-center text-info"> لیست دروازه ها</h1>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت دروازه جدید</a>
+    </div>
+
+</div>
+<form method="post" id="grid-option">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">لیست دروازه ها</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th> نام دروازه </th>
+                                        <th> نام ترمینال </th>
+                                        <th> تاریخ ثبت</th>
+                                        <th> تاریخ آخرین بروز رسانی</th>
+                                        <th>عملیات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        var Terminales = ViewData["Terminales"] as List<AirPortModel.Models.Terminal>;
+                                        @foreach (var item in Model.GateObj)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@Terminales.FirstOrDefault(x => x.Id.Equals(item.Terminal)).Name</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+                                                <td>
+                                                    <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

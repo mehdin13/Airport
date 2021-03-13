@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace AirportWebRazor.Pages.Brand
 {
@@ -26,7 +28,7 @@ namespace AirportWebRazor.Pages.Brand
         }
 
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(IFormFile images)
         {
             try
             {
@@ -34,10 +36,21 @@ namespace AirportWebRazor.Pages.Brand
                 {
                     return Page();
                 }
-                else
+                //Logo
+               else if (images.Length > 0 && images.ContentType != null)
                 {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        images.CopyTo(stream);
+                        brand1.BrandIcon = filePath;
+                    }
                     _brand.Insert(brand1);
                     return RedirectToPage("index");
+                }
+                else
+                {
+                    return Page();
                 }
             }
             catch (Exception ex)

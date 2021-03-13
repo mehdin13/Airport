@@ -24,8 +24,9 @@ namespace AirPortDataLayer.Crud
                 _db.SaveChanges();
                 return obj.Id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string mes = ex.Message;
                 return 0;
             }
         }
@@ -71,6 +72,39 @@ namespace AirPortDataLayer.Crud
         public AirPortModel.Models.Request FindById(int id)
         {
             return _db.requests.FirstOrDefault(x => x.Id == id);
+        }
+
+        public AirPortModel.Models.Request RequestsHotel()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(1));
+        }
+        public AirPortModel.Models.Request RequestsResturant()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(2));
+        }
+        public AirPortModel.Models.Request RequestsTour()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(3));
+        }
+        public AirPortModel.Models.Request RequestShop()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(4));
+        }
+        public AirPortModel.Models.Request RequestsCofeeShop()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(5));
+        }
+        public AirPortModel.Models.Request RequestsAnimal()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(6));
+        }
+        public AirPortModel.Models.Request RequestsCargo()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(7));
+        }
+        public AirPortModel.Models.Request RequestsClearance()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(8));
         }
     }
 }

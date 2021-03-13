@@ -11,5 +11,13 @@ namespace AirPortDataLayer.Crud.InterFace
         ProgressStatus Update(AirPortModel.Models.Request obj);
         List<AirPortModel.Models.Request> ToList();
         AirPortModel.Models.Request FindById(int id);
+        AirPortModel.Models.Request RequestsHotel();
+        AirPortModel.Models.Request RequestsResturant();
+        AirPortModel.Models.Request RequestsTour();
+        AirPortModel.Models.Request RequestShop();
+        AirPortModel.Models.Request RequestsCofeeShop();
+        AirPortModel.Models.Request RequestsAnimal();
+        AirPortModel.Models.Request RequestsCargo();
+        AirPortModel.Models.Request RequestsClearance();
     }
 }

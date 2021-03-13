@@ -6,12 +6,9 @@
 <h1 class="text-center text-info"> لیست برندها</h1>
 
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2">
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4">
         <a asp-page="Create" class="btn btn-info form-control text-white">ثبت برند جدید</a>
     </div>
 
@@ -48,7 +45,7 @@
                                             <td>@item.LastUpdate</td>
                                             <td>
                                                 <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
-                                                <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">به روز رسانی</a>
                                             </td>
                                         </tr>
                                     }

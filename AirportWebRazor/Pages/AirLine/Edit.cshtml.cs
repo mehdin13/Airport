@@ -25,6 +25,7 @@ namespace AirportWebRazor.Pages.AirLine
             _airline = airline;
             _detailValue = detailValue;
         }
+
         [BindProperty]
         public AirPortModel.Models.Airline airlines { get; set; }
 
@@ -38,7 +39,7 @@ namespace AirportWebRazor.Pages.AirLine
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(int[] dfid,int[] id, string[] value, IFormFile images)
+        public async Task<IActionResult> OnPost(int[] dfid,int[] id2, string[] value, IFormFile images)
         {
             try
             {
@@ -61,11 +62,11 @@ namespace AirportWebRazor.Pages.AirLine
                 }
                 //detail Value
                 AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
-                for (int i = 0; i <= id.Count() - 1; i++)
+                for (int i = 0; i <= id2.Count() - 1; i++)
                 {
-                    de.Id = dfid[i];
+                    de = _detailValue.FindById(dfid[i]);
                     de.DetailId = airlines.DetailId;
-                    de.FeacherId = id[i];
+                    de.FeacherId = id2[i];
                     de.Value = value[i];
                     if (_detailValue.Update(de).Number.Equals(0))
                     {

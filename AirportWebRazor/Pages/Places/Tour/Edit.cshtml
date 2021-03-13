@@ -1,0 +1,122 @@
+﻿@page
+@model AirportWebRazor.Pages.Places.Tour.EditModel
+@{
+}
+<br />
+<h1 class="text text-center text-info"> بروزرسانی تور</h1>
+
+
+
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls"> بروزرسانی تور </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" enctype="multipart/form-data" method="post">
+                        <input type="hidden" name="DetailId" value="@Model.placeobj.DetailId" />
+                        <input type="hidden" name="Id" value="@Model.placeobj.Id" />
+                        <input type="hidden" name="AdressId" value="@Model.placeobj.AdressId" />
+                        <input type="hidden" name="CustomerId" value="@Model.placeobj.CustomerId" />
+                        <input type="hidden" name="IsDelete" value="@Model.placeobj.IsDelete" />
+                        <input type="hidden" name="DateCreate" value="@Model.placeobj.DateCreate" />
+                        <input type="hidden" name="LastUpdate" value="@Model.placeobj.LastUpdate" />
+                        <input type="hidden" name="GalleryId" value="@Model.placeobj.GalleryId" />
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">  نام تور</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.placeobj.Name" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">  تلفن تماس تور</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="PhoneNumber" value="@Model.placeobj.PhoneNumber" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">  قیمت تور</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Cost" value="@Model.placeobj.Cost" />
+                            </div>
+                            @{var addressobj = ViewData["Addresses"] as AirPortModel.Models.Address; }
+                            <div class="form-group">
+                                <label for="complaintinput1">جزیات آدرس</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Detail" value="@addressobj.Detail">
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">  لکیشن تور</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationX" value="@addressobj.LocationX" />
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">  لکیشن تور</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationY" value="@addressobj.LocationY" "     />
+                            </div>
+                            <div class="form-group">
+                                <label for="complaintinput1">  لکیشن تور</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationR" value="@addressobj.LocationR" "     />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="issueinput6">نام استان</label>
+                                <select id="issueinput6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Statees"] as IList<AirPortModel.Models.State>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="issueinput6">نام شهر</label>
+                                <select id="issueinput6" name="CityId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Cityes"] as IList<AirPortModel.Models.City>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>فایل را انتخاب کنید</label>
+                                <input type="file" name="images" class="form-control-file" id="projectinput7">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="issueinput6">نام تور</label>
+                                <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                        data-title="Status">
+                                    @foreach (var item in ViewData["Airport"] as IList<AirPortModel.Models.AirPort>)
+                                    {
+
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div class="form-actions">
+                                <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                    <i class="icon-trash"></i> لغو
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-note"></i> ذخیره
+                                </button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

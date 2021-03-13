@@ -147,7 +147,7 @@ namespace AirportWebRazor.Pages.Services.Animal
 
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return Page();
             }
             return Redirect("index");

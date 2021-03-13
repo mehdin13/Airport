@@ -1,0 +1,61 @@
+﻿@page
+@model AirportWebRazor.Pages.Faq.EditModel
+@{
+}
+<h1 class="text text-info text-center">به روزرسانی</h1>
+
+<div class="row match-height">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title-wrap bar-info">
+                    <h4 class="card-title" id="basic-layout-round-controls"> ثبت خط پرسش و پاسخ جدید </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+
+                    <form class="form" method="post">
+                        <input type="hidden" name="Id" value="@Model.faqOBJ.Id" /> 
+                        <input type="hidden" name="IsDelete" value="@Model.faqOBJ.IsDelete" />
+                        <input type="hidden" name="DateCreate" value="@Model.faqOBJ.DateCreate" />
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="complaintinput1">عنوان</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.faqOBJ.Title" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complaintinput1">توضیحات</label>
+                                <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.faqOBJ.Description" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="projectinput5">نوع سوال متداول</label>
+                                        <select id="projectinput5" name="FAQType" class="form-control">
+                                            <option value="none" selected="" disabled="">انتخاب کنید</option>
+                                            <option value="1">حیوانات</option>
+                                            <option value="2">باربری</option>
+                                            <option value="3">ترخیص کالا</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                    <i class="icon-trash"></i> لغو
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-note"></i> ذخیره
+                                </button>
+                            </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

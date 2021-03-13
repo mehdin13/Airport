@@ -78,6 +78,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
+                string mes = ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Can't Update the AirLine" };
                 return result;
             }
