@@ -27,7 +27,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return 0;
             }
         }
@@ -51,6 +51,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
+                _ = ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Delete Error", Message = "Detail  can't be Deleted" };
                 return result;
             }
@@ -67,7 +68,7 @@ namespace AirPortDataLayer.Crud
             }
             catch (Exception ex)
             {
-
+                _ = ex.Message;
                 var result = new ProgressStatus { Number = 0, Title = "Update Error", Message = "Detail  can't be Update" };
                 return result;
             }

@@ -22,26 +22,31 @@
                         <input type="hidden" name="DateCreate" value="@Model.linkesobj.DateCreate" />
                         <div class="form-body">
 
-                            <div class="form-group">
-                                <label for="complaintinput1">عنوان پادکست</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.linkesobj.Title" />
+                            <div class="row">
+
+                                <div class="form-group col-6">
+                                    <label for="complaintinput1">عنوان پادکست</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.linkesobj.Title" />
+                                </div>
+
+                                <div class="form-group col-6">
+                                    <label for="complaintinput1">آدرس پادکست</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Url" value="@Model.linkesobj.Url" />
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="complaintinput1">آدرس پادکست</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Url" value="@Model.linkesobj.Url" />
-                            </div>
+                            <div class="row">
 
-                            <div class="form-group">
-                                <label for="complaintinput1">توضیحات پادکست</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.linkesobj.Description" />
-                            </div>
+                                <div class="form-group col-6">
+                                    <label for="complaintinput1">توضیحات پادکست</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.linkesobj.Description" />
+                                </div>
 
-                            <div class="form-group">
-                                <label>فایل ایکن پادکست انتخاب کنید</label>
-                                <input type="file" name="images" class="form-control-file" id="projectinput7">
+                                <div class="form-group col-6">
+                                    <label>فایل ایکن پادکست انتخاب کنید</label>
+                                    <input type="file" name="images" class="form-control-file" id="projectinput7">
+                                </div>
                             </div>
-
                             <div class="form-actions">
                                 <a asp-page="index" type="button" class="btn btn-danger mr-1">
                                     <i class="icon-trash"></i> لغو

@@ -24,21 +24,21 @@
                         <input type="hidden" name="LastUpdate" value="@Model.articleObj.LastUpdate" />
                         <input type="hidden" name="GalleryId" value="@Model.articleObj.GalleryId" />
                         <div class="form-body">
-
-                            <div class="form-group">
-                                <label for="complaintinput1">  عنوان مقاله </label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.articleObj.Title" />
-                            </div>
-                            <div class="form-group">
-                                <label for="complaintinput1">توضیحات مقاله</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.articleObj.Description" />
-                            </div>
-                            <div class="form-group">
-                                <label>فایل عکس را انتخاب کنید</label>
-                                <input type="file" class="form-control-file" name="images" id="projectinput7">
+                            <div class="row">
+                                <div class="form-group col-4">
+                                    <label for="complaintinput1">  عنوان مقاله </label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.articleObj.Title" />
+                                </div>
+                                <div class="form-group col-4">
+                                    <label for="complaintinput1">توضیحات مقاله</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.articleObj.Description" />
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>فایل عکس را انتخاب کنید</label>
+                                    <input type="file" class="form-control-file" name="images" id="projectinput7">
+                                </div>
                             </div>
                         </div>
-                       
                         <div class="form-actions">
                             <a asp-page="index" type="button" class="btn btn-danger mr-1">
                                 <i class="icon-trash"></i> لغو

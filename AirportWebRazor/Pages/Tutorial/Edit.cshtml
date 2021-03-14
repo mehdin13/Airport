@@ -22,29 +22,31 @@
                         <input type="hidden" name="DateCreate" value="@Model.linkesobj.DateCreate" />
                         <input type="hidden" name="LastUpdate" value="@Model.linkesobj.LastUpdate" />
                         <div class="form-body">
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="complaintinput1">  عنوان مقاله </label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.linkesobj.Title" />
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="complaintinput1">توضیحات مقاله</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Url" value="@Model.linkesobj.Url" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>فایل را انتخاب کنید</label>
+                                    <input type="file" name="Icon" class="form-control-file" id="projectinput7">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="complaintinput1">  عنوان مقاله </label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.linkesobj.Title" />
+                                <div class="form-group col-6">
+                                    <label for="complaintinput1">توضیحات مقاله</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.linkesobj.Description" />
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="complaintinput1">توضیحات مقاله</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Url" value="@Model.linkesobj.Url" />
-                            </div>
-                            <div class="form-group">
-                                <label>فایل را انتخاب کنید</label>
-                                <input type="file" name="Icon" class="form-control-file" id="projectinput7">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="complaintinput1">توضیحات مقاله</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.linkesobj.Description" />
-                            </div>
-
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label>فایل عکس را انتخاب کنید</label>
                                 <input type="file" class="form-control-file" name="images" id="projectinput7">
-                            </div>
+                            </div>*@
                         </div>
 
                         <div class="form-actions">

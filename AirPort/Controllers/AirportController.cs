@@ -74,7 +74,7 @@ namespace AirPort.Controllers
             }
             catch (Exception ex)
             {
-                string Mes = ex.Message;
+                _ = ex.Message;
                 return airportlinkOBJ;
             }
         }

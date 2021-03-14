@@ -30,80 +30,92 @@
                         <input type="hidden" name="GalleryId" value="@Model.placeobj.GalleryId" />
                         <div class="form-body">
 
-                            <div class="form-group">
-                                <label for="complaintinput1">  نام کافی شاپ</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.placeobj.Name" />
+                            <div class="row">
+                                <div class="form-group col-4">
+                                    <label for="complaintinput1">  نام کافی شاپ</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.placeobj.Name" />
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label for="complaintinput1">  تلفن تماس کافی شاپ</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="PhoneNumber" value="@Model.placeobj.PhoneNumber" />
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label for="complaintinput1">  قیمت کافی شاپ</label>
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Cost" value="@Model.placeobj.Cost" />
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="complaintinput1">  تلفن تماس کافی شاپ</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="PhoneNumber" value="@Model.placeobj.PhoneNumber" />
-                            </div>
+                            <div class="row">
 
-                            <div class="form-group">
-                                <label for="complaintinput1">  قیمت کافی شاپ</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="Cost" value="@Model.placeobj.Cost" />
-                            </div>
                             @{var addressobj = ViewData["Addresses"] as AirPortModel.Models.Address; }
-                            <div class="form-group">
+                            <div class="form-group col-3">
                                 <label for="complaintinput1">جزیات آدرس</label>
                                 <input type="text" id="complaintinput1" class="form-control round" name="Detail" value="@addressobj.Detail">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-3">
                                 <label for="complaintinput1">  لکیشن کافی شاپ</label>
                                 <input type="text" id="complaintinput1" class="form-control round" name="LocationX" value="@addressobj.LocationX" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-3">
                                 <label for="complaintinput1">  لکیشن کافی شاپ</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="LocationY" value="@addressobj.LocationY" "     />
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationY" value="@addressobj.LocationY" "      />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-3">
                                 <label for="complaintinput1">  لکیشن کافی شاپ</label>
-                                <input type="text" id="complaintinput1" class="form-control round" name="LocationR" value="@addressobj.LocationR" "     />
+                                <input type="text" id="complaintinput1" class="form-control round" name="LocationR" value="@addressobj.LocationR" "      />
                             </div>
 
-                            <div class="form-group">
-                                <label for="issueinput6">نام استان</label>
-                                <select id="issueinput6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                                        data-title="Status">
-                                    @foreach (var item in ViewData["Statees"] as IList<AirPortModel.Models.State>)
-                                    {
+                                </div>
 
-                                        <option value="@item.Id">@item.Name</option>
-                                    }
+                            <div class="row">
 
-                                </select>
-                            </div>
+                                <div class="form-group col-3">
+                                    <label for="issueinput6">نام استان</label>
+                                    <select id="issueinput6" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                            data-title="Status">
+                                        @foreach (var item in ViewData["Statees"] as IList<AirPortModel.Models.State>)
+                                        {
 
-                            <div class="form-group">
-                                <label for="issueinput6">نام شهر</label>
-                                <select id="issueinput6" name="CityId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                                        data-title="Status">
-                                    @foreach (var item in ViewData["Cityes"] as IList<AirPortModel.Models.City>)
-                                    {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
 
-                                        <option value="@item.Id">@item.Name</option>
-                                    }
+                                    </select>
+                                </div>
 
-                                </select>
-                            </div>
+                                <div class="form-group col-3">
+                                    <label for="issueinput6">نام شهر</label>
+                                    <select id="issueinput6" name="CityId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                            data-title="Status">
+                                        @foreach (var item in ViewData["Cityes"] as IList<AirPortModel.Models.City>)
+                                        {
 
-                            <div class="form-group">
-                                <label>فایل را انتخاب کنید</label>
-                                <input type="file" name="images" class="form-control-file" id="projectinput7">
-                            </div>
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
 
-                            <div class="form-group">
-                                <label for="issueinput6">نام فرودگاه</label>
-                                <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                                        data-title="Status">
-                                    @foreach (var item in ViewData["Airport"] as IList<AirPortModel.Models.AirPort>)
-                                    {
+                                    </select>
+                                </div>
 
-                                        <option value="@item.Id">@item.Name</option>
-                                    }
+                                <div class="form-group col-3">
+                                    <label>فایل را انتخاب کنید</label>
+                                    <input type="file" name="images" class="form-control-file" id="projectinput7">
+                                </div>
 
-                                </select>
+                      
+
+                                <div class="form-group col-3">
+                                    <label for="issueinput6">نام فرودگاه</label>
+                                    <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                            data-title="Status">
+                                        @foreach (var item in ViewData["Airport"] as IList<AirPortModel.Models.AirPort>)
+                                        {
+
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-actions">
@@ -114,6 +126,7 @@
                                     <i class="icon-note"></i> ذخیره
                                 </button>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
