@@ -106,5 +106,9 @@ namespace AirPortDataLayer.Crud
         {
             return _db.requests.FirstOrDefault(x => x.TypeId.Equals(8));
         }
+        public AirPortModel.Models.Request RequestsAdvertizment()
+        {
+            return _db.requests.FirstOrDefault(x => x.TypeId.Equals(9));
+        }
     }
 }

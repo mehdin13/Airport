@@ -30,5 +30,11 @@ namespace AirPortDataLayer.Crud.InterFace
         AirPortModel.Models.Category FindByCategoryVideo();
         AirPortModel.Models.Category FindByCategoryMagazin();
         AirPortModel.Models.Category FindByCategoryAviation();
+        AirPortModel.Models.Category PetKeeping();
+        AirPortModel.Models.Category PetPlay();
+        AirPortModel.Models.Category Vet();
+        AirPortModel.Models.Category PetCleaning();
+        AirPortModel.Models.Category PetBuy();
+        AirPortModel.Models.Category PetFeeding();
     }
 }

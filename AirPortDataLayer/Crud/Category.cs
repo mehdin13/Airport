@@ -150,6 +150,30 @@ namespace AirPortDataLayer.Crud
         {
             return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(19));
         }
+        public AirPortModel.Models.Category PetKeeping()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(20));
+        }
+        public AirPortModel.Models.Category PetPlay()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(21));
+        }
+        public AirPortModel.Models.Category Vet()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(22));
+        }
+        public AirPortModel.Models.Category PetCleaning()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(23));
+        }
+        public AirPortModel.Models.Category PetBuy()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(24));
+        }
+        public AirPortModel.Models.Category PetFeeding()
+        {
+            return _db.categories.FirstOrDefault(x => x.CategoryType.Equals(25));
+        }
         //End New
     }
     }

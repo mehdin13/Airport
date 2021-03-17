@@ -2,18 +2,13 @@
 @model AirportWebRazor.Pages.Services.Cargo.IndexModel
 @{
 }
-<br />
-
-<h1 class="text-center text-info"> لیست باربری</h1>
 
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت باربری جدید</a>
+
+    <div class="col-4"><h4 class="text-right text-info"> لیست باربری</h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت مورد جدید</a>
     </div>
 
 </div>
@@ -23,7 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست باربری</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -32,15 +27,15 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نام باربری</th>
-                                        <th> آدرس باربری</th>
-                                        <th> جزیات باربری </th>
-                                        <th> قیمت باربری</th>
-                                        <th> لکیشن باربری </th>
-                                        <th> لکیشن باربری </th>
-                                        <th> لکیشن باربری </th>
-                                        <th> عکس باربری </th>
-                                        <th> شماره تلفن حیوات </th>
+                                        <th> نام </th>
+                                        <th> آدرس </th>
+                                        <th> جزیات  </th>
+                                        <th> قیمت </th>
+                                        <th>Xلکیشن</th>
+                                        <th>Yلکیشن</th>
+                                        <th>Rلکیشن</th>
+                                        <th> عکس  </th>
+                                        <th> شماره تلفن  </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>

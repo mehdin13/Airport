@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace AirportWebRazor.Pages.Tutorial
 {
@@ -27,19 +29,27 @@ namespace AirportWebRazor.Pages.Tutorial
             return Page();
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(IFormFile images)
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (images.Length > 0 && images.ContentType != null)
                 {
-                    return Page();
+                    var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                    using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                    {
+                        images.CopyTo(stream);
+                        linkesobj.Icon = string.Format("{0}{1}", "\\", path);
+
+                        linkesobj.CategoryId = 13;
+                        _link.Insert(linkesobj);
+                    }
+                    return RedirectToPage("Index");
                 }
+
                 else
                 {
 
-                    linkesobj.CategoryId = 13;
-                    _link.Insert(linkesobj);
                     return Redirect("Index");
                 }
             }

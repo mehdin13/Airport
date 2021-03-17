@@ -39,7 +39,6 @@ namespace AirPort
         {
             services.AddDbContext<AppDatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
             services.AddTransient<IAddress, Address>();
-            services.AddTransient<IAdvertizment, Advertizment>();
             services.AddTransient<IAirline, Airline>();
             services.AddTransient<IAirPort, AirPortDataLayer.Crud.AirPort>();
             services.AddTransient<IAirPlane, AirPlane>();

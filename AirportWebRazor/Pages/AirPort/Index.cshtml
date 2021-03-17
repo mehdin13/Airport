@@ -2,18 +2,14 @@
 @model AirportWebRazor.Pages.AirPort.IndexModel
 @{
 }
-<br />
 
-<h1 class="text-center text-info"> لیست هواپیما ها</h1>
+
 
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
+    <div class="col-2"><h4 class="text-right text-info"> لیست هواپیما ها</h4></div>
     <div class="col-2"></div>
     <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white"> ثبت هواپیمای جدید </a>
+        <a asp-page="Create" class="btn btn-info form-control text-white"> ثبت هواپیمای  </a>
     </div>
 
 </div>
@@ -23,7 +19,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست جزیات</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -32,8 +28,8 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نام فرودگاه </th>
-                                        <th> آدرس فرودگاه </th>
+                                        <th> نام  </th>
+                                        <th> آدرس  </th>
                                         <th> یوارال </th>
                                         <th> گالری </th>
                                         <th> کد فرودگاه </th>

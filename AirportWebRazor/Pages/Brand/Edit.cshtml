@@ -2,7 +2,47 @@
 @model AirportWebRazor.Pages.Brand.EditModel
 @{
 }
-<h1 class="text text-info text-center">به روزرسانی برند</h1>
+<style>
+    .align-self-center {
+        -webkit-align-self: center !important;
+        -ms-flex-item-align: center !important;
+        -ms-grid-row-align: center !important;
+        align-self: center !important;
+    }
+
+    .image-uploader {
+        min-height: 10rem;
+        border: 2px dashed #d9d9d9;
+        position: relative;
+        border-radius: 20px;
+    }
+
+        .image-uploader input[type=file] {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            right: 0 !important;
+        }
+
+    form .form-control {
+        border: 1px solid #A6A9AE;
+        color: #75787D;
+    }
+
+    .image-uploader .uploaded {
+        padding: .5rem;
+        line-height: 0;
+    }
+
+    .radius12 {
+        border-radius: 20px !important;
+    }
+</style>
+
+
+
+<h4 class="text text-info text-right">به روزرسانی برند</h4>
 
 <div class="row match-height">
     <div class="col-md-12">
@@ -22,17 +62,47 @@
                         <input type="hidden" name="DateCreate" value="@Model.brandObj.DateCreate" />
                         <div class="form-body">
 
-                            <div class="row">
-                                <div class="form-group col-6">
+                            
+                                <div class="form-group col-10">
                                     <label for="complaintinput1">نام برند</label>
                                     <input type="text" id="complaintinput1" class="form-control round" name="BrandName" value="@Model.brandObj.BrandName" />
                                 </div>
 
-                                <div class="form-group col-6">
-                                    <label>فایل را انتخاب کنید</label>
-                                    <input type="file" name="images" class="form-control-file" id="projectinput7">
+
+                                <div class="col-md-6 m-auto">
+                                    <div class="align-self-center halfway-fab text-center">
+                                        <h6>آپلود ایکن برند هواپیما</h6>
+                                        <div class="image-uploader">
+                                            <input type="file"
+                                                   accept="image/*"
+                                                   id="file-input"
+                                                   name="images"
+                                                   class="form-control"
+                                                   value="Select"
+                                                   placeholder="Select">
+                                            <div class="uploaded">
+                                                <img src=""
+                                                     alt=""
+                                                     id="image-previewer"
+                                                     class="img-fluid radius12">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 m-auto">
+                                        <div class="text-center mt-2">
+                                            <h6 class="font1">
+                                                برای تغییر تصویر خود ،
+                                                تصویر جدید رو داخل کادر
+                                                بیاندازید یا بر روی عکس کلیک
+                                                کنید
+                                            </h6>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            
+
                             <div class="form-actions">
                                 <a asp-page="index" type="button" class="btn btn-danger mr-1">
                                     <i class="icon-trash"></i> لغو
@@ -43,9 +113,20 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('#file-input').imoViewer({
+                'preview': '#image-previewer',
+            })
+        });
+    });
+</script>

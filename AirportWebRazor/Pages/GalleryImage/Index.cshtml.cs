@@ -13,7 +13,7 @@ namespace AirportWebRazor.Pages.GalleryImage
         private readonly IGalleryImage _galleryimage;
         private readonly IGallery _gallery;
 
-        public IndexModel(IGalleryImage galleryImage,IGallery gallery)
+        public IndexModel(IGalleryImage galleryImage, IGallery gallery)
         {
             _galleryimage = galleryImage;
             _gallery = gallery;
@@ -22,10 +22,9 @@ namespace AirportWebRazor.Pages.GalleryImage
         [BindProperty]
         public List<AirPortModel.Models.GalleryImage> galleryImages { get; set; }
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(int id)
         {
-            ViewData["GalleryImage"] = _gallery.ToList();
-            galleryImages = _galleryimage.ToList();
+            galleryImages = _galleryimage.ToList().Where(x => x.GalleryId.Equals(id)).ToList();
             return Page();
         }
 

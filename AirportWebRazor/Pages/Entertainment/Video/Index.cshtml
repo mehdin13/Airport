@@ -2,19 +2,13 @@
 @model AirportWebRazor.Pages.Entertainment.Video.IndexModel
 @{
 }
-<br />
-<br />
 
-<h1 class="text-center text-info"> لیست ویدیوها</h1>
 
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت ویدیو جدید</a>
+    <div class="col-4"><h4 class="text-right text-info"> لیست ویدیوها</h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت ویدیو </a>
     </div>
 </div>
 
@@ -24,7 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست ویدیو</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -33,11 +27,10 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نوع ویدیو </th>
-                                        <th> نام ویدیو </th>
+                                        <th> نام  </th>
                                         <th>عنوان لینک</th>
                                         <th> لینک ویدیو </th>
-                                        <th> عکس کتاب </th>
+                                        <th> عکس  </th>
                                         <th> عنوان </th>
                                         <th> توضیحات </th>
                                         <th> تاریخ ثبت</th>
@@ -55,7 +48,6 @@
                                         foreach (var item in Model.entertainments)
                                         {
                                             <tr>
-                                                <td>@item.Type</td>
                                                 <td>@item.Name</td>
                                                 <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Title</td>
                                                 <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Url</td>

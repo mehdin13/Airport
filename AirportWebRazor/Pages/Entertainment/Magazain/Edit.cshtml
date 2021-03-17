@@ -2,12 +2,14 @@
 @model AirportWebRazor.Pages.Entertainment.Magazain.EditModel
 @{
 }
+<h4 class="text text-info text-right">به روز رسانی مجله</h4>
+
 <div class="row match-height">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 <div class="card-title-wrap bar-info">
-                    <h4 class="card-title" id="basic-layout-round-controls">به روز رسانی مجله</h4>
+                    <h4 class="card-title" id="basic-layout-round-controls">به روز رسانی </h4>
                 </div>
             </div>
             <div class="card-body">
@@ -51,11 +53,11 @@
                                 </div>
                                 <div class="form-group col-4">
                                     <label for="complaintinput1">  عنوان مجله</label>
-                                    <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.entertainment.Title" />
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Title" value="@Model.entertainment.Title" />
                                 </div>
                                 <div class="form-group col-4">
                                     <label for="complaintinput1">  توضیحات مجله</label>
-                                    <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.entertainment.Description" />
+                                    <input type="text" id="complaintinput1" class="form-control round" name="Description" value="@Model.entertainment.Description" />
                                 </div>
                             </div>
                         </div>

@@ -36,11 +36,12 @@ namespace AirportWebRazor.Pages.Brand
                 //Logo
                 if (images.Length > 0 && images.ContentType != null)
                 {
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                    using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                     {
                         images.CopyTo(stream);
-                        brandObj.BrandIcon = filePath;
+                        brandObj.BrandIcon = string.Format("{0}{1}", "\\", path);
+                       
                     }
                     if (_brand.Update(brandObj).Number.Equals(1))
                     {

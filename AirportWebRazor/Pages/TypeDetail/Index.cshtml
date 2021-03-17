@@ -4,16 +4,13 @@
 }
 <br />
 
-<h1 class="text-center text-info"> لیست انواع جزیات</h1>
+
 
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت ویژگی جدید</a>
+    <div class="col-4"><h4 class="text-right text-info">  انواع جزیات</h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white">افزودن ویژگی</a>
     </div>
 
 </div>
@@ -23,7 +20,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست جزیات</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -32,7 +29,7 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نام جزیات </th>
+                                        <th>نام</th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>
@@ -46,7 +43,6 @@
                                         <td>@item.DateCreate</td>
                                         <td>@item.LastUpdate</td>
                                         <td>
-                                            <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
                                             <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
                                         </td>
                                     </tr>

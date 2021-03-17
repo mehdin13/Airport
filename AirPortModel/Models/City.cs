@@ -18,6 +18,10 @@ namespace AirPortModel.Models
         [StringLength(50,ErrorMessage ="the City Name Must Be Les Than 50 character")]
         [Column("CityName")]
         public string Name { get; set; }
+
+        [Column("Icon")]
+        public string Icon { get; set; }
+
         //foriegen Key ? 
         [ForeignKey("state")]
         [Required]

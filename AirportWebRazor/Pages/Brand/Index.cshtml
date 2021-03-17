@@ -2,14 +2,13 @@
 @model AirportWebRazor.Pages.Brand.IndexModel
 @{
 }
-<br />
-<h1 class="text-center text-info"> لیست برندها</h1>
+
 
 <div class="row">
-    <div class="col-4"></div>
+    <div class="col-4"><h4 class="text-right text-info"> لیست برندها</h4></div>
     <div class="col-4"></div>
     <div class="col-4">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت برند جدید</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">افزودن برند </a>
     </div>
 
 </div>
@@ -19,7 +18,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست برند</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -28,8 +27,8 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نام برند </th>
-                                        <th> ایکن برند </th>
+                                        <th> نام</th>
+                                        <th> ایکن</th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>
@@ -40,7 +39,7 @@
                                     {
                                         <tr>
                                             <td>@item.BrandName</td>
-                                            <td>@item.BrandIcon</td>
+                                            <td> <img src="@Url.Content(item.BrandIcon)" width="100" height="100" alt="مشاهده ایکن" /></td>
                                             <td>@item.DateCreate</td>
                                             <td>@item.LastUpdate</td>
                                             <td>

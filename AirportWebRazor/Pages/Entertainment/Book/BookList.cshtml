@@ -2,29 +2,24 @@
 @model AirportWebRazor.Pages.Entertainment.Book.BookListModel
 @{
 }
-<br />
-<br />
 
-<h1 class="text-center text-info"> لیست کتاب ها</h1>
+
 
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2">
-        <a asp-page="BookCreate" class="btn btn-info form-control text-white">ثبت ویژگی جدید</a>
+    <div class="col-4"><h4 class="text-right text-info"> لیست کتاب ها</h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="BookCreate" class="btn btn-info form-control text-white">ثبت کتاب</a>
     </div>
 </div>
 
-<form method="post" id="grid-option">
+<form method="post" enctype="multipart/form-data"  id="grid-option">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست کتابها</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -33,13 +28,12 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نوع سرگرمی </th>
-                                        <th> نام سرگرمی </th>
+                                      
+                                        <th>نام کتاب</th>
                                         <th>عنوان لینک</th>
-                                        <th> لینک سرگرمی </th>
-                                        <th> عکس کتاب </th>
+                                        <th> لینک  </th>
+                                        <th> عکس  </th>
                                         <th> عنوان </th>
-                                        <th> توضیحات </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>
@@ -56,13 +50,13 @@
                                         {
 
                                             <tr>
-                                                <td>@item.Type</td>
+                           
                                                 <td>@item.Name</td>
                                                 <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Title</td>
                                                 <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Url</td>
-                                                <td>@Galleryes.FirstOrDefault(x => x.Id.Equals(item.Galleryid)).Name</td>
+                                                @*<td>@Galleryes.FirstOrDefault(x => x.Id.Equals(item.Galleryid)).Name</td>*@
+                                                <td><a href="/Galleryimage/index#?id=item.GalleryId)">مشاهده</a></td>
                                                 <td>@item.Title</td>
-                                                <td>@item.Description</td>
                                                 <td>@item.DateCreate</td>
                                                 <td>@item.LastUpdate</td>
                                                 <td>
@@ -71,7 +65,6 @@
                                                 </td>
                                             </tr>
                                         }
-
                                     }
                                 </tbody>
                             </table>

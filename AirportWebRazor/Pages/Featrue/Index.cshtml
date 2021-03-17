@@ -4,15 +4,14 @@
 }
 <br />
 <br />
-<h1 class="text text-info text-center">لیست ویژگی ها</h1>
+
 
 
 <div class="row">
-    <div class="col-3"></div>
-    <div class="col-3"></div>
-    <div class="col-3"></div>
-    <div class="col-3">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت ویژگی جدید</a>
+    <div class="col-4"><h4 class="text text-info text-right">لیست ویژگی </h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت ویژگی </a>
     </div>
 
 </div>
@@ -23,7 +22,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست ویژگیها </h4>
+                        <h4 class="card-title">لیست موارد ثبت شده </h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -32,9 +31,8 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> نام ویژگی </th>
-                                        
-                                        <th> ایکن ویژگی </th>
+                                        <th> نام  </th>
+                                        <th> ایکن</th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                     </tr>
@@ -44,8 +42,7 @@
                                     {
                                     <tr>
                                         <td>@item.Name</td>
-
-                                        <td>@item.Icon</td>
+                                        <td><img src="@Url.Content(item.Icon)" width="100" height="100" alt="نمایش ایکن" /></td>
                                         <td>@item.DateCreate</td>
                                         <td>@item.LastUpdate</td>
                                         <td>

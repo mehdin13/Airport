@@ -19,5 +19,6 @@ namespace AirPortDataLayer.Crud.InterFace
         AirPortModel.Models.Request RequestsAnimal();
         AirPortModel.Models.Request RequestsCargo();
         AirPortModel.Models.Request RequestsClearance();
+        AirPortModel.Models.Request RequestsAdvertizment();
     }
 }

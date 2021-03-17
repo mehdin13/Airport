@@ -2,13 +2,13 @@
 @model AirportWebRazor.Pages.Services.Cargo.EditModel
 @{
 }
-
+<h4 class="text-info text-right">به روزرسانی باربری</h4>
 <div class="row match-height">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
                 <div class="card-title-wrap bar-info">
-                    <h4 class="card-title" id="basic-layout-round-controls"> بروزرسانی باربری </h4>
+                    <h4 class="card-title" id="basic-layout-round-controls"> بروزرسانی  </h4>
                 </div>
             </div>
             <div class="card-body">
@@ -26,17 +26,17 @@
                         <div class="form-body">
                             <div class="row">
                                 <div class="form-group col-4">
-                                    <label for="complaintinput1">  نام باربری</label>
+                                    <label for="complaintinput1">  نام </label>
                                     <input type="text" id="complaintinput1" class="form-control round" name="Name" value="@Model.placeobj.Name" />
                                 </div>
 
                                 <div class="form-group col-4">
-                                    <label for="complaintinput1">  تلفن تماس باربری</label>
+                                    <label for="complaintinput1">  تلفن تماس </label>
                                     <input type="text" id="complaintinput1" class="form-control round" name="PhoneNumber" value="@Model.placeobj.PhoneNumber" />
                                 </div>
 
                                 <div class="form-group col-4">
-                                    <label for="complaintinput1">  قیمت باربری</label>
+                                    <label for="complaintinput1">  قیمت </label>
                                     <input type="text" id="complaintinput1" class="form-control round" name="Cost" value="@Model.placeobj.Cost" />
                                 </div>
 
@@ -55,11 +55,11 @@
                                 </div>
                                 <div class="form-group col-3">
                                     <label for="complaintinput1">  لکیشن باربری</label>
-                                    <input type="text" id="complaintinput1" class="form-control round" name="LocationY" value="@addressobj.LocationY" "       />
+                                    <input type="text" id="complaintinput1" class="form-control round" name="LocationY" value="@addressobj.LocationY" "        />
                                 </div>
                                 <div class="form-group col-3">
                                     <label for="complaintinput1">  لکیشن باربری</label>
-                                    <input type="text" id="complaintinput1" class="form-control round" name="LocationR" value="@addressobj.LocationR" "       />
+                                    <input type="text" id="complaintinput1" class="form-control round" name="LocationR" value="@addressobj.LocationR" "        />
                                 </div>
                             </div>
 
@@ -91,12 +91,8 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-4">
-                                    <label>فایل را انتخاب کنید</label>
-                                    <input type="file" name="images" class="form-control-file" id="projectinput7">
-                                </div>
 
-                                <div class="form-group">
+                                <div class="form-group col-4">
                                     <label for="issueinput6">نام فرودگاه</label>
                                     <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
                                             data-title="Status">
@@ -108,6 +104,16 @@
 
                                     </select>
                                 </div>
+
+
+
+
+                                <div class="form-group col-4">
+                                    <label>فایل را انتخاب کنید</label>
+                                    <input type="file" name="images" class="form-control-file" id="projectinput7">
+                                </div>
+
+
                             </div>
                             <div class="form-actions">
                                 <a asp-page="index" type="button" class="btn btn-danger mr-1">

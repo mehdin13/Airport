@@ -35,33 +35,39 @@ namespace AirportWebRazor.Pages.News
             try
             {
 
-                if (images.Length > 0 && images.ContentType != null)
+                if (images != null)
                 {
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    if (images.Length > 0 && images.ContentType != null)
                     {
-                        images.CopyTo(stream);
-                        linkesobj.Icon = filePath;
-                        linkesobj.CategoryId = 12;
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            images.CopyTo(stream);
+                            linkesobj.Icon = string.Format("{0}{1}", "\\", path);
+                            linkesobj.CategoryId = 12;
+                        }
                     }
-                    if (_link.Update(linkesobj).Number.Equals(1))
-                    {
-                        return RedirectToPage("index");
-                    }
-                    else
-                    {
-                        return Page();
-                    }
-
 
                 }
-                    return Redirect("index");
+                if (_link.Update(linkesobj).Number.Equals(1))
+                {
+                    return RedirectToPage("index");
+                }
+                else
+                {
+                    return Page();
+                }
+
+                return Redirect("index");
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return Page();
             }
         }
     }
 }
+
+
+

@@ -4,7 +4,7 @@
 }
 <br />
 <br />
-<h1 class="text text-center text-info"> ثبت هواپیما جدید</h1>
+<h4 class="text text-right text-info"> ثبت فرودگاه </h4>
 
 
 <div class="row match-height">
@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title-wrap bar-info">
-                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت فرودگاه</h4>
+                    <h4 class="card-title" id="basic-layout-round-controls">فرم ثبت </h4>
                 </div>
             </div>
             <div class="card-body">
@@ -24,7 +24,7 @@
                             <div class="row">
 
                                 <div class="form-group col-4">
-                                    <label for="complaintinput1">نام فردوگاه</label>
+                                    <label for="complaintinput1">نام </label>
                                     <input type="text" id="complaintinput1" class="form-control round" name="Name">
                                 </div>
                                 <div class="form-group col-4">
@@ -79,6 +79,9 @@
                                         }
                                     </select>
                                 </div>
+
+
+
                                 <div class="form-group col-4">
                                     <label>فایل را انتخاب کنید</label>
                                     <input type="file" name="mapimage" class="form-control-file" id="projectinput7">
@@ -91,6 +94,7 @@
                                     <label>فایل را انتخاب کنید</label>
                                     <input type="file" name="images" class="form-control-file" id="projectinput7">
                                 </div>
+
 
                                 @{int count = 0;
                                     foreach (var item in ViewData["featruelist"] as IList<AirPortModel.Models.Featrue>)

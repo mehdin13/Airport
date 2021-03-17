@@ -43,7 +43,6 @@ namespace AirPortDataLayer.Data
         public DbSet<TypeDetail> typeDetails { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Weather> Weather { get; set; }
-        public DbSet<Advertizment> advertizments { get; set; }
         public DbSet<Raiting> raitings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -77,6 +76,36 @@ namespace AirPortDataLayer.Data
             modelBuilder.Entity<Category>().HasData(new Category { Id = 17, CategoryName = "Video", Icon = "1", CategoryType = 17, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
             modelBuilder.Entity<Category>().HasData(new Category { Id = 18, CategoryName = "Magazin", Icon = "1", CategoryType = 18, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
             modelBuilder.Entity<Category>().HasData(new Category { Id = 19, CategoryName = "Aviation", Icon = "1", CategoryType = 19, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 20, CategoryName = "PetKeeping", Icon = "1", CategoryType = 20, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 21, CategoryName = "PetPlay", Icon = "1", CategoryType = 21, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 22, CategoryName = "PetVet", Icon = "1", CategoryType = 22, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 23, CategoryName = "PetCleaning", Icon = "1", CategoryType = 23, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 24, CategoryName = "PetBuying", Icon = "1", CategoryType = 24, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<Category>().HasData(new Category { Id = 25, CategoryName = "PetFeeding", Icon = "1", CategoryType = 25, DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+           
+            //End Category
+            //type detail Data Seed
+
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 5, Name = "Airline",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 6, Name = "Airport",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 7, Name = "Airplane",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 8, Name = "Flight",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 9, Name = "Book",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 10, Name = "Video",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 11, Name = "Magazain",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 12, Name = "Aviation",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 13, Name = "Hotel",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 14, Name = "Resturant",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 15, Name = "Shop",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 16, Name = "Tour",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 18, Name = "Cofeeshop",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 19, Name = "News",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 20, Name = "Padcast",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 21, Name = "Animal",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 22, Name = "Cargo",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 23, Name = "clearance",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            modelBuilder.Entity<TypeDetail>().HasData(new TypeDetail { Id = 24, Name = "Institute",  DateCreate = DateTime.Now, LastUpdate = DateTime.Now, IsDelete = false });
+            //end type Detail
         }
     }
 }

@@ -115,7 +115,7 @@ namespace AirportWebRazor.Pages.AirPlane
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return Page();
             }
         }

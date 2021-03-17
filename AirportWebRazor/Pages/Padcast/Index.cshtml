@@ -3,27 +3,22 @@
 @{
 }
 <br />
-<h1 class="text text-info text-center">
-    پادکست
-</h1>
+
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت پادکست جدید</a>
+    <div class="col-4"><h4 class="text text-info text-right">پادکست</h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت پادکست </a>
     </div>
 
 </div>
-<form method="post" id="grid-option">
+<form method="post" enctype="multipart/form-data" id="grid-option">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست پادکست</h4>
+                        <h4 class="card-title">لیست موارد ثبت شده</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -32,9 +27,9 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> عنوان پادکست </th>
-                                        <th> آدرس پادکست </th>
-                                        <th> ایکن پادکست </th>
+                                        <th> عنوان  </th>
+                                        <th> آدرس  </th>
+                                        <th> ایکن  </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>
@@ -46,7 +41,7 @@
                                         <tr>
                                             <td>@item.Title</td>
                                             <td>@item.Url</td>
-                                            <td>@item.Icon</td>
+                                            <td><img src="@Url.Content(item.Icon)" width="100" height="100" alt="نمایش ایکن" /></td>
                                             <td>@item.DateCreate</td>
                                             <td>@item.LastUpdate</td>
                                             <td>
