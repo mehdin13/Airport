@@ -48,8 +48,8 @@
                                         {
                                             <tr>
                                                 <td>@item.Name</td>
-                                                <td>@item.Image</td>
-                                                <td>@Airportes.FirstOrDefault(x => x.Id.Equals(item.AirPortId)).Name</td>
+                                                <td><img src="@Url.Content(item.Image)" width="100" height="100" alt="نمایش تصویر" /></td>
+                                                <td>@Airportes.FirstOrDefault(x=>x.Id.Equals(item.AirPortId)).Name</td>
                                                 <td>@item.DateCreate</td>
                                                 <td>@item.LastUpdate</td>
                                                 <td>

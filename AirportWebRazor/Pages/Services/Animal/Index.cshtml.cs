@@ -36,9 +36,7 @@ namespace AirportWebRazor.Pages.Services.Animal
             ViewData["Detail"] = _detail.ToList();
             ViewData["Galleryes"] = _gallery.ToList();
             ViewData["Galleryimages"] = _galleryImage.ToList();
-
             places = _place.ToList();
-
             return Page();
         }
         public async Task<IActionResult> OnPost(int id)

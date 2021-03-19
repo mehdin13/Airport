@@ -49,6 +49,9 @@ namespace AirportWebRazor.Pages.AirPort
 
         public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, IFormFile mapimage, string AdressDetail, string AdressLocationX, string AdressLocationY, string AdressLocationR, int AdressCityId)
         {
+            ViewData["state"] = _state.ToList();
+            ViewData["city"] = _city.ToList();
+            ViewData["featruelist"] = _featrue.ToListbyid(6);
             try
             {
                 AirPortModel.Models.Address addressObj = new AirPortModel.Models.Address();
@@ -72,7 +75,7 @@ namespace AirportWebRazor.Pages.AirPort
                 AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
                 AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
                 AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
-                galleryobg.Name = string.Format("{0}{1}", airportobj.Name, Guid.NewGuid().ToString().Replace("_", ""));
+                galleryobg.Name = string.Format("{0}", Guid.NewGuid().ToString().Replace("_", ""));
                 int gid = _gallery.Insert(galleryobg);
                 if (gid != 0)
                 {
@@ -82,11 +85,11 @@ namespace AirportWebRazor.Pages.AirPort
                     {
                         if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
-                            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                             {
                                 fileimage.CopyTo(stream);
-                                galleryImageObj.Url = filePath;
+                                galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
                                 galleryImageObj.GalleryId = gid;
                                 int img = _galleryImage.Insert(galleryImageObj);
                             }
@@ -98,11 +101,11 @@ namespace AirportWebRazor.Pages.AirPort
                     }
                     if (mapimage.Length > 0 && mapimage.ContentType != null)
                     {
-                        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(mapimage.FileName)));
-                        using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(mapimage.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                         {
                             mapimage.CopyTo(stream);
-                            airportobj.Url = filePath;
+                            airportobj.Url = string.Format("{0}{1}", "\\", path);
                         }
                     }
                     else

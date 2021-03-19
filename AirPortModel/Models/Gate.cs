@@ -19,9 +19,9 @@ namespace AirPortModel.Models
         [Column("GetName")]
         public string Name { get; set; }
         //****************foreigan key****************
-        [ForeignKey("Terminal")]
-        [Column("GateTerminal")]
-        public string Terminal { get; set; }
+        [ForeignKey("terminal")]
+        [Column("TerminalId")]
+        public int TerminalId { get; set; }
         public Terminal terminal { get; set; }
         //*******************End *********************
 

@@ -6,24 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
 
-namespace AirportWebRazor.Pages.Gallery
+namespace AirportWebRazor.Pages.Gate
 {
+    
     public class CreateModel : PageModel
     {
-        private readonly IGallery _gallery;
+        private readonly IGate _gate;
+        private readonly ITerminal _terminal;
 
-        public CreateModel(IGallery gallery)
+
+        public CreateModel(IGate gate , ITerminal terminal)
         {
-            _gallery = gallery;
+            _gate = gate;
+            _terminal = terminal;
         }
 
         [BindProperty]
-        public AirPortModel.Models.Gallery gallery1 { get; set; }
+        public AirPortModel.Models.Gate gateobj { get; set; }
 
         public async Task<IActionResult> OnGet()
         {
+            ViewData["Terminal"] = _terminal.ToList();
+
             return Page();
         }
+
 
         public async Task<IActionResult> OnPost()
         {
@@ -34,8 +41,8 @@ namespace AirportWebRazor.Pages.Gallery
                     return Page();
                 }
                 else
-                {
-                    _gallery.Insert(gallery1);
+                {  
+                    _gate.Insert(gateobj);
                     return Redirect("index");
                 }
             }

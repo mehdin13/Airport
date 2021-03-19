@@ -33,6 +33,7 @@
                                         <th> لینک  </th>
                                         <th> عکس  </th>
                                         <th> عنوان </th>
+                                        <th> گالری </th>
                                         <th> توضیحات </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
@@ -55,6 +56,9 @@
                                                 <td>@Linkes.FirstOrDefault(x => x.Id.Equals(item.LId)).Url</td>
                                                 <td>@Galleryes.FirstOrDefault(x => x.Id.Equals(item.Galleryid)).Name</td>
                                                 <td>@item.Title</td>
+
+                                                <td><a href="/Galleryimage/index?id=@item.Galleryid">مشاهده</a></td>
+
                                                 <td>@item.Description</td>
                                                 <td>@item.DateCreate</td>
                                                 <td>@item.LastUpdate</td>

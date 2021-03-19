@@ -11,10 +11,12 @@ namespace AirportWebRazor.Pages.AirPlane
     public class IndexModel : PageModel
     {
         private readonly IAirPlane _airplane;
+        private readonly IBrand _brand;
 
-        public IndexModel(IAirPlane airPlane)
+        public IndexModel(IAirPlane airPlane,IBrand brand)
         {
             _airplane = airPlane;
+            _brand = brand;
         }
 
         [BindProperty]
@@ -22,6 +24,7 @@ namespace AirportWebRazor.Pages.AirPlane
 
         public async Task<IActionResult> OnGet()
         {
+            ViewData["Brandes"] = _brand.ToList();
             airPlanes = _airplane.ToList();
             return Page();
         }

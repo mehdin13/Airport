@@ -68,44 +68,6 @@ namespace AirPortDataLayer.Migrations
                     b.ToTable("Tbl_Adress");
                 });
 
-            modelBuilder.Entity("AirPortModel.Models.Advertizment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateCreate")
-                        .HasColumnName("DateCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnName("Description")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("FullName")
-                        .HasColumnName("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnName("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastUpdate")
-                        .HasColumnName("LastUpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Phone")
-                        .HasColumnName("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tbl_Advertizment");
-                });
-
             modelBuilder.Entity("AirPortModel.Models.AirPlane", b =>
                 {
                     b.Property<int>("Id")
@@ -389,190 +351,250 @@ namespace AirPortDataLayer.Migrations
                             Id = 1,
                             CategoryName = "Hotel",
                             CategoryType = 1,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 402, DateTimeKind.Local).AddTicks(2688),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 838, DateTimeKind.Local).AddTicks(1537),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 405, DateTimeKind.Local).AddTicks(5445)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 841, DateTimeKind.Local).AddTicks(3174)
                         },
                         new
                         {
                             Id = 2,
                             CategoryName = "Restaurant",
                             CategoryType = 2,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7688),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4811),
                             Icon = "2",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7717)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4837)
                         },
                         new
                         {
                             Id = 3,
                             CategoryName = "Tour",
                             CategoryType = 3,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7842),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4947),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7847)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4951)
                         },
                         new
                         {
                             Id = 4,
                             CategoryName = "Shop",
                             CategoryType = 4,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7868),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4971),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7872)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4973)
                         },
                         new
                         {
                             Id = 5,
                             CategoryName = "Institute",
                             CategoryType = 5,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7890),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4991),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7894)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(4993)
                         },
                         new
                         {
                             Id = 6,
                             CategoryName = "Cofeeshop",
                             CategoryType = 6,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7918),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5017),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7922)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5019)
                         },
                         new
                         {
                             Id = 7,
                             CategoryName = "Parking",
                             CategoryType = 7,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7940),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5037),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7943)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5039)
                         },
                         new
                         {
                             Id = 8,
                             CategoryName = "Animal",
                             CategoryType = 8,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7962),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5057),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7965)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5059)
                         },
                         new
                         {
                             Id = 9,
                             CategoryName = "Cargo",
                             CategoryType = 9,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7984),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5077),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(7987)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5079)
                         },
                         new
                         {
                             Id = 10,
                             CategoryName = "Clearance",
                             CategoryType = 10,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8060),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5099),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8065)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5101)
                         },
                         new
                         {
                             Id = 11,
                             CategoryName = "Padcast",
                             CategoryType = 11,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8087),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5120),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8090)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5123)
                         },
                         new
                         {
                             Id = 12,
                             CategoryName = "News",
                             CategoryType = 12,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8108),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5140),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8111)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5143)
                         },
                         new
                         {
                             Id = 13,
                             CategoryName = "Tutorial",
                             CategoryType = 13,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8129),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5160),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8133)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5162)
                         },
                         new
                         {
                             Id = 14,
                             CategoryName = "Application",
                             CategoryType = 14,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8150),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5181),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8154)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5183)
                         },
                         new
                         {
                             Id = 15,
                             CategoryName = "Article",
                             CategoryType = 15,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8171),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5200),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8174)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5203)
                         },
                         new
                         {
                             Id = 16,
                             CategoryName = "Book",
                             CategoryType = 16,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8192),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5220),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8195)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5223)
                         },
                         new
                         {
                             Id = 17,
                             CategoryName = "Video",
                             CategoryType = 17,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8213),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5239),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8216)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5242)
                         },
                         new
                         {
                             Id = 18,
                             CategoryName = "Magazin",
                             CategoryType = 18,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8236),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5302),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8239)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5306)
                         },
                         new
                         {
                             Id = 19,
                             CategoryName = "Aviation",
                             CategoryType = 19,
-                            DateCreate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8257),
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5326),
                             Icon = "1",
                             IsDelete = false,
-                            LastUpdate = new DateTime(2021, 3, 5, 20, 42, 51, 406, DateTimeKind.Local).AddTicks(8260)
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5329)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryName = "PetKeeping",
+                            CategoryType = 20,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5346),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5349)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoryName = "PetPlay",
+                            CategoryType = 21,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5366),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5369)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoryName = "PetVet",
+                            CategoryType = 22,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5386),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5388)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoryName = "PetCleaning",
+                            CategoryType = 23,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5410),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5412)
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CategoryName = "PetBuying",
+                            CategoryType = 24,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5429),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5432)
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CategoryName = "PetFeeding",
+                            CategoryType = 25,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5449),
+                            Icon = "1",
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(5452)
                         });
                 });
 
@@ -591,6 +613,10 @@ namespace AirPortDataLayer.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnName("DateCreate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Icon")
+                        .HasColumnName("Icon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnName("IsDelete")
@@ -1194,16 +1220,13 @@ namespace AirPortDataLayer.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("Terminal")
-                        .HasColumnName("GateTerminal")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("terminalId")
+                    b.Property<int>("TerminalId")
+                        .HasColumnName("TerminalId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("terminalId");
+                    b.HasIndex("TerminalId");
 
                     b.ToTable("Tbl_Gate");
                 });
@@ -1554,6 +1577,160 @@ namespace AirPortDataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tbl_TypeDetail");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 5,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(7326),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(7779),
+                            Name = "Airline"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8779),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8797),
+                            Name = "Airport"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8841),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8844),
+                            Name = "Airplane"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8865),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8868),
+                            Name = "Flight"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8886),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8889),
+                            Name = "Book"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8911),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8914),
+                            Name = "Video"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8933),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8936),
+                            Name = "Magazain"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8953),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8956),
+                            Name = "Aviation"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8975),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8977),
+                            Name = "Hotel"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8997),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(8999),
+                            Name = "Resturant"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9017),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9020),
+                            Name = "Shop"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9038),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9041),
+                            Name = "Tour"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9058),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9061),
+                            Name = "Cofeeshop"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9079),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9082),
+                            Name = "News"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9100),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9102),
+                            Name = "Padcast"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9120),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9123),
+                            Name = "Animal"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9141),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9144),
+                            Name = "Cargo"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9208),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9211),
+                            Name = "clearance"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            DateCreate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9231),
+                            IsDelete = false,
+                            LastUpdate = new DateTime(2021, 3, 19, 2, 25, 7, 842, DateTimeKind.Local).AddTicks(9233),
+                            Name = "Institute"
+                        });
                 });
 
             modelBuilder.Entity("AirPortModel.Models.User", b =>
@@ -1866,7 +2043,9 @@ namespace AirPortDataLayer.Migrations
                 {
                     b.HasOne("AirPortModel.Models.Terminal", "terminal")
                         .WithMany("Gates")
-                        .HasForeignKey("terminalId");
+                        .HasForeignKey("TerminalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AirPortModel.Models.Links", b =>

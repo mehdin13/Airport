@@ -4,6 +4,7 @@ using AirPortDataLayer.Data;
 using System.Linq;
 using AirPortDataLayer.Crud.VeiwModel;
 using AirPortDataLayer.Crud.InterFace;
+using Microsoft.EntityFrameworkCore;
 
 namespace AirPortDataLayer.Crud
 {
@@ -18,16 +19,26 @@ namespace AirPortDataLayer.Crud
         {
             try
             {
+                int id = _db.GalleryImages.OrderByDescending(x => x.DateCreate).Count() + 1;
+                obj.Id = id;
                 obj.DateCreate = DateTime.Now;
                 obj.LastUpdate = DateTime.Now;
                 obj.IsDelete = false;
                 _db.GalleryImages.Add(obj);
+                _db.Database.OpenConnection();
+                _db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Tbl_GalleryImage ON");
                 _db.SaveChanges();
+                _db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Tbl_GalleryImage OFF");
                 return obj.Id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                string err = ex.Message;
                 return 0;
+            }
+            finally
+            {
+                _db.Database.CloseConnection();
             }
         }
         public ProgressStatus Delete(int id)

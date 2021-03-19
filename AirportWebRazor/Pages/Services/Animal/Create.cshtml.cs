@@ -96,11 +96,11 @@ namespace AirportWebRazor.Pages.Services.Animal
                     {
                         if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
-                            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                             {
                                 fileimage.CopyTo(stream);
-                                galleryImageObj.Url = filePath;
+                                galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
                                 galleryImageObj.GalleryId = gid;
                                 int img = _galleryImage.Insert(galleryImageObj);
                             }

@@ -43,23 +43,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.airPlanes)
-                                    {
-                                        <tr>
-                                            <td>@item.Name</td>
-                                            <td>@item.Model</td>
-                                            <td>@item.AirPlaneCode</td>
-                                            <td>@item.BrandId</td>
-                                            <td><a href="/Galleryimage/index#?id=item.GalleryId)" >مشاهده</a></td>
-                                            <td>@item.DetailId</td>
-                                            <td>@item.AirlineId</td>
-                                            <td>@item.DateCreate</td>
-                                            <td>@item.LastUpdate</td>
-                                            <td>
-                                                <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
-                                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">به روز رسانی</a>
-                                            </td>
-                                        </tr>
+
+                                    @{
+                                        var brandobj = ViewData["Brandes"] as List<AirPortModel.Models.Brand>;
+
+                                        foreach (var item in Model.airPlanes)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Model</td>
+                                                <td>@item.AirPlaneCode</td>
+                                                <td>@item.Brands.BrandName</td>
+                                                <td><a href="/Galleryimage/index?id=@item.GalleryId">مشاهده</a></td>
+                                                <td>@item.DetailId</td>
+                                                <td>@item.AirlineId</td>
+                                                <td>@item.DateCreate</td>
+                                                <td>@item.LastUpdate</td>
+                                                <td>
+                                                    <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
+                                                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">به روز رسانی</a>
+                                                </td>
+                                            </tr>
+                                        }
+
+
                                     }
                                 </tbody>
                             </table>

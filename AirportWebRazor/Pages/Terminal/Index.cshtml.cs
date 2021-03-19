@@ -25,6 +25,7 @@ namespace AirportWebRazor.Pages.Terminal
         public async Task<IActionResult> OnGet()
         {
             ViewData["Airport"] = _airport.Tolist();
+            TerminalsObj = _terminal.ToList();
             return Page();
         }
         public async Task<IActionResult> OnPost(int id)

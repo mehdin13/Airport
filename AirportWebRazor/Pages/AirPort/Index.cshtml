@@ -6,10 +6,10 @@
 
 
 <div class="row">
-    <div class="col-2"><h4 class="text-right text-info"> لیست هواپیما ها</h4></div>
-    <div class="col-2"></div>
-    <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white"> ثبت هواپیمای  </a>
+    <div class="col-4"><h4 class="text-right text-info"> لیست فرودگاه ها</h4></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-info form-control text-white"> ثبت فرودگاه  </a>
     </div>
 
 </div>
@@ -54,7 +54,7 @@
                                                 <td>@item.Name</td>
                                                 <td>@item.Adress.City.Name</td>
                                                 <td>@item.Url</td>
-                                                <td>@gallerys.FirstOrDefault(x => x.Id.Equals(item.GalleryId)).Name</td>
+                                                <td><a href="/Galleryimage/index?id=@item.GalleryId">مشاهده</a></td>
                                                 <td>@item.Code</td>
                                                 <td>@item.Abbreviation</td>
                                                 <td>@item.DateCreate</td>

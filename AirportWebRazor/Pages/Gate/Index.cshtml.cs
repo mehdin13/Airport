@@ -24,6 +24,7 @@ namespace AirportWebRazor.Pages.Gate
 
         public async Task<IActionResult> OnGet()
         {
+            GateObj = _gate.ToList();
             ViewData["Terminales"] = _terminal.ToList();
             return Page();
         }
@@ -32,12 +33,12 @@ namespace AirportWebRazor.Pages.Gate
         {
             try
             {
-                _gate.Delete(id);
+               _gate.Delete(id);
                 return Page();
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return Page();
             }
         }

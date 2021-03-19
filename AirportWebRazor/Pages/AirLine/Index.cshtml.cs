@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using AirPortDataLayer.Crud.InterFace;
 
 namespace AirportWebRazor.Pages.AirLine
@@ -21,8 +22,16 @@ namespace AirportWebRazor.Pages.AirLine
 
         public async Task<IActionResult> OnGet()
         {
-            airlines = _airline.ToList();
-            return Page();
+            if (HttpContext.User.FindFirst(ClaimTypes.Name).Value != string.Empty)
+            {
+                airlines = _airline.ToList();
+                return Page();
+
+            }
+            else
+            {
+                return RedirectToPage("/Accunt/Login");
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

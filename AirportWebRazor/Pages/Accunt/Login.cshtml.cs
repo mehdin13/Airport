@@ -40,18 +40,21 @@ namespace AirportWebRazor.Pages.Accunt
 
                             var userClime = new List<Claim>()
                             {
-                              new Claim( ClaimTypes.NameIdentifier, user.Id.ToString()),new Claim(ClaimTypes.Name,user.Name)
+                              new Claim( ClaimTypes.NameIdentifier, user.Id.ToString()),
+                              new Claim( ClaimTypes.Name, user.Name.ToString())
+                              
+                             
                         };
                             var identity = new ClaimsIdentity(userClime, CookieAuthenticationDefaults.AuthenticationScheme);
-                            var principal = new ClaimsPrincipal(identity);
+
 
                             var properties = new AuthenticationProperties
                             {
                                 IsPersistent = loginViewModel.RememberMe
                             };
-                            HttpContext.SignInAsync(principal, properties);
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 
-                            return Redirect("/admin");
+                            return Redirect("~/");
                         }
                         else
                         {

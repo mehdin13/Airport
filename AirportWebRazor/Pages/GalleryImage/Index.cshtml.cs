@@ -24,6 +24,7 @@ namespace AirportWebRazor.Pages.GalleryImage
 
         public async Task<IActionResult> OnGet(int id)
         {
+            ViewData["id"] = id;
             galleryImages = _galleryimage.ToList().Where(x => x.GalleryId.Equals(id)).ToList();
             return Page();
         }

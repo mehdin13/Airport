@@ -35,7 +35,7 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(List<IFormFile> images, IFormFile mapimage, string Title, string Url, string Icon, string Description)
+        public async Task<IActionResult> OnPost(List<IFormFile> images, string Title, string Url, IFormFile Icon, string Description)
         {
             try
             {
@@ -45,9 +45,21 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
 
                 if (Title != null && Url != null && Icon != null && Description != null)
                 {
+                    if (Icon.Length > 0 && Icon.ContentType != null)
+                    {
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(Icon.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            Icon.CopyTo(stream);
+                            linksobj.Icon = string.Format("{0}{1}", "\\", path);
+                        }
+                    }
+                    else
+                    {
+                        return Page();
+                    }
                     linksobj.Title = Title;
                     linksobj.Url = Url;
-                    linksobj.Icon = Icon;
                     linksobj.Description = Description;
                     var addLinkid = _links.Insert(linksobj);
                     if (addLinkid != 0)
@@ -71,11 +83,11 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
                     {
                         if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
-                            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                             {
                                 fileimage.CopyTo(stream);
-                                galleryImageObj.Url = filePath;
+                                galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
                                 galleryImageObj.GalleryId = gid;
                                 int img = _Galleryimage.Insert(galleryImageObj);
                             }
@@ -84,14 +96,15 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
                         {
                             return Page();
                         }
-                        if (_entertainment.Insert(entertainment) != 0)
-                        {
-                            return Redirect("index");
-                        }
-                        else
-                        {
-                            return Page();
-                        }
+
+                    }
+                    if (_entertainment.Insert(entertainment) != 0)
+                    {
+                        return Redirect("index");
+                    }
+                    else
+                    {
+                        return Page();
                     }
                 }
             }
@@ -100,7 +113,7 @@ namespace AirportWebRazor.Pages.Entertainment.Magazain
                 _ = ex.Message;
                 return Page();
             }
-            return RedirectToPage("BookList");
+            return RedirectToPage("index");
         }
     }
 }

@@ -37,20 +37,32 @@ namespace AirportWebRazor.Pages.Entertainment.Book
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(List<IFormFile> images, IFormFile mapimage, string title, string url, string icon, string description)
+        public async Task<IActionResult> OnPost(List<IFormFile> images, string Title, string Url, IFormFile Icon, string Description)
         {
             try
             {
                 AirPortModel.Models.Links linksobj = new AirPortModel.Models.Links();
+                linksobj.CategoryId = 16;
                 entertainment.Type = 1;
 
-                if (title != null && url != null && icon != null && description != null)
+                if (Title != null && Url != null && Icon != null && Description != null)
                 {
-                    linksobj.Title = title;
-                    linksobj.Url = url;
-                    linksobj.Icon = icon;
-                    linksobj.Description = description;
-                    linksobj.CategoryId = 16;
+                    if (Icon.Length > 0 && Icon.ContentType != null)
+                    {
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(Icon.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            Icon.CopyTo(stream);
+                            linksobj.Icon = string.Format("{0}{1}", "\\", path);
+                        }
+                    }
+                    else
+                    {
+                        return Page();
+                    }
+                    linksobj.Title = Title;
+                    linksobj.Url = Url;
+                    linksobj.Description = Description;
                     var addLinkid = _links.Insert(linksobj);
                     if (addLinkid != 0)
                     {
@@ -73,11 +85,11 @@ namespace AirportWebRazor.Pages.Entertainment.Book
                     {
                         if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
-                            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                             {
                                 fileimage.CopyTo(stream);
-                                galleryImageObj.Url = filePath;
+                                galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
                                 galleryImageObj.GalleryId = gid;
                                 int img = _Galleryimage.Insert(galleryImageObj);
                             }
@@ -86,14 +98,15 @@ namespace AirportWebRazor.Pages.Entertainment.Book
                         {
                             return Page();
                         }
-                        if (_entertainment.Insert(entertainment) != 0)
-                        {
-                            return Redirect("BookList");
-                        }
-                        else
-                        {
-                            return Page();
-                        }
+
+                    }
+                    if (_entertainment.Insert(entertainment) != 0)
+                    {
+                        return Redirect("index");
+                    }
+                    else
+                    {
+                        return Page();
                     }
                 }
             }
@@ -102,7 +115,7 @@ namespace AirportWebRazor.Pages.Entertainment.Book
                 _ = ex.Message;
                 return Page();
             }
-            return Redirect("BookList");
+            return RedirectToPage("BookList");
         }
 
     }

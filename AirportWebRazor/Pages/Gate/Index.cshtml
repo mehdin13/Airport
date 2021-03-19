@@ -6,10 +6,10 @@
 
 
 <div class="row">
-    <div class="col-4"><h4 class="text-right text-info"> لیست دروازه ها</h4></div>
+    <div class="col-4"><h4 class="text text-right text-info"> لیست دروازه ها</h4></div>
     <div class="col-4"></div>
     <div class="col-4">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت دروازه جدید</a>
+        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت دروازه </a>
     </div>
 
 </div>
@@ -43,7 +43,7 @@
                                         {
                                             <tr>
                                                 <td>@item.Name</td>
-                                                <td>@Terminales.FirstOrDefault(x => x.Id.Equals(item.Terminal)).Name</td>
+                                                <td>@Terminales.FirstOrDefault(x => x.Id.Equals(item.TerminalId)).Name</td>
                                                 <td>@item.DateCreate</td>
                                                 <td>@item.LastUpdate</td>
                                                 <td>
@@ -61,5 +61,4 @@
             </div>
         </div>
     </div>
-
 </form>

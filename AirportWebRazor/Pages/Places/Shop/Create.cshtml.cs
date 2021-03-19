@@ -98,11 +98,11 @@ namespace AirportWebRazor.Pages.Places.Shop
                         {
                             if (fileimage.Length > 0 && fileimage.ContentType != null)
                             {
-                                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                                using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                                var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                                using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                                 {
                                     fileimage.CopyTo(stream);
-                                    galleryImageObj.Url = filePath;
+                                    galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
                                     galleryImageObj.GalleryId = gid;
                                     int img = _galleryImage.Insert(galleryImageObj);
                                 }
@@ -150,7 +150,7 @@ namespace AirportWebRazor.Pages.Places.Shop
             }
             catch (Exception ex)
             {
-                string mes = ex.Message;
+                _ = ex.Message;
                 return Page();
             }
             return Redirect("index");

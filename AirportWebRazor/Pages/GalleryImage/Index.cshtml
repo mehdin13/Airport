@@ -6,14 +6,9 @@
 
 <h1 class="text-center text-info"> لیست عکسهای گالری</h1>
 
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
+<div class="row justify-content-end">
     <div class="col-2">
-        <a asp-page="Create" class="btn btn-info form-control text-white">ثبت عکس جدید</a>
+        <a href="Create?ids=@ViewData["id"]" class="btn btn-info form-control text-white">ثبت عکس جدید</a>
     </div>
 
 </div>
@@ -32,8 +27,7 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th> آدرس عکس </th>
-                                        <th> نام گالری </th>
+                                        <th> تصویر </th>
                                         <th> تاریخ ثبت</th>
                                         <th> تاریخ آخرین بروز رسانی</th>
                                         <th>عملیات</th>
@@ -41,17 +35,16 @@
                                 </thead>
                                 <tbody>
                                     @{
-                                        var state = ViewData["GalleryImage"] as List<AirPortModel.Models.Gallery>;
                                         foreach (var item in Model.galleryImages)
                                         {
                                             <tr>
-                                                <td>@item.Url</td>
-                                                <td>@state.FirstOrDefault(x => x.Id.Equals(item.GalleryId)).Name</td>
+                                                <td>
+                                                    <img src="@item.Url" width="70" height="50" />
+                                                </td>
                                                 <td>@item.DateCreate</td>
                                                 <td>@item.LastUpdate</td>
                                                 <td>
                                                     <button type="submit" onclick="return confirm('آیا اطمینان دارید')" class="btn btn-danger btn-sm" value="@item.Id" name="id">حذف</button>
-                                                    <a class="btn btn-success btn-sm text-white">به روز رسانی</a>
                                                 </td>
                                             </tr>
                                         }

@@ -36,21 +36,34 @@ namespace AirportWebRazor.Pages.Entertainment.Video
             return Page();
         }
 
-        public async Task<IActionResult> OnPost(List<IFormFile> images, IFormFile mapimage, string Title, string Url, string Icon, string Description)
+        public async Task<IActionResult> OnPost(List<IFormFile> images, string Title, string Url, IFormFile Icon, string Description)
         {
+
+
             try
             {
-                //******************* Link *****************************
                 AirPortModel.Models.Links linksobj = new AirPortModel.Models.Links();
+                linksobj.CategoryId = 17;
                 entertainment.Type = 2;
 
                 if (Title != null && Url != null && Icon != null && Description != null)
                 {
+                    if (Icon.Length > 0 && Icon.ContentType != null)
+                    {
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(Icon.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            Icon.CopyTo(stream);
+                            linksobj.Icon = string.Format("{0}{1}", "\\", path);
+                        }
+                    }
+                    else
+                    {
+                        return Page();
+                    }
                     linksobj.Title = Title;
                     linksobj.Url = Url;
-                    linksobj.Icon = Icon;
                     linksobj.Description = Description;
-                    linksobj.CategoryId = 17;
                     var addLinkid = _links.Insert(linksobj);
                     if (addLinkid != 0)
                     {
@@ -61,9 +74,6 @@ namespace AirportWebRazor.Pages.Entertainment.Video
                         return Page();
                     }
                 }
-
-                //************************** Gallery ********************************************
-
                 AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
                 AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
                 galleryobg.Name = string.Format("{0}{1}", entertainment.Name, Guid.NewGuid().ToString().Replace("_", ""));
@@ -76,11 +86,11 @@ namespace AirportWebRazor.Pages.Entertainment.Video
                     {
                         if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
-                            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new System.IO.FileStream(filePath, FileMode.Create))
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                             {
                                 fileimage.CopyTo(stream);
-                                galleryImageObj.Url = filePath;
+                                galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
                                 galleryImageObj.GalleryId = gid;
                                 int img = _Galleryimage.Insert(galleryImageObj);
                             }
@@ -89,16 +99,15 @@ namespace AirportWebRazor.Pages.Entertainment.Video
                         {
                             return Page();
                         }
-                        //********************* End Gallery *********************************
-                        //************************* Insert **********************************
-                        if (_entertainment.Insert(entertainment) != 0)
-                        {
-                            return Redirect("index");
-                        }
-                        else
-                        {
-                            return Page();
-                        }
+
+                    }
+                    if (_entertainment.Insert(entertainment) != 0)
+                    {
+                        return Redirect("index");
+                    }
+                    else
+                    {
+                        return Page();
                     }
                 }
             }

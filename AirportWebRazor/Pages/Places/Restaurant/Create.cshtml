@@ -2,6 +2,44 @@
 @model AirportWebRazor.Pages.Places.Restaurant.CreateModel
 @{
 }
+<style>
+
+    .align-self-center {
+        -webkit-align-self: center !important;
+        -ms-flex-item-align: center !important;
+        -ms-grid-row-align: center !important;
+        align-self: center !important;
+    }
+
+    .image-uploader {
+        min-height: 10rem;
+        border: 2px dashed #d9d9d9;
+        position: relative;
+        border-radius: 20px;
+    }
+
+        .image-uploader input[type=file] {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            right: 0 !important;
+        }
+
+    form .form-control {
+        border: 1px solid #A6A9AE;
+        color: #75787D;
+    }
+
+    .image-uploader .uploaded {
+        padding: .5rem;
+        line-height: 0;
+    }
+
+    .radius12 {
+        border-radius: 20px !important;
+    }
+</style>
 
 <h4 class="text text-info text-right">ثبت رستوران جدید</h4>
 
@@ -90,70 +128,132 @@
                                     </select>
                                 </div>
                                 <!--End City-->
-                                <!--Gallery&&Galleryimage-->
-                                <div class="form-group col-4">
-                                    <label>فایل را انتخاب کنید</label>
-                                    <input type="file" name="images" class="form-control-file" id="projectinput7">
-                                </div>
-
-                            </div>
-                            <!--Gallery&&Galleryimage-->
-                            <!--airport-->
 
 
-                            <div class="row">
-                                <div class="form-group col-4">
-                                    <label for="issueinput6">نام فرودگاه</label>
-                                    <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                                            data-title="Status">
-                                        @foreach (var item in ViewData["Airport"] as IList<AirPortModel.Models.AirPort>)
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label for="issueinput6">نام فرودگاه</label>
+                                        <select id="issueinput6" name="AirportId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                data-title="Status">
+                                            @foreach (var item in ViewData["Airport"] as IList<AirPortModel.Models.AirPort>)
+                                            {
+
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <!--end airport-->
+                                    <!--Customer-->
+                                    <div class="form-group col-4">
+                                        <label for="issueinput6">نام مشتری</label>
+                                        <select id="issueinput6" name="CustomerId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                                                data-title="Status">
+                                            @foreach (var item in ViewData["Customer"] as IList<AirPortModel.Models.Customer>)
+                                            {
+
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                    <!--End Customer-->
+                                    <!--Feature-->
+
+                                    @{int count = 0;
+                                        foreach (var item in ViewData["Feathrue"] as IList<AirPortModel.Models.Featrue>)
                                         {
 
-                                            <option value="@item.Id">@item.Name</option>
+                                            <div class="form-group col-4">
+                                                <label for="complaintinput1">@item.Name</label>
+                                                <input type="hidden" name="id" value="@item.Id" />
+                                                <input type="text" id="complaintinput1" class="form-control round" name="value" />
+                                            </div>
+                                            count++;
                                         }
-
-                                    </select>
-                                </div>
-                                <!--end airport-->
-                                <!--Customer-->
-                                <div class="form-group col-4">
-                                    <label for="issueinput6">نام مشتری</label>
-                                    <select id="issueinput6" name="CustomerId" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                                            data-title="Status">
-                                        @foreach (var item in ViewData["Customer"] as IList<AirPortModel.Models.Customer>)
-                                        {
-
-                                            <option value="@item.Id">@item.Name</option>
-                                        }
-
-                                    </select>
-                                </div>
-                                <!--End Customer-->
-                                <!--Feature-->
-
-                                @{int count = 0;
-                                    foreach (var item in ViewData["Feathrue"] as IList<AirPortModel.Models.Featrue>)
-                                    {
-
-                                        <div class="form-group col-4">
-                                            <label for="complaintinput1">@item.Name</label>
-                                            <input type="hidden" name="id" value="@item.Id" />
-                                            <input type="text" id="complaintinput1" class="form-control round" name="value" />
-                                        </div>
-                                        count++;
                                     }
-                                }
-                                <!--End feature-->
-                            </div>
+                                    <!--End feature-->
+                                </div>
 
-                        </div>
-                        <div class="form-actions">
-                            <a asp-page="index" type="button" class="btn btn-danger mr-1">
-                                <i class="icon-trash"></i> لغو
-                            </a>
-                            <button type="submit" class="btn btn-success">
-                                <i class="icon-note"></i> ذخیره
-                            </button>
+
+                                <!--Gallery&&Galleryimage-->
+
+
+
+
+                                <div class="col-md-6 m-auto">
+                                    <div class="align-self-center halfway-fab text-center">
+                                        <h6>آپلود تصویر فردگاه</h6>
+                                        <div class="image-uploader">
+                                            <input type="file"
+                                                   accept="image/*"
+                                                   id="file-input"
+                                                   name="mapimage"
+                                                   class="form-control"
+                                                   value="Select"
+                                                   placeholder="Select">
+                                            <div class="uploaded">
+                                                <img src=""
+                                                     alt=""
+                                                     id="image-previewer"
+                                                     class="img-fluid radius12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 m-auto">
+                                    <div class="text-center mt-2">
+                                        <h6 class="font1">
+                                            برای تغییر تصویر خود ،
+                                            تصویر جدید رو داخل کادر
+                                            بیاندازید یا بر روی عکس کلیک
+                                            کنید
+                                        </h6>
+                                    </div>
+                                </div>
+                                <!--galleri -->
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                        <h5 class="text-danger text-center">
+                                            <i class="fa fa-star-o"></i>
+                                            افزودن حداقل یک تصویر الزامی است
+                                            <i class="fa fa-star-o"></i>
+                                        </h5>
+                                        <h4 class="form-section success">
+                                            <i class="fa fa-picture-o"></i>گالری تصاویر
+                                            <button type="button" class="btn btn-success col-md-3  add-row1 float-left">افزودن تصویر</button>
+                                        </h4>
+                                        <div class="row justify-content-center" style="background-color:#dedede;">
+                                            <div class="col-md-12">
+                                                <div class="card card1 optionBox1">
+                                                    <!--//////////////////Add Injure Card///////////////////-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+
+
+
+                                <!--Gallery&&Galleryimage-->
+                                <!--airport-->
+
+
+
+
+                            </div>
+                            <div class="form-actions">
+                                <a asp-page="index" type="button" class="btn btn-danger mr-1">
+                                    <i class="icon-trash"></i> لغو
+                                </a>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="icon-note"></i> ذخیره
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -161,3 +261,46 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+        $(function () {
+            $('#file-input').imoViewer({
+                'preview': '#image-previewer',
+            })
+        });
+    });
+    $(document).ready(function () {
+        var count = 0;
+        $(".add-row1").click(function () {
+            count += 1;
+            var color = $(this).attr("data-hex");
+            var name = $(this).attr("data-title");
+            var deletes = "<button type=\"button\" class=\"remove with-fit btn btn-danger text-white mt-2\"><strong><i class=\"fa fa-close\"></i> حذف تصویر " + count + " </strong></button>";
+            var markup = "<div class=\"card\">\n" +
+                "            <h4 class=\"form-section\">\n" +
+                "                <i class=\"fa fa-user-plus\"></i>تصویر شماره\n" + count + "  " + deletes +
+                "            </h4>\n" +
+                "            <div class=\"col-lg-12 col-md-12\">\n" +
+                "            <div class=\"col-lg-12 col-md-12\">\n" +
+                "            <div class=\"input-group mb-3\">\n" +
+                "            <div class=\"input-group-prepend\">\n" +
+                "                  <span class=\"input-group-text\">بارگذاری</span>\n" +
+                "                      </div>\n" +
+                "                      <div class=\"custom-file\">\n" +
+                "                      <input type=\"file\" class=\"custom-file-input\" name=\"images\" id=\"inputGroupFile01\">\n" +
+                "                      <label class=\"custom-file-label\" for=\"inputGroupFile01\">انتخاب فایل</label>\n" +
+                "            </div>\n" +
+                "            </div>\n" +
+                "            </div>\n" +
+                "         </div>";
+            $('.card1').append(markup);
+
+        });
+        $('.optionBox1').on('click', '.remove', function () {
+            $(this).parent().parent().remove();
+        });
+
+    });
+</script>
