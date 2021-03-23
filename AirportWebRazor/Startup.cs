@@ -28,8 +28,18 @@ namespace AirportWebRazor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".Jimboo.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(120);
+                options.Cookie.IsEssential = true;
+            });
             services.AddMvc();
+            #region dbcontext
             services.AddDbContext<AppDatabaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            #endregion
+            #region transient
             services.AddTransient<IAddress, Address>();
             services.AddTransient<IAirline, Airline>();
             services.AddTransient<IAirPort, AirPortDataLayer.Crud.AirPort>();
@@ -62,20 +72,10 @@ namespace AirportWebRazor
             services.AddTransient<IWeather, Weather>();
             services.AddTransient<IRaiting, Rairing>();
 
+            #endregion
 
 
-            services.AddAuthentication(Option =>
-            {
-                Option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                Option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                Option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-            }).AddCookie(option =>
-            {
-                option.LoginPath = "/Account/Login";
-                option.LogoutPath = "/Account/LogOut";
-                option.ExpireTimeSpan = TimeSpan.FromMinutes(45);
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,15 +93,14 @@ namespace AirportWebRazor
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
-
                 endpoints.MapRazorPages();
             });
         }

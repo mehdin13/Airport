@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using AirportWebRazor.Model;
 
 namespace AirportWebRazor.Pages.AirLine
 {
@@ -30,75 +31,92 @@ namespace AirportWebRazor.Pages.AirLine
 
         public async Task<IActionResult> OnGet()
         {
-            string err = "";
-            ViewData["featruelist"] = _featrue.ToListbyid(5);
-            ViewData["err"] = err;
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                string err = "";
+                ViewData["featruelist"] = _featrue.ToListbyid(5);
+                ViewData["err"] = err;
+                return Page();
+            }
         }
         // *************** on post
 
         public async Task<IActionResult> Onpost(int[] id, string[] value, IFormFile images)
         {
-            string err = "";
-            ViewData["featruelist"] = _featrue.ToListbyid(5);
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                //Logo
-                if (images != null && images.Length > 0 && images.ContentType != null)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                string err = "";
+                ViewData["featruelist"] = _featrue.ToListbyid(5);
+                try
                 {
-                    var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
-                    using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                    //Logo
+                    if (images != null && images.Length > 0 && images.ContentType != null)
                     {
-                        images.CopyTo(stream);
-                        airlines.Logo = string.Format("{0}{1}", "\\", path);
-                    }
-                }
-                else
-                {
-                    err = "آپلود عکس با مشکل مواجه شد لطفا مقادیر را کنترل کنید";
-                    ViewData["err"] = err;
-                    return Page();
-                }
-
-                //detail
-                AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
-                detailobj.TypeId = 5;
-                int deid = _detail.Insert(detailobj);
-                if (deid == 0)
-                {
-                    return Redirect("index");
-                }
-                else
-                {
-                    AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
-                    for (int i = 0; i <= id.Count() - 1; i++)
-                    {
-                        de.DetailId = deid;
-                        de.FeacherId = id[i];
-                        de.Value = value[i];
-                        if (_detailValue.Insert(de) == 0)
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                         {
-                            return Redirect("index");
+                            images.CopyTo(stream);
+                            airlines.Logo = string.Format("{0}{1}", "\\", path);
                         }
                     }
+                    else
+                    {
+                        err = "آپلود عکس با مشکل مواجه شد لطفا مقادیر را کنترل کنید";
+                        ViewData["err"] = err;
+                        return Page();
+                    }
 
-                    airlines.Detail = detailobj;
-                    if (_airline.Insert(airlines) == 0)
+                    //detail
+                    AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
+                    detailobj.TypeId = 5;
+                    int deid = _detail.Insert(detailobj);
+                    if (deid == 0)
                     {
                         return Redirect("index");
                     }
                     else
                     {
-                        return Redirect("index");
-                    }
+                        AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
+                        for (int i = 0; i <= id.Count() - 1; i++)
+                        {
+                            de.DetailId = deid;
+                            de.FeacherId = id[i];
+                            de.Value = value[i];
+                            if (_detailValue.Insert(de) == 0)
+                            {
+                                return Redirect("index");
+                            }
+                        }
 
+                        airlines.Detail = detailobj;
+                        if (_airline.Insert(airlines) == 0)
+                        {
+                            return Redirect("index");
+                        }
+                        else
+                        {
+                            return Redirect("index");
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string massage = ex.Message;
+                    return Redirect("index");
                 }
             }
-            catch (Exception ex)
-            {
-                string massage = ex.Message;
-                return Redirect("index");
-            }
+
         }
     }
 }

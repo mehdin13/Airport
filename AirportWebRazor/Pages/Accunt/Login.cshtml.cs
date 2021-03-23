@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using AirportWebRazor.Model.ViewMode;
+using Microsoft.AspNetCore.Http;
 
 namespace AirportWebRazor.Pages.Accunt
 {
@@ -23,9 +25,7 @@ namespace AirportWebRazor.Pages.Accunt
         public LoginViewModel loginViewModel { get; set; }
         public void OnGet()
         {
-            
         }
-
         public IActionResult OnPost()
         {
             try
@@ -37,23 +37,7 @@ namespace AirportWebRazor.Pages.Accunt
                         var user = _User.FindByUserName(loginViewModel.Name);
                         if (user != null)
                         {
-
-                            var userClime = new List<Claim>()
-                            {
-                              new Claim( ClaimTypes.NameIdentifier, user.Id.ToString()),
-                              new Claim( ClaimTypes.Name, user.Name.ToString())
-                              
-                             
-                        };
-                            var identity = new ClaimsIdentity(userClime, CookieAuthenticationDefaults.AuthenticationScheme);
-
-
-                            var properties = new AuthenticationProperties
-                            {
-                                IsPersistent = loginViewModel.RememberMe
-                            };
-                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-
+                            HttpContext.Session.SetString("admin", "jimbo.23@23");
                             return Redirect("~/");
                         }
                         else

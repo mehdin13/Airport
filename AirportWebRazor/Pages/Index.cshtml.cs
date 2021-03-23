@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,9 +18,17 @@ namespace AirportWebRazor.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
-
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }
