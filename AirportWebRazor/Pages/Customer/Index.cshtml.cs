@@ -23,10 +23,18 @@ namespace AirportWebRazor.Pages.Customer
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Addresses"] = _address.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Addresses"] = _address.ToList();
 
-            customers = _customer.ToList();
-            return Page();
+                customers = _customer.ToList();
+                return Page();
+            }
         }
     }
 }

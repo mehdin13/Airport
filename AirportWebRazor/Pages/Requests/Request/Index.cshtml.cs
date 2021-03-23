@@ -27,10 +27,18 @@ namespace AirportWebRazor.Pages.Requests.RequestHotel
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Requesttypes"] = _requestType.ToList();
-            ViewData["Customer"] = _customer.ToList();
-            requestsobj = _request.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Requesttypes"] = _requestType.ToList();
+                ViewData["Customer"] = _customer.ToList();
+                requestsobj = _request.ToList();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

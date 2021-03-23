@@ -24,29 +24,46 @@ namespace AirportWebRazor.Pages.City
 
         public async Task<IActionResult> OnGet(int id)
         {
-            cityObj = _city.FindById(id);
-            ViewData["States"] = _stat.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                cityObj = _city.FindById(id);
+                ViewData["States"] = _stat.ToList();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (_city.Update(cityObj).Number.Equals(1))
-                {
-                    return Redirect("index");
-                }
-                else
-                {
-                    return Page();
-                    
-                }
+                return Redirect("~/accunt/login");
             }
-            catch (Exception ex)
+            else
             {
-                string mes = ex.Message;
-                return Page();
+
+                try
+                {
+                    if (_city.Update(cityObj).Number.Equals(1))
+                    {
+                        return Redirect("index");
+                    }
+                    else
+                    {
+                        return Page();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                    return Page();
+                }
             }
         }
     }

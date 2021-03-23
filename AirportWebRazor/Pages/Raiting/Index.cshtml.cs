@@ -26,12 +26,20 @@ namespace AirportWebRazor.Pages.Raiting
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Customers"] = _customer.ToList();
-            ViewData["Detailes"] = _detail.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Customers"] = _customer.ToList();
+                ViewData["Detailes"] = _detail.ToList();
 
 
-            raitings = _raiting.ToList();
-            return Page();
+                raitings = _raiting.ToList();
+                return Page();
+            }
         }
     }
 }

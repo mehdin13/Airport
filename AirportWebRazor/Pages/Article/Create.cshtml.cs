@@ -24,28 +24,44 @@ namespace AirportWebRazor.Pages.Article
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Galleryes"] = _gallery.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Galleryes"] = _gallery.ToList();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> Onpost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (!ModelState.IsValid)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
+                    if (!ModelState.IsValid)
+                    {
+                        return Page();
+                    }
+                    else
+                    {
+                        _article.Insert(article1);
+                        return Redirect("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ = ex.Message;
                     return Page();
                 }
-                else
-                {
-                    _article.Insert(article1);
-                    return Redirect("index");
-                }
-            }
-            catch (Exception ex)
-            {
-                _ = ex.Message;
-                return Page();
             }
         }
     }

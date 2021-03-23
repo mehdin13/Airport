@@ -24,9 +24,17 @@ namespace AirportWebRazor.Pages.City
         public List<AirPortModel.Models.City> cities { get; set; }
         public async Task<IActionResult> OnGet()
         {
-            ViewData["State"] = _state.ToList();
-            cities = _city.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["State"] = _state.ToList();
+                cities = _city.ToList();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

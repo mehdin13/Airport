@@ -38,7 +38,6 @@ namespace AirportWebRazor.Pages.AirLine
             try
             {
                 _airline.Delete(id);
-
                 return RedirectToPage("index");
             }
             catch (Exception ex)

@@ -29,29 +29,45 @@ namespace AirportWebRazor.Pages.Article
 
         public async Task<IActionResult> OnGet(int id)
         {
-            articleObj = _article.FindById(id);
-            ViewData["Galleryes"] = _gallery.FindById(id);
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                articleObj = _article.FindById(id);
+                ViewData["Galleryes"] = _gallery.FindById(id);
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(string[] value, IFormFile images, IFormFile mapimage)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-
-                if (_article.Update(articleObj).Number.Equals(1))
-                {
-                    return Redirect("index");
-                }
-                else
-                {
-                    return Redirect("index");
-                }
+                return Redirect("~/accunt/login");
             }
-            catch (Exception ex)
+            else
             {
-                string massage = ex.Message;
-                return Redirect("index");
+                try
+                {
+
+                    if (_article.Update(articleObj).Number.Equals(1))
+                    {
+                        return Redirect("index");
+                    }
+                    else
+                    {
+                        return Redirect("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string massage = ex.Message;
+                    return Redirect("index");
+                }
             }
         }
     }

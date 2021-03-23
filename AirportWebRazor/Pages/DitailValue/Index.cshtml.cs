@@ -23,8 +23,16 @@ namespace AirportWebRazor.Pages.DitailValue
 
         public async Task<IActionResult> OnGet()
         {
-            detailValues = _detailValue.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                detailValues = _detailValue.ToList();
+                return Page();
+            }
         }
     }
 }

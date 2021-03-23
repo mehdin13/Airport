@@ -23,29 +23,44 @@ namespace AirportWebRazor.Pages.state
 
         public IActionResult OnGet(int id)
         {
-            StateObj = _state.FindById(id);
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                StateObj = _state.FindById(id);
+                return Page();
+            }
         }
 
         public IActionResult OnPost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (_state.Update(StateObj).Number.Equals(1))
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    return RedirectToPage("index");
+                    if (_state.Update(StateObj).Number.Equals(1))
+                    {
+                        return RedirectToPage("index");
+                    }
+                    else
+                    {
+                        return RedirectToPage("index");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    return RedirectToPage("index");
+                    string mes = ex.Message;
+                    return Page();
                 }
             }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
-            }
-
         }
 
     }

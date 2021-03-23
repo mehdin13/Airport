@@ -30,58 +30,74 @@ namespace AirportWebRazor.Pages.Entertainment.Aviation
 
         public IActionResult OnGet(int id)
         {
-            entertainment = _entertaiment.FindById(id);
-            ViewData["Linkes"] = _links.FindById(id);
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                entertainment = _entertaiment.FindById(id);
+                ViewData["Linkes"] = _links.FindById(id);
 
 
-            return Page();
+                return Page();
+            }
         }
 
 
         public async Task<IActionResult> OnPost(string Title, string Url, string Icon, string Description)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-
-                //*********************Link
-                AirPortModel.Models.Links linksobj = new AirPortModel.Models.Links();
-                entertainment.Type = 4;
-                if (Title != null && Url != null && Icon != null && Description != null)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    linksobj.Title = Title;
-                    linksobj.Url = Url;
-                    linksobj.Icon = Icon;
-                    linksobj.Description = Description;
-                    linksobj.CategoryId = 19;
-                    var addLinkid = _links.Update(linksobj);
-                    if (addLinkid.Number.Equals(1))
+
+                    //*********************Link
+                    AirPortModel.Models.Links linksobj = new AirPortModel.Models.Links();
+                    entertainment.Type = 4;
+                    if (Title != null && Url != null && Icon != null && Description != null)
                     {
-                        entertainment.LId = linksobj.Id;
+                        linksobj.Title = Title;
+                        linksobj.Url = Url;
+                        linksobj.Icon = Icon;
+                        linksobj.Description = Description;
+                        linksobj.CategoryId = 19;
+                        var addLinkid = _links.Update(linksobj);
+                        if (addLinkid.Number.Equals(1))
+                        {
+                            entertainment.LId = linksobj.Id;
+                        }
+                        else
+                        {
+                            return Page();
+                        }
+                    }
+                    //********************** End Link******************
+
+                    if (_entertaiment.Update(entertainment).Number.Equals(1))
+                    {
+                        return RedirectToPage("index");
                     }
                     else
                     {
-                        return Page();
+                        return Redirect("index");
                     }
-                }
-                //********************** End Link******************
 
-                if (_entertaiment.Update(entertainment).Number.Equals(1))
+
+                }
+                catch (Exception ex)
                 {
-                    return RedirectToPage("index");
+                    _ = ex.Message;
+                    return Page();
                 }
-                else
-                {
-                    return Redirect("index");
-                }
-
-
+                return RedirectToPage("index");
             }
-            catch (Exception ex)
-            {
-                _ = ex.Message;
-                return Page();
-            }
-            return RedirectToPage("index");
         }
     }
 }

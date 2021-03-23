@@ -24,8 +24,16 @@ namespace AirportWebRazor.Pages.Applications
 
         public async Task<IActionResult> OnGet()
         {
-            linksOBJ = _link.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                linksOBJ = _link.ToList();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

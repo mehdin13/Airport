@@ -22,9 +22,17 @@ namespace AirportWebRazor.Pages.Faq
 
         public async Task<IActionResult> OnGet()
         {
-            faqs = _faq.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                faqs = _faq.ToList();
 
-            return Page();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

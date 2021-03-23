@@ -33,14 +33,22 @@ namespace AirportWebRazor.Pages.Institute
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Address"] = _address.ToList();
-            ViewData["Detail"] = _detail.ToList();
-            ViewData["Galleryes"] = _gallery.ToList();
-            ViewData["Galleryimages"] = _galleryImage.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Address"] = _address.ToList();
+                ViewData["Detail"] = _detail.ToList();
+                ViewData["Galleryes"] = _gallery.ToList();
+                ViewData["Galleryimages"] = _galleryImage.ToList();
 
-            placesObj = _place.ToList();
+                placesObj = _place.ToList();
 
-            return Page();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int id)

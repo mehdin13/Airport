@@ -24,22 +24,39 @@ namespace AirportWebRazor.Pages.Detail
 
         public async Task<IActionResult> OnGet()
         {
-            details = _detail.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                details = _detail.ToList();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int id)
         {
-            try
+
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                
-                _detail.Delete(id);
-                return RedirectToPage("index");
+                return Redirect("~/accunt/login");
             }
-            catch (Exception ex)
+            else
             {
-                string mes = ex.Message;
-                return Page();
+                try
+                {
+
+                    _detail.Delete(id);
+                    return RedirectToPage("index");
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                    return Page();
+                }
             }
         }
     }

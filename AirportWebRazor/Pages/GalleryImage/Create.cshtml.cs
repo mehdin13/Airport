@@ -25,43 +25,59 @@ namespace AirportWebRazor.Pages.GalleryImage
 
         public async Task<IActionResult> OnGet(int ids)
         {
-            ViewData["GalleryImagesid"] = ids;
-            ViewData["GalleryImages"] = _gallery.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["GalleryImagesid"] = ids;
+                ViewData["GalleryImages"] = _gallery.ToList();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(IFormFile fileimage)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (ModelState.IsValid)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    if (fileimage.Length > 0 && fileimage.ContentType != null)
+                    if (ModelState.IsValid)
                     {
-                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        if (fileimage.Length > 0 && fileimage.ContentType != null)
                         {
-                            fileimage.CopyTo(stream);
-                            galleryImage1.Url = string.Format("{0}{1}", "\\", path);
-                            int img = _galleryImage.Insert(galleryImage1);
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                            {
+                                fileimage.CopyTo(stream);
+                                galleryImage1.Url = string.Format("{0}{1}", "\\", path);
+                                int img = _galleryImage.Insert(galleryImage1);
+                            }
+                            string address = string.Format("index?id={0}", galleryImage1.GalleryId);
+                            return Redirect(address);
                         }
-                        string address = string.Format("index?id={0}", galleryImage1.GalleryId);
-                        return Redirect(address);
+                        else
+                        {
+                            return Page();
+                        }
                     }
                     else
                     {
+
                         return Page();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-
+                    string mes = ex.Message;
                     return Page();
                 }
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
             }
         }
     }

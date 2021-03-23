@@ -26,40 +26,56 @@ namespace AirportWebRazor.Pages.Applications
 
         public async Task<IActionResult> OnGet(int id)
         {
-            linkesobj = _link.FindById(id);
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                linkesobj = _link.FindById(id);
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(IFormFile images)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-
-                if (images.Length > 0 && images.ContentType != null)
-                {
-                    var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
-                    using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
-                    {
-                        images.CopyTo(stream);
-                        linkesobj.Icon = string.Format("{0}{1}", "\\", path);
-                    }
-
-
-                    linkesobj.CategoryId = 14;
-                }
-                if (_link.Update(linkesobj).Number.Equals(1))
-                {
-                    return RedirectToPage("Index");
-                }
-                else
-                {
-                    return Redirect("index");
-                }
+                return Redirect("~/accunt/login");
             }
-            catch (Exception ex)
+            else
             {
-                _ = ex.Message;
-                return Page();
+                try
+                {
+
+                    if (images.Length > 0 && images.ContentType != null)
+                    {
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            images.CopyTo(stream);
+                            linkesobj.Icon = string.Format("{0}{1}", "\\", path);
+                        }
+
+
+                        linkesobj.CategoryId = 14;
+                    }
+                    if (_link.Update(linkesobj).Number.Equals(1))
+                    {
+                        return RedirectToPage("Index");
+                    }
+                    else
+                    {
+                        return Redirect("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ = ex.Message;
+                    return Page();
+                }
             }
         }
     }

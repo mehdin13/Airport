@@ -22,8 +22,16 @@ namespace AirportWebRazor.Pages.Brand
 
         public async Task<IActionResult> OnGet()
         {
-            brands = _brand.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                brands = _brand.ToList();
+                return Page();
+            }
         }
 
 

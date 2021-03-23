@@ -26,34 +26,50 @@ namespace AirportWebRazor.Pages.News
 
         public async Task<IActionResult> OnGet()
         {
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(IFormFile images)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (images.Length > 0 && images.ContentType != null)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
-                    using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                    if (images.Length > 0 && images.ContentType != null)
                     {
-                        images.CopyTo(stream);
-                        linkesobj.Icon = string.Format("{0}{1}", "\\", path);
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            images.CopyTo(stream);
+                            linkesobj.Icon = string.Format("{0}{1}", "\\", path);
 
-                        linkesobj.CategoryId = 12;
-                        _link.Insert(linkesobj);
+                            linkesobj.CategoryId = 12;
+                            _link.Insert(linkesobj);
+                        }
+                        return Redirect("index");
                     }
-                    return Redirect("index");
+                    else
+                    {
+                        return Page();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
+                    _ = ex.Message;
                     return Page();
                 }
-            }
-            catch (Exception ex)
-            {
-                _ = ex.Message;
-                return Page();
             }
         }
     }

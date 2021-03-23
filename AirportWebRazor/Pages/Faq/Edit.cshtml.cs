@@ -23,27 +23,43 @@ namespace AirportWebRazor.Pages.Faq
 
         public async Task<IActionResult> OnGet(int id)
         {
-            faqOBJ = _faq.FindById(id);
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                faqOBJ = _faq.FindById(id);
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (_faq.Update(faqOBJ).Number.Equals(1))
-                {
-                    return RedirectToPage("index");
-                }
-                else
-                {
-                    return RedirectToPage("index");
-                }
+                return Redirect("~/accunt/login");
             }
-            catch (Exception ex)
+            else
             {
-                string mes = ex.Message;
-                return Page();
+                try
+                {
+                    if (_faq.Update(faqOBJ).Number.Equals(1))
+                    {
+                        return RedirectToPage("index");
+                    }
+                    else
+                    {
+                        return RedirectToPage("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                    return Page();
+                }
             }
         }
 

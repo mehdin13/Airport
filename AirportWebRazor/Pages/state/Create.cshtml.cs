@@ -21,26 +21,42 @@ namespace AirportWebRazor.Pages.state
 
         public async Task<IActionResult> OnGet()
         {
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (!ModelState.IsValid)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
+                    if (!ModelState.IsValid)
+                    {
+                        return Page();
+                    }
+                    else
+                    {
+                        _state.Insert(state1);
+                        return Redirect("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
                     return Page();
                 }
-                else
-                {
-                    _state.Insert(state1);
-                    return Redirect("index");
-                }
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
             }
         }
     }

@@ -41,57 +41,119 @@ namespace AirportWebRazor.Pages.AirPort
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["state"] = _state.ToList();
-            ViewData["city"] = _city.ToList();
-            ViewData["featruelist"] = _featrue.ToListbyid(6);
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["state"] = _state.ToList();
+                ViewData["city"] = _city.ToList();
+                ViewData["featruelist"] = _featrue.ToListbyid(6);
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, IFormFile mapimage, string AdressDetail, string AdressLocationX, string AdressLocationY, string AdressLocationR, int AdressCityId)
         {
-            ViewData["state"] = _state.ToList();
-            ViewData["city"] = _city.ToList();
-            ViewData["featruelist"] = _featrue.ToListbyid(6);
-            try
+
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                AirPortModel.Models.Address addressObj = new AirPortModel.Models.Address();
-                if (AdressDetail != null && AdressLocationX != null && AdressLocationY != null && AdressLocationR != null && AdressCityId != null)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["state"] = _state.ToList();
+                ViewData["city"] = _city.ToList();
+                ViewData["featruelist"] = _featrue.ToListbyid(6);
+                try
                 {
-                    addressObj.LocationR = AdressLocationR;
-                    addressObj.LocationX = AdressLocationX;
-                    addressObj.LocationY = AdressLocationY;
-                    addressObj.Detail = AdressDetail;
-                    addressObj.CityId = AdressCityId;
-                    var adid = _address.Insert(addressObj);
-                    if (adid != 0)
+                    AirPortModel.Models.Address addressObj = new AirPortModel.Models.Address();
+                    if (AdressDetail != null && AdressLocationX != null && AdressLocationY != null && AdressLocationR != null && AdressCityId != null)
                     {
-                        airportobj.AirPortAddressId = adid;
-                    }
-                    else
-                    {
-                        return Page();
-                    }
-                }
-                AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
-                AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
-                AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
-                galleryobg.Name = string.Format("{0}", Guid.NewGuid().ToString().Replace("_", ""));
-                int gid = _gallery.Insert(galleryobg);
-                if (gid != 0)
-                {
-                    airportobj.GalleryId = gid;
-                    long size = images.Sum(f => f.Length);
-                    foreach (var fileimage in images)
-                    {
-                        if (fileimage.Length > 0 && fileimage.ContentType != null)
+                        addressObj.LocationR = AdressLocationR;
+                        addressObj.LocationX = AdressLocationX;
+                        addressObj.LocationY = AdressLocationY;
+                        addressObj.Detail = AdressDetail;
+                        addressObj.CityId = AdressCityId;
+                        var adid = _address.Insert(addressObj);
+                        if (adid != 0)
                         {
-                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                            airportobj.AirPortAddressId = adid;
+                        }
+                        else
+                        {
+                            return Page();
+                        }
+                    }
+                    AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
+                    AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
+                    AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
+                    galleryobg.Name = string.Format("{0}", Guid.NewGuid().ToString().Replace("_", ""));
+                    int gid = _gallery.Insert(galleryobg);
+                    if (gid != 0)
+                    {
+                        airportobj.GalleryId = gid;
+                        long size = images.Sum(f => f.Length);
+                        foreach (var fileimage in images)
+                        {
+                            if (fileimage.Length > 0 && fileimage.ContentType != null)
+                            {
+                                var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                                using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                                {
+                                    fileimage.CopyTo(stream);
+                                    galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
+                                    galleryImageObj.GalleryId = gid;
+                                    int img = _galleryImage.Insert(galleryImageObj);
+                                }
+                            }
+                            else
+                            {
+                                return Page();
+                            }
+                        }
+                        if (mapimage.Length > 0 && mapimage.ContentType != null)
+                        {
+                            var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(mapimage.FileName)));
                             using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
                             {
-                                fileimage.CopyTo(stream);
-                                galleryImageObj.Url = string.Format("{0}{1}", "\\", path);
-                                galleryImageObj.GalleryId = gid;
-                                int img = _galleryImage.Insert(galleryImageObj);
+                                mapimage.CopyTo(stream);
+                                airportobj.Url = string.Format("{0}{1}", "\\", path);
+                            }
+                        }
+                        else
+                        {
+                            return Page();
+                        }
+                        detailobj.TypeId = 6;
+                        int deid = _detail.Insert(detailobj);
+                        if (deid != 0)
+                        {
+                            AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
+                            for (int i = 0; i <= id.Count() - 1; i++)
+                            {
+                                de.DetailId = deid;
+                                de.FeacherId = id[i];
+                                de.Value = value[i];
+                                if (_detailValue.Insert(de) != 0)
+                                {
+                                    airportobj.Detailid = deid;
+                                }
+                                else
+                                {
+                                    return Page();
+                                }
+                            }
+                            if (_airPort.Insert(airportobj) != 0)
+                            {
+                                return Redirect("index");
+                            }
+                            else
+                            {
+                                return Redirect("index");
                             }
                         }
                         else
@@ -99,61 +161,16 @@ namespace AirportWebRazor.Pages.AirPort
                             return Page();
                         }
                     }
-                    if (mapimage.Length > 0 && mapimage.ContentType != null)
-                    {
-                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(mapimage.FileName)));
-                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
-                        {
-                            mapimage.CopyTo(stream);
-                            airportobj.Url = string.Format("{0}{1}", "\\", path);
-                        }
-                    }
-                    else
-                    {
-                        return Page();
-                    }
-                    detailobj.TypeId = 6;
-                    int deid = _detail.Insert(detailobj);
-                    if (deid != 0)
-                    {
-                        AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
-                        for (int i = 0; i <= id.Count() - 1; i++)
-                        {
-                            de.DetailId = deid;
-                            de.FeacherId = id[i];
-                            de.Value = value[i];
-                            if (_detailValue.Insert(de) != 0)
-                            {
-                                airportobj.Detailid = deid;
-                            }
-                            else
-                            {
-                                return Page();
-                            }
-                        }
-                        if (_airPort.Insert(airportobj) != 0)
-                        {
-                            return Redirect("index");
-                        }
-                        else
-                        {
-                            return Redirect("index");
-                        }
-                    }
                     else
                     {
                         return Page();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
+                    string mes = ex.Message;
                     return Page();
                 }
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
             }
         }
 

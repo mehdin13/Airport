@@ -22,8 +22,16 @@ namespace AirportWebRazor.Pages.Featrue
 
         public async Task<IActionResult> OnGet()
         {
-            featrues = _featrue.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                featrues = _featrue.ToList();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

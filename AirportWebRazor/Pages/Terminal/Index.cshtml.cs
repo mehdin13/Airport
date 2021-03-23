@@ -24,9 +24,17 @@ namespace AirportWebRazor.Pages.Terminal
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Airport"] = _airport.Tolist();
-            TerminalsObj = _terminal.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Airport"] = _airport.Tolist();
+                TerminalsObj = _terminal.ToList();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

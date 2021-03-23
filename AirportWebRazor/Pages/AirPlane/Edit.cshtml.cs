@@ -38,43 +38,59 @@ namespace AirportWebRazor.Pages.AirPlane
 
         public async Task<IActionResult> OnGet(int id)
         {
-            airPlaneobj = _airplane.FindById(id);
-
-            ViewData["Brandes"] = _Brand.ToList();
-            ViewData["AirLine"] = _airline.FindById(id);
-            ViewData["featruelist"] = _featrue.ToListbyid(7);
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                airPlaneobj = _airplane.FindById(id);
+                ViewData["Brandes"] = _Brand.ToList();
+                ViewData["AirLine"] = _airline.FindById(id);
+                ViewData["featruelist"] = _featrue.ToListbyid(7);
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int[] dfid, int[] id, string[] value, List<IFormFile> images)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
-                for (int i = 0; i <= id.Count() - 1; i++)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    de = _detailValue.FindById(dfid[i]);
-                    de.DetailId = airPlaneobj.DetailId;
-                    de.FeacherId = id[i];
-                    de.Value = value[i];
-                    if (_detailValue.Update(de).Number.Equals(0))
+                    AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
+                    for (int i = 0; i <= id.Count() - 1; i++)
+                    {
+                        de = _detailValue.FindById(dfid[i]);
+                        de.DetailId = airPlaneobj.DetailId;
+                        de.FeacherId = id[i];
+                        de.Value = value[i];
+                        if (_detailValue.Update(de).Number.Equals(0))
+                        {
+                            return Redirect("index");
+                        }
+                    }
+                    if (_airplane.Update(airPlaneobj).Number.Equals(0))
                     {
                         return Redirect("index");
                     }
+                    else
+                    {
+                        return RedirectToPage("index");
+                    }
                 }
-                if (_airplane.Update(airPlaneobj).Number.Equals(0))
+                catch (Exception ex)
                 {
+                    string mes = ex.Message;
                     return Redirect("index");
                 }
-                else
-                {
-                    return RedirectToPage("index");
-                }
             }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Redirect("index");
-            }
+               
         }
     }
 }

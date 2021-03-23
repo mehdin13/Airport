@@ -22,8 +22,16 @@ namespace AirportWebRazor.Pages.Requests.RequesType
 
         public async Task<IActionResult> OnGet()
         {
-            requestTypesOBJ = _requesttype.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                requestTypesOBJ = _requesttype.ToList();
+                return Page();
+            }
         }
 
 

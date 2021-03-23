@@ -26,10 +26,18 @@ namespace AirportWebRazor.Pages.Article
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Galery"] = _gallery.ToList();
-            ViewData["Galleryimages"] = _galleryImage.ToList();
-            articles = _article.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Galery"] = _gallery.ToList();
+                ViewData["Galleryimages"] = _galleryImage.ToList();
+                articles = _article.ToList();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int id)

@@ -26,30 +26,46 @@ namespace AirportWebRazor.Pages.Gate
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Terminal"] = _terminal.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Terminal"] = _terminal.ToList();
 
-            return Page();
+                return Page();
+            }
         }
 
 
         public async Task<IActionResult> OnPost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (!ModelState.IsValid)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
+                    if (!ModelState.IsValid)
+                    {
+                        return Page();
+                    }
+                    else
+                    {
+                        _gate.Insert(gateobj);
+                        return Redirect("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ = ex.Message;
                     return Page();
                 }
-                else
-                {  
-                    _gate.Insert(gateobj);
-                    return Redirect("index");
-                }
-            }
-            catch (Exception ex)
-            {
-                _ = ex.Message;
-                return Page();
             }
         }
     }

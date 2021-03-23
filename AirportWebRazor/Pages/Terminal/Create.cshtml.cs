@@ -27,45 +27,62 @@ namespace AirportWebRazor.Pages.Terminal
 
         public async Task<IActionResult> OnGet()
         {
-            
-            ViewData["airportes"] = _airport.Tolist();
-            string err = "";
-            ViewData["err"] = err;
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["airportes"] = _airport.Tolist();
+                string err = "";
+                ViewData["err"] = err;
+                return Page();
+            }
         }
+
+
         public async Task<IActionResult> OnPost(IFormFile images)
         {
-            string err = "";
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (images != null && images.Length > 0 && images.ContentType != null)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                string err = "";
+                try
                 {
-                    var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
-                    using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                    if (images != null && images.Length > 0 && images.ContentType != null)
                     {
-                        images.CopyTo(stream);
-                        terminals.Image = string.Format("{0}{1}", "\\", path);
+                        var path = Path.Combine("images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(images.FileName)));
+                        using (var stream = new FileStream(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\", path), FileMode.Create))
+                        {
+                            images.CopyTo(stream);
+                            terminals.Image = string.Format("{0}{1}", "\\", path);
+                        }
+                    }
+                    else
+                    {
+                        err = "آپلود عکس با مشکل مواجه شد لطفا مقادیر را کنترل کنید";
+                        ViewData["err"] = err;
+                        return Page();
+                    }
+                    if (_terminal.Insert(terminals) == 0)
+                    {
+                        return Redirect("index");
+                    }
+                    else
+                    {
+                        return Redirect("index");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    err = "آپلود عکس با مشکل مواجه شد لطفا مقادیر را کنترل کنید";
-                    ViewData["err"] = err;
+                    string mes = ex.Message;
                     return Page();
                 }
-                if (_terminal.Insert(terminals)==0)
-                {
-                    return Redirect("index");
-                }
-                else
-                {
-                    return Redirect("index");
-                }
-            }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
             }
         }
     }

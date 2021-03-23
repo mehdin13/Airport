@@ -35,11 +35,19 @@ namespace AirportWebRazor.Pages.Entertainment.Book
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Gallery"] = _gallery.ToList();
-            ViewData["Linkes"] = _links.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Gallery"] = _gallery.ToList();
+                ViewData["Linkes"] = _links.ToList();
 
-            entertainments = _entertainment.EntertainmentBookId();
-            return Page();
+                entertainments = _entertainment.EntertainmentBookId();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

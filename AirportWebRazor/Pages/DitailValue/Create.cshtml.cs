@@ -29,34 +29,49 @@ namespace AirportWebRazor.Pages.DitailValue
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["detail"] = _featrue.ToList();
-            ViewData["detail1"] = _detail.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["detail"] = _featrue.ToList();
+                ViewData["detail1"] = _detail.ToList();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost()
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                if (!ModelState.IsValid)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
+                    if (!ModelState.IsValid)
+                    {
+                        return Page();
+                    }
+                    else
+                    {
+                        _detailValue.Insert(DetailValue);
+                        return Redirect("index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
                     return Page();
-                }
-                else
-                {
-                   _detailValue.Insert(DetailValue);
-                    return Redirect("index");
+
                 }
             }
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
-                
-            }
+
         }
-
-
 
     }
 }

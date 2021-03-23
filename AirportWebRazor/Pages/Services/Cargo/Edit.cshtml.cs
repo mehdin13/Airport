@@ -46,64 +46,80 @@ namespace AirportWebRazor.Pages.Services.Cargo
 
         public async Task<IActionResult> OnGet(int id)
         {
-            placeobj = _place.FindById(id);
-            ViewData["Addresses"] = _address.FindById(id);
-            ViewData["Statees"] = _state.ToList();
-            ViewData["Cityes"] = _city.ToList();
-            ViewData["Feathrue"] = _featrue.ToListbyid(13);
-            ViewData["Airport"] = _airport.Tolist();
-            ViewData["Customer"] = _customer.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                placeobj = _place.FindById(id);
+                ViewData["Addresses"] = _address.FindById(id);
+                ViewData["Statees"] = _state.ToList();
+                ViewData["Cityes"] = _city.ToList();
+                ViewData["Feathrue"] = _featrue.ToListbyid(13);
+                ViewData["Airport"] = _airport.Tolist();
+                ViewData["Customer"] = _customer.ToList();
 
-            return Page();
+                return Page();
+            }
         }
 
 
         public async Task<IActionResult> OnPost(int[] id, string[] value, List<IFormFile> images, string Detail, string LocationX, string LocationY, string LocationR, int CityId)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                //Update into address
-                AirPortModel.Models.Address addressObj = new AirPortModel.Models.Address();
-                if (Detail != null && LocationX != null && LocationY != null && LocationR != null && CityId != null)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    addressObj.LocationR = LocationR;
-                    addressObj.LocationX = LocationX;
-                    addressObj.LocationY = LocationY;
-                    addressObj.Detail = Detail;
-                    addressObj.CityId = CityId;
-                    addressObj.Id = placeobj.AdressId;
-                    var adid = _address.Update(addressObj);
+                    //Update into address
+                    AirPortModel.Models.Address addressObj = new AirPortModel.Models.Address();
+                    if (Detail != null && LocationX != null && LocationY != null && LocationR != null && CityId != null)
+                    {
+                        addressObj.LocationR = LocationR;
+                        addressObj.LocationX = LocationX;
+                        addressObj.LocationY = LocationY;
+                        addressObj.Detail = Detail;
+                        addressObj.CityId = CityId;
+                        addressObj.Id = placeobj.AdressId;
+                        var adid = _address.Update(addressObj);
 
-                    if (adid.Number.Equals(1))
-                    {
-                        placeobj.AdressId = addressObj.Id;
-                    }
-                    else
-                    {
-                        return Page();
-                    }
+                        if (adid.Number.Equals(1))
+                        {
+                            placeobj.AdressId = addressObj.Id;
+                        }
+                        else
+                        {
+                            return Page();
+                        }
 
-                    placeobj.CategoryId = 9;
-                    AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
+                        placeobj.CategoryId = 9;
+                        AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
 
-                    if (_place.Update(placeobj).Number.Equals(1))
-                    {
-                        return Redirect("index");
-                    }
-                    else
-                    {
-                        return Redirect("index");
+                        if (_place.Update(placeobj).Number.Equals(1))
+                        {
+                            return Redirect("index");
+                        }
+                        else
+                        {
+                            return Redirect("index");
+                        }
                     }
                 }
-            }
 
 
-            catch (Exception ex)
-            {
-                string mes = ex.Message;
-                return Page();
+                catch (Exception ex)
+                {
+                    string mes = ex.Message;
+                    return Page();
+                }
+                return Redirect("index");
             }
-            return Redirect("index");
         }
     }
 }

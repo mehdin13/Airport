@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
+using Microsoft.AspNetCore.Http;
 
 namespace AirportWebRazor.Pages.AirPlane
 {
@@ -24,9 +25,17 @@ namespace AirportWebRazor.Pages.AirPlane
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Brandes"] = _brand.ToList();
-            airPlanes = _airplane.ToList();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Brandes"] = _brand.ToList();
+                airPlanes = _airplane.ToList();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int id)

@@ -30,13 +30,21 @@ namespace AirportWebRazor.Pages.AirPort
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["airport"] = _airPort.Tolist();
-            ViewData["address"] = _address.ToList();
-            ViewData["City"] = _city.ToList();
-            ViewData["Gallery"] = _gallery.ToList();
-            ViewData["GalleryImage"] = _galleryImage.ToList();
-            airPorts = _airPort.Tolist();
-            return Page();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["airport"] = _airPort.Tolist();
+                ViewData["address"] = _address.ToList();
+                ViewData["City"] = _city.ToList();
+                ViewData["Gallery"] = _gallery.ToList();
+                ViewData["GalleryImage"] = _galleryImage.ToList();
+                airPorts = _airPort.Tolist();
+                return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int id)

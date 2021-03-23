@@ -30,11 +30,19 @@ namespace AirportWebRazor.Pages.Entertainment.Video
 
         public async Task<IActionResult> OnGet()
         {
-            ViewData["Gallery"] = _gallery.ToList();
-            ViewData["Linkes"] = _links.ToList();
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                ViewData["Gallery"] = _gallery.ToList();
+                ViewData["Linkes"] = _links.ToList();
 
-            entertainments = _entertainment.entertainmentvideoId();
-            return Page();
+                entertainments = _entertainment.entertainmentvideoId();
+                return Page();
+            }
         }
         public async Task<IActionResult> OnPost(int id)
         {

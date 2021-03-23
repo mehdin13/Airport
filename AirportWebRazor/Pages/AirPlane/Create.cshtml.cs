@@ -37,37 +37,85 @@ namespace AirportWebRazor.Pages.AirPlane
 
         public async Task<IActionResult> OnGet()
         {
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
+            {
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
             ViewData["Brandes"] = _Brand.ToList();
             ViewData["AirLine"] = _airline.ToList();
             ViewData["featruelist"] = _featrue.ToListbyid(7);
             return Page();
+            }
         }
 
         public async Task<IActionResult> OnPost(int[] dfid, int[] id, string[] value, List<IFormFile> images)
         {
-            try
+            string name = HttpContext.Session.GetString("admin");
+            if (name != "jimbo.23@23")
             {
-                //*************************detail
-                AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
-                AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
-                AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
-                galleryobg.Name = string.Format("{0}{2}{1}", airPlaneobj.Name, _airline.FindById(airPlaneobj.AirlineId).Name, _Brand.FindById(airPlaneobj.BrandId).BrandName);
-                int gid = _gallery.Insert(galleryobg);
-                if (gid != 0)
+                return Redirect("~/accunt/login");
+            }
+            else
+            {
+                try
                 {
-                    airPlaneobj.GalleryId = gid;
-                    long size = images.Sum(f => f.Length);
-                    foreach (var fileimage in images)
+                    //*************************detail
+                    AirPortModel.Models.Detail detailobj = new AirPortModel.Models.Detail();
+                    AirPortModel.Models.Gallery galleryobg = new AirPortModel.Models.Gallery();
+                    AirPortModel.Models.GalleryImage galleryImageObj = new AirPortModel.Models.GalleryImage();
+                    galleryobg.Name = string.Format("{0}{2}{1}", airPlaneobj.Name, _airline.FindById(airPlaneobj.AirlineId).Name, _Brand.FindById(airPlaneobj.BrandId).BrandName);
+                    int gid = _gallery.Insert(galleryobg);
+                    if (gid != 0)
                     {
-                        if (fileimage.Length > 0 && fileimage.ContentType != null)
+                        airPlaneobj.GalleryId = gid;
+                        long size = images.Sum(f => f.Length);
+                        foreach (var fileimage in images)
                         {
-                            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
-                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            if (fileimage.Length > 0 && fileimage.ContentType != null)
                             {
-                                fileimage.CopyTo(stream);
-                                galleryImageObj.Url = filePath;
-                                galleryImageObj.GalleryId = gid;
-                                int img = _galleryImage.Insert(galleryImageObj);
+                                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", string.Format("{0}{1}", Guid.NewGuid().ToString().Replace("_", ""), Path.GetExtension(fileimage.FileName)));
+                                using (var stream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    fileimage.CopyTo(stream);
+                                    galleryImageObj.Url = filePath;
+                                    galleryImageObj.GalleryId = gid;
+                                    int img = _galleryImage.Insert(galleryImageObj);
+                                }
+                            }
+                            else
+                            {
+                                return Page();
+                            }
+                        }
+                        detailobj.TypeId = 7;
+                        int deid = _detail.Insert(detailobj);
+                        if (deid != 0)
+                        {
+                            AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
+                            for (int i = 0; i <= id.Count() - 1; i++)
+                            {
+                                de.DetailId = deid;
+                                de.FeacherId = id[i];
+                                de.Value = value[i];
+                                if (_detailValue.Insert(de) != 0)
+                                {
+                                    airPlaneobj.DetailId = deid;
+                                }
+                                else
+                                {
+                                    return Page();
+                                }
+                            }
+                            if (_airplane.Insert(airPlaneobj) != 0)
+                            {
+                                return Redirect("index");
+                            }
+                            else
+                            {
+                                return Redirect("index");
                             }
                         }
                         else
@@ -75,48 +123,16 @@ namespace AirportWebRazor.Pages.AirPlane
                             return Page();
                         }
                     }
-                    detailobj.TypeId = 7;
-                    int deid = _detail.Insert(detailobj);
-                    if (deid != 0)
-                    {
-                        AirPortModel.Models.DetailValue de = new AirPortModel.Models.DetailValue();
-                        for (int i = 0; i <= id.Count() - 1; i++)
-                        {
-                            de.DetailId = deid;
-                            de.FeacherId = id[i];
-                            de.Value = value[i];
-                            if (_detailValue.Insert(de) != 0)
-                            {
-                                airPlaneobj.DetailId = deid;
-                            }
-                            else
-                            {
-                                return Page();
-                            }
-                        }
-                        if (_airplane.Insert(airPlaneobj) != 0)
-                        {
-                            return Redirect("index");
-                        }
-                        else
-                        {
-                            return Redirect("index");
-                        }
-                    }
                     else
                     {
                         return Page();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
+                    _ = ex.Message;
                     return Page();
                 }
-            }
-            catch (Exception ex)
-            {
-                _ = ex.Message;
-                return Page();
             }
         }
 
