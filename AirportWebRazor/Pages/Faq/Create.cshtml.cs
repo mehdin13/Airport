@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AirPortDataLayer.Crud.InterFace;
 using AirPortModel.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace AirportWebRazor.Pages.Faq
 {
